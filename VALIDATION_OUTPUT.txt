@@ -1,0 +1,145 @@
+Loading data...
+
+==============================================================================
+DATA
+==============================================================================
+  consensus ranks   2026-08-21  (452 skill players)
+  curve seasons     [2023, 2024, 2025]
+  id match rate      99.3%
+  unmatched top-100 0
+
+==============================================================================
+REPLACEMENT LEVEL  (12 teams, half-PPR, 1QB/2RB/3WR/1TE/1FLEX)
+==============================================================================
+  QB  rank  QB12.0     266.8 pts
+  RB  rank  RB29.4     146.3 pts
+  WR  rank  WR41.4     128.3 pts
+  TE  rank  TE13.2     116.1 pts
+
+==============================================================================
+TOP VALUE ABOVE REPLACEMENT
+==============================================================================
+   1. Jahmyr Gibbs           RB1    321.4 pts   VOR  175.0
+   2. Bijan Robinson         RB2    314.9 pts   VOR  168.6
+   3. Ja'Marr Chase          WR1    295.8 pts   VOR  167.6
+   4. Christian McCaffrey    RB3    305.5 pts   VOR  159.2
+   5. Puka Nacua             WR2    283.0 pts   VOR  154.7
+   6. Jaxon Smith-Njigba     WR3    274.2 pts   VOR  145.9
+   7. Jonathan Taylor        RB4    287.1 pts   VOR  140.7
+   8. Ashton Jeanty          RB5    276.2 pts   VOR  129.9
+   9. Amon-Ra St. Brown      WR4    254.2 pts   VOR  125.9
+  10. James Cook III         RB6    264.4 pts   VOR  118.1
+  11. CeeDee Lamb            WR5    238.9 pts   VOR  110.6
+  12. Chase Brown            RB7    251.9 pts   VOR  105.5
+
+==============================================================================
+TRADE VALIDATION  (roster is WR-deep, RB-thin by design)
+==============================================================================
+
+  [PASS] consolidation-up
+        give     Nico Collins, Rome Odunze
+        receive  Jahmyr Gibbs
+        +6.76 pts/wk   lopsided win   (depth -6.8)
+        expected gain  ->  got gain
+        "You gain 6.8 points a week. The biggest move is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it — fine if you are set at your starting spots."
+
+  [PASS] consolidation-trap
+        give     Ja'Marr Chase
+        receive  Chris Olave, Rashee Rice
+        -3.48 pts/wk   clear loss   (depth +7.2)
+        expected loss  ->  got loss
+        "You lose 3.5 points a week. The biggest move is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries."
+
+  [PASS] obvious-robbery
+        give     Michael Wilson
+        receive  Bijan Robinson
+        +8.85 pts/wk   lopsided win   (depth +6.4)
+        expected gain  ->  got gain
+        "You gain 8.9 points a week. The biggest move is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries."
+
+  [PASS] obvious-fleecing
+        give     Trey McBride
+        receive  Kyle Pitts Sr.
+        -2.10 pts/wk   clear loss   (depth +0.0)
+        expected loss  ->  got loss
+        "You lose 2.1 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level)."
+
+  [PASS] even-swap
+        give     Zay Flowers
+        receive  Garrett Wilson
+        -0.21 pts/wk   essentially even   (depth +0.0)
+        expected even  ->  got even
+        "You lose 0.2 points a week. Almost all of it is at WR3: Zay Flowers (WR15-level) becomes Garrett Wilson (WR16-level)."
+
+  [PASS] identity
+        give     Zay Flowers
+        receive  Zay Flowers
+        +0.00 pts/wk   essentially even   (depth +0.0)
+        expected even  ->  got even
+        "Your starting lineup does not change. Nothing you would start is affected."
+
+  [PASS] three-for-one
+        give     Josh Downs, Michael Wilson, Chuba Hubbard
+        receive  Puka Nacua
+        +6.98 pts/wk   lopsided win   (depth +4.4)
+        expected gain  ->  got gain
+        "You gain 7.0 points a week. The biggest move is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries."
+
+  [PASS] bench-shuffle
+        give     Michael Wilson
+        receive  Alec Pierce
+        +0.00 pts/wk   essentially even   (depth -0.6)
+        expected even  ->  got even
+        "Your starting lineup does not change. Nothing you would start is affected."
+
+  [PASS] starter-for-depth
+        give     Kyren Williams
+        receive  Quentin Johnston, Wan'Dale Robinson
+        -2.89 pts/wk   clear loss   (depth -0.6)
+        expected loss  ->  got loss
+        "You lose 2.9 points a week. The biggest move is at RB2: Javonte Williams (RB16-level) becomes Jaylen Warren (RB27-level)."
+
+  [PASS] positional-scarcity
+        give     Trey McBride
+        receive  Tee Higgins
+        -3.27 pts/wk   clear loss   (depth +7.2)
+        expected loss  ->  got loss
+        "You lose 3.3 points a week. The biggest move is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries."
+
+  [PASS] qb-for-wr-1qb
+        give     Joe Burrow
+        receive  Malik Nabers
+        -3.56 pts/wk   clear loss   (depth +7.2)
+        expected loss  ->  got loss
+        "You lose 3.6 points a week. The biggest move is at QB: Joe Burrow (QB4-level) becomes Bo Nix (QB14-level). You also pick up useful bench depth for byes and injuries."
+
+  [PASS] upgrade-rb2
+        give     Javonte Williams
+        receive  Chase Brown
+        +2.96 pts/wk   clear win   (depth +0.0)
+        expected gain  ->  got gain
+        "You gain 3.0 points a week. The biggest move is at RB1: Kyren Williams (RB15-level) becomes Chase Brown (RB7-level)."
+
+==============================================================================
+VALUE MODEL ASSERTIONS  (roster-independent)
+==============================================================================
+  [PASS] wr1-beats-qb1-in-1qb             Ja'Marr Chase (WR1)  167.6 vs Josh Allen (QB1)  102.2
+  [PASS] qb1-beats-wr1-in-superflex       Josh Allen (QB1)  195.5 vs Ja'Marr Chase (WR1)  168.7
+  [PASS] te1-beats-same-ranked-wr         Brock Bowers (TE1)   73.5 vs Rashee Rice (WR12)   70.3
+  [PASS] deeper-league-raises-value       Ashton Jeanty: 10-team  108.3 < 14-team  152.0
+
+==============================================================================
+FORMAT SENSITIVITY
+==============================================================================
+  1QB         -3.56 pts/wk   clear loss
+  SUPERFLEX   -8.60 pts/wk   lopsided loss
+  PPR         -3.21 pts/wk   clear loss
+  STANDARD    -4.46 pts/wk   clear loss
+
+==============================================================================
+GATE:  12/12 trades matched the expected verdict
+       4/4 value-model assertions held
+==============================================================================
+
+The expected verdicts in trades.py are a stand-in for your own read.
+Overwrite them with trades you have an opinion on before trusting this.

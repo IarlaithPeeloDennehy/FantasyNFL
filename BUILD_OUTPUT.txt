@@ -1,0 +1,29 @@
+Building from fantasypros...
+  ranks as of      2026-08-21
+  players          449
+  ids by shared id 446
+  ids by name      3
+  DROPPED          3 with no nflverse id (deepest kept rank 394)
+    - Tommy Myers (TE, consensus rank 335)
+    - Miles Davis (RB, consensus rank 353)
+    - Matt Hibner (TE, consensus rank 358)
+
+  wrote web/public/players.json  (147 KB)
+  generated_at 2026-08-26T00:58:50Z  basis full_season
+PASS  clean file validates (449 players)
+PASS  corrupt_missing_key          caught: missing top-level key
+PASS  corrupt_wrong_version        caught: schema_version
+PASS  corrupt_bad_basis            caught: basis
+PASS  corrupt_truncated            caught: expected at least
+PASS  corrupt_duplicate_id         caught: duplicate id
+PASS  corrupt_null_star_id         caught: null id
+PASS  corrupt_zero_projection      caught: all zeroes
+PASS  corrupt_missing_component    caught: proj missing
+PASS  corrupt_bad_position         caught: not in
+PASS  corrupt_duplicate_rank       caught: duplicate
+
+10/10 corruptions caught
+Name-only join dry run (what an id-less ADP source would face)
+  matched 449/452  (99.3%)
+  misses among the whole pool: 3
+    Tommy Myers, Miles Davis, Matt Hibner

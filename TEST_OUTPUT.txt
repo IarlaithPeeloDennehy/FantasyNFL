@@ -1,0 +1,11 @@
+
+ RUN  v2.1.9 /home/claude/tg/web
+
+ ✓ src/engine/__tests__/engine.test.js (35 tests) 38ms
+ ✓ src/engine/__tests__/parity.test.js (325 tests) 153ms
+
+ Test Files  2 passed (2)
+      Tests  360 passed (360)
+   Start at  01:17:01
+   Duration  1.24s (transform 111ms, setup 0ms, collect 194ms, tests 192ms, environment 0ms, prepare 190ms)
+
