@@ -1,0 +1,50 @@
+name: Tests
+
+# The engine is the only part of this codebase genuinely worth testing, and the
+# parity suite is the only thing standing between a refactor and the two halves
+# of the system quietly disagreeing about what a trade is worth. Run it on
+# everything.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  engine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - run: npm ci
+        working-directory: web
+
+      - run: npm test
+        working-directory: web
+
+      - run: npm run build
+        working-directory: web
+
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      # Validates the committed players.json against the contract, then checks
+      # the validator itself still catches a file broken fourteen ways. No
+      # network beyond pip: both read the file already in the repo.
+      - run: python build_players.py --check web/public/players.json
+      - run: python test_schema.py

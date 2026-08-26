@@ -27,14 +27,19 @@ REQUIRED_TOP = (
 # The floor is the worst in-scope league: 14 teams, two flex, one superflex,
 # with the deepest starter count v1 offers at each position.
 #
-#   QB  14 x (1 + 0.90)              = 26.6
-#   RB  14 x (2 + 0.45x2 + 0.04)     = 41.2
-#   WR  14 x (3 + 0.45x2 + 0.04)     = 55.2
-#   TE  14 x (2 + 0.10x2 + 0.02)     = 31.1   (TE-premium, two TE slots)
+# The settings panel caps starters at QB 1, RB 3, WR 4, TE 2 with up to 3 flex
+# and 1 superflex, so the worst league a user can actually build is:
 #
-# Rounded up, with a little headroom. Widen the league ranges in value.League
-# and these numbers have to move with them.
-MIN_CURVE_DEPTH = {"QB": 28, "RB": 45, "WR": 60, "TE": 34}
+#   QB  14 x (1 + 0.90x1)            = 26.6
+#   RB  14 x (3 + 0.45x3 + 0.04)     = 61.5
+#   WR  14 x (4 + 0.45x3 + 0.04)     = 75.5
+#   TE  14 x (2 + 0.10x3 + 0.02)     = 32.5
+#
+# Rounded up, with a little headroom. These floors and the settings-panel caps in
+# web/src/league.js are one decision in two places: widen either and the other
+# has to move with it, or the client starts pricing replacement off a clamped
+# rank without saying so.
+MIN_CURVE_DEPTH = {"QB": 28, "RB": 62, "WR": 76, "TE": 34}
 
 REQUIRED_PLAYER = ("id", "name", "pos", "team", "adp", "pos_adp_rank", "proj")
 

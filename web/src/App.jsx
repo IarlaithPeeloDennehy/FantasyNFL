@@ -1,39 +1,29 @@
 /**
- * Phase 4: the roster picker.
+ * The app shell: load the contract, hold the state, hand numbers to the engine.
  *
- * Search the player pool, build a roster, see the lineup the engine would start.
- * Phase 5 adds the trade grader on top of this; the roster is its input, so this
- * screen exists to make that input cheap to produce and impossible to lose.
- *
- * All arithmetic lives in ./engine. Nothing in this file computes a point total
- * of its own -- if a number appears on screen, the engine produced it.
+ * All arithmetic lives in ./engine. Nothing in this tree computes a point total
+ * of its own -- if a number appears on screen, the engine produced it. That is
+ * what keeps the tested half tested and leaves the untested half with nothing in
+ * it worth testing.
  */
 
 import { useEffect, useMemo, useState } from 'react'
 
-import {
-  bestLineup,
-  daysSince,
-  makeLeague,
-  parseDocument,
-  playerPoints,
-  replacementForSlot,
-  replacementPoints,
-  slotStem,
-  vor,
-} from './engine/index.js'
-import { loadRoster, saveRoster } from './roster.js'
+import { bestLineup, daysSince, parseDocument, replacementPoints } from './engine/index.js'
+import { describeSpec, normaliseSpec, toLeague } from './league.js'
+import { EMPTY, loadState, saveState } from './state.js'
+import { BuyLow } from './BuyLow.jsx'
+import { Methodology } from './Methodology.jsx'
+import { SettingsPanel } from './SettingsPanel.jsx'
+import { TradePanel } from './TradePanel.jsx'
+import { LineupView, PlayerSearch } from './ui.jsx'
 
 const STALE_AFTER_DAYS = 14
-const POSITIONS = ['ALL', 'QB', 'RB', 'WR', 'TE']
-const MAX_RESULTS = 50
 
 export default function App() {
   const [doc, setDoc] = useState({ status: 'loading' })
-  const [rosterIds, setRosterIds] = useState([])
+  const [state, setState] = useState(EMPTY)
   const [restored, setRestored] = useState(false)
-  const [query, setQuery] = useState('')
-  const [pos, setPos] = useState('ALL')
 
   useEffect(() => {
     // Base-relative, not page-relative: a bare 'players.json' resolves against
@@ -50,19 +40,19 @@ export default function App() {
 
   const players = doc.status === 'ready' ? doc.players : null
 
-  // Restore only once the pool is known, so a stale id in the URL can be
+  // Restore only once the pool is known, so a stale id in a shared link can be
   // reconciled away rather than rendered as an undefined row.
   useEffect(() => {
     if (!players || restored) return
-    setRosterIds(loadRoster(new Set(players.map((p) => p.id))))
+    setState(loadState(new Set(players.map((p) => p.id))))
     setRestored(true)
   }, [players, restored])
 
   // Mirror every change. Guarded on `restored` so the first render cannot
   // overwrite a shared link with an empty roster before it has been read.
   useEffect(() => {
-    if (restored) saveRoster(rosterIds)
-  }, [rosterIds, restored])
+    if (restored) saveState(state)
+  }, [state, restored])
 
   if (doc.status === 'loading') return <p className="page meta">Loading player data…</p>
 
@@ -75,22 +65,25 @@ export default function App() {
     )
   }
 
-  return <Picker doc={doc} rosterIds={rosterIds} setRosterIds={setRosterIds}
-                 query={query} setQuery={setQuery} pos={pos} setPos={setPos} />
+  return <Workbench doc={doc} state={state} setState={setState} />
 }
 
-function Picker({ doc, rosterIds, setRosterIds, query, setQuery, pos, setPos }) {
+function Workbench({ doc, state, setState }) {
   const { players, curves, meta } = doc
+  const [showSettings, setShowSettings] = useState(false)
+  const [rosterQuery, setRosterQuery] = useState('')
+  const [rosterPos, setRosterPos] = useState('ALL')
+  const [tradeQuery, setTradeQuery] = useState('')
+  const [tradePos, setTradePos] = useState('ALL')
 
-  // Phase 6 turns this into a settings panel. Until then a 12-team half-PPR
-  // default still demonstrates the whole model, which is what the plan asks for.
-  const league = useMemo(() => makeLeague(), [])
+  const spec = useMemo(() => normaliseSpec(state.league), [state.league])
+  const league = useMemo(() => toLeague(spec), [spec])
   const replacement = useMemo(() => replacementPoints(curves, league), [curves, league])
 
   const byId = useMemo(() => new Map(players.map((p) => [p.id, p])), [players])
   const roster = useMemo(
-    () => rosterIds.map((id) => byId.get(id)).filter(Boolean),
-    [rosterIds, byId],
+    () => state.roster.map((id) => byId.get(id)).filter(Boolean),
+    [state.roster, byId],
   )
 
   const lineup = useMemo(
@@ -98,158 +91,124 @@ function Picker({ doc, rosterIds, setRosterIds, query, setQuery, pos, setPos }) 
     [roster, league, replacement],
   )
 
-  const onRoster = useMemo(() => new Set(rosterIds), [rosterIds])
+  const patch = (next) => setState((s) => ({ ...s, ...next }))
 
-  const results = useMemo(() => {
-    const needle = query.trim().toLowerCase()
-    return players
-      .filter((p) => !onRoster.has(p.id))
-      .filter((p) => pos === 'ALL' || p.pos === pos)
-      .filter((p) => !needle || p.name.toLowerCase().includes(needle)
-                     || p.team.toLowerCase() === needle)
-      .slice(0, MAX_RESULTS)
-  }, [players, onRoster, pos, query])
+  const addPlayer = (id) =>
+    setState((s) => (s.roster.includes(id)
+      ? s
+      : { ...s, roster: [...s.roster, id], get: s.get.filter((x) => x !== id) }))
 
-  const add = (id) => setRosterIds((ids) => (ids.includes(id) ? ids : [...ids, id]))
-  const drop = (id) => setRosterIds((ids) => ids.filter((x) => x !== id))
+  // Dropping a player has to drop him from the trade too, or `gradeTrade` is
+  // handed a give that is no longer on the roster and throws.
+  const dropPlayer = (id) =>
+    setState((s) => ({
+      ...s,
+      roster: s.roster.filter((x) => x !== id),
+      give: s.give.filter((x) => x !== id),
+    }))
 
+  const toggleGive = (id) =>
+    setState((s) => ({
+      ...s,
+      give: s.give.includes(id) ? s.give.filter((x) => x !== id) : [...s.give, id],
+    }))
+
+  const onRoster = useMemo(() => new Set(state.roster), [state.roster])
   const age = daysSince(meta.generatedAt)
   const stale = age > STALE_AFTER_DAYS
 
   return (
     <div className="page">
-      <h1>Trade Grader</h1>
-      <p className={stale ? 'meta stale' : 'meta'}>
-        Data as of {new Date(meta.generatedAt).toLocaleDateString()}
-        {meta.ranksAsOf && <> · ranks {meta.ranksAsOf}</>}
-        {' · '}{meta.basis === 'rest_of_season' ? 'rest of season' : 'full season'}
-        {stale && <> · {age} days old</>}
-      </p>
-      <p className="meta">
-        12-team half-PPR · 1QB/2RB/3WR/1TE/1FLEX · league settings arrive in a later phase
-      </p>
+      <header className="head">
+        <div>
+          <h1>Trade Grader</h1>
+          <p className={stale ? 'meta stale' : 'meta'}>
+            Data as of {new Date(meta.generatedAt).toLocaleDateString()}
+            {meta.ranksAsOf && <> · ranks {meta.ranksAsOf}</>}
+            {' · '}{meta.basis === 'rest_of_season' ? 'rest of season' : 'full season'}
+            {stale && <> · {age} days old — a refresh is overdue</>}
+          </p>
+        </div>
+        <button type="button" className="btn" aria-expanded={showSettings}
+                onClick={() => setShowSettings((v) => !v)}>
+          {describeSpec(spec)} ▾
+        </button>
+      </header>
+
+      {showSettings && (
+        <SettingsPanel spec={spec} curves={curves}
+                       setSpec={(next) => patch({ league: normaliseSpec(next) })} />
+      )}
 
       <div className="cols">
-        <section className="panel" aria-labelledby="add-h">
-          <h2 id="add-h">Add players</h2>
+        <section className="panel" aria-labelledby="ros-h">
+          <h2 id="ros-h">Your roster ({roster.length})</h2>
 
-          <input
-            type="search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search by name or team…"
-            aria-label="Search players by name or team"
-          />
-
-          <div className="filters">
-            {POSITIONS.map((p) => (
-              <button key={p} type="button" className="chip"
-                      aria-pressed={pos === p} onClick={() => setPos(p)}>
-                {p}
-              </button>
-            ))}
-          </div>
-
-          {results.length === 0 ? (
-            <p className="empty-note">No players match. Try a different name or position.</p>
+          {roster.length === 0 ? (
+            <p className="empty-note">
+              Nothing yet. Add players below — your roster is saved to this browser
+              and to the address bar, so the link is shareable.
+            </p>
           ) : (
             <ul className="rows">
-              {results.map((p) => (
-                <PlayerRow key={p.id} player={p} league={league} replacement={replacement}
-                           action={<button type="button" className="btn"
-                                           onClick={() => add(p.id)}
-                                           aria-label={`Add ${p.name}`}>Add</button>} />
+              {roster.map((p) => (
+                <li className="row" key={p.id}>
+                  <span className="name">{p.name}</span>
+                  <span className="tag">{p.pos}{p.pos_adp_rank} · {p.team}</span>
+                  <button type="button"
+                          className={state.give.includes(p.id) ? 'btn giving' : 'btn'}
+                          aria-pressed={state.give.includes(p.id)}
+                          onClick={() => toggleGive(p.id)}>
+                    {state.give.includes(p.id) ? 'Giving' : 'Trade'}
+                  </button>
+                  <button type="button" className="btn ghost"
+                          onClick={() => dropPlayer(p.id)}
+                          aria-label={`Remove ${p.name}`}>Remove</button>
+                </li>
               ))}
             </ul>
           )}
+
+          <h3 className="sub">Add to your roster</h3>
+          <PlayerSearch
+            players={players} exclude={onRoster} league={league} replacement={replacement}
+            query={rosterQuery} setQuery={setRosterQuery}
+            pos={rosterPos} setPos={setRosterPos}
+            action={(p) => (
+              <button type="button" className="btn" onClick={() => addPlayer(p.id)}
+                      aria-label={`Add ${p.name}`}>Add</button>
+            )}
+          />
         </section>
 
-        <div>
-          <section className="panel" aria-labelledby="line-h">
-            <h2 id="line-h">Starting lineup</h2>
-            <Lineup lineup={lineup} league={league} replacement={replacement} />
-          </section>
+        <section className="panel" aria-labelledby="line-h">
+          <h2 id="line-h">Starting lineup</h2>
+          <LineupView lineup={lineup} league={league} replacement={replacement} />
+        </section>
+      </div>
 
-          <section className="panel" aria-labelledby="ros-h" style={{ marginTop: '1.25rem' }}>
-            <h2 id="ros-h">Your roster ({roster.length})</h2>
-            {roster.length === 0 ? (
-              <p className="empty-note">
-                Nothing yet. Add players on the left — your roster is saved to this
-                browser and to the address bar, so the link is shareable.
-              </p>
-            ) : (
-              <ul className="rows">
-                {roster.map((p) => (
-                  <PlayerRow key={p.id} player={p} league={league} replacement={replacement}
-                             action={<button type="button" className="btn ghost"
-                                             onClick={() => drop(p.id)}
-                                             aria-label={`Remove ${p.name}`}>Remove</button>} />
-                ))}
-              </ul>
-            )}
-          </section>
-        </div>
+      <div style={{ marginTop: '1.25rem' }}>
+        <TradePanel
+          roster={roster} byId={byId} players={players}
+          give={state.give} get={state.get}
+          setGive={(give) => patch({ give })} setGet={(get) => patch({ get })}
+          league={league} replacement={replacement}
+          query={tradeQuery} setQuery={setTradeQuery}
+          pos={tradePos} setPos={setTradePos}
+        />
+      </div>
+
+      <BuyLow players={players} league={league} replacement={replacement}
+              rosterIds={state.roster} onAdd={addPlayer} />
+
+      <div style={{ marginTop: '1.25rem' }}>
+        <Methodology meta={meta} />
       </div>
 
       <footer>
-        Not affiliated with the NFL or any fantasy platform. Projections are a
-        market-consensus rank mapped onto historical positional finishes, so every
-        player at the same positional rank shares a projection.
+        Not affiliated with the NFL or any fantasy platform. Player names and
+        statistics are used descriptively.
       </footer>
     </div>
-  )
-}
-
-function PlayerRow({ player, league, replacement, action }) {
-  const value = vor(player, league, replacement)
-  return (
-    <li className="row">
-      <span className="name">{player.name}</span>
-      <span className="tag">{player.pos}{player.pos_adp_rank} · {player.team}</span>
-      <span className={value >= 0 ? 'vor pos' : 'vor neg'}>{value.toFixed(0)}</span>
-      {action}
-    </li>
-  )
-}
-
-function Lineup({ lineup, league, replacement }) {
-  // An empty roster still scores, because an unfilled slot streams a replacement
-  // rather than scoring zero. That is right for grading a trade -- it is the
-  // delta that matters -- but "1207 projected points" next to an empty roster
-  // reads as a broken app. Show the shape of the lineup, not a total nobody
-  // asked for, until there is at least one real player in it.
-  if (lineup.slots.length === 0) {
-    return <p className="empty-note">Add players to see the lineup they would start.</p>
-  }
-
-  return (
-    <>
-      <ul className="slots">
-        {lineup.slots.map(([label, p]) => (
-          <li className="slot" key={label}>
-            <span className="label">{label}</span>
-            <span className="who">{p.name} <span className="tag">{p.pos}{p.pos_adp_rank}</span></span>
-            <span className="pts">{playerPoints(p, league.scoring).toFixed(0)}</span>
-          </li>
-        ))}
-        {lineup.unfilled.map((stem, i) => (
-          <li className="slot empty" key={`${stem}-${i}`}>
-            <span className="label">{stem}</span>
-            {/* An empty slot is not zero: you stream someone off waivers. */}
-            <span className="who">empty — streaming a replacement</span>
-            <span className="pts">
-              {replacementForSlot(slotStem(stem), replacement).toFixed(0)}
-            </span>
-          </li>
-        ))}
-      </ul>
-
-      <div className="total">
-        <span className="meta">Projected season · per week</span>
-        <span className="big">
-          {lineup.points.toFixed(0)} · {(lineup.points / 17).toFixed(1)}
-        </span>
-      </div>
-    </>
   )
 }

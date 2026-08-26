@@ -174,7 +174,10 @@ def grade_trade(
         direction=direction,
         before=before,
         after=after,
-        explanation=explain(before, after, delta_week, delta_depth, scoring, replacement),
+        explanation=explain(
+            before, after, delta_week, delta_depth, scoring, replacement,
+            league, give, receive,
+        ),
     )
 
 
@@ -185,6 +188,9 @@ def explain(
     delta_depth: float,
     scoring: dict[str, float],
     replacement: dict[str, float],
+    league: League | None = None,
+    give: list[Player] | tuple = (),
+    receive: list[Player] | tuple = (),
 ) -> str:
     """Plain English. The number convinces nobody on its own."""
     b, a = before.by_slot(), after.by_slot()
@@ -217,7 +223,25 @@ def explain(
         head = f"You lose {shown} points a week."
 
     changes.sort(reverse=True, key=lambda c: c[0])
-    _, slot, old, new = changes[0]
+
+    # Name the slot the *trade* moved, not merely the slot that moved most.
+    #
+    # Trading for a better RB1 pushes your old RB1 down to RB2, and that
+    # knock-on is often the larger single delta -- so ranking by magnitude alone
+    # describes the cascade and never mentions the player you just acquired. The
+    # sentence is true and answers a question nobody asked. Prefer the slot an
+    # acquired player landed in; failing that, the slot a departing player left.
+    # Which end of the trade to describe follows the direction of the verdict. On
+    # a gain the reader wants to know where the player they acquired landed; on a
+    # loss they want to know what left. Preferring the acquired player either way
+    # produces "you lose 3.3 points a week" followed by a description of an
+    # upgrade, which reads as the app contradicting itself.
+    received, given = set(receive), set(give)
+    landed = [c for c in changes if c[3] in received]
+    departed = [c for c in changes if c[2] in given]
+    primary, secondary = (landed, departed) if delta_week >= 0 else (departed, landed)
+    _, slot, old, new = (primary or secondary or changes)[0]
+    cascade_only = not landed and not departed
 
     def describe(p: Player | None) -> str:
         return f"{p.name} ({p.pos}{p.pos_rank}-level)" if p else "a waiver-level starter"
@@ -226,16 +250,30 @@ def explain(
     # head does not give it one.
     if shown == "0.0":
         lead = "The move"
+    elif cascade_only:
+        lead = "The knock-on"
     elif len(changes) == 1:
         lead = "Almost all of it"
     else:
-        lead = "The biggest move"
+        lead = "The move that matters"
     body = f" {lead} is at {slot}: {describe(old)} becomes {describe(new)}."
 
+    # The QB problem. In a one-QB league an elite quarterback carries almost no
+    # value above replacement, which is arithmetically right and socially
+    # explosive -- users read it as the app being broken. Carry the scarcity
+    # argument in the sentence rather than leaving the number to defend itself.
     tail = ""
+    one_qb = league is not None and league.superflex_slots == 0
+    if one_qb and any(p.pos == "QB" for p in list(give) + list(receive)):
+        tail += (
+            " Quarterbacks are worth less here than their rankings suggest: only one"
+            " starts per team, so the next one on waivers is much closer to yours"
+            " than the gap in rank implies."
+        )
+
     if delta_depth < -3:
-        tail = " You are giving up real bench depth to do it — fine if you are set at your starting spots."
+        tail += " You are giving up real bench depth to do it — fine if you are set at your starting spots."
     elif delta_depth > 3:
-        tail = " You also pick up useful bench depth for byes and injuries."
+        tail += " You also pick up useful bench depth for byes and injuries."
 
     return head + body + tail

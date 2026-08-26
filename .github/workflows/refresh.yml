@@ -1,0 +1,100 @@
+name: Refresh player data
+
+# Tuesday mornings in season: rebuild players.json, and commit it only if it
+# actually changed and the engine still agrees with itself.
+#
+# The safety property that matters here is that a bad run changes nothing.
+# build_players.py writes no file when validation fails, and the parity suite
+# runs before the commit step -- so a source that changes shape leaves the last
+# good file live and sends a failure email, rather than shipping wrong numbers.
+# Stale data always beats wrong data.
+
+on:
+  schedule:
+    # 11:00 UTC Tuesday. After Monday night football has settled, early enough
+    # that the week's trade talk happens against fresh ranks.
+    - cron: '0 11 * * 2'
+  workflow_dispatch:
+    inputs:
+      weeks_remaining:
+        description: >-
+          Weeks left in the season. Set this from week 1 onward to build
+          rest-of-season projections; leave empty for a full-season build.
+        required: false
+        type: string
+
+concurrency:
+  group: refresh-player-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Build players.json
+        run: |
+          if [ -n "${{ inputs.weeks_remaining }}" ]; then
+            python build_players.py --basis rest_of_season \
+              --weeks-remaining "${{ inputs.weeks_remaining }}"
+          else
+            python build_players.py
+          fi
+
+      - name: Check the validator still catches a broken file
+        run: python test_schema.py
+
+      # The fixtures are computed from players.json. Rebuilding one without the
+      # other turns the parity suite red for the wrong reason.
+      - name: Re-export parity fixtures
+        run: python export_golden.py
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - run: npm ci
+        working-directory: web
+
+      # The gate. If Python and JavaScript no longer agree on the new data, one
+      # of them is lying to users and nothing gets committed.
+      - name: Engine tests and Python/JS parity
+        run: npm test
+        working-directory: web
+
+      # generated_at moves on every run, so the file is always textually dirty.
+      # It is also minified onto a single line, which rules out any line-based
+      # filter: the whole document is one line and that line contains the
+      # timestamp, so a `grep -v generated_at` would discard every real change
+      # along with it. Compare the parsed documents with the timestamp removed.
+      - name: Has the data actually changed?
+        id: check
+        run: python .github/scripts/data_changed.py
+
+      - name: Commit if the data changed
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add web/public/players.json web/src/engine/__tests__/golden.json
+          git commit -m "Refresh player data ($(date -u +%Y-%m-%d))" \
+                     -m "Automated rebuild from build_players.py. Committed only after the schema validator and the Python/JavaScript parity suite both passed."
+          git push
+
+      - name: Report a no-op
+        if: steps.check.outputs.changed != 'true'
+        run: echo "Ranks are unchanged since the last run. Nothing committed."

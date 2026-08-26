@@ -74,11 +74,17 @@ export function gradeTrade(roster, give, receive, league, replacement) {
     direction,
     before,
     after,
-    explanation: explain(before, after, deltaPerWeek, deltaDepth, scoring, replacement),
+    explanation: explain(
+      before, after, deltaPerWeek, deltaDepth, scoring, replacement,
+      league, give, receive,
+    ),
   }
 }
 
-export function explain(before, after, deltaPerWeek, deltaDepth, scoring, replacement) {
+export function explain(
+  before, after, deltaPerWeek, deltaDepth, scoring, replacement,
+  league = null, give = [], receive = [],
+) {
   const b = bySlot(before)
   const a = bySlot(after)
 
@@ -115,22 +121,55 @@ export function explain(before, after, deltaPerWeek, deltaDepth, scoring, replac
   else head = `You lose ${shown} points a week.`
 
   changes.sort((x, y) => y.magnitude - x.magnitude)
-  const { slot, oldP, newP } = changes[0]
+
+  // Name the slot the *trade* moved, not merely the slot that moved most.
+  //
+  // Trading for a better RB1 pushes your old RB1 down to RB2, and that knock-on
+  // is often the larger single delta -- so ranking by magnitude alone describes
+  // the cascade and never mentions the player you just acquired. The sentence is
+  // true and answers a question nobody asked. Prefer the slot an acquired player
+  // landed in; failing that, the slot a departing player left.
+  // Which end of the trade to describe follows the direction of the verdict. On a
+  // gain the reader wants to know where the player they acquired landed; on a
+  // loss they want to know what left. Preferring the acquired player either way
+  // produces "you lose 3.3 points a week" followed by a description of an
+  // upgrade, which reads as the app contradicting itself.
+  const received = new Set(receive)
+  const given = new Set(give)
+  const landed = changes.filter((c) => c.newP && received.has(c.newP))
+  const departed = changes.filter((c) => c.oldP && given.has(c.oldP))
+  const [primary, secondary] = deltaPerWeek >= 0 ? [landed, departed] : [departed, landed]
+  const chosen = (primary.length ? primary : secondary.length ? secondary : changes)[0]
+  const cascadeOnly = !landed.length && !departed.length
+  const { slot, oldP, newP } = chosen
 
   const describe = (p) => (p ? `${p.name} (${p.pos}${p.pos_adp_rank}-level)` : 'a waiver-level starter')
 
   // "Almost all of it" needs a quantity to refer back to, and the sub-tenth head
   // does not give it one.
-  let lead = 'The biggest move'
+  let lead = 'The move that matters'
   if (shown === '0.0') lead = 'The move'
+  else if (cascadeOnly) lead = 'The knock-on'
   else if (changes.length === 1) lead = 'Almost all of it'
   const body = ` ${lead} is at ${slot}: ${describe(oldP)} becomes ${describe(newP)}.`
 
+  // The QB problem. In a one-QB league an elite quarterback carries almost no
+  // value above replacement, which is arithmetically right and socially
+  // explosive -- users read it as the app being broken. Carry the scarcity
+  // argument in the sentence rather than leaving the number to defend itself.
   let tail = ''
+  const oneQb = league !== null && league.superflexSlots === 0
+  if (oneQb && [...give, ...receive].some((p) => p.pos === 'QB')) {
+    tail +=
+      ' Quarterbacks are worth less here than their rankings suggest: only one' +
+      ' starts per team, so the next one on waivers is much closer to yours' +
+      ' than the gap in rank implies.'
+  }
+
   if (deltaDepth < -3) {
-    tail = ' You are giving up real bench depth to do it — fine if you are set at your starting spots.'
+    tail += ' You are giving up real bench depth to do it — fine if you are set at your starting spots.'
   } else if (deltaDepth > 3) {
-    tail = ' You also pick up useful bench depth for byes and injuries.'
+    tail += ' You also pick up useful bench depth for byes and injuries.'
   }
 
   return head + body + tail

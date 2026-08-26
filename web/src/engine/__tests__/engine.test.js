@@ -274,23 +274,51 @@ describe('gradeTrade: basics', () => {
   })
 
   it('names the slot that moved and both players in it', () => {
-    // Acquiring a better RB pushes Ace down to RB2, so the biggest single-slot
-    // change is at RB2 and the sentence describes THAT slot. The acquired player
-    // is not necessarily the one named — see the note below.
     const graded = gradeTrade(roster, [find('Deuce')], [player('Rocket', 'RB', 2600, 3)], LEAGUE, REPL)
     expect(graded.explanation).toMatch(/You gain [\d.]+ points a week\./)
     expect(graded.explanation).toMatch(/is at RB[12]:/)
     expect(graded.explanation).toMatch(/becomes \w+ \(RB\d+-level\)/)
   })
 
-  it('KNOWN COPY GAP: the acquired player can be absent from the sentence', () => {
-    // Documented, not asserted as desirable. When an incoming player displaces
-    // someone who then displaces someone else, the largest slot delta is the
-    // downstream one, and the explanation names the cascade rather than the
-    // trade. Revisit in Phase 5 when the copy meets a real reader.
+  it('names the player you acquired, not the cascade behind him', () => {
+    // Was the KNOWN COPY GAP through Phase 4. Rocket displaces Ace at RB1, and
+    // Ace then displaces Deuce at RB2 -- and that knock-on is the LARGER slot
+    // delta (40 vs 20). Ranking by magnitude alone therefore described the
+    // cascade and never mentioned the player just acquired: true, but not an
+    // answer to the question asked. The lead slot is now the one the trade put
+    // a player into.
     const graded = gradeTrade(roster, [find('Deuce')], [player('Rocket', 'RB', 2600, 3)], LEAGUE, REPL)
-    expect(graded.explanation).not.toContain('Rocket')
+    expect(graded.explanation).toContain('Rocket')
+    expect(graded.explanation).toMatch(/is at RB1:/)
     expect(graded.deltaPerWeek).toBeGreaterThan(0)
+  })
+
+  it('falls back to the departing player when nobody acquired starts', () => {
+    // Give away the starting tight end for a receiver who cannot crack a
+    // WR-deep lineup: nothing landed, so the sentence describes what left.
+    const graded = gradeTrade(roster, [find('Tight')], [player('Spare', 'WR', 800, 80)], LEAGUE, REPL)
+    expect(graded.explanation).toContain('Tight')
+    expect(graded.explanation).toMatch(/is at TE:/)
+  })
+
+  it('carries the QB scarcity argument in a one-QB league', () => {
+    // Arithmetically an elite QB has almost no VOR in 1QB, which users read as
+    // the app being broken. The number cannot defend itself, so the sentence has
+    // to make the scarcity argument out loud.
+    const graded = gradeTrade(roster, [find('Passer')], [player('Gunner', 'QB', 4600, 1)], LEAGUE, REPL)
+    expect(graded.explanation).toMatch(/only one\s+starts per team/)
+  })
+
+  it('drops the QB argument in superflex, where it is untrue', () => {
+    const sf = makeLeague({ superflexSlots: 1 })
+    const repl = replacementPoints(CURVES, sf)
+    const graded = gradeTrade(roster, [find('Passer')], [player('Gunner', 'QB', 4600, 1)], sf, repl)
+    expect(graded.explanation).not.toContain('starts per team')
+  })
+
+  it('leaves the QB argument out of trades with no quarterback in them', () => {
+    const graded = gradeTrade(roster, [find('Deuce')], [player('Rocket', 'RB', 2600, 3)], LEAGUE, REPL)
+    expect(graded.explanation).not.toContain('starts per team')
   })
 
   it('never says "You gain 0.0 points a week"', () => {

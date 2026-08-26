@@ -1,7 +1,21 @@
-# Trade Grader — Phases 1–3 (model, data contract, engine)
+# Trade Grader
 
-See [PLAN.md](PLAN.md) for the full build plan. Phase 4 adds the UI; right now
-there is a placeholder shell that proves the pieces connect.
+A free fantasy football trade grader. Static, no accounts, no database, no cost.
+
+**Live: https://trade-grader-bay.vercel.app**
+
+See [PLAN.md](PLAN.md) for the build plan this follows.
+
+## What it does
+
+You build a roster, propose a trade, and it tells you what the trade does to the
+lineup you would actually start — in a sentence, not just a number.
+
+Trades are graded at the **lineup** level, never by summing player values.
+Summing is how trade calculators end up telling people that three WR4s beat an
+elite running back. Receive two receivers and only one cracks your lineup, and
+the second contributes nothing to the headline; positional scarcity falls out of
+that for free.
 
 ## Run it
 
@@ -9,18 +23,18 @@ there is a placeholder shell that proves the pieces connect.
 pip install -r requirements.txt
 
 python3 validate.py            # Phase 1 gate: do the verdicts look right?
-python3 build_players.py       # Phase 2: emit web/public/players.json
+python3 build_players.py       # emit web/public/players.json
 python3 test_schema.py         # does the validator catch a broken file?
-python3 export_golden.py       # Phase 3: fixtures for the JS parity test
+python3 export_golden.py       # fixtures for the JS parity test
 
 cd web && npm install
-npm test                       # 362 tests: engine behaviour + Python parity
-npm run dev                    # placeholder shell
+npm test                       # 391 tests: engine, persistence, Python parity
+npm run dev
 ```
 
 **After any rebuild of `players.json`, re-run `export_golden.py`.** The parity
 fixtures are computed from that file; if they drift apart the test goes red for
-the wrong reason.
+the wrong reason. The refresh workflow does both in the right order.
 
 First run pulls ~30MB and takes a couple of minutes. Everything caches to
 `.cache/`; later runs are instant.
@@ -59,10 +73,15 @@ that leaves the last good file live, because stale data beats wrong data.
     web/src/engine/scoring.js   scoring rules, curves, replacement level
     web/src/engine/lineup.js    bestLineup
     web/src/engine/trade.js     gradeTrade, band, explain
-    web/src/App.jsx             placeholder shell — Phase 4 replaces this
+    web/src/engine/targets.js   where the model disagrees with the market
+    web/src/state.js            localStorage + shareable URL
+    web/src/league.js           league spec, its bounds, and its URL codec
+    web/src/App.jsx             shell; the panels live beside it
 
-The engine imports no React and touches no DOM. It is the only part of the app
-worth testing properly, and it stays testable by staying pure.
+The engine imports no React and touches no DOM. Nothing in the component tree
+computes a point total of its own — if a number is on screen, the engine produced
+it. That keeps the tested half tested and leaves the untested half with nothing
+in it worth testing.
 
 ## Two implementations, one answer
 
@@ -82,6 +101,21 @@ too, and a value-comparing dataclass silently does not.
 If that suite goes red, the two halves have drifted and one of them is now lying
 to users.
 
+`valueTargets` is client-only and has no Python counterpart. It is presentation
+built on `vor`, not part of the value model, and it is tested on its own terms.
+
+## Two places, one decision
+
+The settings panel caps in `web/src/league.js` and `MIN_CURVE_DEPTH` in
+`model/schema.py` are the same decision written twice. Replacement level is read
+off the shipped curve and `curveAt` **clamps** past the end of it rather than
+raising — so a league deep enough to run off the curve gets a silently wrong
+replacement level and therefore a silently wrong grade for every trade in it.
+
+A test in `state.test.js` asserts the deepest league the panel can build stays
+inside the depth the contract guarantees. Widen either side and that test tells
+you the other has to move.
+
 ## Edit trades.py
 
 The `expected` verdicts currently in `trades.py` are a stand-in. The gate is that
@@ -91,6 +125,26 @@ an opinion on — real ones from your leagues are ideal — then re-run.
 `VALUE_ASSERTIONS` is separate and should not need editing. Those are properties
 of the model itself (elite WR beats elite QB in 1QB, the reverse in superflex,
 deeper leagues raise everyone's value) rather than judgements about players.
+
+## Operations
+
+**`.github/workflows/refresh.yml`** rebuilds the data every Tuesday at 11:00 UTC,
+runs the schema test and the parity suite, and commits `players.json` only if the
+numbers actually moved. Vercel redeploys on that push. A failed run commits
+nothing and emails you, leaving the last good file live.
+
+`generated_at` changes on every build and the file is minified onto a single
+line, so no line-based diff can tell a real change from a new timestamp.
+`.github/scripts/data_changed.py` compares the parsed documents instead.
+
+**`.github/workflows/ci.yml`** runs the engine tests, the build, and a contract
+check on every push and pull request.
+
+**One thing is not automated.** From week 1 the projections should be
+rest-of-season — a full-season projection in week 10 is actively wrong, because
+it credits points already scored. Run the refresh workflow manually with a
+`weeks_remaining` input to switch; scheduled runs stay on `full_season`.
+Deriving the NFL week from the date was more failure surface than it was worth.
 
 ## Data sources
 
@@ -107,103 +161,60 @@ on raw display names.
   area the plan set out to avoid.
 - `ffc` — Fantasy Football Calculator's public ADP JSON. Clean licensing, no key,
   no signup. Carries **no** shared player id, so it must join on a normalized
-  name. Implemented but untested against the live API: FFC is unreachable from
-  the sandbox and from the local VM (egress allowlist). CI has no such
-  restriction, so verify it there.
+  name. Implemented but untested against the live API: FFC was unreachable from
+  the machines this was built on. CI has no such restriction, so verify it there.
 
 The two are a real trade-off, not a formality: one costs you licensing comfort,
 the other costs you an exact join. `--probe-name-matching` measures the second
 cost before you pay it.
 
-## What Phases 1–2 found
+## What running it found
 
-Four real problems, all caught by running the thing rather than by reading code:
+Problems caught by running the thing rather than by reading code.
 
-1. **Verdict bands had no direction.** A 5-point *loss* was being labelled a
-   "clear win", because the band lookup used only magnitude.
+1. **Verdict bands had no direction.** A 5-point *loss* was labelled a "clear
+   win", because the band lookup used only magnitude.
 
 2. **Unfilled starting slots scored zero.** Trading away your only tight end
    looked like a 10-point-per-week catastrophe. In reality you stream a
-   replacement off waivers, so an empty slot now scores at replacement level.
-   That one change moved the affected trade from −10.1 to −3.3 per week.
+   replacement, so an empty slot now scores at replacement level. That moved the
+   affected trade from −10.1 to −3.3 per week.
 
 3. **The client could not rebuild the curve from `players`.** Replacement level
-   lands at a fractional rank (a 12-team league replaces RB at 29.4), so the
-   client needs `curve[pos][rank]`. Reconstructing it from the shipped players
-   looked free — until dropping id-less players left gaps at RB137, TE54 and
-   TE66, and a deep league can push replacement past the last ranked player. The
-   curve now ships explicitly. Cost: 37 KB.
+   lands at a fractional rank, and dropped players leave gaps. The curve ships
+   explicitly. Cost: 37 KB.
 
-4. **Name matching drops real players.** The dry run showed a name-only join
-   missing Hollywood Brown, Chig Okonkwo, Kenny Gainwell, Mitch Tinsley and Juice
-   Wells — nickname and formal-name mismatches, all of them draftable. That took
-   name matching from 98.2% to 99.3% once `sources.ALIASES` was populated from
-   the probe output. If you switch to FFC, re-run the probe first and expect to
-   extend that table; the misses that remain are genuinely absent from the
-   crosswalk.
+4. **Name matching drops real players.** A name-only join missed Hollywood Brown,
+   Chig Okonkwo, Kenny Gainwell and others — all draftable. 98.2% to 99.3% once
+   `sources.ALIASES` was populated from the probe output.
 
-## What the Phase 1-3 review found
+5. **The curve-depth floor sat below the leagues on offer**, and `weeks_remaining`
+   was unvalidated — both able to produce a wrong grade with no error. See the
+   Phase 1–3 review commit for the full list of seven.
 
-A second pass over the finished phases, running every gate rather than reading
-code. Everything below is fixed, and each one has a test that fails without the
-fix.
+6. **"You gain 0.0 points a week."** Reachable with real data at +0.034/wk. Both
+   engines now branch on the rendered string, so they cannot drift at a rounding
+   boundary.
 
-1. **The curve-depth floor was set below the leagues v1 offers.** `MIN_CURVE_DEPTH`
-   required 24 QB ranks and 24 TE ranks, but a 14-team superflex league replaces
-   QB at rank 26.6, and a 14-team two-TE league replaces TE at 31.1. `Curves.at`
-   clamps past the end of the curve rather than raising, so a conforming-but-short
-   file would not have errored — it would have priced replacement level off the
-   wrong rank and been wrong about every grade in that league, quietly. Floors are
-   now derived from the worst in-scope league, with the arithmetic in a comment.
+7. **The explanation described the cascade, not the trade.** Acquiring a better
+   RB1 pushes your old RB1 to RB2, and that knock-on is the larger delta — so
+   ranking slots by magnitude named neither player you traded. Worse, on a losing
+   trade it would announce a loss and then describe an upgrade. The lead slot now
+   follows the direction of the verdict: where the acquired player landed on a
+   gain, what left on a loss.
 
-2. **`weeks_remaining` was unvalidated.** A `rest_of_season` file scales every
-   projection by `weeks_remaining / 17`. Nothing checked that the divisor was
-   present or sane, so a file claiming rest-of-season with a null divisor passed
-   `--check` clean. Now both directions are checked, including a `full_season`
-   file that still carries one.
+8. **An empty roster scored 1207.** Correct — unfilled slots stream a replacement
+   — but as a standalone total beside an empty roster it reads as broken. The
+   total waits for a real player.
 
-3. **The two engines disagreed on a missing replacement position.** Python's
-   `_replacement_for` folds an absent position in as `0.0` inside its `max`;
-   the JavaScript skipped it. Same inputs, different flex replacement level, and
-   the golden fixtures could not see it because they never produce a partial
-   replacement map. The port now matches, with a unit test that pins it.
+## Scope
 
-4. **`Player` compared by value, JavaScript by identity.** A plain `@dataclass`
-   generates `__eq__`, so `p not in give` in `grade_trade` matched on field
-   values while the port's `Set` matched on object identity. `eq=False` makes the
-   reference implementation behave the way the port does.
+**In:** redraft, manual rosters, trade grading with plain-English reasoning,
+PPR/half/standard, 8–14 teams, superflex, QB/RB/WR/TE, localStorage + shareable
+URL, methodology page, value targets.
 
-5. **"You gain 0.0 points a week."** Reachable with the shipped data: a delta of
-   +0.034 renders as `0.0`, and a headline that reads that way looks like a bug
-   to the reader whatever the arithmetic says. Both engines now branch on the
-   rendered string — so they cannot drift at a rounding boundary — and say
-   "shifts by less than a tenth of a point a week" instead. The follow-on
-   "Almost all of it is at WR3" had nothing to refer back to in that case either,
-   so it becomes "The move is at WR3".
+**Out:** league import, dynasty/keeper/IDP, kickers and defences (replacement
+level there is the starter, so VOR is meaningless — excluded and said so in the
+UI), accounts, waiver advice, start/sit, opponent rosters.
 
-6. **`--probe-name-matching` could not fail.** It computed `top100_misses` from
-   the first 100 entries of the miss list rather than misses inside rank 100, and
-   then returned `0` on both branches. A readiness check that cannot say no is a
-   readiness check nobody should trust. It now gates on consensus rank, using the
-   same cutoff the build uses.
-
-7. **A fixture asserted a property the model contradicts.** `FORMAT_SENSITIVITY`
-   claimed the QB-for-WR verdict "should flip" in superflex. It does not, and it
-   should not — this roster starts Bo Nix at superflex, so trading Burrow empties
-   a slot rather than just downgrading one, and superflex is 5.0 pts/wk *worse*
-   than 1QB. The note was wrong, not the model. The corrected claim is now
-   asserted and gated rather than printed into a table nobody checks.
-
-Two smaller ones: `App.jsx` fetched `players.json` page-relative, which 404s
-anywhere but the site root; and `sources.ALIASES` carried a self-mapping entry
-that did nothing.
-
-## Known gap for Phase 5
-
-The explanation names the slot that moved most, which is not always the slot the
-acquired player landed in. Trade for a better RB1 and the largest single change
-can be at RB2 — your old RB1 sliding down — so the sentence describes the cascade
-and never mentions the player you just acquired. The arithmetic is right and the
-sentence is true; it just may not read like an answer to the question asked.
-There is a test documenting this (`KNOWN COPY GAP`). Fix it in Phase 5, against a
-real reader, rather than guessing at the copy now.
+Not affiliated with the NFL or any fantasy platform.

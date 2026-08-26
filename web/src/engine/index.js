@@ -9,6 +9,7 @@
 export * from './scoring.js'
 export * from './lineup.js'
 export * from './trade.js'
+export * from './targets.js'
 
 import { PRESETS } from './scoring.js'
 
