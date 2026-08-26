@@ -69,6 +69,35 @@ def corrupt_duplicate_rank(doc):
     return "duplicate"
 
 
+def corrupt_shallow_curve(doc):
+    """A curve too short to reach replacement level in a deep league. It does not
+    throw -- Curves.at just clamps -- so every grade in that league is quietly
+    wrong. The validator has to be the thing that notices."""
+    doc["curves"]["QB"] = doc["curves"]["QB"][:20]
+    return "need at least"
+
+
+def corrupt_ros_without_weeks(doc):
+    """Rest-of-season projections are scaled by weeks_remaining/17. Shipping the
+    basis without the divisor leaves the client unable to say what it is holding."""
+    doc["basis"] = "rest_of_season"
+    doc["weeks_remaining"] = None
+    return "weeks_remaining"
+
+
+def corrupt_weeks_out_of_range(doc):
+    doc["basis"] = "rest_of_season"
+    doc["weeks_remaining"] = 40
+    return "weeks_remaining"
+
+
+def corrupt_stray_weeks(doc):
+    """A full-season file that still carries a divisor is a half-finished
+    rest-of-season build, and the projections in it cannot be trusted."""
+    doc["weeks_remaining"] = 11
+    return "expected null"
+
+
 CASES = [
     corrupt_missing_key,
     corrupt_wrong_version,
@@ -80,6 +109,10 @@ CASES = [
     corrupt_missing_component,
     corrupt_bad_position,
     corrupt_duplicate_rank,
+    corrupt_shallow_curve,
+    corrupt_ros_without_weeks,
+    corrupt_weeks_out_of_range,
+    corrupt_stray_weeks,
 ]
 
 

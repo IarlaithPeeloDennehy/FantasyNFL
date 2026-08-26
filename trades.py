@@ -163,11 +163,22 @@ VALUE_ASSERTIONS = [
     },
 ]
 
-# Graded in both formats to show the model is league-aware rather than baking one
-# league's assumptions into the data file.
+# Graded in several formats to show the model is league-aware rather than baking
+# one league's assumptions into the data file.
+#
+# An earlier draft of this note claimed the verdict should *flip* in superflex.
+# It does not, and it should not: this roster's QB2 is Bo Nix, so in superflex
+# Burrow and Nix are both starting. Trading Burrow does not just downgrade the QB
+# slot, it empties a second one. Giving up an elite QB in superflex is strictly
+# worse than in 1QB, and the model saying so is the model being right. What is
+# worth asserting is the direction of the *gap*, not a flip.
 FORMAT_SENSITIVITY = {
     "id": "qb-for-wr-superflex",
-    "note": "The same QB-for-WR trade, in superflex. The verdict should flip.",
+    "note": "The same QB-for-WR trade across formats. Superflex must hurt more "
+            "than 1QB, because in superflex the QB you trade away was filling two "
+            "slots' worth of scarcity rather than one.",
     "give": ["Joe Burrow"],
     "receive": ["Malik Nabers"],
+    # Checked, not just printed: superflex delta must be materially worse.
+    "expect": {"superflex_worse_than_1qb_by": 1.0},
 }

@@ -29,7 +29,7 @@ SOURCE_LABELS = {
 }
 
 
-def build_document(args: argparse.Namespace) -> tuple[dict, object]:
+def build_document(args: argparse.Namespace) -> tuple[dict, object, list]:
     u = build_universe(source=args.source, teams=args.teams)
 
     weeks = args.weeks_remaining
@@ -169,19 +169,38 @@ def _probe() -> int:
     """Measure how good a name-only join is, using the id join as ground truth.
 
     This is the readiness check for switching to an ADP source that carries no
-    shared player id.
+    shared player id, so it has to be able to say *no*. It exits non-zero when a
+    miss lands inside the top TOP_N_MUST_RESOLVE, which is exactly the condition
+    the build itself refuses to ship: a deep miss is a shrug, a missing star is a
+    credibility problem.
     """
     rankings = load_rankings()
     crosswalk = load_player_ids()
     matched, total, misses = name_match_quality(rankings, crosswalk)
 
+    cutoff = schema.TOP_N_MUST_RESOLVE
+    blocking = [m for m in misses if m["ecr"] <= cutoff]
+
     print("Name-only join dry run (what an id-less ADP source would face)")
     print(f"  matched {matched}/{total}  ({matched / total:.1%})")
-    top100_misses = [m for m in misses[:100]]
     print(f"  misses among the whole pool: {len(misses)}")
-    if misses:
-        print(f"    {', '.join(misses[:15])}")
-    return 0 if not top100_misses else 0
+    for m in misses[:15]:
+        print(f"    {m['name']} ({m['pos']}, consensus rank {m['ecr']:.0f})")
+    if len(misses) > 15:
+        print(f"    ... and {len(misses) - 15} more")
+
+    if blocking:
+        print()
+        print(f"  NOT READY: {len(blocking)} miss(es) inside consensus rank {cutoff}:")
+        for m in blocking:
+            print(f"    - {m['name']} ({m['pos']}, rank {m['ecr']:.0f})")
+        print()
+        print("  Add them to sources.ALIASES before switching to an id-less source.")
+        return 1
+
+    print()
+    print(f"  READY: no misses inside consensus rank {cutoff}.")
+    return 0
 
 
 def _report(path: pathlib.Path, doc: dict, problems: list[str]) -> None:

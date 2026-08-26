@@ -199,15 +199,22 @@ def explain(
             continue
         changes.append((abs(slot_points(slot, new) - slot_points(slot, old)), slot, old, new))
 
-    if delta_week > 0:
-        head = f"You gain {delta_week:.1f} points a week."
-    elif delta_week < 0:
-        head = f"You lose {abs(delta_week):.1f} points a week."
-    else:
-        head = "Your starting lineup does not change."
-
     if not changes:
-        return head + " Nothing you would start is affected."
+        # No slot changed hands, so the delta is exactly zero and there is
+        # nothing to describe. Said plainly, without a number.
+        return "Your starting lineup does not change. Nothing you would start is affected."
+
+    # Branch on the *rendered* number, not the raw one. A delta of +0.034 renders
+    # as "0.0", and "You gain 0.0 points a week" reads as a bug to the user even
+    # though the arithmetic is right. Both implementations branch on the string
+    # so they cannot disagree about a rounding boundary.
+    shown = f"{abs(delta_week):.1f}"
+    if shown == "0.0":
+        head = "Your starting lineup shifts by less than a tenth of a point a week."
+    elif delta_week > 0:
+        head = f"You gain {shown} points a week."
+    else:
+        head = f"You lose {shown} points a week."
 
     changes.sort(reverse=True, key=lambda c: c[0])
     _, slot, old, new = changes[0]
@@ -215,7 +222,14 @@ def explain(
     def describe(p: Player | None) -> str:
         return f"{p.name} ({p.pos}{p.pos_rank}-level)" if p else "a waiver-level starter"
 
-    lead = "Almost all of it" if len(changes) == 1 else "The biggest move"
+    # "Almost all of it" needs a quantity to refer back to, and the sub-tenth
+    # head does not give it one.
+    if shown == "0.0":
+        lead = "The move"
+    elif len(changes) == 1:
+        lead = "Almost all of it"
+    else:
+        lead = "The biggest move"
     body = f" {lead} is at {slot}: {describe(old)} becomes {describe(new)}."
 
     tail = ""

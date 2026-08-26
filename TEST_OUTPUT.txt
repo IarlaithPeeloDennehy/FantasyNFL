@@ -1,11 +1,15 @@
 
- RUN  v2.1.9 /home/claude/tg/web
+> trade-grader@0.1.0 test
+> vitest run
 
- ✓ src/engine/__tests__/engine.test.js (35 tests) 38ms
- ✓ src/engine/__tests__/parity.test.js (325 tests) 153ms
 
- Test Files  2 passed (2)
-      Tests  360 passed (360)
-   Start at  01:17:01
-   Duration  1.24s (transform 111ms, setup 0ms, collect 194ms, tests 192ms, environment 0ms, prepare 190ms)
+[1m[7m[36m RUN [39m[27m[22m [36mv2.1.9 [39m[90mC:/NFLFantasy/web[39m
+
+ [32m✓[39m src/engine/__tests__/engine.test.js [2m([22m[2m37 tests[22m[2m)[22m[90m 20[2mms[22m[39m
+ [32m✓[39m src/engine/__tests__/parity.test.js [2m([22m[2m325 tests[22m[2m)[22m[90m 89[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m362 passed[39m[22m[90m (362)[39m
+[2m   Start at [22m 02:32:27
+[2m   Duration [22m 887ms[2m (transform 108ms, setup 0ms, collect 198ms, tests 109ms, environment 0ms, prepare 494ms)[22m
 

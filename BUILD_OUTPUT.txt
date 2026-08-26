@@ -8,8 +8,9 @@ Building from fantasypros...
     - Miles Davis (RB, consensus rank 353)
     - Matt Hibner (TE, consensus rank 358)
 
-  wrote web/public/players.json  (147 KB)
-  generated_at 2026-08-26T00:58:50Z  basis full_season
+  wrote web\public\players.json  (184 KB)
+  generated_at 2026-08-26T01:32:15Z  basis full_season
+
 PASS  clean file validates (449 players)
 PASS  corrupt_missing_key          caught: missing top-level key
 PASS  corrupt_wrong_version        caught: schema_version
@@ -21,9 +22,18 @@ PASS  corrupt_zero_projection      caught: all zeroes
 PASS  corrupt_missing_component    caught: proj missing
 PASS  corrupt_bad_position         caught: not in
 PASS  corrupt_duplicate_rank       caught: duplicate
+PASS  corrupt_shallow_curve        caught: need at least
+PASS  corrupt_ros_without_weeks    caught: weeks_remaining
+PASS  corrupt_weeks_out_of_range   caught: weeks_remaining
+PASS  corrupt_stray_weeks          caught: expected null
 
-10/10 corruptions caught
+14/14 corruptions caught
+
 Name-only join dry run (what an id-less ADP source would face)
   matched 449/452  (99.3%)
   misses among the whole pool: 3
-    Tommy Myers, Miles Davis, Matt Hibner
+    Tommy Myers (TE, consensus rank 335)
+    Miles Davis (RB, consensus rank 353)
+    Matt Hibner (TE, consensus rank 358)
+
+  READY: no misses inside consensus rank 100.

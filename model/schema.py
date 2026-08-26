@@ -20,9 +20,21 @@ REQUIRED_TOP = (
     "players",
 )
 
-# Below this, a position's curve is too shallow to price replacement level in a
-# deep league (14 teams x 3 WR + flex reaches past WR45).
-MIN_CURVE_DEPTH = {"QB": 24, "RB": 50, "WR": 60, "TE": 24}
+# Below this, a position's curve is too shallow to price replacement level and
+# `Curves.at` silently clamps -- which does not error, it just quietly returns
+# the wrong replacement level for every grade in that league.
+#
+# The floor is the worst in-scope league: 14 teams, two flex, one superflex,
+# with the deepest starter count v1 offers at each position.
+#
+#   QB  14 x (1 + 0.90)              = 26.6
+#   RB  14 x (2 + 0.45x2 + 0.04)     = 41.2
+#   WR  14 x (3 + 0.45x2 + 0.04)     = 55.2
+#   TE  14 x (2 + 0.10x2 + 0.02)     = 31.1   (TE-premium, two TE slots)
+#
+# Rounded up, with a little headroom. Widen the league ranges in value.League
+# and these numbers have to move with them.
+MIN_CURVE_DEPTH = {"QB": 28, "RB": 45, "WR": 60, "TE": 34}
 
 REQUIRED_PLAYER = ("id", "name", "pos", "team", "adp", "pos_adp_rank", "proj")
 
@@ -105,6 +117,21 @@ def validate(doc: dict) -> list[str]:
 
     if doc["basis"] not in VALID_BASIS:
         problems.append(f"basis {doc['basis']!r} not in {sorted(VALID_BASIS)}")
+
+    # A rest-of-season file is scaled by weeks_remaining/17. Shipping one without
+    # the divisor leaves the client unable to say what it is even looking at, and
+    # a nonsense divisor scales every projection wrongly rather than failing.
+    weeks = doc.get("weeks_remaining")
+    if doc["basis"] == "rest_of_season":
+        if not isinstance(weeks, int) or not 1 <= weeks <= 17:
+            problems.append(
+                f"basis is rest_of_season but weeks_remaining is {weeks!r}; "
+                "expected an integer from 1 to 17"
+            )
+    elif weeks is not None:
+        problems.append(
+            f"basis is {doc['basis']} but weeks_remaining is {weeks!r}; expected null"
+        )
 
     problems += _validate_curves(doc.get("curves"))
 

@@ -81,7 +81,14 @@ def replacement_points(curve, league: League) -> dict[str, float]:
     }
 
 
-@dataclass
+# eq=False on purpose. The JavaScript port compares roster members by object
+# identity (`Set`, `includes`), and lineup.py leans on `in` / `not in` to move
+# players between roster, slots and bench. A generated __eq__ compares by value,
+# so two rows that happen to be identical would be indistinguishable to Python
+# and distinct to JavaScript -- a divergence between the reference implementation
+# and the port, in the one place the parity fixtures cannot see. Identity in both.
+# It also makes Player hashable again, which a value-comparing dataclass is not.
+@dataclass(eq=False)
 class Player:
     name: str
     pos: str

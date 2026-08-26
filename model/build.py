@@ -115,11 +115,17 @@ def _attach_ids(rankings: pl.DataFrame, crosswalk: pl.DataFrame) -> tuple[pl.Dat
     return joined.drop("gsis_by_id", "gsis_by_name"), report
 
 
-def name_match_quality(rankings: pl.DataFrame, crosswalk: pl.DataFrame) -> tuple[int, int, list[str]]:
+def name_match_quality(
+    rankings: pl.DataFrame, crosswalk: pl.DataFrame
+) -> tuple[int, int, list[dict]]:
     """How well would a name-only join do?
 
     A dry run of the strategy an id-less source (like FFC ADP) would be forced
     into. Run against a source that HAS ids, so the id join is ground truth.
+
+    Misses come back with their consensus rank attached, because *where* a miss
+    sits is the whole question: 40 misses past rank 300 is a shrug, one inside
+    the top 100 is a blocker.
     """
     xw_name = crosswalk.unique(subset=["match_key", "xw_pos"], keep="first")
     probe = rankings.join(
@@ -128,7 +134,13 @@ def name_match_quality(rankings: pl.DataFrame, crosswalk: pl.DataFrame) -> tuple
         how="left",
     )
     matched = int(probe["gsis_id"].is_not_null().sum())
-    misses = probe.filter(pl.col("gsis_id").is_null()).sort("ecr")["name"].to_list()
+    misses = [
+        {"name": r["name"], "pos": r["pos"], "ecr": float(r["ecr"])}
+        for r in probe.filter(pl.col("gsis_id").is_null())
+        .sort("ecr")
+        .select("name", "pos", "ecr")
+        .iter_rows(named=True)
+    ]
     return matched, probe.height, misses
 
 

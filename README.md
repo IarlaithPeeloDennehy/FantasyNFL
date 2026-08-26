@@ -14,7 +14,7 @@ python3 test_schema.py         # does the validator catch a broken file?
 python3 export_golden.py       # Phase 3: fixtures for the JS parity test
 
 cd web && npm install
-npm test                       # 360 tests: engine behaviour + Python parity
+npm test                       # 362 tests: engine behaviour + Python parity
 npm run dev                    # placeholder shell
 ```
 
@@ -35,6 +35,10 @@ python3 build_players.py --probe-name-matching    # readiness check for id-less 
 python3 build_players.py --basis rest_of_season --weeks-remaining 11
 ```
 
+`--probe-name-matching` is a gate, not a report: it exits non-zero if a name-only
+join would miss anyone inside consensus rank 100, which is the bar the build
+itself refuses to ship below.
+
 Exits non-zero on any validation failure, and writes nothing when it does. In CI
 that leaves the last good file live, because stale data beats wrong data.
 
@@ -50,7 +54,7 @@ that leaves the last good file live, because stale data beats wrong data.
     export_golden.py   emits the parity fixtures
     trades.py          validation fixtures — EDIT THESE
     validate.py        the Phase 1 harness
-    test_schema.py     corrupts a good file ten ways, checks each is caught
+    test_schema.py     corrupts a good file fourteen ways, checks each is caught
 
     web/src/engine/scoring.js   scoring rules, curves, replacement level
     web/src/engine/lineup.js    bestLineup
@@ -68,12 +72,15 @@ Python computes for 8 league shapes x 12 trades, and `parity.test.js` asserts th
 JavaScript matches to within 1e-9 — points, replacement level, VOR, chosen
 starters, deltas, verdicts and explanation strings.
 
+The fixtures only cover inputs the fixtures happen to contain, so anywhere the
+two implementations could disagree on an input the fixtures never produce gets a
+named unit test instead — `replacementForSlot` against a replacement map with a
+position missing is the current example. `Player` is `@dataclass(eq=False)` for
+the same reason: JavaScript compares roster members by identity, so Python must
+too, and a value-comparing dataclass silently does not.
+
 If that suite goes red, the two halves have drifted and one of them is now lying
 to users.
-
-`model/value.py` and `model/lineup.py` are pure functions with no I/O. They are
-the reference implementation for the Phase 3 JavaScript port: the two should
-produce identical numbers on identical inputs, and that is worth a test.
 
 ## Edit trades.py
 
@@ -110,7 +117,7 @@ cost before you pay it.
 
 ## What Phases 1–2 found
 
-Three real problems, all caught by running the thing rather than by reading code:
+Four real problems, all caught by running the thing rather than by reading code:
 
 1. **Verdict bands had no direction.** A 5-point *loss* was being labelled a
    "clear win", because the band lookup used only magnitude.
@@ -134,6 +141,62 @@ Three real problems, all caught by running the thing rather than by reading code
    the probe output. If you switch to FFC, re-run the probe first and expect to
    extend that table; the misses that remain are genuinely absent from the
    crosswalk.
+
+## What the Phase 1-3 review found
+
+A second pass over the finished phases, running every gate rather than reading
+code. Everything below is fixed, and each one has a test that fails without the
+fix.
+
+1. **The curve-depth floor was set below the leagues v1 offers.** `MIN_CURVE_DEPTH`
+   required 24 QB ranks and 24 TE ranks, but a 14-team superflex league replaces
+   QB at rank 26.6, and a 14-team two-TE league replaces TE at 31.1. `Curves.at`
+   clamps past the end of the curve rather than raising, so a conforming-but-short
+   file would not have errored — it would have priced replacement level off the
+   wrong rank and been wrong about every grade in that league, quietly. Floors are
+   now derived from the worst in-scope league, with the arithmetic in a comment.
+
+2. **`weeks_remaining` was unvalidated.** A `rest_of_season` file scales every
+   projection by `weeks_remaining / 17`. Nothing checked that the divisor was
+   present or sane, so a file claiming rest-of-season with a null divisor passed
+   `--check` clean. Now both directions are checked, including a `full_season`
+   file that still carries one.
+
+3. **The two engines disagreed on a missing replacement position.** Python's
+   `_replacement_for` folds an absent position in as `0.0` inside its `max`;
+   the JavaScript skipped it. Same inputs, different flex replacement level, and
+   the golden fixtures could not see it because they never produce a partial
+   replacement map. The port now matches, with a unit test that pins it.
+
+4. **`Player` compared by value, JavaScript by identity.** A plain `@dataclass`
+   generates `__eq__`, so `p not in give` in `grade_trade` matched on field
+   values while the port's `Set` matched on object identity. `eq=False` makes the
+   reference implementation behave the way the port does.
+
+5. **"You gain 0.0 points a week."** Reachable with the shipped data: a delta of
+   +0.034 renders as `0.0`, and a headline that reads that way looks like a bug
+   to the reader whatever the arithmetic says. Both engines now branch on the
+   rendered string — so they cannot drift at a rounding boundary — and say
+   "shifts by less than a tenth of a point a week" instead. The follow-on
+   "Almost all of it is at WR3" had nothing to refer back to in that case either,
+   so it becomes "The move is at WR3".
+
+6. **`--probe-name-matching` could not fail.** It computed `top100_misses` from
+   the first 100 entries of the miss list rather than misses inside rank 100, and
+   then returned `0` on both branches. A readiness check that cannot say no is a
+   readiness check nobody should trust. It now gates on consensus rank, using the
+   same cutoff the build uses.
+
+7. **A fixture asserted a property the model contradicts.** `FORMAT_SENSITIVITY`
+   claimed the QB-for-WR verdict "should flip" in superflex. It does not, and it
+   should not — this roster starts Bo Nix at superflex, so trading Burrow empties
+   a slot rather than just downgrading one, and superflex is 5.0 pts/wk *worse*
+   than 1QB. The note was wrong, not the model. The corrected claim is now
+   asserted and gated rather than printed into a table nobody checks.
+
+Two smaller ones: `App.jsx` fetched `players.json` page-relative, which 404s
+anywhere but the site root; and `sources.ALIASES` carried a self-mapping entry
+that did nothing.
 
 ## Known gap for Phase 5
 

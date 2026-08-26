@@ -18,21 +18,28 @@ export function slotStem(slot) {
   return slot.replace(/\d+$/, '') || slot
 }
 
-/** What a freely-available player at this slot is worth. */
+/**
+ * What a freely-available player at this slot is worth.
+ *
+ * A position absent from `replacement` counts as zero rather than being skipped,
+ * which is what the Python reference does (`replacement.get(pos, 0.0)` inside a
+ * max). Skipping it instead would return a negative replacement level for a flex
+ * slot whose other positions are simply missing from the map -- a divergence the
+ * fixtures never happen to cover.
+ */
 export function replacementForSlot(stem, replacement) {
   let eligible
   if (stem === 'FLEX') eligible = FLEX_ELIGIBLE
   else if (stem === 'SUPERFLEX') eligible = SUPERFLEX_ELIGIBLE
   else eligible = [stem]
 
-  let best = 0
-  let seen = false
+  if (eligible.length === 0) return 0
+  let best = -Infinity
   for (const pos of eligible) {
-    const v = replacement[pos]
-    if (v === undefined) continue
-    if (!seen || v > best) { best = v; seen = true }
+    const v = replacement[pos] ?? 0
+    if (v > best) best = v
   }
-  return seen ? best : 0
+  return best
 }
 
 /**

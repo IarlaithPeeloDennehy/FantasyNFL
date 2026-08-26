@@ -91,7 +91,6 @@ ALIASES = {
     "cam ward": "cameron ward",
     "mike thomas": "michael thomas",
     "josh palmer": "joshua palmer",
-    "demario douglas": "demario douglas",
 }
 
 

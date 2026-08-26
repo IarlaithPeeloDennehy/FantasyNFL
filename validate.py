@@ -99,12 +99,14 @@ def main() -> int:
     t = FORMAT_SENSITIVITY
     give = [u.by_name(n) for n in t["give"]]
     receive = [u.by_name(n) for n in t["receive"]]
+    by_format: dict[str, float] = {}
     for label, lg in (
         ("1QB   ", League()),
         ("SUPERFLEX", League(superflex_slots=1)),
     ):
         r = replacement_points(u.curves, lg)
         g = grade_trade(roster, give, receive, lg, r)
+        by_format[label.strip()] = g.delta_per_week
         print(f"  {label:<10} {g.delta_per_week:+6.2f} pts/wk   {g.verdict.lower()}")
 
     for label, name in (("PPR      ", "ppr"), ("STANDARD ", "standard")):
@@ -113,16 +115,29 @@ def main() -> int:
         g = grade_trade(roster, give, receive, lg, r)
         print(f"  {label:<10} {g.delta_per_week:+6.2f} pts/wk   {g.verdict.lower()}")
 
+    # Printing a table nobody asserts on is how a claim quietly stops being true.
+    gap = by_format["1QB"] - by_format["SUPERFLEX"]
+    need = t["expect"]["superflex_worse_than_1qb_by"]
+    format_ok = gap >= need
+    print()
+    print(f"  [{PASS if format_ok else FAIL}] {t['id']:<32} "
+          f"superflex is {gap:+.2f} pts/wk worse than 1QB (need >= {need:.1f})")
+
     print()
     print("=" * 78)
     total = len(TRADES)
     print(f"GATE:  {passes}/{total} trades matched the expected verdict")
     print(f"       {apasses}/{len(VALUE_ASSERTIONS)} value-model assertions held")
+    print(f"       format sensitivity {'held' if format_ok else 'FAILED'}")
     print("=" * 78)
     print("\nThe expected verdicts in trades.py are a stand-in for your own read.")
     print("Overwrite them with trades you have an opinion on before trusting this.")
 
-    ok = passes >= int(0.8 * total) and apasses == len(VALUE_ASSERTIONS)
+    ok = (
+        passes >= int(0.8 * total)
+        and apasses == len(VALUE_ASSERTIONS)
+        and format_ok
+    )
     return 0 if ok else 1
 
 

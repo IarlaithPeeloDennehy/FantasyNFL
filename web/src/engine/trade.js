@@ -98,19 +98,32 @@ export function explain(before, after, deltaPerWeek, deltaDepth, scoring, replac
     })
   }
 
-  let head
-  if (deltaPerWeek > 0) head = `You gain ${deltaPerWeek.toFixed(1)} points a week.`
-  else if (deltaPerWeek < 0) head = `You lose ${Math.abs(deltaPerWeek).toFixed(1)} points a week.`
-  else head = 'Your starting lineup does not change.'
+  // No slot changed hands, so the delta is exactly zero and there is nothing to
+  // describe. Said plainly, without a number.
+  if (!changes.length) {
+    return 'Your starting lineup does not change. Nothing you would start is affected.'
+  }
 
-  if (!changes.length) return `${head} Nothing you would start is affected.`
+  // Branch on the *rendered* number, not the raw one. A delta of +0.034 renders
+  // as "0.0", and "You gain 0.0 points a week" reads as a bug to the user even
+  // though the arithmetic is right. Both implementations branch on the string so
+  // they cannot disagree about a rounding boundary.
+  const shown = Math.abs(deltaPerWeek).toFixed(1)
+  let head
+  if (shown === '0.0') head = 'Your starting lineup shifts by less than a tenth of a point a week.'
+  else if (deltaPerWeek > 0) head = `You gain ${shown} points a week.`
+  else head = `You lose ${shown} points a week.`
 
   changes.sort((x, y) => y.magnitude - x.magnitude)
   const { slot, oldP, newP } = changes[0]
 
   const describe = (p) => (p ? `${p.name} (${p.pos}${p.pos_adp_rank}-level)` : 'a waiver-level starter')
 
-  const lead = changes.length === 1 ? 'Almost all of it' : 'The biggest move'
+  // "Almost all of it" needs a quantity to refer back to, and the sub-tenth head
+  // does not give it one.
+  let lead = 'The biggest move'
+  if (shown === '0.0') lead = 'The move'
+  else if (changes.length === 1) lead = 'Almost all of it'
   const body = ` ${lead} is at ${slot}: ${describe(oldP)} becomes ${describe(newP)}.`
 
   let tail = ''

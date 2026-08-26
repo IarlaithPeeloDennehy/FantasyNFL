@@ -41,7 +41,7 @@ TRADE VALIDATION  (roster is WR-deep, RB-thin by design)
         receive  Jahmyr Gibbs
         +6.76 pts/wk   lopsided win   (depth -6.8)
         expected gain  ->  got gain
-        "You gain 6.8 points a week. The biggest move is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it â€” fine if you are set at your starting spots."
+        "You gain 6.8 points a week. The biggest move is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it — fine if you are set at your starting spots."
 
   [PASS] consolidation-trap
         give     Ja'Marr Chase
@@ -136,9 +136,12 @@ FORMAT SENSITIVITY
   PPR         -3.21 pts/wk   clear loss
   STANDARD    -4.46 pts/wk   clear loss
 
+  [PASS] qb-for-wr-superflex              superflex is +5.04 pts/wk worse than 1QB (need >= 1.0)
+
 ==============================================================================
 GATE:  12/12 trades matched the expected verdict
        4/4 value-model assertions held
+       format sensitivity held
 ==============================================================================
 
 The expected verdicts in trades.py are a stand-in for your own read.

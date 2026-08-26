@@ -21,7 +21,10 @@ export default function App() {
   const [state, setState] = useState({ status: 'loading' })
 
   useEffect(() => {
-    fetch('players.json')
+    // Base-relative, not page-relative: a bare 'players.json' resolves against
+    // the current path, so it 404s the moment the app is served from anything but
+    // the site root or is reached on a route with a trailing segment.
+    fetch(`${import.meta.env.BASE_URL}players.json`)
       .then((r) => {
         if (!r.ok) throw new Error(`players.json returned ${r.status}`)
         return r.json()

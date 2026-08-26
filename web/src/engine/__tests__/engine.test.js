@@ -293,6 +293,19 @@ describe('gradeTrade: basics', () => {
     expect(graded.deltaPerWeek).toBeGreaterThan(0)
   })
 
+  it('never says "You gain 0.0 points a week"', () => {
+    // Reachable with real data: a delta of +0.03 renders as "0.0", and a headline
+    // that reads "You gain 0.0 points a week" reads as a broken app even though
+    // the arithmetic is right.
+    const graded = gradeTrade(roster, [find('Delta')], [player('Echo', 'WR', 1901, 21)], LEAGUE, REPL)
+    expect(Math.abs(graded.deltaPerWeek)).toBeGreaterThan(0)
+    expect(Math.abs(graded.deltaPerWeek)).toBeLessThan(0.05)
+    expect(graded.explanation).not.toMatch(/(gain|lose) 0\.0 points/)
+    expect(graded.explanation).toContain('less than a tenth of a point a week')
+    // ...and "Almost all of it" has no quantity to refer back to in that case.
+    expect(graded.explanation).not.toContain('Almost all of it')
+  })
+
   it('says nothing changed when nothing changed', () => {
     const graded = gradeTrade(roster, [find('Scrub')], [player('Scrub2', 'WR', 890, 72)], LEAGUE, REPL)
     expect(graded.explanation).toContain('Nothing you would start is affected')
@@ -332,6 +345,16 @@ describe('slot helpers', () => {
     expect(replacementForSlot('FLEX', repl)).toBe(150)
     expect(replacementForSlot('SUPERFLEX', repl)).toBe(300)
     expect(replacementForSlot('TE', repl)).toBe(100)
+  })
+
+  it('treats a position missing from the map as zero, as Python does', () => {
+    // Python is `max(replacement.get(pos, 0.0) for pos in eligible)`, so an
+    // absent position contributes a zero to the max rather than being skipped.
+    // Skipping instead returns a negative flex replacement, which is a silent
+    // divergence between the reference implementation and this port.
+    expect(replacementForSlot('FLEX', { RB: -1 })).toBe(0)
+    expect(replacementForSlot('FLEX', { RB: -1, WR: -2, TE: -3 })).toBe(-1)
+    expect(replacementForSlot('TE', {})).toBe(0)
   })
 })
 
