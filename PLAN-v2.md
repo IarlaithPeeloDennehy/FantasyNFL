@@ -40,6 +40,8 @@ record-awareness feature is about weeks remaining. Fixing this is a prerequisite
 not a nice-to-have.
 
 **D2 — the curve's top tier is flattened by its own smoothing.**
+*(Fixed. Measured worse than estimated below: the rank-1→5 gap was compressed
+35–47%, not merely "flattened".)*
 `model/curves.py:88` applies `rolling_mean(window_size=5, center=True,
 min_samples=1)`. At rank 1 the window clips to ranks 1–3, so the shipped RB1
 projection is literally the mean of the RB1, RB2 and RB3 historical finishes.
@@ -83,12 +85,13 @@ hardcoded as "top 5 is special".
 
 ### 1.2 What is actually missing
 
-**A1 — Stop compressing the top (fixes D2).**
-Switch the smoother to an asymmetric window that shrinks toward the boundary, or
-fit monotone-decreasing splines per position rather than a rolling mean. Gate:
-rank-1 and rank-2 projections rise; the curve stays monotone decreasing at every
-rank; `MIN_CURVE_DEPTH` validation still passes. This is a data-side fix and it
-improves every grade in the app, not just the ones I'm working on.
+**A1 — Stop compressing the top (fixes D2). Done.**
+The window now shrinks symmetrically toward each end (widths 1, 3, 5, 5, …), so
+the estimate stays unbiased at the boundary and rank 1 keeps its historical
+average. Monotone splines were the alternative and were not needed: the measured
+defect was entirely boundary bias, and this removes it in five lines with no new
+dependency. Replacement level did not move at all — every replacement rank sits
+deep in the curve interior, where the smoother was already behaving.
 
 **A2 — Tiers, derived not declared.**
 Walk each position's curve and cut a new tier wherever the rank-over-rank drop
@@ -334,7 +337,7 @@ which is where `encodeSpec` needs its version marker.
 | # | Phase | Gate |
 |---|---|---|
 | 0 | Fix D1: weeks-aware horizon | **Done.** Gate met and strengthened: a `rest_of_season` file now gives the *same* per-week number as the full-season one, at 14/8/3/1 weeks. `web/src/engine/__tests__/horizon.test.js`. |
-| 1 | Fix D2: curve smoothing at the top | Rank-1 and rank-2 projections rise; curve still monotone; schema validation passes. |
+| 1 | Fix D2: curve smoothing at the top | **Done.** Rank 1 rises 23–32 pts per position, rank 2 by 5–13; ranks 3+ unchanged; still monotone at every rank; schema validation and the 12/12 trade gate pass. `test_curves.py`. |
 | 2 | Roster cap + forced cuts + diminishing depth | The 3-for-1 that currently grades as a win grades as a loss, and names both cuts. |
 | 3 | Tiers + acquisition scarcity | Tiers derived per position; QB tiers come out different from RB, from the data, not from a constant. |
 | 4 | Weekly horizon + availability | Star out 5 weeks scores near zero over weeks 1–5 and full value after. Double-count guard tested against `ranks_as_of`. |

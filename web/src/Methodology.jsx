@@ -58,6 +58,22 @@ export function Methodology({ meta }) {
         valuable.
       </p>
 
+      <h3 className="sub">Why the top of each position is worth so much more</h3>
+      <p>
+        The drop from the best running back to the fifth is far steeper than the
+        drop from the tenth to the twenty-fifth, and that shape comes from the
+        history rather than from any adjustment applied on top of it. It is not
+        the same shape at every position: quarterback falls at a steady rate well
+        past the tenth, because only thirty-two of them start anywhere.
+      </p>
+      <p>
+        Each rank is averaged over recent seasons and then smoothed against its
+        neighbours, because the difference between the third and fourth finisher
+        in any one year is mostly noise. The smoothing window narrows at the ends
+        so the very top is never averaged with the ranks below it — doing that
+        flattens exactly the gap that makes elite players worth trading for.
+      </p>
+
       <h3 className="sub">Why trades are graded on lineups, not totals</h3>
       <p>
         Summing player values is how trade calculators end up saying three WR4s

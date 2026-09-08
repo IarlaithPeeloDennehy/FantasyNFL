@@ -134,16 +134,21 @@
    "topVor": [
     {
      "name": "Jahmyr Gibbs",
+     "points": 353.415,
+     "vor": 207.08020000000002
+    },
+    {
+     "name": "Ja'Marr Chase",
+     "points": 327.898,
+     "vor": 199.63152000000005
+    },
+    {
+     "name": "Bijan Robinson",
      "points": 321.373,
      "vor": 175.0382
     },
     {
-     "name": "Bijan Robinson",
-     "points": 314.95700000000005,
-     "vor": 168.62220000000005
-    },
-    {
-     "name": "Ja'Marr Chase",
+     "name": "Puka Nacua",
      "points": 295.8288,
      "vor": 167.56232000000003
     },
@@ -151,11 +156,6 @@
      "name": "Christian McCaffrey",
      "points": 305.5210000000001,
      "vor": 159.18620000000007
-    },
-    {
-     "name": "Puka Nacua",
-     "points": 282.99580000000003,
-     "vor": 154.72932000000006
     },
     {
      "name": "Jaxon Smith-Njigba",
@@ -178,6 +178,11 @@
      "vor": 125.96872000000005
     },
     {
+     "name": "Josh Allen",
+     "points": 392.5538,
+     "vor": 125.74099999999999
+    },
+    {
      "name": "James Cook III",
      "points": 264.3862,
      "vor": 118.05139999999997
@@ -193,9 +198,14 @@
      "vor": 105.51740000000001
     },
     {
-     "name": "Josh Allen",
+     "name": "Lamar Jackson",
      "points": 369.0218000000001,
      "vor": 102.20900000000006
+    },
+    {
+     "name": "Brock Bowers",
+     "points": 217.32,
+     "vor": 101.22240000000001
     },
     {
      "name": "Justin Jefferson",
@@ -206,11 +216,6 @@
      "name": "De'Von Achane",
      "points": 243.87519999999998,
      "vor": 97.54039999999998
-    },
-    {
-     "name": "Lamar Jackson",
-     "points": 362.47520000000003,
-     "vor": 95.66239999999999
     },
     {
      "name": "Drake London",
@@ -251,11 +256,6 @@
      "name": "Chris Olave",
      "points": 202.485,
      "vor": 74.21852000000004
-    },
-    {
-     "name": "Brock Bowers",
-     "points": 189.55500000000004,
-     "vor": 73.45740000000005
     }
    ],
    "trades": [
@@ -268,14 +268,14 @@
      "receive": [
       "Jahmyr Gibbs"
      ],
-     "deltaSeason": 114.91499999999996,
-     "deltaPerWeek": 6.7597058823529395,
+     "deltaSeason": 146.95699999999988,
+     "deltaPerWeek": 8.6445294117647,
      "deltaDepth": -6.790544000000005,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 6.8 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1900.0436,
+     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1969.6798,
      "beforeSlots": [
       [
        "QB",
@@ -354,14 +354,14 @@
       "Chris Olave",
       "Rashee Rice"
      ],
-     "deltaSeason": -59.16300000000001,
-     "deltaPerWeek": -3.480176470588236,
+     "deltaSeason": -91.23219999999992,
+     "deltaPerWeek": -5.366599999999996,
      "deltaDepth": 7.225504000000001,
-     "verdict": "Clear loss",
+     "verdict": "Lopsided loss",
      "direction": "loss",
-     "explanation": "You lose 3.5 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1725.9656,
+     "explanation": "You lose 5.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1731.4906,
      "beforeSlots": [
       [
        "QB",
@@ -439,14 +439,14 @@
      "receive": [
       "Bijan Robinson"
      ],
-     "deltaSeason": 150.5630000000001,
-     "deltaPerWeek": 8.856647058823535,
+     "deltaSeason": 156.97900000000004,
+     "deltaPerWeek": 9.234058823529415,
      "deltaDepth": 6.443239999999992,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 8.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1935.6916,
+     "explanation": "You gain 9.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1979.7018,
      "beforeSlots": [
       [
        "QB",
@@ -524,14 +524,14 @@
      "receive": [
       "Kyle Pitts Sr."
      ],
-     "deltaSeason": -35.715999999999894,
-     "deltaPerWeek": -2.100941176470582,
+     "deltaSeason": -41.240999999999985,
+     "deltaPerWeek": -2.4259411764705874,
      "deltaDepth": 0.0,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 2.1 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1749.4126,
+     "explanation": "You lose 2.4 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1781.4818,
      "beforeSlots": [
       [
        "QB",
@@ -615,8 +615,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "You lose 0.2 points a week. Almost all of it is at WR3: Zay Flowers (WR15-level) becomes Garrett Wilson (WR16-level).",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1781.5994,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1819.1936,
      "beforeSlots": [
       [
        "QB",
@@ -700,8 +700,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1785.1286,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1822.7228,
      "beforeSlots": [
       [
        "QB",
@@ -781,14 +781,14 @@
      "receive": [
       "Puka Nacua"
      ],
-     "deltaSeason": 118.60180000000014,
-     "deltaPerWeek": 6.976576470588244,
+     "deltaSeason": 131.4348,
+     "deltaPerWeek": 7.731458823529412,
      "deltaDepth": 4.431175999999983,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 7.0 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1903.7304000000001,
+     "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1954.1576,
      "beforeSlots": [
       [
        "QB",
@@ -872,8 +872,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1785.1286,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1822.7228,
      "beforeSlots": [
       [
        "QB",
@@ -958,8 +958,8 @@
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level).",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1736.0436,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1773.6378,
      "beforeSlots": [
       [
        "QB",
@@ -1037,14 +1037,14 @@
      "receive": [
       "Tee Higgins"
      ],
-     "deltaSeason": -55.47019999999998,
-     "deltaPerWeek": -3.262952941176469,
+     "deltaSeason": -60.99519999999984,
+     "deltaPerWeek": -3.5879529411764612,
      "deltaDepth": 7.225504000000001,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 3.3 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1729.6584,
+     "explanation": "You lose 3.6 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1761.7276000000002,
      "beforeSlots": [
       [
        "QB",
@@ -1124,8 +1124,8 @@
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 3.6 points a week. The move that matters is at QB: Joe Burrow (QB4-level) becomes Bo Nix (QB14-level). Quarterbacks are worth less here than their rankings suggest: only one starts per team, so the next one on waivers is much closer to yours than the gap in rank implies. You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1724.5772000000002,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1762.1714000000002,
      "beforeSlots": [
       [
        "QB",
@@ -1203,14 +1203,14 @@
      "receive": [
       "Chase Brown"
      ],
-     "deltaSeason": 50.32140000000004,
-     "deltaPerWeek": 2.960082352941179,
+     "deltaSeason": 50.32140000000027,
+     "deltaPerWeek": 2.960082352941192,
      "deltaDepth": 0.0,
      "verdict": "Clear win",
      "direction": "gain",
      "explanation": "You gain 3.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Chase Brown (RB7-level).",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1835.45,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1873.0442000000003,
      "beforeSlots": [
       [
        "QB",
@@ -1327,23 +1327,23 @@
    "topVor": [
     {
      "name": "Ja'Marr Chase",
+     "points": 393.063,
+     "vor": 236.93052
+    },
+    {
+     "name": "Jahmyr Gibbs",
+     "points": 390.25000000000006,
+     "vor": 228.54920000000007
+    },
+    {
+     "name": "Puka Nacua",
      "points": 355.9938,
      "vor": 199.86132000000003
     },
     {
-     "name": "Jahmyr Gibbs",
+     "name": "Bijan Robinson",
      "points": 349.0929999999999,
      "vor": 187.39219999999992
-    },
-    {
-     "name": "Puka Nacua",
-     "points": 341.3308,
-     "vor": 185.19832000000002
-    },
-    {
-     "name": "Bijan Robinson",
-     "points": 343.91700000000003,
-     "vor": 182.21620000000004
     },
     {
      "name": "Jaxon Smith-Njigba",
@@ -1381,6 +1381,16 @@
      "vor": 127.22040000000001
     },
     {
+     "name": "Brock Bowers",
+     "points": 271.32,
+     "vor": 126.25539999999998
+    },
+    {
+     "name": "Josh Allen",
+     "points": 392.5538,
+     "vor": 125.64100000000002
+    },
+    {
      "name": "Justin Jefferson",
      "points": 275.64380000000006,
      "vor": 119.51132000000007
@@ -1401,7 +1411,7 @@
      "vor": 103.93939999999995
     },
     {
-     "name": "Josh Allen",
+     "name": "Lamar Jackson",
      "points": 369.0768000000001,
      "vor": 102.1640000000001
     },
@@ -1409,11 +1419,6 @@
      "name": "A.J. Brown",
      "points": 257.17400000000004,
      "vor": 101.04152000000005
-    },
-    {
-     "name": "Lamar Jackson",
-     "points": 362.5152,
-     "vor": 95.60239999999999
     },
     {
      "name": "Saquon Barkley",
@@ -1426,7 +1431,7 @@
      "vor": 94.62552000000002
     },
     {
-     "name": "Brock Bowers",
+     "name": "Trey McBride",
      "points": 237.775,
      "vor": 92.71039999999999
     },
@@ -1444,11 +1449,6 @@
      "name": "Omarion Hampton",
      "points": 249.7572,
      "vor": 88.05640000000002
-    },
-    {
-     "name": "Trey McBride",
-     "points": 230.99000000000004,
-     "vor": 85.92540000000002
     }
    ],
    "trades": [
@@ -1461,14 +1461,14 @@
      "receive": [
       "Jahmyr Gibbs"
      ],
-     "deltaSeason": 98.33500000000004,
-     "deltaPerWeek": 5.784411764705885,
+     "deltaSeason": 139.4920000000002,
+     "deltaPerWeek": 8.205411764705893,
      "deltaDepth": -7.8573440000000065,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 5.8 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
-     "beforePoints": 2057.1536,
-     "afterPoints": 2155.4886,
+     "explanation": "You gain 8.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
+     "beforePoints": 2101.0078000000003,
+     "afterPoints": 2240.4998000000005,
      "beforeSlots": [
       [
        "QB",
@@ -1547,14 +1547,14 @@
       "Chris Olave",
       "Rashee Rice"
      ],
-     "deltaSeason": -70.79299999999989,
-     "deltaPerWeek": -4.164294117647053,
+     "deltaSeason": -107.86220000000003,
+     "deltaPerWeek": -6.344835294117649,
      "deltaDepth": 8.712304000000001,
-     "verdict": "Clear loss",
+     "verdict": "Lopsided loss",
      "direction": "loss",
-     "explanation": "You lose 4.2 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 2057.1536,
-     "afterPoints": 1986.3606000000002,
+     "explanation": "You lose 6.3 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 2101.0078000000003,
+     "afterPoints": 1993.1456000000003,
      "beforeSlots": [
       [
        "QB",
@@ -1632,14 +1632,14 @@
      "receive": [
       "Bijan Robinson"
      ],
-     "deltaSeason": 144.2230000000004,
-     "deltaPerWeek": 8.483705882352965,
+     "deltaSeason": 149.3989999999999,
+     "deltaPerWeek": 8.788176470588228,
      "deltaDepth": 7.730239999999993,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 8.5 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 2057.1536,
-     "afterPoints": 2201.3766000000005,
+     "explanation": "You gain 8.8 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 2101.0078000000003,
+     "afterPoints": 2250.4068,
      "beforeSlots": [
       [
        "QB",
@@ -1717,14 +1717,14 @@
      "receive": [
       "Kyle Pitts Sr."
      ],
-     "deltaSeason": -47.57600000000002,
-     "deltaPerWeek": -2.798588235294119,
+     "deltaSeason": -54.36100000000033,
+     "deltaPerWeek": -3.1977058823529605,
      "deltaDepth": 0.0,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 2.8 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
-     "beforePoints": 2057.1536,
-     "afterPoints": 2009.5776,
+     "explanation": "You lose 3.2 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
+     "beforePoints": 2101.0078000000003,
+     "afterPoints": 2046.6468,
      "beforeSlots": [
       [
        "QB",
@@ -1808,8 +1808,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "You lose 0.3 points a week. Almost all of it is at WR3: Zay Flowers (WR15-level) becomes Garrett Wilson (WR16-level).",
-     "beforePoints": 2057.1536,
-     "afterPoints": 2051.9894,
+     "beforePoints": 2101.0078000000003,
+     "afterPoints": 2095.8436,
      "beforeSlots": [
       [
        "QB",
@@ -1893,8 +1893,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
-     "beforePoints": 2057.1536,
-     "afterPoints": 2057.1536,
+     "beforePoints": 2101.0078000000003,
+     "afterPoints": 2101.0078000000003,
      "beforeSlots": [
       [
        "QB",
@@ -1974,14 +1974,14 @@
      "receive": [
       "Puka Nacua"
      ],
-     "deltaSeason": 141.63679999999977,
-     "deltaPerWeek": 8.331576470588221,
+     "deltaSeason": 156.29979999999978,
+     "deltaPerWeek": 9.194105882352929,
      "deltaDepth": 5.544375999999987,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 8.3 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 2057.1536,
-     "afterPoints": 2198.7904,
+     "explanation": "You gain 9.2 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 2101.0078000000003,
+     "afterPoints": 2257.3076,
      "beforeSlots": [
       [
        "QB",
@@ -2065,8 +2065,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
-     "beforePoints": 2057.1536,
-     "afterPoints": 2057.1536,
+     "beforePoints": 2101.0078000000003,
+     "afterPoints": 2101.0078000000003,
      "beforeSlots": [
       [
        "QB",
@@ -2145,14 +2145,14 @@
       "Quentin Johnston",
       "Wan'Dale Robinson"
      ],
-     "deltaSeason": -53.284999999999854,
-     "deltaPerWeek": -3.134411764705874,
+     "deltaSeason": -53.28500000000008,
+     "deltaPerWeek": -3.134411764705887,
      "deltaDepth": -0.6815760000000015,
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 3.1 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level).",
-     "beforePoints": 2057.1536,
-     "afterPoints": 2003.8686000000002,
+     "beforePoints": 2101.0078000000003,
+     "afterPoints": 2047.7228000000002,
      "beforeSlots": [
       [
        "QB",
@@ -2230,14 +2230,14 @@
      "receive": [
       "Tee Higgins"
      ],
-     "deltaSeason": -73.1282000000001,
-     "deltaPerWeek": -4.301658823529418,
+     "deltaSeason": -79.91320000000019,
+     "deltaPerWeek": -4.700776470588246,
      "deltaDepth": 8.712304000000001,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 4.3 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 2057.1536,
-     "afterPoints": 1984.0254,
+     "explanation": "You lose 4.7 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 2101.0078000000003,
+     "afterPoints": 2021.0946000000001,
      "beforeSlots": [
       [
        "QB",
@@ -2311,14 +2311,14 @@
      "receive": [
       "Malik Nabers"
      ],
-     "deltaSeason": -54.65139999999997,
-     "deltaPerWeek": -3.2147882352941157,
+     "deltaSeason": -54.651400000000194,
+     "deltaPerWeek": -3.214788235294129,
      "deltaDepth": 8.712304000000001,
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 3.2 points a week. The move that matters is at QB: Joe Burrow (QB4-level) becomes Bo Nix (QB14-level). Quarterbacks are worth less here than their rankings suggest: only one starts per team, so the next one on waivers is much closer to yours than the gap in rank implies. You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 2057.1536,
-     "afterPoints": 2002.5022000000001,
+     "beforePoints": 2101.0078000000003,
+     "afterPoints": 2046.3564000000001,
      "beforeSlots": [
       [
        "QB",
@@ -2396,14 +2396,14 @@
      "receive": [
       "Chase Brown"
      ],
-     "deltaSeason": 49.89140000000043,
-     "deltaPerWeek": 2.934788235294143,
+     "deltaSeason": 49.891399999999976,
+     "deltaPerWeek": 2.9347882352941164,
      "deltaDepth": 0.0,
      "verdict": "Clear win",
      "direction": "gain",
      "explanation": "You gain 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Chase Brown (RB7-level).",
-     "beforePoints": 2057.1536,
-     "afterPoints": 2107.0450000000005,
+     "beforePoints": 2101.0078000000003,
+     "afterPoints": 2150.8992000000003,
      "beforeSlots": [
       [
        "QB",
@@ -2520,13 +2520,18 @@
    "topVor": [
     {
      "name": "Jahmyr Gibbs",
+     "points": 316.58000000000004,
+     "vor": 185.61120000000005
+    },
+    {
+     "name": "Bijan Robinson",
      "points": 293.65299999999996,
      "vor": 162.68419999999998
     },
     {
-     "name": "Bijan Robinson",
-     "points": 285.997,
-     "vor": 155.02820000000003
+     "name": "Ja'Marr Chase",
+     "points": 262.733,
+     "vor": 162.33252
     },
     {
      "name": "Christian McCaffrey",
@@ -2534,7 +2539,7 @@
      "vor": 146.21720000000005
     },
     {
-     "name": "Ja'Marr Chase",
+     "name": "Puka Nacua",
      "points": 235.66380000000004,
      "vor": 135.26332000000002
     },
@@ -2544,9 +2549,9 @@
      "vor": 130.37820000000005
     },
     {
-     "name": "Puka Nacua",
-     "points": 224.66080000000002,
-     "vor": 124.26032000000002
+     "name": "Josh Allen",
+     "points": 392.5538,
+     "vor": 125.84100000000001
     },
     {
      "name": "Ashton Jeanty",
@@ -2564,7 +2569,7 @@
      "vor": 108.88240000000002
     },
     {
-     "name": "Josh Allen",
+     "name": "Lamar Jackson",
      "points": 368.9668000000001,
      "vor": 102.25400000000008
     },
@@ -2577,11 +2582,6 @@
      "name": "Chase Brown",
      "points": 230.1172,
      "vor": 99.14840000000001
-    },
-    {
-     "name": "Lamar Jackson",
-     "points": 362.4352,
-     "vor": 95.7224
     },
     {
      "name": "De'Von Achane",
@@ -2607,6 +2607,11 @@
      "name": "Justin Jefferson",
      "points": 179.8438,
      "vor": 79.44331999999999
+    },
+    {
+     "name": "Brock Bowers",
+     "points": 163.32,
+     "vor": 76.18939999999999
     },
     {
      "name": "Omarion Hampton",
@@ -2637,11 +2642,6 @@
      "name": "Derrick Henry",
      "points": 194.993,
      "vor": 64.02420000000001
-    },
-    {
-     "name": "Nico Collins",
-     "points": 162.158,
-     "vor": 61.757519999999985
     }
    ],
    "trades": [
@@ -2654,14 +2654,14 @@
      "receive": [
       "Jahmyr Gibbs"
      ],
-     "deltaSeason": 122.0010000000002,
-     "deltaPerWeek": 7.176529411764718,
+     "deltaSeason": 144.9280000000001,
+     "deltaPerWeek": 8.525176470588242,
      "deltaDepth": -9.938607999999995,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 7.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
-     "beforePoints": 1522.5975999999998,
-     "afterPoints": 1644.5986,
+     "explanation": "You gain 8.5 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
+     "beforePoints": 1553.9317999999998,
+     "afterPoints": 1698.8598,
      "beforeSlots": [
       [
        "QB",
@@ -2740,14 +2740,14 @@
       "Chris Olave",
       "Rashee Rice"
      ],
-     "deltaSeason": -57.026999999999816,
-     "deltaPerWeek": -3.354529411764695,
+     "deltaSeason": -84.09619999999995,
+     "deltaPerWeek": -4.946835294117644,
      "deltaDepth": 1.523840000000007,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 3.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level).",
-     "beforePoints": 1522.5975999999998,
-     "afterPoints": 1465.5706,
+     "explanation": "You lose 4.9 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level).",
+     "beforePoints": 1553.9317999999998,
+     "afterPoints": 1469.8355999999999,
      "beforeSlots": [
       [
        "QB",
@@ -2825,14 +2825,14 @@
      "receive": [
       "Bijan Robinson"
      ],
-     "deltaSeason": 147.4090000000001,
-     "deltaPerWeek": 8.67111764705883,
+     "deltaSeason": 155.06499999999983,
+     "deltaPerWeek": 9.121470588235283,
      "deltaDepth": 0.9413760000000071,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 8.7 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level).",
-     "beforePoints": 1522.5975999999998,
-     "afterPoints": 1670.0066,
+     "explanation": "You gain 9.1 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level).",
+     "beforePoints": 1553.9317999999998,
+     "afterPoints": 1708.9967999999997,
      "beforeSlots": [
       [
        "QB",
@@ -2910,14 +2910,14 @@
      "receive": [
       "Kyle Pitts Sr."
      ],
-     "deltaSeason": -23.855999999999995,
-     "deltaPerWeek": -1.4032941176470586,
+     "deltaSeason": -28.121000000000095,
+     "deltaPerWeek": -1.654176470588241,
      "deltaDepth": 0.0,
      "verdict": "Slight loss",
      "direction": "loss",
-     "explanation": "You lose 1.4 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
-     "beforePoints": 1522.5975999999998,
-     "afterPoints": 1498.7415999999998,
+     "explanation": "You lose 1.7 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
+     "beforePoints": 1553.9317999999998,
+     "afterPoints": 1525.8107999999997,
      "beforeSlots": [
       [
        "QB",
@@ -3001,8 +3001,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "You lose 0.1 points a week. Almost all of it is at WR3: Zay Flowers (WR15-level) becomes Garrett Wilson (WR16-level).",
-     "beforePoints": 1522.5975999999998,
-     "afterPoints": 1520.7033999999999,
+     "beforePoints": 1553.9317999999998,
+     "afterPoints": 1552.0375999999999,
      "beforeSlots": [
       [
        "QB",
@@ -3086,8 +3086,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
-     "beforePoints": 1522.5975999999998,
-     "afterPoints": 1522.5975999999998,
+     "beforePoints": 1553.9317999999998,
+     "afterPoints": 1553.9317999999998,
      "beforeSlots": [
       [
        "QB",
@@ -3167,14 +3167,14 @@
      "receive": [
       "Puka Nacua"
      ],
-     "deltaSeason": 86.07280000000014,
-     "deltaPerWeek": 5.06310588235295,
+     "deltaSeason": 97.07580000000007,
+     "deltaPerWeek": 5.7103411764705925,
      "deltaDepth": -0.8968879999999899,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 5.1 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level).",
-     "beforePoints": 1522.5975999999998,
-     "afterPoints": 1608.6704,
+     "explanation": "You gain 5.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level).",
+     "beforePoints": 1553.9317999999998,
+     "afterPoints": 1651.0076,
      "beforeSlots": [
       [
        "QB",
@@ -3258,8 +3258,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
-     "beforePoints": 1522.5975999999998,
-     "afterPoints": 1522.5975999999998,
+     "beforePoints": 1553.9317999999998,
+     "afterPoints": 1553.9317999999998,
      "beforeSlots": [
       [
        "QB",
@@ -3344,8 +3344,8 @@
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 3.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
-     "beforePoints": 1522.5975999999998,
-     "afterPoints": 1468.2186,
+     "beforePoints": 1553.9317999999998,
+     "afterPoints": 1499.5528,
      "beforeSlots": [
       [
        "QB",
@@ -3423,14 +3423,14 @@
      "receive": [
       "Tee Higgins"
      ],
-     "deltaSeason": -47.30619999999999,
-     "deltaPerWeek": -2.782717647058823,
+     "deltaSeason": -51.57120000000009,
+     "deltaPerWeek": -3.033600000000005,
      "deltaDepth": 1.523840000000007,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 2.8 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter.",
-     "beforePoints": 1522.5975999999998,
-     "afterPoints": 1475.2913999999998,
+     "explanation": "You lose 3.0 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter.",
+     "beforePoints": 1553.9317999999998,
+     "afterPoints": 1502.3605999999997,
      "beforeSlots": [
       [
        "QB",
@@ -3504,14 +3504,14 @@
      "receive": [
       "Malik Nabers"
      ],
-     "deltaSeason": -75.94539999999984,
-     "deltaPerWeek": -4.467376470588226,
+     "deltaSeason": -75.94540000000006,
+     "deltaPerWeek": -4.467376470588239,
      "deltaDepth": 1.523840000000007,
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 4.5 points a week. The move that matters is at QB: Joe Burrow (QB4-level) becomes Bo Nix (QB14-level). Quarterbacks are worth less here than their rankings suggest: only one starts per team, so the next one on waivers is much closer to yours than the gap in rank implies.",
-     "beforePoints": 1522.5975999999998,
-     "afterPoints": 1446.6522,
+     "beforePoints": 1553.9317999999998,
+     "afterPoints": 1477.9863999999998,
      "beforeSlots": [
       [
        "QB",
@@ -3589,14 +3589,14 @@
      "receive": [
       "Chase Brown"
      ],
-     "deltaSeason": 50.7514000000001,
-     "deltaPerWeek": 2.9853764705882413,
+     "deltaSeason": 50.751399999999876,
+     "deltaPerWeek": 2.985376470588228,
      "deltaDepth": 0.0,
      "verdict": "Clear win",
      "direction": "gain",
      "explanation": "You gain 3.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Chase Brown (RB7-level).",
-     "beforePoints": 1522.5975999999998,
-     "afterPoints": 1573.349,
+     "beforePoints": 1553.9317999999998,
+     "afterPoints": 1604.6831999999997,
      "beforeSlots": [
       [
        "QB",
@@ -3713,23 +3713,23 @@
    "topVor": [
     {
      "name": "Jahmyr Gibbs",
+     "points": 353.415,
+     "vor": 166.99120000000002
+    },
+    {
+     "name": "Ja'Marr Chase",
+     "points": 327.898,
+     "vor": 164.80888000000002
+    },
+    {
+     "name": "Bijan Robinson",
      "points": 321.373,
      "vor": 134.9492
     },
     {
-     "name": "Ja'Marr Chase",
+     "name": "Puka Nacua",
      "points": 295.8288,
      "vor": 132.73968
-    },
-    {
-     "name": "Bijan Robinson",
-     "points": 314.95700000000005,
-     "vor": 128.53320000000005
-    },
-    {
-     "name": "Puka Nacua",
-     "points": 282.99580000000003,
-     "vor": 119.90668000000002
     },
     {
      "name": "Christian McCaffrey",
@@ -3747,6 +3747,11 @@
      "vor": 100.6582
     },
     {
+     "name": "Josh Allen",
+     "points": 392.5538,
+     "vor": 96.08680000000004
+    },
+    {
      "name": "Amon-Ra St. Brown",
      "points": 254.23520000000002,
      "vor": 91.14608000000001
@@ -3755,6 +3760,11 @@
      "name": "Ashton Jeanty",
      "points": 276.208,
      "vor": 89.78420000000003
+    },
+    {
+     "name": "Brock Bowers",
+     "points": 217.32,
+     "vor": 78.84020000000001
     },
     {
      "name": "James Cook III",
@@ -3767,14 +3777,9 @@
      "vor": 75.78467999999998
     },
     {
-     "name": "Josh Allen",
+     "name": "Lamar Jackson",
      "points": 369.0218000000001,
      "vor": 72.55480000000011
-    },
-    {
-     "name": "Lamar Jackson",
-     "points": 362.47520000000003,
-     "vor": 66.00820000000004
     },
     {
      "name": "Chase Brown",
@@ -3802,7 +3807,7 @@
      "vor": 56.48968000000002
     },
     {
-     "name": "Brock Bowers",
+     "name": "Trey McBride",
      "points": 189.55500000000004,
      "vor": 51.07520000000005
     },
@@ -3815,11 +3820,6 @@
      "name": "A.J. Brown",
      "points": 212.339,
      "vor": 49.24987999999999
-    },
-    {
-     "name": "Trey McBride",
-     "points": 184.03,
-     "vor": 45.55020000000002
     },
     {
      "name": "Nico Collins",
@@ -3847,14 +3847,14 @@
      "receive": [
       "Jahmyr Gibbs"
      ],
-     "deltaSeason": 114.91499999999996,
-     "deltaPerWeek": 6.7597058823529395,
+     "deltaSeason": 146.95699999999988,
+     "deltaPerWeek": 8.6445294117647,
      "deltaDepth": 0.0,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 6.8 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level).",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1900.0436,
+     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level).",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1969.6798,
      "beforeSlots": [
       [
        "QB",
@@ -3933,14 +3933,14 @@
       "Chris Olave",
       "Rashee Rice"
      ],
-     "deltaSeason": -59.16300000000001,
-     "deltaPerWeek": -3.480176470588236,
+     "deltaSeason": -91.23219999999992,
+     "deltaPerWeek": -5.366599999999996,
      "deltaDepth": 0.26097599999999377,
-     "verdict": "Clear loss",
+     "verdict": "Lopsided loss",
      "direction": "loss",
-     "explanation": "You lose 3.5 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level).",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1725.9656,
+     "explanation": "You lose 5.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level).",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1731.4906,
      "beforeSlots": [
       [
        "QB",
@@ -4018,14 +4018,14 @@
      "receive": [
       "Bijan Robinson"
      ],
-     "deltaSeason": 150.5630000000001,
-     "deltaPerWeek": 8.856647058823535,
+     "deltaSeason": 156.97900000000004,
+     "deltaPerWeek": 9.234058823529415,
      "deltaDepth": 0.26097599999999377,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 8.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level).",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1935.6916,
+     "explanation": "You gain 9.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level).",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1979.7018,
      "beforeSlots": [
       [
        "QB",
@@ -4103,14 +4103,14 @@
      "receive": [
       "Kyle Pitts Sr."
      ],
-     "deltaSeason": -35.715999999999894,
-     "deltaPerWeek": -2.100941176470582,
+     "deltaSeason": -41.240999999999985,
+     "deltaPerWeek": -2.4259411764705874,
      "deltaDepth": 0.0,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 2.1 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1749.4126,
+     "explanation": "You lose 2.4 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1781.4818,
      "beforeSlots": [
       [
        "QB",
@@ -4194,8 +4194,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "You lose 0.2 points a week. Almost all of it is at WR3: Zay Flowers (WR15-level) becomes Garrett Wilson (WR16-level).",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1781.5994,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1819.1936,
      "beforeSlots": [
       [
        "QB",
@@ -4279,8 +4279,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1785.1286,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1822.7228,
      "beforeSlots": [
       [
        "QB",
@@ -4360,14 +4360,14 @@
      "receive": [
       "Puka Nacua"
      ],
-     "deltaSeason": 118.60180000000014,
-     "deltaPerWeek": 6.976576470588244,
+     "deltaSeason": 131.4348,
+     "deltaPerWeek": 7.731458823529412,
      "deltaDepth": 0.26097599999999377,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 7.0 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level).",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1903.7304000000001,
+     "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level).",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1954.1576,
      "beforeSlots": [
       [
        "QB",
@@ -4451,8 +4451,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1785.1286,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1822.7228,
      "beforeSlots": [
       [
        "QB",
@@ -4537,8 +4537,8 @@
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level).",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1736.0436,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1773.6378,
      "beforeSlots": [
       [
        "QB",
@@ -4616,14 +4616,14 @@
      "receive": [
       "Tee Higgins"
      ],
-     "deltaSeason": -33.087999999999965,
-     "deltaPerWeek": -1.9463529411764686,
+     "deltaSeason": -38.61299999999983,
+     "deltaPerWeek": -2.2713529411764606,
      "deltaDepth": 0.26097599999999377,
-     "verdict": "Slight loss",
+     "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 1.9 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1752.0406,
+     "explanation": "You lose 2.3 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1784.1098000000002,
      "beforeSlots": [
       [
        "QB",
@@ -4703,8 +4703,8 @@
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 3.6 points a week. The move that matters is at QB: Joe Burrow (QB4-level) becomes Bo Nix (QB14-level). Quarterbacks are worth less here than their rankings suggest: only one starts per team, so the next one on waivers is much closer to yours than the gap in rank implies.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1724.5772000000002,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1762.1714000000002,
      "beforeSlots": [
       [
        "QB",
@@ -4782,14 +4782,14 @@
      "receive": [
       "Chase Brown"
      ],
-     "deltaSeason": 50.32140000000004,
-     "deltaPerWeek": 2.960082352941179,
+     "deltaSeason": 50.32140000000027,
+     "deltaPerWeek": 2.960082352941192,
      "deltaDepth": 0.0,
      "verdict": "Clear win",
      "direction": "gain",
      "explanation": "You gain 3.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Chase Brown (RB7-level).",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1835.45,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1873.0442000000003,
      "beforeSlots": [
       [
        "QB",
@@ -4906,16 +4906,21 @@
    "topVor": [
     {
      "name": "Jahmyr Gibbs",
+     "points": 353.415,
+     "vor": 229.13830000000002
+    },
+    {
+     "name": "Ja'Marr Chase",
+     "points": 327.898,
+     "vor": 213.94980000000004
+    },
+    {
+     "name": "Bijan Robinson",
      "points": 321.373,
      "vor": 197.09629999999999
     },
     {
-     "name": "Bijan Robinson",
-     "points": 314.95700000000005,
-     "vor": 190.68030000000005
-    },
-    {
-     "name": "Ja'Marr Chase",
+     "name": "Puka Nacua",
      "points": 295.8288,
      "vor": 181.88060000000002
     },
@@ -4923,11 +4928,6 @@
      "name": "Christian McCaffrey",
      "points": 305.5210000000001,
      "vor": 181.24430000000007
-    },
-    {
-     "name": "Puka Nacua",
-     "points": 282.99580000000003,
-     "vor": 169.04760000000005
     },
     {
      "name": "Jonathan Taylor",
@@ -4943,6 +4943,11 @@
      "name": "Ashton Jeanty",
      "points": 276.208,
      "vor": 151.93130000000002
+    },
+    {
+     "name": "Josh Allen",
+     "points": 392.5538,
+     "vor": 142.4866
     },
     {
      "name": "Amon-Ra St. Brown",
@@ -4970,7 +4975,7 @@
      "vor": 119.59849999999999
     },
     {
-     "name": "Josh Allen",
+     "name": "Lamar Jackson",
      "points": 369.0218000000001,
      "vor": 118.95460000000008
     },
@@ -4980,14 +4985,14 @@
      "vor": 113.79560000000001
     },
     {
-     "name": "Lamar Jackson",
-     "points": 362.47520000000003,
-     "vor": 112.40800000000002
-    },
-    {
      "name": "Saquon Barkley",
      "points": 235.7702,
      "vor": 111.4935
+    },
+    {
+     "name": "Brock Bowers",
+     "points": 217.32,
+     "vor": 110.00999999999999
     },
     {
      "name": "Drake London",
@@ -5023,11 +5028,6 @@
      "name": "Nico Collins",
      "points": 206.458,
      "vor": 92.50980000000001
-    },
-    {
-     "name": "Jeremiyah Love",
-     "points": 212.87300000000002,
-     "vor": 88.59630000000003
     }
    ],
    "trades": [
@@ -5040,14 +5040,14 @@
      "receive": [
       "Jahmyr Gibbs"
      ],
-     "deltaSeason": 114.91499999999996,
-     "deltaPerWeek": 6.7597058823529395,
+     "deltaSeason": 146.95699999999988,
+     "deltaPerWeek": 8.6445294117647,
      "deltaDepth": -9.654200000000007,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 6.8 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1900.0436,
+     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1969.6798,
      "beforeSlots": [
       [
        "QB",
@@ -5126,14 +5126,14 @@
       "Chris Olave",
       "Rashee Rice"
      ],
-     "deltaSeason": -59.16300000000001,
-     "deltaPerWeek": -3.480176470588236,
+     "deltaSeason": -91.23219999999992,
+     "deltaPerWeek": -5.366599999999996,
      "deltaDepth": 10.089159999999996,
-     "verdict": "Clear loss",
+     "verdict": "Lopsided loss",
      "direction": "loss",
-     "explanation": "You lose 3.5 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1725.9656,
+     "explanation": "You lose 5.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1731.4906,
      "beforeSlots": [
       [
        "QB",
@@ -5211,14 +5211,14 @@
      "receive": [
       "Bijan Robinson"
      ],
-     "deltaSeason": 150.5630000000001,
-     "deltaPerWeek": 8.856647058823535,
+     "deltaSeason": 156.97900000000004,
+     "deltaPerWeek": 9.234058823529415,
      "deltaDepth": 6.443239999999992,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 8.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1935.6916,
+     "explanation": "You gain 9.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1979.7018,
      "beforeSlots": [
       [
        "QB",
@@ -5296,14 +5296,14 @@
      "receive": [
       "Kyle Pitts Sr."
      ],
-     "deltaSeason": -35.715999999999894,
-     "deltaPerWeek": -2.100941176470582,
+     "deltaSeason": -41.240999999999985,
+     "deltaPerWeek": -2.4259411764705874,
      "deltaDepth": 0.0,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 2.1 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1749.4126,
+     "explanation": "You lose 2.4 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1781.4818,
      "beforeSlots": [
       [
        "QB",
@@ -5387,8 +5387,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "You lose 0.2 points a week. Almost all of it is at WR3: Zay Flowers (WR15-level) becomes Garrett Wilson (WR16-level).",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1781.5994,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1819.1936,
      "beforeSlots": [
       [
        "QB",
@@ -5472,8 +5472,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1785.1286,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1822.7228,
      "beforeSlots": [
       [
        "QB",
@@ -5553,14 +5553,14 @@
      "receive": [
       "Puka Nacua"
      ],
-     "deltaSeason": 118.60180000000014,
-     "deltaPerWeek": 6.976576470588244,
+     "deltaSeason": 131.4348,
+     "deltaPerWeek": 7.731458823529412,
      "deltaDepth": 0.5244599999999764,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 7.0 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level).",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1903.7304000000001,
+     "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level).",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1954.1576,
      "beforeSlots": [
       [
        "QB",
@@ -5644,8 +5644,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1785.1286,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1822.7228,
      "beforeSlots": [
       [
        "QB",
@@ -5730,8 +5730,8 @@
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level).",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1736.0436,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1773.6378,
      "beforeSlots": [
       [
        "QB",
@@ -5809,14 +5809,14 @@
      "receive": [
       "Tee Higgins"
      ],
-     "deltaSeason": -64.25780000000009,
-     "deltaPerWeek": -3.7798705882352994,
+     "deltaSeason": -69.78279999999995,
+     "deltaPerWeek": -4.104870588235292,
      "deltaDepth": 10.089159999999996,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 3.8 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1720.8708,
+     "explanation": "You lose 4.1 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1752.94,
      "beforeSlots": [
       [
        "QB",
@@ -5896,8 +5896,8 @@
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 3.6 points a week. The move that matters is at QB: Joe Burrow (QB4-level) becomes Bo Nix (QB14-level). Quarterbacks are worth less here than their rankings suggest: only one starts per team, so the next one on waivers is much closer to yours than the gap in rank implies. You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1724.5772000000002,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1762.1714000000002,
      "beforeSlots": [
       [
        "QB",
@@ -5975,14 +5975,14 @@
      "receive": [
       "Chase Brown"
      ],
-     "deltaSeason": 50.32140000000004,
-     "deltaPerWeek": 2.960082352941179,
+     "deltaSeason": 50.32140000000027,
+     "deltaPerWeek": 2.960082352941192,
      "deltaDepth": 0.0,
      "verdict": "Clear win",
      "direction": "gain",
      "explanation": "You gain 3.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Chase Brown (RB7-level).",
-     "beforePoints": 1785.1286,
-     "afterPoints": 1835.45,
+     "beforePoints": 1822.7228,
+     "afterPoints": 1873.0442000000003,
      "beforeSlots": [
       [
        "QB",
@@ -6099,13 +6099,23 @@
    "topVor": [
     {
      "name": "Josh Allen",
-     "points": 369.0218000000001,
-     "vor": 195.48180000000008
+     "points": 392.5538,
+     "vor": 219.0138
+    },
+    {
+     "name": "Jahmyr Gibbs",
+     "points": 353.415,
+     "vor": 209.20324000000005
+    },
+    {
+     "name": "Ja'Marr Chase",
+     "points": 327.898,
+     "vor": 200.82230400000003
     },
     {
      "name": "Lamar Jackson",
-     "points": 362.47520000000003,
-     "vor": 188.9352
+     "points": 369.0218000000001,
+     "vor": 195.48180000000008
     },
     {
      "name": "Drake Maye",
@@ -6113,17 +6123,12 @@
      "vor": 181.81799999999998
     },
     {
-     "name": "Jahmyr Gibbs",
+     "name": "Bijan Robinson",
      "points": 321.373,
      "vor": 177.16124000000002
     },
     {
-     "name": "Bijan Robinson",
-     "points": 314.95700000000005,
-     "vor": 170.74524000000008
-    },
-    {
-     "name": "Ja'Marr Chase",
+     "name": "Puka Nacua",
      "points": 295.8288,
      "vor": 168.753104
     },
@@ -6136,11 +6141,6 @@
      "name": "Christian McCaffrey",
      "points": 305.5210000000001,
      "vor": 161.3092400000001
-    },
-    {
-     "name": "Puka Nacua",
-     "points": 282.99580000000003,
-     "vor": 155.92010400000004
     },
     {
      "name": "Jayden Daniels",
@@ -6208,6 +6208,11 @@
      "vor": 107.64044000000004
     },
     {
+     "name": "Brock Bowers",
+     "points": 217.32,
+     "vor": 102.20927999999999
+    },
+    {
      "name": "Brock Purdy",
      "points": 275.321,
      "vor": 101.781
@@ -6216,11 +6221,6 @@
      "name": "Justin Jefferson",
      "points": 227.7438,
      "vor": 100.668104
-    },
-    {
-     "name": "De'Von Achane",
-     "points": 243.87519999999998,
-     "vor": 99.66344000000001
     }
    ],
    "trades": [
@@ -6233,14 +6233,14 @@
      "receive": [
       "Jahmyr Gibbs"
      ],
-     "deltaSeason": 114.91499999999996,
-     "deltaPerWeek": 6.7597058823529395,
+     "deltaSeason": 146.95699999999988,
+     "deltaPerWeek": 8.6445294117647,
      "deltaDepth": -7.028700800000003,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 6.8 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
-     "beforePoints": 2035.1958,
-     "afterPoints": 2150.1108,
+     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
+     "beforePoints": 2072.79,
+     "afterPoints": 2219.747,
      "beforeSlots": [
       [
        "QB",
@@ -6327,14 +6327,14 @@
       "Chris Olave",
       "Rashee Rice"
      ],
-     "deltaSeason": -59.16300000000001,
-     "deltaPerWeek": -3.480176470588236,
+     "deltaSeason": -91.23219999999992,
+     "deltaPerWeek": -5.366599999999996,
      "deltaDepth": 7.463660799999996,
-     "verdict": "Clear loss",
+     "verdict": "Lopsided loss",
      "direction": "loss",
-     "explanation": "You lose 3.5 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 2035.1958,
-     "afterPoints": 1976.0328,
+     "explanation": "You lose 5.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 2072.79,
+     "afterPoints": 1981.5578,
      "beforeSlots": [
       [
        "QB",
@@ -6420,14 +6420,14 @@
      "receive": [
       "Bijan Robinson"
      ],
-     "deltaSeason": 150.5630000000001,
-     "deltaPerWeek": 8.856647058823535,
+     "deltaSeason": 156.97900000000027,
+     "deltaPerWeek": 9.234058823529427,
      "deltaDepth": 6.443239999999992,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 8.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 2035.1958,
-     "afterPoints": 2185.7588,
+     "explanation": "You gain 9.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 2072.79,
+     "afterPoints": 2229.7690000000002,
      "beforeSlots": [
       [
        "QB",
@@ -6513,14 +6513,14 @@
      "receive": [
       "Kyle Pitts Sr."
      ],
-     "deltaSeason": -35.715999999999894,
-     "deltaPerWeek": -2.100941176470582,
+     "deltaSeason": -41.240999999999985,
+     "deltaPerWeek": -2.4259411764705874,
      "deltaDepth": 0.0,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 2.1 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
-     "beforePoints": 2035.1958,
-     "afterPoints": 1999.4798,
+     "explanation": "You lose 2.4 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
+     "beforePoints": 2072.79,
+     "afterPoints": 2031.549,
      "beforeSlots": [
       [
        "QB",
@@ -6612,8 +6612,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "You lose 0.2 points a week. Almost all of it is at WR3: Zay Flowers (WR15-level) becomes Garrett Wilson (WR16-level).",
-     "beforePoints": 2035.1958,
-     "afterPoints": 2031.6666,
+     "beforePoints": 2072.79,
+     "afterPoints": 2069.2608,
      "beforeSlots": [
       [
        "QB",
@@ -6705,8 +6705,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
-     "beforePoints": 2035.1958,
-     "afterPoints": 2035.1958,
+     "beforePoints": 2072.79,
+     "afterPoints": 2072.79,
      "beforeSlots": [
       [
        "QB",
@@ -6794,14 +6794,14 @@
      "receive": [
       "Puka Nacua"
      ],
-     "deltaSeason": 118.60180000000037,
-     "deltaPerWeek": 6.976576470588257,
+     "deltaSeason": 131.4348,
+     "deltaPerWeek": 7.731458823529412,
      "deltaDepth": 4.193019199999984,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 7.0 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 2035.1958,
-     "afterPoints": 2153.7976000000003,
+     "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 2072.79,
+     "afterPoints": 2204.2248,
      "beforeSlots": [
       [
        "QB",
@@ -6893,8 +6893,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
-     "beforePoints": 2035.1958,
-     "afterPoints": 2035.1958,
+     "beforePoints": 2072.79,
+     "afterPoints": 2072.79,
      "beforeSlots": [
       [
        "QB",
@@ -6987,8 +6987,8 @@
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level).",
-     "beforePoints": 2035.1958,
-     "afterPoints": 1986.1108,
+     "beforePoints": 2072.79,
+     "afterPoints": 2023.705,
      "beforeSlots": [
       [
        "QB",
@@ -7074,14 +7074,14 @@
      "receive": [
       "Tee Higgins"
      ],
-     "deltaSeason": -56.45708000000013,
-     "deltaPerWeek": -3.321004705882361,
+     "deltaSeason": -61.982079999999996,
+     "deltaPerWeek": -3.6460047058823526,
      "deltaDepth": 7.463660799999996,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 3.3 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 2035.1958,
-     "afterPoints": 1978.7387199999998,
+     "explanation": "You lose 3.6 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 2072.79,
+     "afterPoints": 2010.80792,
      "beforeSlots": [
       [
        "QB",
@@ -7169,8 +7169,8 @@
      "verdict": "Lopsided loss",
      "direction": "loss",
      "explanation": "You lose 8.6 points a week. The move that matters is at QB: Joe Burrow (QB4-level) becomes Bo Nix (QB14-level).",
-     "beforePoints": 2035.1958,
-     "afterPoints": 1888.9712000000002,
+     "beforePoints": 2072.79,
+     "afterPoints": 1926.5654000000002,
      "beforeSlots": [
       [
        "QB",
@@ -7262,8 +7262,8 @@
      "verdict": "Clear win",
      "direction": "gain",
      "explanation": "You gain 3.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Chase Brown (RB7-level).",
-     "beforePoints": 2035.1958,
-     "afterPoints": 2085.5172000000002,
+     "beforePoints": 2072.79,
+     "afterPoints": 2123.1114000000002,
      "beforeSlots": [
       [
        "QB",
@@ -7388,16 +7388,21 @@
    "topVor": [
     {
      "name": "Jahmyr Gibbs",
+     "points": 353.415,
+     "vor": 205.311
+    },
+    {
+     "name": "Ja'Marr Chase",
+     "points": 327.898,
+     "vor": 192.52120000000002
+    },
+    {
+     "name": "Bijan Robinson",
      "points": 321.373,
      "vor": 173.26899999999998
     },
     {
-     "name": "Bijan Robinson",
-     "points": 314.95700000000005,
-     "vor": 166.85300000000004
-    },
-    {
-     "name": "Ja'Marr Chase",
+     "name": "Puka Nacua",
      "points": 295.8288,
      "vor": 160.452
     },
@@ -7405,11 +7410,6 @@
      "name": "Christian McCaffrey",
      "points": 305.5210000000001,
      "vor": 157.41700000000006
-    },
-    {
-     "name": "Puka Nacua",
-     "points": 282.99580000000003,
-     "vor": 147.61900000000003
     },
     {
      "name": "Jonathan Taylor",
@@ -7437,6 +7437,11 @@
      "vor": 116.28219999999996
     },
     {
+     "name": "Josh Allen",
+     "points": 392.5538,
+     "vor": 108.37260000000003
+    },
+    {
      "name": "Chase Brown",
      "points": 251.8522,
      "vor": 103.7482
@@ -7452,6 +7457,11 @@
      "vor": 95.77119999999996
     },
     {
+     "name": "Brock Bowers",
+     "points": 217.32,
+     "vor": 95.0068
+    },
+    {
      "name": "Justin Jefferson",
      "points": 227.7438,
      "vor": 92.36699999999999
@@ -7462,7 +7472,7 @@
      "vor": 87.66619999999998
     },
     {
-     "name": "Josh Allen",
+     "name": "Lamar Jackson",
      "points": 369.0218000000001,
      "vor": 84.84060000000011
     },
@@ -7475,11 +7485,6 @@
      "name": "Omarion Hampton",
      "points": 227.95720000000003,
      "vor": 79.85320000000002
-    },
-    {
-     "name": "Lamar Jackson",
-     "points": 362.47520000000003,
-     "vor": 78.29400000000004
     },
     {
      "name": "A.J. Brown",
@@ -7505,11 +7510,6 @@
      "name": "Derrick Henry",
      "points": 216.958,
      "vor": 68.85399999999998
-    },
-    {
-     "name": "Brock Bowers",
-     "points": 189.55500000000004,
-     "vor": 67.24180000000004
     }
    ],
    "trades": [
@@ -7522,14 +7522,14 @@
      "receive": [
       "Jahmyr Gibbs"
      ],
-     "deltaSeason": 108.94880000000012,
-     "deltaPerWeek": 6.408752941176478,
+     "deltaSeason": 140.99080000000004,
+     "deltaPerWeek": 8.293576470588237,
      "deltaDepth": -1.6298000000000004,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 6.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level).",
-     "beforePoints": 1947.3478,
-     "afterPoints": 2056.2966,
+     "explanation": "You gain 8.3 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level).",
+     "beforePoints": 1984.942,
+     "afterPoints": 2125.9328,
      "beforeSlots": [
       [
        "QB",
@@ -7616,14 +7616,14 @@
       "Chris Olave",
       "Rashee Rice"
      ],
-     "deltaSeason": -56.988200000000006,
-     "deltaPerWeek": -3.35224705882353,
+     "deltaSeason": -89.05739999999992,
+     "deltaPerWeek": -5.238670588235289,
      "deltaDepth": 5.36848,
-     "verdict": "Clear loss",
+     "verdict": "Lopsided loss",
      "direction": "loss",
-     "explanation": "You lose 3.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1947.3478,
-     "afterPoints": 1890.3596,
+     "explanation": "You lose 5.2 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1984.942,
+     "afterPoints": 1895.8846,
      "beforeSlots": [
       [
        "QB",
@@ -7709,14 +7709,14 @@
      "receive": [
       "Bijan Robinson"
      ],
-     "deltaSeason": 152.73779999999988,
-     "deltaPerWeek": 8.984576470588229,
+     "deltaSeason": 159.15380000000005,
+     "deltaPerWeek": 9.36198823529412,
      "deltaDepth": 5.36848,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 9.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1947.3478,
-     "afterPoints": 2100.0856,
+     "explanation": "You gain 9.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1984.942,
+     "afterPoints": 2144.0958,
      "beforeSlots": [
       [
        "QB",
@@ -7802,14 +7802,14 @@
      "receive": [
       "Kyle Pitts Sr."
      ],
-     "deltaSeason": -35.715999999999894,
-     "deltaPerWeek": -2.100941176470582,
+     "deltaSeason": -41.240999999999985,
+     "deltaPerWeek": -2.4259411764705874,
      "deltaDepth": 0.0,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 2.1 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
-     "beforePoints": 1947.3478,
-     "afterPoints": 1911.6318,
+     "explanation": "You lose 2.4 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
+     "beforePoints": 1984.942,
+     "afterPoints": 1943.701,
      "beforeSlots": [
       [
        "QB",
@@ -7901,8 +7901,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "You lose 0.2 points a week. Almost all of it is at WR3: Zay Flowers (WR15-level) becomes Garrett Wilson (WR16-level).",
-     "beforePoints": 1947.3478,
-     "afterPoints": 1943.8186,
+     "beforePoints": 1984.942,
+     "afterPoints": 1981.4128,
      "beforeSlots": [
       [
        "QB",
@@ -7994,8 +7994,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
-     "beforePoints": 1947.3478,
-     "afterPoints": 1947.3478,
+     "beforePoints": 1984.942,
+     "afterPoints": 1984.942,
      "beforeSlots": [
       [
        "QB",
@@ -8083,14 +8083,14 @@
      "receive": [
       "Puka Nacua"
      ],
-     "deltaSeason": 120.77660000000014,
-     "deltaPerWeek": 7.104505882352949,
+     "deltaSeason": 133.60959999999977,
+     "deltaPerWeek": 7.859388235294104,
      "deltaDepth": 4.7784799999999965,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 7.1 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1947.3478,
-     "afterPoints": 2068.1244,
+     "explanation": "You gain 7.9 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1984.942,
+     "afterPoints": 2118.5516,
      "beforeSlots": [
       [
        "QB",
@@ -8182,8 +8182,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
-     "beforePoints": 1947.3478,
-     "afterPoints": 1947.3478,
+     "beforePoints": 1984.942,
+     "afterPoints": 1984.942,
      "beforeSlots": [
       [
        "QB",
@@ -8276,8 +8276,8 @@
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level).",
-     "beforePoints": 1947.3478,
-     "afterPoints": 1898.2628,
+     "beforePoints": 1984.942,
+     "afterPoints": 1935.857,
      "beforeSlots": [
       [
        "QB",
@@ -8363,14 +8363,14 @@
      "receive": [
       "Tee Higgins"
      ],
-     "deltaSeason": -47.07979999999998,
-     "deltaPerWeek": -2.7693999999999988,
+     "deltaSeason": -52.60479999999984,
+     "deltaPerWeek": -3.0943999999999905,
      "deltaDepth": 5.36848,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 2.8 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1947.3478,
-     "afterPoints": 1900.268,
+     "explanation": "You lose 3.1 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1984.942,
+     "afterPoints": 1932.3372000000002,
      "beforeSlots": [
       [
        "QB",
@@ -8458,8 +8458,8 @@
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 3.4 points a week. The move that matters is at QB: Joe Burrow (QB4-level) becomes Bo Nix (QB14-level). Quarterbacks are worth less here than their rankings suggest: only one starts per team, so the next one on waivers is much closer to yours than the gap in rank implies. You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1947.3478,
-     "afterPoints": 1888.9712000000002,
+     "beforePoints": 1984.942,
+     "afterPoints": 1926.5654000000002,
      "beforeSlots": [
       [
        "QB",
@@ -8545,14 +8545,14 @@
      "receive": [
       "Chase Brown"
      ],
-     "deltaSeason": 50.32140000000004,
-     "deltaPerWeek": 2.960082352941179,
+     "deltaSeason": 50.32140000000027,
+     "deltaPerWeek": 2.960082352941192,
      "deltaDepth": 0.0,
      "verdict": "Clear win",
      "direction": "gain",
      "explanation": "You gain 3.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Chase Brown (RB7-level).",
-     "beforePoints": 1947.3478,
-     "afterPoints": 1997.6692,
+     "beforePoints": 1984.942,
+     "afterPoints": 2035.2634000000003,
      "beforeSlots": [
       [
        "QB",
@@ -8677,13 +8677,18 @@
    "topVor": [
     {
      "name": "Jahmyr Gibbs",
+     "points": 353.415,
+     "vor": 207.08020000000002
+    },
+    {
+     "name": "Bijan Robinson",
      "points": 321.373,
      "vor": 175.0382
     },
     {
-     "name": "Bijan Robinson",
-     "points": 314.95700000000005,
-     "vor": 168.62220000000005
+     "name": "Ja'Marr Chase",
+     "points": 327.898,
+     "vor": 168.60360000000003
     },
     {
      "name": "Christian McCaffrey",
@@ -8696,9 +8701,14 @@
      "vor": 140.7472
     },
     {
-     "name": "Ja'Marr Chase",
+     "name": "Puka Nacua",
      "points": 295.8288,
      "vor": 136.5344
+    },
+    {
+     "name": "Brock Bowers",
+     "points": 217.32,
+     "vor": 132.2706
     },
     {
      "name": "Ashton Jeanty",
@@ -8706,9 +8716,9 @@
      "vor": 129.87320000000003
     },
     {
-     "name": "Puka Nacua",
-     "points": 282.99580000000003,
-     "vor": 123.70140000000004
+     "name": "Josh Allen",
+     "points": 392.5538,
+     "vor": 125.74099999999999
     },
     {
      "name": "James Cook III",
@@ -8726,29 +8736,19 @@
      "vor": 105.51740000000001
     },
     {
-     "name": "Brock Bowers",
+     "name": "Trey McBride",
      "points": 189.55500000000004,
      "vor": 104.50560000000004
     },
     {
-     "name": "Josh Allen",
+     "name": "Lamar Jackson",
      "points": 369.0218000000001,
      "vor": 102.20900000000006
-    },
-    {
-     "name": "Trey McBride",
-     "points": 184.03,
-     "vor": 98.98060000000001
     },
     {
      "name": "De'Von Achane",
      "points": 243.87519999999998,
      "vor": 97.54039999999998
-    },
-    {
-     "name": "Lamar Jackson",
-     "points": 362.47520000000003,
-     "vor": 95.66239999999999
     },
     {
      "name": "Amon-Ra St. Brown",
@@ -8811,14 +8811,14 @@
      "receive": [
       "Jahmyr Gibbs"
      ],
-     "deltaSeason": 114.91499999999996,
-     "deltaPerWeek": 6.7597058823529395,
+     "deltaSeason": 146.95699999999988,
+     "deltaPerWeek": 8.6445294117647,
      "deltaDepth": -0.584960000000001,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 6.8 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level).",
-     "beforePoints": 1705.784,
-     "afterPoints": 1820.699,
+     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level).",
+     "beforePoints": 1743.3782,
+     "afterPoints": 1890.3352,
      "beforeSlots": [
       [
        "QB",
@@ -8889,14 +8889,14 @@
       "Chris Olave",
       "Rashee Rice"
      ],
-     "deltaSeason": -83.7521999999999,
-     "deltaPerWeek": -4.926599999999994,
+     "deltaSeason": -115.82139999999981,
+     "deltaPerWeek": -6.813023529411754,
      "deltaDepth": 5.937759999999998,
-     "verdict": "Clear loss",
+     "verdict": "Lopsided loss",
      "direction": "loss",
-     "explanation": "You lose 4.9 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1705.784,
-     "afterPoints": 1622.0318000000002,
+     "explanation": "You lose 6.8 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1743.3782,
+     "afterPoints": 1627.5568000000003,
      "beforeSlots": [
       [
        "QB",
@@ -8966,14 +8966,14 @@
      "receive": [
       "Bijan Robinson"
      ],
-     "deltaSeason": 125.97380000000021,
-     "deltaPerWeek": 7.410223529411777,
+     "deltaSeason": 132.38979999999992,
+     "deltaPerWeek": 7.787635294117642,
      "deltaDepth": 5.937759999999998,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 7.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1705.784,
-     "afterPoints": 1831.7578000000003,
+     "explanation": "You gain 7.8 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1743.3782,
+     "afterPoints": 1875.768,
      "beforeSlots": [
       [
        "QB",
@@ -9043,14 +9043,14 @@
      "receive": [
       "Kyle Pitts Sr."
      ],
-     "deltaSeason": -35.715999999999894,
-     "deltaPerWeek": -2.100941176470582,
+     "deltaSeason": -41.240999999999985,
+     "deltaPerWeek": -2.4259411764705874,
      "deltaDepth": 0.0,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 2.1 points a week. Almost all of it is at TE1: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
-     "beforePoints": 1705.784,
-     "afterPoints": 1670.0680000000002,
+     "explanation": "You lose 2.4 points a week. Almost all of it is at TE1: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
+     "beforePoints": 1743.3782,
+     "afterPoints": 1702.1372000000001,
      "beforeSlots": [
       [
        "QB",
@@ -9126,8 +9126,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "You lose 0.2 points a week. Almost all of it is at FLEX: Zay Flowers (WR15-level) becomes Garrett Wilson (WR16-level).",
-     "beforePoints": 1705.784,
-     "afterPoints": 1702.2548000000002,
+     "beforePoints": 1743.3782,
+     "afterPoints": 1739.8490000000002,
      "beforeSlots": [
       [
        "QB",
@@ -9203,8 +9203,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
-     "beforePoints": 1705.784,
-     "afterPoints": 1705.784,
+     "beforePoints": 1743.3782,
+     "afterPoints": 1743.3782,
      "beforeSlots": [
       [
        "QB",
@@ -9276,14 +9276,14 @@
      "receive": [
       "Puka Nacua"
      ],
-     "deltaSeason": 94.01260000000002,
-     "deltaPerWeek": 5.530152941176472,
+     "deltaSeason": 106.8456000000001,
+     "deltaPerWeek": 6.2850352941176535,
      "deltaDepth": 5.937759999999998,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 5.5 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1705.784,
-     "afterPoints": 1799.7966000000001,
+     "explanation": "You gain 6.3 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1743.3782,
+     "afterPoints": 1850.2238000000002,
      "beforeSlots": [
       [
        "QB",
@@ -9359,8 +9359,8 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
-     "beforePoints": 1705.784,
-     "afterPoints": 1705.784,
+     "beforePoints": 1743.3782,
+     "afterPoints": 1743.3782,
      "beforeSlots": [
       [
        "QB",
@@ -9437,8 +9437,8 @@
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level).",
-     "beforePoints": 1705.784,
-     "afterPoints": 1656.699,
+     "beforePoints": 1743.3782,
+     "afterPoints": 1694.2932,
      "beforeSlots": [
       [
        "QB",
@@ -9508,14 +9508,14 @@
      "receive": [
       "Tee Higgins"
      ],
-     "deltaSeason": -98.9806000000001,
-     "deltaPerWeek": -5.822388235294123,
+     "deltaSeason": -104.50559999999996,
+     "deltaPerWeek": -6.147388235294115,
      "deltaDepth": 3.512360000000001,
      "verdict": "Lopsided loss",
      "direction": "loss",
-     "explanation": "You lose 5.8 points a week. Almost all of it is at TE1: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1705.784,
-     "afterPoints": 1606.8034,
+     "explanation": "You lose 6.1 points a week. Almost all of it is at TE1: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1743.3782,
+     "afterPoints": 1638.8726000000001,
      "beforeSlots": [
       [
        "QB",
@@ -9587,8 +9587,8 @@
      "verdict": "Lopsided loss",
      "direction": "loss",
      "explanation": "You lose 5.0 points a week. The move that matters is at QB: Joe Burrow (QB4-level) becomes Bo Nix (QB14-level). Quarterbacks are worth less here than their rankings suggest: only one starts per team, so the next one on waivers is much closer to yours than the gap in rank implies. You also pick up useful bench depth for byes and injuries.",
-     "beforePoints": 1705.784,
-     "afterPoints": 1620.6434000000004,
+     "beforePoints": 1743.3782,
+     "afterPoints": 1658.2376000000004,
      "beforeSlots": [
       [
        "QB",
@@ -9658,14 +9658,14 @@
      "receive": [
       "Chase Brown"
      ],
-     "deltaSeason": 50.32139999999981,
-     "deltaPerWeek": 2.9600823529411655,
+     "deltaSeason": 50.32140000000027,
+     "deltaPerWeek": 2.960082352941192,
      "deltaDepth": 0.0,
      "verdict": "Clear win",
      "direction": "gain",
      "explanation": "You gain 3.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Chase Brown (RB7-level).",
-     "beforePoints": 1705.784,
-     "afterPoints": 1756.1054,
+     "beforePoints": 1743.3782,
+     "afterPoints": 1793.6996000000004,
      "beforeSlots": [
       [
        "QB",
@@ -9775,11 +9775,11 @@
    "receive": [
     "Jahmyr Gibbs"
    ],
-   "deltaSeason": 114.91499999999996,
-   "deltaPerWeek": 6.7597058823529395,
+   "deltaSeason": 146.95699999999988,
+   "deltaPerWeek": 8.6445294117647,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 6.8 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
+   "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
   },
   {
    "id": "consolidation-trap",
@@ -9791,11 +9791,11 @@
     "Chris Olave",
     "Rashee Rice"
    ],
-   "deltaSeason": -59.16300000000001,
-   "deltaPerWeek": -3.480176470588236,
-   "verdict": "Clear loss",
+   "deltaSeason": -91.23219999999992,
+   "deltaPerWeek": -5.366599999999996,
+   "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 3.5 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 5.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-robbery",
@@ -9806,11 +9806,11 @@
    "receive": [
     "Bijan Robinson"
    ],
-   "deltaSeason": 150.5630000000001,
-   "deltaPerWeek": 8.856647058823535,
+   "deltaSeason": 156.97900000000004,
+   "deltaPerWeek": 9.234058823529415,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 8.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You gain 9.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-fleecing",
@@ -9821,11 +9821,11 @@
    "receive": [
     "Kyle Pitts Sr."
    ],
-   "deltaSeason": -35.715999999999894,
-   "deltaPerWeek": -2.100941176470582,
+   "deltaSeason": -41.240999999999985,
+   "deltaPerWeek": -2.4259411764705874,
    "verdict": "Clear loss",
    "direction": "loss",
-   "explanation": "You lose 2.1 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level)."
+   "explanation": "You lose 2.4 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level)."
   },
   {
    "id": "even-swap",
@@ -9868,11 +9868,11 @@
    "receive": [
     "Puka Nacua"
    ],
-   "deltaSeason": 118.60180000000014,
-   "deltaPerWeek": 6.976576470588244,
+   "deltaSeason": 131.4348,
+   "deltaPerWeek": 7.731458823529412,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 7.0 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "bench-shuffle",
@@ -9914,11 +9914,11 @@
    "receive": [
     "Tee Higgins"
    ],
-   "deltaSeason": -55.47019999999998,
-   "deltaPerWeek": -3.262952941176469,
+   "deltaSeason": -60.99519999999984,
+   "deltaPerWeek": -3.5879529411764612,
    "verdict": "Clear loss",
    "direction": "loss",
-   "explanation": "You lose 3.3 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 3.6 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "qb-for-wr-1qb",
@@ -9944,8 +9944,8 @@
    "receive": [
     "Chase Brown"
    ],
-   "deltaSeason": 50.32140000000004,
-   "deltaPerWeek": 2.960082352941179,
+   "deltaSeason": 50.32140000000027,
+   "deltaPerWeek": 2.960082352941192,
    "verdict": "Clear win",
    "direction": "gain",
    "explanation": "You gain 3.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Chase Brown (RB7-level)."
@@ -9960,11 +9960,11 @@
    "receive": [
     "Jahmyr Gibbs"
    ],
-   "deltaSeason": 114.91499999999996,
-   "deltaPerWeek": 8.208214285714282,
+   "deltaSeason": 146.95699999999988,
+   "deltaPerWeek": 10.496928571428564,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 8.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
+   "explanation": "You gain 10.5 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
   },
   {
    "id": "consolidation-trap",
@@ -9976,11 +9976,11 @@
     "Chris Olave",
     "Rashee Rice"
    ],
-   "deltaSeason": -59.16300000000001,
-   "deltaPerWeek": -4.225928571428573,
-   "verdict": "Clear loss",
+   "deltaSeason": -91.23219999999992,
+   "deltaPerWeek": -6.516585714285709,
+   "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 4.2 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 6.5 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-robbery",
@@ -9991,11 +9991,11 @@
    "receive": [
     "Bijan Robinson"
    ],
-   "deltaSeason": 150.5630000000001,
-   "deltaPerWeek": 10.754500000000007,
+   "deltaSeason": 156.97900000000004,
+   "deltaPerWeek": 11.212785714285717,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 10.8 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You gain 11.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-fleecing",
@@ -10006,11 +10006,11 @@
    "receive": [
     "Kyle Pitts Sr."
    ],
-   "deltaSeason": -35.715999999999894,
-   "deltaPerWeek": -2.5511428571428496,
+   "deltaSeason": -41.240999999999985,
+   "deltaPerWeek": -2.945785714285713,
    "verdict": "Clear loss",
    "direction": "loss",
-   "explanation": "You lose 2.6 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level)."
+   "explanation": "You lose 2.9 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level)."
   },
   {
    "id": "even-swap",
@@ -10053,11 +10053,11 @@
    "receive": [
     "Puka Nacua"
    ],
-   "deltaSeason": 118.60180000000014,
-   "deltaPerWeek": 8.471557142857153,
+   "deltaSeason": 131.4348,
+   "deltaPerWeek": 9.3882,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 8.5 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You gain 9.4 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "bench-shuffle",
@@ -10099,11 +10099,11 @@
    "receive": [
     "Tee Higgins"
    ],
-   "deltaSeason": -55.47019999999998,
-   "deltaPerWeek": -3.962157142857141,
+   "deltaSeason": -60.99519999999984,
+   "deltaPerWeek": -4.356799999999988,
    "verdict": "Clear loss",
    "direction": "loss",
-   "explanation": "You lose 4.0 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 4.4 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "qb-for-wr-1qb",
@@ -10129,8 +10129,8 @@
    "receive": [
     "Chase Brown"
    ],
-   "deltaSeason": 50.32140000000004,
-   "deltaPerWeek": 3.594385714285717,
+   "deltaSeason": 50.32140000000027,
+   "deltaPerWeek": 3.594385714285733,
    "verdict": "Clear win",
    "direction": "gain",
    "explanation": "You gain 3.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Chase Brown (RB7-level)."
@@ -10145,11 +10145,11 @@
    "receive": [
     "Jahmyr Gibbs"
    ],
-   "deltaSeason": 114.91499999999996,
-   "deltaPerWeek": 14.364374999999995,
+   "deltaSeason": 146.95699999999988,
+   "deltaPerWeek": 18.369624999999985,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 14.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
+   "explanation": "You gain 18.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
   },
   {
    "id": "consolidation-trap",
@@ -10161,11 +10161,11 @@
     "Chris Olave",
     "Rashee Rice"
    ],
-   "deltaSeason": -59.16300000000001,
-   "deltaPerWeek": -7.395375000000001,
+   "deltaSeason": -91.23219999999992,
+   "deltaPerWeek": -11.40402499999999,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 7.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-robbery",
@@ -10176,11 +10176,11 @@
    "receive": [
     "Bijan Robinson"
    ],
-   "deltaSeason": 150.5630000000001,
-   "deltaPerWeek": 18.820375000000013,
+   "deltaSeason": 156.97900000000004,
+   "deltaPerWeek": 19.622375000000005,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 18.8 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You gain 19.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-fleecing",
@@ -10191,11 +10191,11 @@
    "receive": [
     "Kyle Pitts Sr."
    ],
-   "deltaSeason": -35.715999999999894,
-   "deltaPerWeek": -4.464499999999987,
-   "verdict": "Clear loss",
+   "deltaSeason": -41.240999999999985,
+   "deltaPerWeek": -5.155124999999998,
+   "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 4.5 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level)."
+   "explanation": "You lose 5.2 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level)."
   },
   {
    "id": "even-swap",
@@ -10238,11 +10238,11 @@
    "receive": [
     "Puka Nacua"
    ],
-   "deltaSeason": 118.60180000000014,
-   "deltaPerWeek": 14.825225000000017,
+   "deltaSeason": 131.4348,
+   "deltaPerWeek": 16.42935,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 14.8 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You gain 16.4 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "bench-shuffle",
@@ -10284,11 +10284,11 @@
    "receive": [
     "Tee Higgins"
    ],
-   "deltaSeason": -55.47019999999998,
-   "deltaPerWeek": -6.933774999999997,
+   "deltaSeason": -60.99519999999984,
+   "deltaPerWeek": -7.62439999999998,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 6.9 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 7.6 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "qb-for-wr-1qb",
@@ -10314,8 +10314,8 @@
    "receive": [
     "Chase Brown"
    ],
-   "deltaSeason": 50.32140000000004,
-   "deltaPerWeek": 6.290175000000005,
+   "deltaSeason": 50.32140000000027,
+   "deltaPerWeek": 6.290175000000033,
    "verdict": "Lopsided win",
    "direction": "gain",
    "explanation": "You gain 6.3 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Chase Brown (RB7-level)."
@@ -10330,11 +10330,11 @@
    "receive": [
     "Jahmyr Gibbs"
    ],
-   "deltaSeason": 114.91499999999996,
-   "deltaPerWeek": 38.304999999999986,
+   "deltaSeason": 146.95699999999988,
+   "deltaPerWeek": 48.985666666666624,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 38.3 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
+   "explanation": "You gain 49.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
   },
   {
    "id": "consolidation-trap",
@@ -10346,11 +10346,11 @@
     "Chris Olave",
     "Rashee Rice"
    ],
-   "deltaSeason": -59.16300000000001,
-   "deltaPerWeek": -19.721000000000004,
+   "deltaSeason": -91.23219999999992,
+   "deltaPerWeek": -30.410733333333308,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 19.7 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 30.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-robbery",
@@ -10361,11 +10361,11 @@
    "receive": [
     "Bijan Robinson"
    ],
-   "deltaSeason": 150.5630000000001,
-   "deltaPerWeek": 50.1876666666667,
+   "deltaSeason": 156.97900000000004,
+   "deltaPerWeek": 52.326333333333345,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 50.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You gain 52.3 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-fleecing",
@@ -10376,11 +10376,11 @@
    "receive": [
     "Kyle Pitts Sr."
    ],
-   "deltaSeason": -35.715999999999894,
-   "deltaPerWeek": -11.905333333333298,
+   "deltaSeason": -41.240999999999985,
+   "deltaPerWeek": -13.746999999999995,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 11.9 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level)."
+   "explanation": "You lose 13.7 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level)."
   },
   {
    "id": "even-swap",
@@ -10423,11 +10423,11 @@
    "receive": [
     "Puka Nacua"
    ],
-   "deltaSeason": 118.60180000000014,
-   "deltaPerWeek": 39.53393333333338,
+   "deltaSeason": 131.4348,
+   "deltaPerWeek": 43.8116,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 39.5 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You gain 43.8 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "bench-shuffle",
@@ -10469,11 +10469,11 @@
    "receive": [
     "Tee Higgins"
    ],
-   "deltaSeason": -55.47019999999998,
-   "deltaPerWeek": -18.49006666666666,
+   "deltaSeason": -60.99519999999984,
+   "deltaPerWeek": -20.33173333333328,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 18.5 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 20.3 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "qb-for-wr-1qb",
@@ -10499,8 +10499,8 @@
    "receive": [
     "Chase Brown"
    ],
-   "deltaSeason": 50.32140000000004,
-   "deltaPerWeek": 16.773800000000012,
+   "deltaSeason": 50.32140000000027,
+   "deltaPerWeek": 16.77380000000009,
    "verdict": "Lopsided win",
    "direction": "gain",
    "explanation": "You gain 16.8 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Chase Brown (RB7-level)."
@@ -10515,11 +10515,11 @@
    "receive": [
     "Jahmyr Gibbs"
    ],
-   "deltaSeason": 114.91499999999996,
-   "deltaPerWeek": 114.91499999999996,
+   "deltaSeason": 146.95699999999988,
+   "deltaPerWeek": 146.95699999999988,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 114.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
+   "explanation": "You gain 147.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
   },
   {
    "id": "consolidation-trap",
@@ -10531,11 +10531,11 @@
     "Chris Olave",
     "Rashee Rice"
    ],
-   "deltaSeason": -59.16300000000001,
-   "deltaPerWeek": -59.16300000000001,
+   "deltaSeason": -91.23219999999992,
+   "deltaPerWeek": -91.23219999999992,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 59.2 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 91.2 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-robbery",
@@ -10546,11 +10546,11 @@
    "receive": [
     "Bijan Robinson"
    ],
-   "deltaSeason": 150.5630000000001,
-   "deltaPerWeek": 150.5630000000001,
+   "deltaSeason": 156.97900000000004,
+   "deltaPerWeek": 156.97900000000004,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 150.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You gain 157.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-fleecing",
@@ -10561,11 +10561,11 @@
    "receive": [
     "Kyle Pitts Sr."
    ],
-   "deltaSeason": -35.715999999999894,
-   "deltaPerWeek": -35.715999999999894,
+   "deltaSeason": -41.240999999999985,
+   "deltaPerWeek": -41.240999999999985,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 35.7 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level)."
+   "explanation": "You lose 41.2 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level)."
   },
   {
    "id": "even-swap",
@@ -10608,11 +10608,11 @@
    "receive": [
     "Puka Nacua"
    ],
-   "deltaSeason": 118.60180000000014,
-   "deltaPerWeek": 118.60180000000014,
+   "deltaSeason": 131.4348,
+   "deltaPerWeek": 131.4348,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 118.6 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You gain 131.4 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "bench-shuffle",
@@ -10654,11 +10654,11 @@
    "receive": [
     "Tee Higgins"
    ],
-   "deltaSeason": -55.47019999999998,
-   "deltaPerWeek": -55.47019999999998,
+   "deltaSeason": -60.99519999999984,
+   "deltaPerWeek": -60.99519999999984,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 55.5 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 61.0 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "qb-for-wr-1qb",
@@ -10684,8 +10684,8 @@
    "receive": [
     "Chase Brown"
    ],
-   "deltaSeason": 50.32140000000004,
-   "deltaPerWeek": 50.32140000000004,
+   "deltaSeason": 50.32140000000027,
+   "deltaPerWeek": 50.32140000000027,
    "verdict": "Lopsided win",
    "direction": "gain",
    "explanation": "You gain 50.3 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Chase Brown (RB7-level)."
