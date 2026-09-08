@@ -60,7 +60,8 @@ describe.each(golden.cases)('league: $name', (testCase) => {
     const give = t.give.map((n) => byName.get(n))
     const receive = t.receive.map((n) => byName.get(n))
     const graded = gradeTrade(
-      roster, give, receive, league, replacement, golden.weeksCovered, market,
+      roster, give, receive, league, replacement,
+      { weeksCovered: golden.weeksCovered, market },
     )
 
     it('lineup points match before and after', () => {
@@ -111,8 +112,7 @@ describe('horizon: the per-week divisor matches Python', () => {
       t.receive.map((n) => byName.get(n)),
       league,
       replacement,
-      t.weeksCovered,
-      buildMarket(doc.curves, league, t.weeksCovered),
+      { weeksCovered: t.weeksCovered, market: buildMarket(doc.curves, league, t.weeksCovered) },
     )
     expect(graded.deltaSeason).toBeCloseTo(t.deltaSeason, 9)
     expect(graded.deltaPerWeek).toBeCloseTo(t.deltaPerWeek, 9)
@@ -120,6 +120,38 @@ describe('horizon: the per-week divisor matches Python', () => {
     expect(graded.verdict).toBe(t.verdict)
     expect(graded.direction).toBe(t.direction)
     expect(graded.explanation).toBe(t.explanation)
+  })
+})
+
+// Absence is the one place where a per-week model and a season-total model give
+// different answers, so it is pinned rather than left to the behavioural suites.
+describe('availability: the phase split matches Python', () => {
+  const league = makeLeague(golden.horizonLeague)
+  const replacement = replacementPoints(doc.curves, league)
+  const market = buildMarket(doc.curves, league, golden.availabilityWeeks)
+
+  it.each(golden.availability)('$id', (t) => {
+    const graded = gradeTrade(
+      roster,
+      t.give.map((n) => byName.get(n)),
+      t.receive.map((n) => byName.get(n)),
+      league,
+      replacement,
+      {
+        weeksCovered: t.weeksCovered,
+        market,
+        availability: t.out,
+        ranksKnew: t.ranksKnew,
+      },
+    )
+    expect(graded.phases).toBe(t.phases)
+    expect(graded.deltaSeason).toBeCloseTo(t.deltaSeason, 9)
+    expect(graded.deltaPerWeek).toBeCloseTo(t.deltaPerWeek, 9)
+    expect(graded.verdict).toBe(t.verdict)
+    expect(graded.direction).toBe(t.direction)
+    expect(graded.explanation).toBe(t.explanation)
+    expect(graded.after.slots.map(([s, p]) => [s, p.name])).toEqual(t.headlineSlots)
+    expect(graded.afterNow.slots.map(([s, p]) => [s, p.name])).toEqual(t.nowSlots)
   })
 })
 
@@ -142,6 +174,11 @@ describe('the fixtures themselves', () => {
     expect(roster.every(Boolean)).toBe(true)
   })
 
+  it('exercise a real absence, and the guard that cancels one', () => {
+    expect(golden.availability.some((t) => t.phases > 1)).toBe(true)
+    expect(golden.availability.some((t) => t.ranksKnew)).toBe(true)
+  })
+
   it('exercise a horizon other than a whole season', () => {
     expect(golden.horizons.some((t) => t.weeksCovered !== 17)).toBe(true)
   })
@@ -157,8 +194,10 @@ describe('the fixtures themselves', () => {
           t.receive.map((n) => byName.get(n)),
           league,
           replacement,
-          golden.weeksCovered,
-          buildMarket(doc.curves, league, golden.weeksCovered),
+          {
+            weeksCovered: golden.weeksCovered,
+            market: buildMarket(doc.curves, league, golden.weeksCovered),
+          },
         )
         return Math.abs(g.deltaSeason - t.deltaSeason)
       })

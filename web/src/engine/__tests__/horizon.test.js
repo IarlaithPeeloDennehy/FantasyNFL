@@ -71,7 +71,7 @@ function grade(doc, give, receive) {
     receive.map((n) => byName.get(n)),
     LEAGUE,
     replacementPoints(curves, LEAGUE),
-    meta.weeksCovered,
+    { weeksCovered: meta.weeksCovered },
   )
 }
 

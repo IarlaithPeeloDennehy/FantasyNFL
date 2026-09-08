@@ -74,6 +74,25 @@ export function Methodology({ meta }) {
         flattens exactly the gap that makes elite players worth trading for.
       </p>
 
+      <h3 className="sub">Injuries are your input, not ours</h3>
+      <p>
+        Nothing here knows who is hurt. If you mark a player as out for a number
+        of weeks, the remaining run is split at the week he returns and a lineup
+        is built for each stretch — so a back who misses five of eight weeks is
+        priced as an elite back for three weeks and an absence for five, rather
+        than as a mediocre back for eight. Those are different teams, and only
+        the second one would bench him behind somebody worse.
+      </p>
+      <p>
+        <strong>One thing to watch.</strong> Consensus rankings already price in
+        an injury everyone knows about — a player who got hurt last month has
+        already fallen down the board, so his projection here is discounted
+        once already. Marking him out again charges for the same injury twice.
+        The checkbox above your roster is there for exactly that: tick it when
+        the absence was already public on the ranking date, and nothing further
+        is deducted.
+      </p>
+
       <h3 className="sub">Tiers, and what the points cannot tell you</h3>
       <p>
         A tier here is a run of players close enough that you would not care

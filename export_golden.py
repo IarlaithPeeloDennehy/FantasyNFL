@@ -31,6 +31,31 @@ OUT = pathlib.Path("web/src/engine/__tests__/golden.json")
 # from the scaling.
 HORIZONS = (17, 14, 8, 3, 1)
 
+# Availability cases. A player out for part of the remaining run is not the same
+# as a worse player who plays all of it, and the phase split is the only thing in
+# the model that can tell those apart -- so it gets pinned across both
+# implementations rather than left to the behavioural suites.
+#
+# The horizon is deliberately short (8 weeks) so "out for five" is most of it.
+# Each case names players by roster/trade name and how many weeks they miss.
+AVAILABILITY_WEEKS = 8
+AVAILABILITY_CASES = (
+    {"id": "healthy", "out": {}, "ranks_knew": False},
+    {"id": "incoming-star-out-five", "out": {"Bijan Robinson": 5}, "ranks_knew": False},
+    {"id": "incoming-star-out-all", "out": {"Bijan Robinson": 8}, "ranks_knew": False},
+    {"id": "outgoing-star-out-five", "out": {"Ja'Marr Chase": 5}, "ranks_knew": False},
+    {"id": "two-out-different-weeks",
+     "out": {"Bijan Robinson": 5, "Kyren Williams": 2}, "ranks_knew": False},
+    # The double-count guard: same absences, but the rankings already knew, so
+    # nothing is discounted and this must reproduce "healthy" exactly.
+    {"id": "ranks-already-knew", "out": {"Bijan Robinson": 5}, "ranks_knew": True},
+)
+
+AVAILABILITY_TRADES = (
+    {"id": "robbery", "give": ["Michael Wilson"], "receive": ["Bijan Robinson"]},
+    {"id": "trap", "give": ["Ja'Marr Chase"], "receive": ["Chris Olave", "Rashee Rice"]},
+)
+
 LEAGUES = {
     "standard-12": {},
     "ppr-12": {"scoring": "ppr"},
@@ -103,8 +128,8 @@ def main() -> int:
                 [by_name[n] for n in t["receive"]],
                 lg,
                 repl,
-                weeks,
-                market,
+                weeks_covered=weeks,
+                market=market,
             )
             trade_results.append({
                 "id": t["id"],
@@ -163,8 +188,8 @@ def main() -> int:
                 [by_name[n] for n in t["receive"]],
                 lg,
                 repl,
-                weeks,
-                market,
+                weeks_covered=weeks,
+                market=market,
             )
             horizons.append({
                 "id": t["id"],
@@ -179,6 +204,42 @@ def main() -> int:
                 "verdict": g.verdict,
                 "direction": g.direction,
                 "explanation": g.explanation,
+            })
+
+    # Availability: one league, one short horizon, several patterns of absence.
+    avail_market = build_market(curves, lg, AVAILABILITY_WEEKS)
+    availability = []
+    for case in AVAILABILITY_CASES:
+        out_by_id = {by_name[n].gsis_id: w for n, w in case["out"].items()}
+        for t in AVAILABILITY_TRADES:
+            g = grade_trade(
+                roster,
+                [by_name[n] for n in t["give"]],
+                [by_name[n] for n in t["receive"]],
+                lg,
+                repl,
+                weeks_covered=AVAILABILITY_WEEKS,
+                market=avail_market,
+                availability=out_by_id,
+                ranks_knew=case["ranks_knew"],
+            )
+            availability.append({
+                "id": f"{case['id']}/{t['id']}",
+                "case": case["id"],
+                "trade": t["id"],
+                "weeksCovered": AVAILABILITY_WEEKS,
+                "out": {by_name[n].gsis_id: w for n, w in case["out"].items()},
+                "ranksKnew": case["ranks_knew"],
+                "give": t["give"],
+                "receive": t["receive"],
+                "phases": g.phases,
+                "deltaSeason": g.delta_season,
+                "deltaPerWeek": g.delta_per_week,
+                "verdict": g.verdict,
+                "direction": g.direction,
+                "explanation": g.explanation,
+                "headlineSlots": [[sl, p.name] for sl, p in g.after.slots],
+                "nowSlots": [[sl, p.name] for sl, p in g.after_now.slots],
             })
 
     bands = [
@@ -196,6 +257,8 @@ def main() -> int:
         "cases": cases,
         "horizonLeague": league_payload({}),
         "horizons": horizons,
+        "availabilityWeeks": AVAILABILITY_WEEKS,
+        "availability": availability,
     }
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -206,6 +269,7 @@ def main() -> int:
     print(f"  {len(cases)} leagues x {trades // len(cases)} trades = {trades} graded cases")
     print(f"  {sum(len(c['topVor']) for c in cases)} VOR values, {len(bands)} band boundaries")
     print(f"  {len(horizons)} graded cases across horizons {HORIZONS}")
+    print(f"  {len(availability)} graded cases across {len(AVAILABILITY_CASES)} availability patterns")
     return 0
 
 

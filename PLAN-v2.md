@@ -198,11 +198,19 @@ This needs one thing the model does not have: **when does he play again.** The
 data contract has no injury field (`REQUIRED_PLAYER` in `model/schema.py:44`),
 and I would rather not add an injury-report scraper for v2.
 
-**Ship it as user input.** A player chip on the roster gets an availability
-control: *healthy / out N weeks / out for the season*. The user already knows —
-it is the reason they are grading the trade. Zero new data dependencies, zero
-new failure modes in the weekly cron. An automated status feed can land later as
-a prefill for the same field.
+**Ship it as user input. Done.** A weeks-out control sits on every roster row
+*and* on every incoming player, which the plan did not think about: the case this
+feature exists for is often a player being offered to you, and without a control
+there the only way to say so was to hand-edit the URL.
+
+Scaling the projection down by the fraction of weeks missed — the obvious
+implementation — is wrong, and wrong in a way that matters. A back who misses
+five of eight weeks is not a mediocre back for eight weeks; he is an elite back
+for three and an absence for five. Flattened, he loses his starting slot to a
+worse player who plays throughout, which is backwards, because for three weeks he
+is the best player on the roster. So the run is cut at each return week and a
+lineup is built per stretch, weighted by the weeks it covers. Both sides of a
+trade share the cut points, or their phases cannot be compared.
 
 Availability turns one season projection into a weekly one: zero for weeks he is
 out, curve value after, optionally a ramp for the first week or two back.
@@ -215,16 +223,23 @@ Combined with `w(t)`, the whole thing falls out without a single fudge factor:
   lands inside the window that counts, situational ≈ fair value. The same trade
   is now correctly graded as a loss.
 
-**The double-count trap.** ADP already prices known injuries — `PLAN.md` §3 says
-so explicitly, and it is true. A star who tore something in week 2 has already
-fallen in the rankings, so his `pos_adp_rank` and therefore his projection are
-already discounted. If I zero out his weeks *on top* of that, I have charged for
-the injury twice. Mitigation: `ranks_as_of` is already in the data contract
-(`sources.ranks_as_of`, read in `engine/index.js:36`). If the injury post-dates
-the ranking, apply the availability haircut in full; if the rankings are more
-recent than the injury, apply it against the *pre-injury* rank implied by
-season-long ADP, or damp it. This is fiddly and it is exactly the kind of thing
-that quietly makes a model wrong, so it gets its own test.
+**The double-count trap. Guarded, but not the way this said.**
+The plan proposed applying the haircut against a "pre-injury rank implied by
+season-long ADP". There is no such thing to recover: the document records
+`ranks_as_of` but not when anybody got hurt, and no arithmetic gets a pre-injury
+rank back out of a post-injury one. Damping it would have been a fudge factor
+with a story attached.
+
+So it is asked rather than inferred. One checkbox, shown only once an absence has
+been entered, carrying the ranking date so the question is answerable: *were
+these absences already known on 21 Aug?* If yes, nothing is deducted — the
+projection already carries it. The test asserts the guarded grade is identical to
+the healthy one, same number and same sentence, because "already priced in" means
+exactly that.
+
+One asymmetry worth recording: availability changes the **lineup**, not the
+roster cut. Who is worth keeping is a question about the season; who plays this
+week is not. A team does not release its best back because he is hurt in October.
 
 ### 2.4 Prerequisite
 
@@ -404,7 +419,7 @@ which is where `encodeSpec` needs its version marker.
 | 1 | Fix D2: curve smoothing at the top | **Done.** Rank 1 rises 23–32 pts per position, rank 2 by 5–13; ranks 3+ unchanged; still monotone at every rank; schema validation and the 12/12 trade gate pass. `test_curves.py`. |
 | 2 | Roster cap + forced cuts + diminishing depth | **Done, but the gate as written was wrong** — see below. Cuts are computed, named, and correctly attributed; depth no longer counts unkeepable players. No headline verdict moved. `test_roster.py`, `roster.test.js`. |
 | 3 | Tiers + acquisition scarcity | **Done.** Tiers widen 3.4–7.5× down the curve at RB/WR/TE and only 2.0× at QB, entirely from the data. Tier depth doubles as the replaceability measure, so A3 needed no second concept. `test_market.py`, `market.test.js`. |
-| 4 | Weekly horizon + availability | Star out 5 weeks scores near zero over weeks 1–5 and full value after. Double-count guard tested against `ranks_as_of`. |
+| 4 | Weekly horizon + availability | **Done.** The run is split at each return week and a lineup built per stretch, so an absence costs exactly the weeks missed. The guard reproduces the healthy grade byte for byte. `test_availability.py`, `availability.test.js`. |
 | 5 | Record → `w(t)` → situational value | Same trade, 0-3 vs 3-0, produces opposite recommendations with both numbers shown. |
 | 6 | Explanation rewrite | A fantasy player reads it and can restate the reasoning without seeing the numbers. Same gate Phase 05 had, and the only one that matters. |
 | 7 | Methodology page | Every new assumption written down, including the ones I am least sure of. |

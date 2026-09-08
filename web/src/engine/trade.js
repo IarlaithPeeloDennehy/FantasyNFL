@@ -7,8 +7,8 @@
 
 import { GAMES_PER_SEASON, playerPoints } from './scoring.js'
 import {
-  bestLineup, bySlot, depthValue, enforceLimit, replacementForSlot, rosterLimit,
-  slotStem, uncoveredPositions,
+  bySlot, depthValue, enforceLimit, phaseBoundaries, phasedLineup,
+  replacementForSlot, rosterLimit, slotStem, uncoveredPositions, weeksOut,
 } from './lineup.js'
 import { describeScarcity, tradedTiers } from './market.js'
 
@@ -50,14 +50,30 @@ export function band(deltaPerWeek) {
 }
 
 /**
+ * Grade a trade against a roster.
+ *
+ * Everything past `replacement` arrives in one options object, and every option
+ * defaults to the behaviour of not having it. That is deliberate: this signature
+ * has grown once per phase, and positional extras were already at seven when the
+ * sixth and seventh were being passed by position in four different files.
+ *
  * `weeksCovered` is how many weeks the projections span -- 17 for a full-season
- * file, `weeks_remaining` for a rest-of-season one. Read it off the document
- * with `weeksCovered(doc)` rather than passing a literal; the default is here so
- * a full-season caller need not.
+ * file, `weeks_remaining` for a rest-of-season one. Read it off the document with
+ * `weeksCovered(doc)` rather than passing a literal.
+ *
+ * `market` carries the tier structure from `buildMarket`. Without it the grade is
+ * unchanged but says nothing about replaceability.
+ *
+ * `availability` maps a player id to how many of the remaining weeks he misses,
+ * and `ranksKnew` says whether the rankings already priced those absences in. See
+ * `weeksOut` for why that second flag exists.
  */
 export function gradeTrade(
-  roster, give, receive, league, replacement, weeksCovered = GAMES_PER_SEASON,
-  market = null,
+  roster, give, receive, league, replacement,
+  {
+    weeksCovered = GAMES_PER_SEASON, market = null,
+    availability = null, ranksKnew = false,
+  } = {},
 ) {
   const { scoring } = league
 
@@ -76,14 +92,43 @@ export function gradeTrade(
   const beforeCap = enforceLimit(roster, league, replacement)
   const afterCap = enforceLimit(afterRoster, league, replacement)
 
-  const before = bestLineup(beforeCap.kept, league, scoring, replacement)
-  const after = bestLineup(afterCap.kept, league, scoring, replacement)
+  // Availability is applied to the *lineup*, not to the roster cut above. Who is
+  // worth keeping is a question about the season; who plays this week is not. A
+  // team does not release its best running back because he is hurt in October.
+  const bounds = phaseBoundaries(
+    [...beforeCap.kept, ...afterCap.kept], availability, weeksCovered, ranksKnew,
+  )
+  const beforePhased = phasedLineup(
+    beforeCap.kept, league, scoring, replacement,
+    availability, weeksCovered, ranksKnew, bounds,
+  )
+  const afterPhased = phasedLineup(
+    afterCap.kept, league, scoring, replacement,
+    availability, weeksCovered, ranksKnew, bounds,
+  )
 
-  const deltaSeason = after.points - before.points
+  // Describe the stretch the trade actually changes, not the stretch that happens
+  // to come first. Trading for a player who is out five weeks moves nothing in
+  // week one, and "your starting lineup does not change" is a false summary of a
+  // trade that upgrades your best slot the moment he is back.
+  let headline = 0
+  for (let i = 1; i < bounds.length; i += 1) {
+    const here = Math.abs(afterPhased.at(i).points - beforePhased.at(i).points)
+    const best = Math.abs(afterPhased.at(headline).points - beforePhased.at(headline).points)
+    if (here > best) headline = i
+  }
+  const before = beforePhased.at(headline)
+  const after = afterPhased.at(headline)
+
+  const deltaSeason = afterPhased.points - beforePhased.points
   const deltaPerWeek = deltaSeason / weeksCovered
   const deltaDepth =
     depthValue(after.bench, league, replacement) -
     depthValue(before.bench, league, replacement)
+
+  const absent = [...give, ...receive].filter(
+    (p) => weeksOut(p, availability, ranksKnew) > 0,
+  )
 
   const limit = rosterLimit(league)
   const spotsFreed = Math.max(
@@ -104,6 +149,11 @@ export function gradeTrade(
     direction,
     before,
     after,
+    // What you would field this week, which is not the same thing once somebody is
+    // hurt. A weighted average of lineups is a number, not a team.
+    beforeNow: beforePhased.now,
+    afterNow: afterPhased.now,
+    phases: bounds.length,
     // Who you would have to drop to fit the incoming players, worst first, how
     // many spots you would free if the trade goes the other way, and whether the
     // roster was already past the limit before any of this.
@@ -117,7 +167,7 @@ export function gradeTrade(
     explanation: explain(
       before, after, deltaPerWeek, deltaDepth, scoring, replacement,
       league, give, receive, weeksCovered, afterCap.cut, spotsFreed, beforeCap.cut.length,
-      market,
+      market, absent, availability, ranksKnew,
     ),
   }
 }
@@ -126,6 +176,7 @@ export function explain(
   before, after, deltaPerWeek, deltaDepth, scoring, replacement,
   league = null, give = [], receive = [], weeksCovered = GAMES_PER_SEASON,
   cuts = [], spotsFreed = 0, overBefore = 0, market = null,
+  absent = [], availability = null, ranksKnew = false,
 ) {
   const b = bySlot(before)
   const a = bySlot(after)
@@ -157,7 +208,7 @@ export function explain(
       'Your starting lineup does not change. Nothing you would start is affected.' +
       consequences(
         deltaDepth, weeksCovered, cuts, after, league, spotsFreed, give, receive, overBefore,
-        market, scoring,
+        market, scoring, absent, availability, ranksKnew,
       )
     )
   }
@@ -207,7 +258,7 @@ export function explain(
 
   return head + body + consequences(
     deltaDepth, weeksCovered, cuts, after, league, spotsFreed, give, receive, overBefore,
-    market, scoring,
+    market, scoring, absent, availability, ranksKnew,
   )
 }
 
@@ -221,6 +272,7 @@ export function explain(
 function consequences(
   deltaDepth, weeksCovered, cuts, after, league, spotsFreed, give = [], receive = [],
   overBefore = 0, market = null, scoring = null,
+  absent = [], availability = null, ranksKnew = false,
 ) {
   let tail = ''
 
@@ -234,6 +286,23 @@ function consequences(
       ' Quarterbacks are worth less here than their rankings suggest: only one' +
       ' starts per team, so the next one on waivers is much closer to yours' +
       ' than the gap in rank implies.'
+  }
+
+  // Who is not playing. Said first, because it changes what every number after it
+  // means: a projection for a player who misses most of the run is not a
+  // projection of what he does for you.
+  if (absent.length) {
+    const total = Math.trunc(weeksCovered)
+    const parts = absent.map((p) => {
+      const out = Math.min(weeksOut(p, availability, ranksKnew), total)
+      return out >= total
+        ? `${p.name} is out for the season`
+        : `${p.name} misses ${out} of the next ${total} weeks`
+    })
+    const many = absent.length > 1
+    tail +=
+      ` ${andList(parts)}, so the projection here is only the weeks` +
+      ` ${many ? 'they' : 'he'} actually play${many ? '' : 's'}.`
   }
 
   // Replaceability. The points have already said who scores more; this says

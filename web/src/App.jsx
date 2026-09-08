@@ -107,13 +107,30 @@ function Workbench({ doc, state, setState }) {
       : { ...s, roster: [...s.roster, id], get: s.get.filter((x) => x !== id) }))
 
   // Dropping a player has to drop him from the trade too, or `gradeTrade` is
-  // handed a give that is no longer on the roster and throws.
+  // handed a give that is no longer on the roster and throws. His injury goes
+  // with him: an absence for somebody you no longer hold is invisible state that
+  // would quietly follow the link around.
   const dropPlayer = (id) =>
-    setState((s) => ({
-      ...s,
-      roster: s.roster.filter((x) => x !== id),
-      give: s.give.filter((x) => x !== id),
-    }))
+    setState((s) => {
+      const out = { ...s.out }
+      delete out[id]
+      return {
+        ...s,
+        roster: s.roster.filter((x) => x !== id),
+        give: s.give.filter((x) => x !== id),
+        out,
+      }
+    })
+
+  // How many of the remaining weeks a player misses. Zero is stored as absent
+  // rather than as a zero, so a healthy roster produces no URL noise at all.
+  const setWeeksOut = (id, weeks) =>
+    setState((st) => {
+      const next = { ...st.out }
+      if (weeks > 0) next[id] = Math.min(weeks, meta.weeksCovered)
+      else delete next[id]
+      return { ...st, out: next }
+    })
 
   const toggleGive = (id) =>
     setState((s) => ({
@@ -163,6 +180,16 @@ function Workbench({ doc, state, setState }) {
                 <li className="row" key={p.id}>
                   <span className="name">{p.name}</span>
                   <span className="tag">{p.pos}{p.pos_adp_rank} · {p.team}</span>
+                  <label className="weeks-out">
+                    <span className="sr-only">Weeks {p.name} is out</span>
+                    <input
+                      type="number" inputMode="numeric" min={0} max={meta.weeksCovered}
+                      value={state.out[p.id] ?? 0}
+                      onChange={(e) => setWeeksOut(p.id, Math.trunc(Number(e.target.value)))}
+                      title={`Weeks ${p.name} is out`}
+                    />
+                    <span aria-hidden="true">wks out</span>
+                  </label>
                   <button type="button"
                           className={state.give.includes(p.id) ? 'btn giving' : 'btn'}
                           aria-pressed={state.give.includes(p.id)}
@@ -175,6 +202,20 @@ function Workbench({ doc, state, setState }) {
                 </li>
               ))}
             </ul>
+          )}
+
+          {Object.keys(state.out).length > 0 && (
+            <label className="ranks-knew">
+              <input
+                type="checkbox" checked={state.ranksKnew}
+                onChange={(e) => patch({ ranksKnew: e.target.checked })}
+              />
+              <span>
+                These absences were already known on{' '}
+                {meta.ranksAsOf ?? 'the ranking date'}, so the rankings price them in
+                {' '}— do not discount again.
+              </span>
+            </label>
           )}
 
           <h3 className="sub">Add to your roster</h3>
@@ -202,6 +243,8 @@ function Workbench({ doc, state, setState }) {
           setGive={(give) => patch({ give })} setGet={(get) => patch({ get })}
           league={league} replacement={replacement}
           weeksCovered={meta.weeksCovered} market={market}
+          availability={state.out} ranksKnew={state.ranksKnew}
+          setWeeksOut={setWeeksOut}
           query={tradeQuery} setQuery={setTradeQuery}
           pos={tradePos} setPos={setTradePos}
         />

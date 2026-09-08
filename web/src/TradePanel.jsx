@@ -26,15 +26,24 @@ const TONE = {
 
 export function TradePanel({
   roster, byId, give, get, setGive, setGet, league, replacement, players,
-  query, setQuery, pos, setPos, weeksCovered, market,
+  query, setQuery, pos, setPos, weeksCovered, market, availability, ranksKnew,
+  setWeeksOut,
 }) {
   const giving = give.map((id) => byId.get(id)).filter(Boolean)
   const getting = get.map((id) => byId.get(id)).filter(Boolean)
   const active = giving.length > 0 || getting.length > 0
 
   const grade = active
-    ? gradeTrade(roster, giving, getting, league, replacement, weeksCovered, market)
+    ? gradeTrade(roster, giving, getting, league, replacement,
+                 { weeksCovered, market, availability, ranksKnew })
     : null
+
+  // Who is still sidelined on the roster you would end up with. Named rather
+  // than counted: "two players are out" is not something anyone can act on.
+  const afterRoster = roster.filter((p) => !give.includes(p.id)).concat(getting)
+  const sidelined = ranksKnew
+    ? []
+    : afterRoster.filter((p) => (availability?.[p.id] ?? 0) > 0)
 
   const limit = rosterLimit(league)
   const held = new Set(roster.map((p) => p.id))
@@ -79,6 +88,16 @@ export function TradePanel({
                           aria-label={`Stop receiving ${p.name}`}>
                     {p.name} <span aria-hidden="true">×</span>
                   </button>
+                  <label className="weeks-out">
+                    <span className="sr-only">Weeks {p.name} is out</span>
+                    <input
+                      type="number" inputMode="numeric" min={0} max={weeksCovered}
+                      value={availability?.[p.id] ?? 0}
+                      onChange={(e) => setWeeksOut(p.id, Math.trunc(Number(e.target.value)))}
+                      title={`Weeks ${p.name} is out`}
+                    />
+                    <span aria-hidden="true">wks out</span>
+                  </label>
                 </li>
               ))}
             </ul>
@@ -100,6 +119,27 @@ export function TradePanel({
           {/* The product. Everything else on this panel supports this sentence. */}
           <p className="explanation">{grade.explanation}</p>
           <p className="tone">{TONE[grade.verdict]}</p>
+
+          {/* With somebody hurt, the two lineups below are the weeks everyone is
+              available -- and their totals are further apart than the headline,
+              which is averaged over the whole run. A reader who adds up the two
+              columns and gets a different number is right to, so say why rather
+              than leaving them to find it. */}
+          {grade.phases > 1 && (
+            <p className="phase-note">
+              {sidelined.length > 0 && (
+                <>
+                  <strong>
+                    {sidelined.map((p) => p.name).join(', ')}
+                  </strong>{' '}
+                  {sidelined.length === 1 ? 'is' : 'are'} still out, so the lineups
+                  below are the weeks after {sidelined.length === 1 ? 'he returns' : 'they return'}.{' '}
+                </>
+              )}
+              The headline is averaged across the whole run, so it is smaller than
+              those two totals suggest.
+            </p>
+          )}
 
           {/* Replaceability, beside the headline and never inside it. A tier
               two deep means there is nobody to go and get; sixteen deep means
@@ -158,7 +198,10 @@ export function TradePanel({
 
           <div className="trade-cols compare">
             <div>
-              <h3 className="sub">Lineup now — {grade.before.points.toFixed(0)}</h3>
+              <h3 className="sub">
+                {grade.phases > 1 ? 'Once everyone is back' : 'Lineup now'} —{' '}
+                {grade.before.points.toFixed(0)}
+              </h3>
               <LineupView lineup={grade.before} league={league}
                           replacement={replacement} compact />
             </div>

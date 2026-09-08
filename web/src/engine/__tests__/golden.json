@@ -17625,5 +17625,1092 @@
    "direction": "gain",
    "explanation": "You gain 50.3 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Chase Brown (RB7-level)."
   }
+ ],
+ "availabilityWeeks": 8,
+ "availability": [
+  {
+   "id": "healthy/robbery",
+   "case": "healthy",
+   "trade": "robbery",
+   "weeksCovered": 8,
+   "out": {},
+   "ranksKnew": false,
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "phases": 1,
+   "deltaSeason": 156.97900000000004,
+   "deltaPerWeek": 19.622375000000005,
+   "verdict": "Lopsided win",
+   "direction": "gain",
+   "explanation": "You gain 19.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You are getting the scarcer player: Michael Wilson is one of 7 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries.",
+   "headlineSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Bijan Robinson"
+    ],
+    [
+     "RB2",
+     "Kyren Williams"
+    ],
+    [
+     "WR1",
+     "Ja'Marr Chase"
+    ],
+    [
+     "WR2",
+     "Nico Collins"
+    ],
+    [
+     "WR3",
+     "Zay Flowers"
+    ],
+    [
+     "FLEX",
+     "Javonte Williams"
+    ]
+   ],
+   "nowSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Bijan Robinson"
+    ],
+    [
+     "RB2",
+     "Kyren Williams"
+    ],
+    [
+     "WR1",
+     "Ja'Marr Chase"
+    ],
+    [
+     "WR2",
+     "Nico Collins"
+    ],
+    [
+     "WR3",
+     "Zay Flowers"
+    ],
+    [
+     "FLEX",
+     "Javonte Williams"
+    ]
+   ]
+  },
+  {
+   "id": "healthy/trap",
+   "case": "healthy",
+   "trade": "trap",
+   "weeksCovered": 8,
+   "out": {},
+   "ranksKnew": false,
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "phases": 1,
+   "deltaSeason": -91.23219999999992,
+   "deltaPerWeek": -11.40402499999999,
+   "verdict": "Lopsided loss",
+   "direction": "loss",
+   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is one of 1 receivers in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
+   "headlineSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Kyren Williams"
+    ],
+    [
+     "RB2",
+     "Javonte Williams"
+    ],
+    [
+     "WR1",
+     "Nico Collins"
+    ],
+    [
+     "WR2",
+     "Chris Olave"
+    ],
+    [
+     "WR3",
+     "Rashee Rice"
+    ],
+    [
+     "FLEX",
+     "Zay Flowers"
+    ]
+   ],
+   "nowSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Kyren Williams"
+    ],
+    [
+     "RB2",
+     "Javonte Williams"
+    ],
+    [
+     "WR1",
+     "Nico Collins"
+    ],
+    [
+     "WR2",
+     "Chris Olave"
+    ],
+    [
+     "WR3",
+     "Rashee Rice"
+    ],
+    [
+     "FLEX",
+     "Zay Flowers"
+    ]
+   ]
+  },
+  {
+   "id": "incoming-star-out-five/robbery",
+   "case": "incoming-star-out-five",
+   "trade": "robbery",
+   "weeksCovered": 8,
+   "out": {
+    "00-0038542": 5
+   },
+   "ranksKnew": false,
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "phases": 2,
+   "deltaSeason": 58.86712499999999,
+   "deltaPerWeek": 7.358390624999998,
+   "verdict": "Lopsided win",
+   "direction": "gain",
+   "explanation": "You gain 7.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). Bijan Robinson misses 5 of the next 8 weeks, so the projection here is only the weeks he actually plays. You are getting the scarcer player: Michael Wilson is one of 7 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries.",
+   "headlineSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Bijan Robinson"
+    ],
+    [
+     "RB2",
+     "Kyren Williams"
+    ],
+    [
+     "WR1",
+     "Ja'Marr Chase"
+    ],
+    [
+     "WR2",
+     "Nico Collins"
+    ],
+    [
+     "WR3",
+     "Zay Flowers"
+    ],
+    [
+     "FLEX",
+     "Javonte Williams"
+    ]
+   ],
+   "nowSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Kyren Williams"
+    ],
+    [
+     "RB2",
+     "Javonte Williams"
+    ],
+    [
+     "WR1",
+     "Ja'Marr Chase"
+    ],
+    [
+     "WR2",
+     "Nico Collins"
+    ],
+    [
+     "WR3",
+     "Zay Flowers"
+    ],
+    [
+     "FLEX",
+     "Jameson Williams"
+    ]
+   ]
+  },
+  {
+   "id": "incoming-star-out-five/trap",
+   "case": "incoming-star-out-five",
+   "trade": "trap",
+   "weeksCovered": 8,
+   "out": {
+    "00-0038542": 5
+   },
+   "ranksKnew": false,
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "phases": 1,
+   "deltaSeason": -91.23219999999992,
+   "deltaPerWeek": -11.40402499999999,
+   "verdict": "Lopsided loss",
+   "direction": "loss",
+   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is one of 1 receivers in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
+   "headlineSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Kyren Williams"
+    ],
+    [
+     "RB2",
+     "Javonte Williams"
+    ],
+    [
+     "WR1",
+     "Nico Collins"
+    ],
+    [
+     "WR2",
+     "Chris Olave"
+    ],
+    [
+     "WR3",
+     "Rashee Rice"
+    ],
+    [
+     "FLEX",
+     "Zay Flowers"
+    ]
+   ],
+   "nowSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Kyren Williams"
+    ],
+    [
+     "RB2",
+     "Javonte Williams"
+    ],
+    [
+     "WR1",
+     "Nico Collins"
+    ],
+    [
+     "WR2",
+     "Chris Olave"
+    ],
+    [
+     "WR3",
+     "Rashee Rice"
+    ],
+    [
+     "FLEX",
+     "Zay Flowers"
+    ]
+   ]
+  },
+  {
+   "id": "incoming-star-out-all/robbery",
+   "case": "incoming-star-out-all",
+   "trade": "robbery",
+   "weeksCovered": 8,
+   "out": {
+    "00-0038542": 8
+   },
+   "ranksKnew": false,
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "phases": 1,
+   "deltaSeason": 0.0,
+   "deltaPerWeek": 0.0,
+   "verdict": "Essentially even",
+   "direction": "even",
+   "explanation": "Your starting lineup does not change. Nothing you would start is affected. Bijan Robinson is out for the season, so the projection here is only the weeks he actually plays. You are getting the scarcer player: Michael Wilson is one of 7 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier.",
+   "headlineSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Kyren Williams"
+    ],
+    [
+     "RB2",
+     "Javonte Williams"
+    ],
+    [
+     "WR1",
+     "Ja'Marr Chase"
+    ],
+    [
+     "WR2",
+     "Nico Collins"
+    ],
+    [
+     "WR3",
+     "Zay Flowers"
+    ],
+    [
+     "FLEX",
+     "Jameson Williams"
+    ]
+   ],
+   "nowSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Kyren Williams"
+    ],
+    [
+     "RB2",
+     "Javonte Williams"
+    ],
+    [
+     "WR1",
+     "Ja'Marr Chase"
+    ],
+    [
+     "WR2",
+     "Nico Collins"
+    ],
+    [
+     "WR3",
+     "Zay Flowers"
+    ],
+    [
+     "FLEX",
+     "Jameson Williams"
+    ]
+   ]
+  },
+  {
+   "id": "incoming-star-out-all/trap",
+   "case": "incoming-star-out-all",
+   "trade": "trap",
+   "weeksCovered": 8,
+   "out": {
+    "00-0038542": 8
+   },
+   "ranksKnew": false,
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "phases": 1,
+   "deltaSeason": -91.23219999999992,
+   "deltaPerWeek": -11.40402499999999,
+   "verdict": "Lopsided loss",
+   "direction": "loss",
+   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is one of 1 receivers in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
+   "headlineSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Kyren Williams"
+    ],
+    [
+     "RB2",
+     "Javonte Williams"
+    ],
+    [
+     "WR1",
+     "Nico Collins"
+    ],
+    [
+     "WR2",
+     "Chris Olave"
+    ],
+    [
+     "WR3",
+     "Rashee Rice"
+    ],
+    [
+     "FLEX",
+     "Zay Flowers"
+    ]
+   ],
+   "nowSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Kyren Williams"
+    ],
+    [
+     "RB2",
+     "Javonte Williams"
+    ],
+    [
+     "WR1",
+     "Nico Collins"
+    ],
+    [
+     "WR2",
+     "Chris Olave"
+    ],
+    [
+     "WR3",
+     "Rashee Rice"
+    ],
+    [
+     "FLEX",
+     "Zay Flowers"
+    ]
+   ]
+  },
+  {
+   "id": "outgoing-star-out-five/robbery",
+   "case": "outgoing-star-out-five",
+   "trade": "robbery",
+   "weeksCovered": 8,
+   "out": {
+    "00-0036900": 5
+   },
+   "ranksKnew": false,
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "phases": 2,
+   "deltaSeason": 158.3382499999998,
+   "deltaPerWeek": 19.792281249999974,
+   "verdict": "Lopsided win",
+   "direction": "gain",
+   "explanation": "You gain 19.8 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You are getting the scarcer player: Michael Wilson is one of 7 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries.",
+   "headlineSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Bijan Robinson"
+    ],
+    [
+     "RB2",
+     "Kyren Williams"
+    ],
+    [
+     "WR1",
+     "Nico Collins"
+    ],
+    [
+     "WR2",
+     "Zay Flowers"
+    ],
+    [
+     "WR3",
+     "Jameson Williams"
+    ],
+    [
+     "FLEX",
+     "Javonte Williams"
+    ]
+   ],
+   "nowSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Bijan Robinson"
+    ],
+    [
+     "RB2",
+     "Kyren Williams"
+    ],
+    [
+     "WR1",
+     "Nico Collins"
+    ],
+    [
+     "WR2",
+     "Zay Flowers"
+    ],
+    [
+     "WR3",
+     "Jameson Williams"
+    ],
+    [
+     "FLEX",
+     "Javonte Williams"
+    ]
+   ]
+  },
+  {
+   "id": "outgoing-star-out-five/trap",
+   "case": "outgoing-star-out-five",
+   "trade": "trap",
+   "weeksCovered": 8,
+   "out": {
+    "00-0036900": 5
+   },
+   "ranksKnew": false,
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "phases": 2,
+   "deltaSeason": 12.317049999999881,
+   "deltaPerWeek": 1.5396312499999851,
+   "verdict": "Slight edge",
+   "direction": "gain",
+   "explanation": "You gain 1.5 points a week. The move that matters is at WR3: Zay Flowers (WR15-level) becomes Rashee Rice (WR12-level). Ja'Marr Chase misses 5 of the next 8 weeks, so the projection here is only the weeks he actually plays. You are giving up the scarcer player: Ja'Marr Chase is one of 1 receivers in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
+   "headlineSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Kyren Williams"
+    ],
+    [
+     "RB2",
+     "Javonte Williams"
+    ],
+    [
+     "WR1",
+     "Nico Collins"
+    ],
+    [
+     "WR2",
+     "Chris Olave"
+    ],
+    [
+     "WR3",
+     "Rashee Rice"
+    ],
+    [
+     "FLEX",
+     "Zay Flowers"
+    ]
+   ],
+   "nowSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Kyren Williams"
+    ],
+    [
+     "RB2",
+     "Javonte Williams"
+    ],
+    [
+     "WR1",
+     "Nico Collins"
+    ],
+    [
+     "WR2",
+     "Chris Olave"
+    ],
+    [
+     "WR3",
+     "Rashee Rice"
+    ],
+    [
+     "FLEX",
+     "Zay Flowers"
+    ]
+   ]
+  },
+  {
+   "id": "two-out-different-weeks/robbery",
+   "case": "two-out-different-weeks",
+   "trade": "robbery",
+   "weeksCovered": 8,
+   "out": {
+    "00-0038542": 5,
+    "00-0037840": 2
+   },
+   "ranksKnew": false,
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "phases": 3,
+   "deltaSeason": 58.86712499999999,
+   "deltaPerWeek": 7.358390624999998,
+   "verdict": "Lopsided win",
+   "direction": "gain",
+   "explanation": "You gain 7.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). Bijan Robinson misses 5 of the next 8 weeks, so the projection here is only the weeks he actually plays. You are getting the scarcer player: Michael Wilson is one of 7 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries.",
+   "headlineSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Bijan Robinson"
+    ],
+    [
+     "RB2",
+     "Kyren Williams"
+    ],
+    [
+     "WR1",
+     "Ja'Marr Chase"
+    ],
+    [
+     "WR2",
+     "Nico Collins"
+    ],
+    [
+     "WR3",
+     "Zay Flowers"
+    ],
+    [
+     "FLEX",
+     "Javonte Williams"
+    ]
+   ],
+   "nowSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Javonte Williams"
+    ],
+    [
+     "RB2",
+     "Jaylen Warren"
+    ],
+    [
+     "WR1",
+     "Ja'Marr Chase"
+    ],
+    [
+     "WR2",
+     "Nico Collins"
+    ],
+    [
+     "WR3",
+     "Zay Flowers"
+    ],
+    [
+     "FLEX",
+     "Jameson Williams"
+    ]
+   ]
+  },
+  {
+   "id": "two-out-different-weeks/trap",
+   "case": "two-out-different-weeks",
+   "trade": "trap",
+   "weeksCovered": 8,
+   "out": {
+    "00-0038542": 5,
+    "00-0037840": 2
+   },
+   "ranksKnew": false,
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "phases": 2,
+   "deltaSeason": -91.23220000000015,
+   "deltaPerWeek": -11.404025000000019,
+   "verdict": "Lopsided loss",
+   "direction": "loss",
+   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is one of 1 receivers in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
+   "headlineSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Javonte Williams"
+    ],
+    [
+     "RB2",
+     "Jaylen Warren"
+    ],
+    [
+     "WR1",
+     "Nico Collins"
+    ],
+    [
+     "WR2",
+     "Chris Olave"
+    ],
+    [
+     "WR3",
+     "Rashee Rice"
+    ],
+    [
+     "FLEX",
+     "Zay Flowers"
+    ]
+   ],
+   "nowSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Javonte Williams"
+    ],
+    [
+     "RB2",
+     "Jaylen Warren"
+    ],
+    [
+     "WR1",
+     "Nico Collins"
+    ],
+    [
+     "WR2",
+     "Chris Olave"
+    ],
+    [
+     "WR3",
+     "Rashee Rice"
+    ],
+    [
+     "FLEX",
+     "Zay Flowers"
+    ]
+   ]
+  },
+  {
+   "id": "ranks-already-knew/robbery",
+   "case": "ranks-already-knew",
+   "trade": "robbery",
+   "weeksCovered": 8,
+   "out": {
+    "00-0038542": 5
+   },
+   "ranksKnew": true,
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "phases": 1,
+   "deltaSeason": 156.97900000000004,
+   "deltaPerWeek": 19.622375000000005,
+   "verdict": "Lopsided win",
+   "direction": "gain",
+   "explanation": "You gain 19.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You are getting the scarcer player: Michael Wilson is one of 7 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries.",
+   "headlineSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Bijan Robinson"
+    ],
+    [
+     "RB2",
+     "Kyren Williams"
+    ],
+    [
+     "WR1",
+     "Ja'Marr Chase"
+    ],
+    [
+     "WR2",
+     "Nico Collins"
+    ],
+    [
+     "WR3",
+     "Zay Flowers"
+    ],
+    [
+     "FLEX",
+     "Javonte Williams"
+    ]
+   ],
+   "nowSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Bijan Robinson"
+    ],
+    [
+     "RB2",
+     "Kyren Williams"
+    ],
+    [
+     "WR1",
+     "Ja'Marr Chase"
+    ],
+    [
+     "WR2",
+     "Nico Collins"
+    ],
+    [
+     "WR3",
+     "Zay Flowers"
+    ],
+    [
+     "FLEX",
+     "Javonte Williams"
+    ]
+   ]
+  },
+  {
+   "id": "ranks-already-knew/trap",
+   "case": "ranks-already-knew",
+   "trade": "trap",
+   "weeksCovered": 8,
+   "out": {
+    "00-0038542": 5
+   },
+   "ranksKnew": true,
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "phases": 1,
+   "deltaSeason": -91.23219999999992,
+   "deltaPerWeek": -11.40402499999999,
+   "verdict": "Lopsided loss",
+   "direction": "loss",
+   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is one of 1 receivers in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
+   "headlineSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Kyren Williams"
+    ],
+    [
+     "RB2",
+     "Javonte Williams"
+    ],
+    [
+     "WR1",
+     "Nico Collins"
+    ],
+    [
+     "WR2",
+     "Chris Olave"
+    ],
+    [
+     "WR3",
+     "Rashee Rice"
+    ],
+    [
+     "FLEX",
+     "Zay Flowers"
+    ]
+   ],
+   "nowSlots": [
+    [
+     "QB",
+     "Joe Burrow"
+    ],
+    [
+     "TE",
+     "Trey McBride"
+    ],
+    [
+     "RB1",
+     "Kyren Williams"
+    ],
+    [
+     "RB2",
+     "Javonte Williams"
+    ],
+    [
+     "WR1",
+     "Nico Collins"
+    ],
+    [
+     "WR2",
+     "Chris Olave"
+    ],
+    [
+     "WR3",
+     "Rashee Rice"
+    ],
+    [
+     "FLEX",
+     "Zay Flowers"
+    ]
+   ]
+  }
  ]
 }

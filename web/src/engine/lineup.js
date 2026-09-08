@@ -6,7 +6,7 @@
  * exists rather than a one-line `players.reduce((a, p) => a + p.value, 0)`.
  */
 
-import { playerPoints, vor } from './scoring.js'
+import { GAMES_PER_SEASON, playerPoints, vor } from './scoring.js'
 
 export const FLEX_ELIGIBLE = ['RB', 'WR', 'TE']
 export const SUPERFLEX_ELIGIBLE = ['QB', 'RB', 'WR', 'TE']
@@ -219,4 +219,101 @@ export function uncoveredPositions(lineup, league) {
   return Object.keys(league.starters)
     .sort()
     .filter((pos) => league.starters[pos] > 0 && !benched.has(pos))
+}
+
+/**
+ * How many of the remaining weeks this player misses.
+ *
+ * `ranksKnew` is the double-count guard, and it is the whole reason this is not
+ * simply a dictionary lookup.
+ *
+ * Average draft position already prices in known injuries -- PLAN.md says so and
+ * it is true. A player who tore something in week 2 has already fallen down the
+ * consensus board, so his `pos_adp_rank` maps to a lower curve row and his
+ * projection is *already* discounted for the games he will miss. Zeroing those
+ * weeks on top of that charges for the same injury twice, and the second charge
+ * is invisible: the number just comes out too low.
+ *
+ * We cannot detect this from the data. The document records `ranks_as_of` but not
+ * when anybody got hurt, and no arithmetic recovers a pre-injury rank from a
+ * post-injury one. So it is asked rather than guessed: the UI shows the ranking
+ * date beside the control, and if the rankings already knew, the projection is
+ * left exactly as it is.
+ */
+export function weeksOut(player, availability, ranksKnew = false) {
+  if (ranksKnew || !availability) return 0
+  return Math.max(0, Math.trunc(availability[player.id] ?? 0))
+}
+
+/**
+ * The weeks at which the available set changes, as weeks elapsed.
+ *
+ * Computed over both sides of a trade together so the two rosters are cut at the
+ * same places. Without that the phases do not line up and there is no honest way
+ * to say which stretch of the season the trade actually changes.
+ */
+export function phaseBoundaries(players, availability, weeksCovered, ranksKnew = false) {
+  const total = Math.trunc(weeksCovered)
+  const cuts = new Set([0])
+  for (const p of players) {
+    const out = Math.min(weeksOut(p, availability, ranksKnew), total)
+    if (out > 0) cuts.add(out)
+  }
+  const starts = [...cuts].filter((x) => x < total).sort((a, b) => a - b)
+  return starts.length ? starts : [0]
+}
+
+/**
+ * Split the remaining season where the available set changes.
+ *
+ * A player out for five weeks does not make your roster uniformly worse for the
+ * whole span -- he makes it much worse for five weeks and no worse afterwards.
+ * Scaling his projection down by five-eighths would say the first thing when the
+ * truth is the second, and would let an elite back who misses half the run be
+ * benched behind a mediocre one who plays throughout.
+ *
+ * So the span is cut at every return date and a lineup is built for each piece.
+ * Almost always that is one piece, and with a single injury it is two.
+ */
+export function availabilityPhases(
+  roster, availability, weeksCovered, ranksKnew = false, boundaries = null,
+) {
+  const total = Math.trunc(weeksCovered)
+  const starts =
+    boundaries ?? phaseBoundaries(roster, availability, weeksCovered, ranksKnew)
+
+  return starts.map((start, i) => ({
+    start,
+    end: i + 1 < starts.length ? starts[i + 1] : total,
+    weeks: (i + 1 < starts.length ? starts[i + 1] : total) - start,
+    available: roster.filter((p) => weeksOut(p, availability, ranksKnew) <= start),
+  }))
+}
+
+/**
+ * `bestLineup` over each phase, weighted by the weeks the phase covers.
+ *
+ * With nobody unavailable this is one phase covering the whole span, and the
+ * result is exactly `bestLineup` -- which is what keeps every grade that predates
+ * availability unchanged.
+ *
+ * `points` is the season total. `now` is the lineup you would actually field this
+ * week, which is what the UI shows: a weighted average of lineups is a number,
+ * not a team.
+ */
+export function phasedLineup(
+  roster, league, scoring, replacement,
+  availability = null, weeksCovered = GAMES_PER_SEASON, ranksKnew = false,
+  boundaries = null,
+) {
+  const phases = []
+  let points = 0
+  for (const phase of availabilityPhases(
+    roster, availability, weeksCovered, ranksKnew, boundaries,
+  )) {
+    const lineup = bestLineup(phase.available, league, scoring, replacement)
+    phases.push({ phase, lineup })
+    points += lineup.points * (phase.weeks / weeksCovered)
+  }
+  return { points, phases, now: phases[0].lineup, at: (i) => phases[i].lineup }
 }

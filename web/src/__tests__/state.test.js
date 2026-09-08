@@ -8,7 +8,9 @@
 
 import { describe, expect, it } from 'vitest'
 
-import { formatIds, parseIds, reconcileIds, reconcileTrade } from '../state.js'
+import {
+  _internals, formatIds, formatOut, parseIds, parseOut, reconcileIds, reconcileTrade,
+} from '../state.js'
 import { DEFAULT_SPEC, LIMITS, decodeSpec, describeSpec, encodeSpec, normaliseSpec, toLeague } from '../league.js'
 import { replacementRank } from '../engine/index.js'
 
@@ -156,5 +158,40 @@ describe('the limits and the shipped curve agree', () => {
       expect(replacementRank(pos, worst), `${pos} outruns its floor`)
         .toBeLessThanOrEqual(FLOORS[pos])
     }
+  })
+})
+
+describe('weeks out survive a round trip', () => {
+  const known = new Set(['a', 'b', 'c'])
+
+  it('parses id:weeks pairs', () => {
+    expect(parseOut('a:3,b:5', known)).toEqual({ a: 3, b: 5 })
+  })
+
+  it('drops ids this data file does not know', () => {
+    // Same reasoning as reconcileIds: a link shared in September can name
+    // somebody the October rebuild dropped, and an absence for a player who no
+    // longer exists is invisible state.
+    expect(parseOut('a:3,zzz:5', known)).toEqual({ a: 3 })
+  })
+
+  it('treats zero, negative and nonsense as healthy rather than as an error', () => {
+    expect(parseOut('a:0,b:-2,c:x', known)).toEqual({})
+    expect(parseOut('', known)).toEqual({})
+    expect(parseOut(null, known)).toEqual({})
+  })
+
+  it('clamps a hand-edited number to a season', () => {
+    expect(parseOut('a:99', known)).toEqual({ a: _internals.MAX_WEEKS_OUT })
+  })
+
+  it('writes nothing at all for a healthy roster', () => {
+    expect(formatOut({})).toBe('')
+    expect(formatOut({ a: 0 })).toBe('')
+  })
+
+  it('round-trips through the URL', () => {
+    const out = { a: 3, c: 17 }
+    expect(parseOut(formatOut(out), known)).toEqual(out)
   })
 })

@@ -149,6 +149,155 @@ def depth_value(bench: list[Player], league: League, replacement: dict[str, floa
     return total
 
 
+def weeks_out(player: Player, availability: dict | None, ranks_knew: bool) -> int:
+    """How many of the remaining weeks this player misses.
+
+    `ranks_knew` is the double-count guard, and it is the whole reason this is
+    not simply a dictionary lookup.
+
+    Average draft position already prices in known injuries -- `PLAN.md` says so
+    and it is true. A player who tore something in week 2 has already fallen down
+    the consensus board, so his `pos_adp_rank` maps to a lower curve row and his
+    projection is *already* discounted for the games he will miss. Zeroing those
+    weeks on top of that charges for the same injury twice, and the second charge
+    is invisible: the number just comes out too low.
+
+    We cannot detect this from the data. The document records `ranks_as_of` but
+    not when anybody got hurt, and no arithmetic recovers a pre-injury rank from a
+    post-injury one. So it is asked rather than guessed: the UI shows the ranking
+    date beside the control, and if the rankings already knew, the projection is
+    left exactly as it is.
+    """
+    if ranks_knew or not availability:
+        return 0
+    return max(0, int(availability.get(player.gsis_id or player.name, 0)))
+
+
+@dataclass(frozen=True)
+class Phase:
+    """A stretch of weeks over which the same players are available.
+
+    `start` is weeks elapsed, so the first phase always starts at 0.
+    """
+
+    start: int
+    end: int
+    available: tuple
+
+    @property
+    def weeks(self) -> int:
+        return self.end - self.start
+
+
+def phase_boundaries(
+    players: list[Player],
+    availability: dict | None,
+    weeks_covered: float,
+    ranks_knew: bool = False,
+) -> list[int]:
+    """The weeks at which the available set changes, as weeks elapsed.
+
+    Computed over both sides of a trade together so the two rosters are cut at the
+    same places. Without that the phases do not line up and there is no honest way
+    to say which stretch of the season the trade actually changes.
+    """
+    total = int(weeks_covered)
+    cuts = {0}
+    for p in players:
+        out = min(weeks_out(p, availability, ranks_knew), total)
+        if out > 0:
+            cuts.add(out)
+    return sorted(x for x in cuts if x < total) or [0]
+
+
+def availability_phases(
+    roster: list[Player],
+    availability: dict | None,
+    weeks_covered: float,
+    ranks_knew: bool = False,
+    boundaries: list[int] | None = None,
+) -> list[Phase]:
+    """Split the remaining season where the available set changes.
+
+    A player out for five weeks does not make your roster uniformly worse for the
+    whole span -- he makes it much worse for five weeks and no worse afterwards.
+    Scaling his projection down by five-eighths would say the first thing when the
+    truth is the second, and would let an elite back who misses half the run be
+    benched behind a mediocre one who plays throughout.
+
+    So the span is cut at every return date and a lineup is built for each piece.
+    Almost always that is one piece, and with a single injury it is two.
+    """
+    total = int(weeks_covered)
+    starts = (
+        boundaries
+        if boundaries is not None
+        else phase_boundaries(roster, availability, weeks_covered, ranks_knew)
+    )
+    phases = []
+    for i, start in enumerate(starts):
+        end = starts[i + 1] if i + 1 < len(starts) else total
+        phases.append(
+            Phase(
+                start=start,
+                end=end,
+                available=tuple(
+                    p
+                    for p in roster
+                    if weeks_out(p, availability, ranks_knew) <= start
+                ),
+            )
+        )
+    return phases
+
+
+@dataclass
+class PhasedLineup:
+    """What a roster is worth once absences are taken into account.
+
+    `points` is the season total, each phase's lineup weighted by how many weeks
+    it covers. `now` is the lineup you would actually field this week, which is
+    what the UI shows -- a weighted average of lineups is a number, not a team.
+    """
+
+    points: float
+    phases: list[tuple[Phase, Lineup]]
+
+    @property
+    def now(self) -> Lineup:
+        return self.phases[0][1]
+
+    def at(self, index: int) -> Lineup:
+        return self.phases[index][1]
+
+
+def phased_lineup(
+    roster: list[Player],
+    league: League,
+    scoring: dict[str, float],
+    replacement: dict[str, float],
+    availability: dict | None = None,
+    weeks_covered: float = GAMES_PER_SEASON,
+    ranks_knew: bool = False,
+    boundaries: list[int] | None = None,
+) -> PhasedLineup:
+    """`best_lineup` over each phase, weighted by the weeks the phase covers.
+
+    With nobody unavailable this is one phase covering the whole span, and the
+    result is exactly `best_lineup` -- which is what keeps every grade that
+    predates availability unchanged.
+    """
+    out = []
+    total = 0.0
+    for phase in availability_phases(
+        roster, availability, weeks_covered, ranks_knew, boundaries
+    ):
+        lineup = best_lineup(list(phase.available), league, scoring, replacement)
+        out.append((phase, lineup))
+        total += lineup.points * (phase.weeks / weeks_covered)
+    return PhasedLineup(points=total, phases=out)
+
+
 def starting_slots(league: League) -> int:
     return sum(league.starters.values()) + league.flex_slots + league.superflex_slots
 
@@ -271,9 +420,15 @@ class Grade:
     delta_depth: float
     verdict: str
     direction: str
+    # The phase the trade actually moves -- what `explanation` describes.
     before: Lineup
     after: Lineup
     explanation: str
+    # What you would field this week, which is not the same thing once somebody
+    # is hurt. A weighted average of lineups is a number, not a team.
+    before_now: Lineup = None  # type: ignore[assignment]
+    after_now: Lineup = None  # type: ignore[assignment]
+    phases: int = 1
     # Who you would have to drop to fit the incoming players, worst first, and
     # how many spots you would free if the trade goes the other way.
     cuts: list[Player] = field(default_factory=list)
@@ -298,13 +453,32 @@ def grade_trade(
     receive: list[Player],
     league: League,
     replacement: dict[str, float],
+    *,
     weeks_covered: float = GAMES_PER_SEASON,
     market: dict | None = None,
+    availability: dict | None = None,
+    ranks_knew: bool = False,
 ) -> Grade:
-    """`weeks_covered` is how many weeks the projections span -- 17 for a
+    """Grade a trade against a roster.
+
+    Everything after `replacement` is keyword-only and optional, and every one of
+    them defaults to the behaviour of not having it. That is deliberate: this
+    signature has grown once per phase, and positional extras were already at
+    seven when the sixth and seventh were being passed by position in four
+    different files.
+
+    `weeks_covered` is how many weeks the projections span -- 17 for a
     full-season file, `weeks_remaining` for a rest-of-season one. Use
     `model.fromfile.weeks_covered` to read it off the document rather than
-    passing a literal; the default is here so a full-season caller need not."""
+    passing a literal.
+
+    `market` carries the tier structure from `model.market.build_market`. Without
+    it the grade is unchanged but says nothing about replaceability.
+
+    `availability` maps a player id to how many of the remaining weeks he misses,
+    and `ranks_knew` says whether the rankings already priced those absences in.
+    See `weeks_out` for why that second flag exists.
+    """
     scoring = league.scoring
 
     missing = [p.name for p in give if p not in roster]
@@ -320,14 +494,43 @@ def grade_trade(
     before_kept, before_cut = enforce_limit(roster, league, replacement)
     after_kept, after_cut = enforce_limit(after_roster, league, replacement)
 
-    before = best_lineup(before_kept, league, scoring, replacement)
-    after = best_lineup(after_kept, league, scoring, replacement)
+    # Availability is applied to the *lineup*, not to the roster cut above. Who is
+    # worth keeping is a question about the season; who plays this week is not.
+    # A team does not release its best running back because he is hurt in October.
+    bounds = phase_boundaries(
+        before_kept + after_kept, availability, weeks_covered, ranks_knew
+    )
+    before_phased = phased_lineup(
+        before_kept, league, scoring, replacement, availability, weeks_covered,
+        ranks_knew, bounds,
+    )
+    after_phased = phased_lineup(
+        after_kept, league, scoring, replacement, availability, weeks_covered,
+        ranks_knew, bounds,
+    )
 
-    delta_season = after.points - before.points
+    # Describe the stretch the trade actually changes, not the stretch that
+    # happens to come first. Trading for a player who is out five weeks moves
+    # nothing in week one, and "your starting lineup does not change" is a false
+    # summary of a trade that upgrades your best slot the moment he is back.
+    headline = max(
+        range(len(bounds)),
+        key=lambda i: abs(after_phased.at(i).points - before_phased.at(i).points),
+    )
+    before, after = before_phased.at(headline), after_phased.at(headline)
+    before_now, after_now = before_phased.now, after_phased.now
+
+    delta_season = after_phased.points - before_phased.points
     delta_week = delta_season / weeks_covered
     delta_depth = depth_value(after.bench, league, replacement) - depth_value(
         before.bench, league, replacement
     )
+
+    absent = [
+        p
+        for p in list(give) + list(receive)
+        if weeks_out(p, availability, ranks_knew) > 0
+    ]
 
     spots_freed = max(0, roster_limit(league) - len(after_kept)) - max(
         0, roster_limit(league) - len(before_kept)
@@ -346,6 +549,9 @@ def grade_trade(
         direction=direction,
         before=before,
         after=after,
+        before_now=before_now,
+        after_now=after_now,
+        phases=len(bounds),
         cuts=after_cut,
         tiers=_traded_tiers(give, receive, market),
         spots_freed=max(spots_freed, 0),
@@ -353,7 +559,7 @@ def grade_trade(
         explanation=explain(
             before, after, delta_week, delta_depth, scoring, replacement,
             league, give, receive, weeks_covered, after_cut, max(spots_freed, 0),
-            len(before_cut), market,
+            len(before_cut), market, absent, availability, ranks_knew,
         ),
     )
 
@@ -373,6 +579,9 @@ def explain(
     spots_freed: int = 0,
     over_before: int = 0,
     market: dict | None = None,
+    absent: list[Player] | tuple = (),
+    availability: dict | None = None,
+    ranks_knew: bool = False,
 ) -> str:
     """Plain English. The number convinces nobody on its own."""
     b, a = before.by_slot(), after.by_slot()
@@ -396,7 +605,8 @@ def explain(
             "Your starting lineup does not change. Nothing you would start is"
             " affected." + _consequences(
                 delta_depth, weeks_covered, cuts, after, league, spots_freed,
-                give, receive, over_before, market, scoring,
+                give, receive, over_before, market, scoring, absent, availability,
+                ranks_knew,
             )
         )
 
@@ -450,7 +660,7 @@ def explain(
 
     return head + body + _consequences(
         delta_depth, weeks_covered, cuts, after, league, spots_freed, give, receive,
-        over_before, market, scoring,
+        over_before, market, scoring, absent, availability, ranks_knew,
     )
 
 
@@ -466,6 +676,9 @@ def _consequences(
     over_before: int = 0,
     market: dict | None = None,
     scoring: dict[str, float] | None = None,
+    absent: list[Player] | tuple = (),
+    availability: dict | None = None,
+    ranks_knew: bool = False,
 ) -> str:
     """Everything true about the trade that is not the slot it moved.
 
@@ -485,6 +698,25 @@ def _consequences(
             " Quarterbacks are worth less here than their rankings suggest: only one"
             " starts per team, so the next one on waivers is much closer to yours"
             " than the gap in rank implies."
+        )
+
+    # Who is not playing. Said first, because it changes what every number after
+    # it means: a projection for a player who misses most of the run is not a
+    # projection of what he does for you.
+    if absent:
+        total = int(weeks_covered)
+        parts = []
+        for p in absent:
+            out = min(weeks_out(p, availability, ranks_knew), total)
+            parts.append(
+                f"{p.name} is out for the season"
+                if out >= total
+                else f"{p.name} misses {out} of the next {total} weeks"
+            )
+        tail += (
+            f" {_and_list(parts)}, so the projection here is only the weeks"
+            f" {'they' if len(absent) > 1 else 'he'} actually play"
+            f"{'' if len(absent) > 1 else 's'}."
         )
 
     # Replaceability. The points have already said who scores more; this says
