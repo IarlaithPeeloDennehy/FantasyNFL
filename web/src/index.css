@@ -103,6 +103,9 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
   gap: 0.6rem;
   padding: 0.35rem 0.15rem;
   border-bottom: 1px solid var(--border);
+  /* The weeks-out control made this row wider than a phone. Wrapping beats
+     shrinking a number input nobody could then hit with a thumb. */
+  flex-wrap: wrap;
 }
 .row:last-child { border-bottom: none; }
 
@@ -222,6 +225,61 @@ h3.sub {
 /* The sentence is the product, so it gets the size the number usually takes. */
 .explanation { font-size: 1rem; margin: 0.6rem 0 0.3rem; }
 .tone { margin: 0 0 0.5rem; color: var(--muted); font-size: 0.85rem; }
+/* The record sits in the header beside the league summary: it is a fact about
+   your season, not a setting, and it belongs where you can see it is set. */
+.record { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.8rem; }
+.record input { width: 2.6rem; font-size: 0.8rem; padding: 0.2rem 0.3rem; text-align: center; }
+
+/* Two numbers, never merged. The situational one is visibly secondary but not a
+   footnote -- it is the half that answers "should I take it". */
+.situational {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem;
+  margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed var(--border);
+}
+.situational .label { font-size: 0.78rem; color: var(--muted); margin-right: auto; }
+.situational .band { font-size: 0.9rem; font-weight: 600; }
+.situational .delta { font-size: 1rem; font-variant-numeric: tabular-nums; }
+
+/* Weeks-out sits inline on the roster row: it is a fact about a player, edited
+   where the player is, rather than a mode the whole page enters. */
+.chips li { display: inline-flex; align-items: center; gap: 0.35rem; }
+.weeks-out { display: inline-flex; align-items: baseline; gap: 0.25rem; font-size: 0.75rem; }
+.weeks-out input { width: 2.8rem; font-size: 0.8rem; padding: 0.15rem 0.25rem; }
+/* The name is the only thing that should give ground when the row wraps. */
+.row .name { flex: 1 1 6rem; }
+.weeks-out, .row .btn { flex-shrink: 0; }
+.weeks-out span[aria-hidden] { color: var(--muted); }
+.ranks-knew {
+  display: flex; gap: 0.5rem; align-items: flex-start;
+  margin: 0.6rem 0 0; padding: 0.5rem 0.6rem;
+  background: var(--panel); border-radius: 4px; font-size: 0.8rem; color: var(--muted);
+}
+.phase-note { margin: 0.5rem 0 0; font-size: 0.82rem; color: var(--muted); }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Replaceability sits between the sentence and the roster crunch: it is part of
+   the argument, not part of the arithmetic, so it reads as a list of facts about
+   the players rather than as another number. */
+.tiers { list-style: none; margin: 0.6rem 0 0; padding: 0; font-size: 0.82rem; }
+.tiers li {
+  display: flex; gap: 0.5rem; align-items: baseline;
+  padding: 0.15rem 0 0.15rem 0.5rem; border-left: 2px solid var(--border);
+}
+.tiers li.give { border-left-color: var(--bad); }
+.tiers li.receive { border-left-color: var(--good); }
+.tiers .name { font-weight: 600; }
+.tiers .depth-note { color: var(--muted); margin-left: auto; }
+
+/* A forced drop is a cost the headline deliberately does not carry, so it has to
+   be legible on its own rather than reading as a footnote like the depth line. */
+.cuts {
+  margin: 0.5rem 0 0; padding: 0.5rem 0.6rem;
+  border-left: 3px solid var(--border); background: var(--bg);
+  font-size: 0.85rem; border-radius: 0 4px 4px 0;
+}
 .depth {
   margin: 0.5rem 0 0; padding-top: 0.5rem; border-top: 1px dashed var(--border);
   color: var(--muted); font-size: 0.8rem;

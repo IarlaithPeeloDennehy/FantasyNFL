@@ -45,6 +45,17 @@ class League:
     flex_slots: int = 1
     superflex_slots: int = 0
 
+    # Bench spots for QB/RB/WR/TE only. A real league's roster size also covers
+    # kickers and defences, which this model excludes entirely -- so this is the
+    # skill-position bench, not the number the platform shows you.
+    bench_slots: int = 7
+
+    # How the season is shaped. Needed to say which of the weeks left are still
+    # being played for and which are January.
+    playoff_spots: int = 6
+    regular_season_weeks: int = 14
+    playoff_weeks: int = 3
+
     # How a FLEX spot is actually used, league-wide. An opening guess, not a
     # derived truth -- tune it, but tune it here, in one named place.
     flex_share: dict[str, float] = field(

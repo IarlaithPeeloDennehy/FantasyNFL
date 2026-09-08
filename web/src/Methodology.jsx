@@ -58,6 +58,89 @@ export function Methodology({ meta }) {
         valuable.
       </p>
 
+      <h3 className="sub">Why the top of each position is worth so much more</h3>
+      <p>
+        The drop from the best running back to the fifth is far steeper than the
+        drop from the tenth to the twenty-fifth, and that shape comes from the
+        history rather than from any adjustment applied on top of it. It is not
+        the same shape at every position: quarterback falls at a steady rate well
+        past the tenth, because only thirty-two of them start anywhere.
+      </p>
+      <p>
+        Each rank is averaged over recent seasons and then smoothed against its
+        neighbours, because the difference between the third and fourth finisher
+        in any one year is mostly noise. The smoothing window narrows at the ends
+        so the very top is never averaged with the ranks below it — doing that
+        flattens exactly the gap that makes elite players worth trading for.
+      </p>
+
+      <h3 className="sub">Two numbers, and why they are not merged</h3>
+      <p>
+        Enter a record and the verdict gains a second number beside it. The first
+        is what the trade is worth, full stop. The second is what it is worth to a
+        team in your position — and the gap between them is the premium you would
+        be paying, which is the only part you actually need in order to decide.
+        Collapsing them into one adjusted number would be easier and much worse:
+        it would launder a bad trade instead of pricing one.
+      </p>
+      <p>
+        Nothing about a player is scaled. What changes is <em>which weeks
+        count</em>. A regular-season week is worth however much that game still
+        decides your season — the gap between winning it and losing it — and a
+        playoff week is worth however likely you are to be playing at all. A team
+        at 3-0 is probably going to January, so January is what it is buying; a
+        team at 0-3 probably is not, so a player who only helps then is worth
+        little to it. That is the whole mechanism, and it is why the same trade
+        can be a clear win for one team and a loss for another.
+      </p>
+      <p>
+        <strong>What this does not know.</strong> Every remaining game is treated
+        as a coin flip. Nobody's strength is modelled beyond the record itself,
+        the schedule is ignored, and the odds are approximate by construction —
+        but the difference between 18% and 22% does not change a recommendation,
+        and the shape is what matters here. A team that is mathematically out gets
+        no second number at all, because at that point the weighting has no
+        opinion left to offer.
+      </p>
+
+      <h3 className="sub">Injuries are your input, not ours</h3>
+      <p>
+        Nothing here knows who is hurt. If you mark a player as out for a number
+        of weeks, the remaining run is split at the week he returns and a lineup
+        is built for each stretch — so a back who misses five of eight weeks is
+        priced as an elite back for three weeks and an absence for five, rather
+        than as a mediocre back for eight. Those are different teams, and only
+        the second one would bench him behind somebody worse.
+      </p>
+      <p>
+        <strong>One thing to watch.</strong> Consensus rankings already price in
+        an injury everyone knows about — a player who got hurt last month has
+        already fallen down the board, so his projection here is discounted
+        once already. Marking him out again charges for the same injury twice.
+        The checkbox above your roster is there for exactly that: tick it when
+        the absence was already public on the ranking date, and nothing further
+        is deducted.
+      </p>
+
+      <h3 className="sub">Tiers, and what the points cannot tell you</h3>
+      <p>
+        A tier here is a run of players close enough that you would not care
+        which one you had — specifically, within two points a week of the best
+        player in the tier, which is the same gap that separates a slight edge
+        from a clear win at a starting slot. Tiers are cut from the curve, so
+        they come out narrow at the top and wide in the middle for running backs,
+        receivers and tight ends, and roughly even all the way down for
+        quarterbacks. None of those shapes is written down anywhere; they fall
+        out of the history.
+      </p>
+      <p>
+        Tier depth is the one thing here that the points genuinely cannot say.
+        Two mid-range backs can out-score one elite back on paper and still be a
+        bad trade, because you can find another mid-range back and you cannot
+        find another elite one. That is reported beside the verdict and never
+        added to it — it is an argument about the trade, not a number.
+      </p>
+
       <h3 className="sub">Why trades are graded on lineups, not totals</h3>
       <p>
         Summing player values is how trade calculators end up saying three WR4s

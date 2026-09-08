@@ -23,6 +23,7 @@ import {
   score,
   slotStem,
   vor,
+  weeksCovered,
 } from '../index.js'
 
 /** A player whose only production is receiving yards, so points are predictable. */
@@ -408,5 +409,39 @@ describe('parseDocument', () => {
   it('throws on a schema version it does not speak', () => {
     expect(() => parseDocument({ ...good, schema_version: 2 })).toThrow(/schema_version/)
     expect(() => parseDocument(null)).toThrow(/schema_version/)
+  })
+
+  it('derives the horizon a full-season file covers', () => {
+    expect(parseDocument(good).meta.weeksCovered).toBe(17)
+  })
+
+  it('derives the horizon a rest-of-season file covers', () => {
+    const ros = { ...good, basis: 'rest_of_season', weeks_remaining: 8 }
+    expect(parseDocument(ros).meta.weeksCovered).toBe(8)
+  })
+
+  // The failure this guards is silent: a rest-of-season file whose horizon
+  // cannot be read would otherwise be graded as if it covered a whole season,
+  // halving every per-week number without anything going red.
+  it('refuses a rest-of-season file it cannot read a horizon from', () => {
+    const ros = { ...good, basis: 'rest_of_season' }
+    for (const weeks of [undefined, null, 0, -1, 18, 8.5, '8', true]) {
+      expect(() => parseDocument({ ...ros, weeks_remaining: weeks }))
+        .toThrow(/weeks_remaining/)
+    }
+  })
+})
+
+describe('weeksCovered', () => {
+  it('is the whole season unless the file says otherwise', () => {
+    expect(weeksCovered({ basis: 'full_season' })).toBe(17)
+    expect(weeksCovered({})).toBe(17)
+    expect(weeksCovered(null)).toBe(17)
+  })
+
+  // A full-season file with a stray weeks_remaining is the build being sloppy,
+  // not the horizon being short. `basis` is the field that decides.
+  it('ignores weeks_remaining on a full-season file', () => {
+    expect(weeksCovered({ basis: 'full_season', weeks_remaining: 8 })).toBe(17)
   })
 })

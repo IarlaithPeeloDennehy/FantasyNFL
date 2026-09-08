@@ -9,7 +9,9 @@
 
 import { useEffect, useMemo, useState } from 'react'
 
-import { bestLineup, daysSince, parseDocument, replacementPoints } from './engine/index.js'
+import {
+  bestLineup, buildMarket, daysSince, parseDocument, replacementPoints,
+} from './engine/index.js'
 import { describeSpec, normaliseSpec, toLeague } from './league.js'
 import { EMPTY, loadState, saveState } from './state.js'
 import { BuyLow } from './BuyLow.jsx'
@@ -19,6 +21,42 @@ import { TradePanel } from './TradePanel.jsx'
 import { LineupView, PlayerSearch } from './ui.jsx'
 
 const STALE_AFTER_DAYS = 14
+
+/**
+ * Wins and losses, or nothing at all.
+ *
+ * Empty means empty, not 0-0. A team that has played no games and a team whose
+ * record nobody entered want different answers, and only the second one should
+ * leave the grade exactly as it was.
+ */
+function RecordInput({ record, setRecord }) {
+  const set = (part, raw) => {
+    const n = Math.max(0, Math.trunc(Number(raw) || 0))
+    setRecord({ wins: 0, losses: 0, ...record, [part]: n })
+  }
+
+  return (
+    <div className="record">
+      <label>
+        <span className="sr-only">Wins</span>
+        <input type="number" inputMode="numeric" min={0} max={17} placeholder="W"
+               value={record ? record.wins : ''} title="Wins"
+               onChange={(e) => set('wins', e.target.value)} />
+      </label>
+      <span aria-hidden="true">&ndash;</span>
+      <label>
+        <span className="sr-only">Losses</span>
+        <input type="number" inputMode="numeric" min={0} max={17} placeholder="L"
+               value={record ? record.losses : ''} title="Losses"
+               onChange={(e) => set('losses', e.target.value)} />
+      </label>
+      {record && (
+        <button type="button" className="btn ghost" onClick={() => setRecord(null)}
+                title="Grade without a record">clear</button>
+      )}
+    </div>
+  )
+}
 
 export default function App() {
   const [doc, setDoc] = useState({ status: 'loading' })
@@ -79,6 +117,12 @@ function Workbench({ doc, state, setState }) {
   const spec = useMemo(() => normaliseSpec(state.league), [state.league])
   const league = useMemo(() => toLeague(spec), [spec])
   const replacement = useMemo(() => replacementPoints(curves, league), [curves, league])
+  // Tiers are a pure function of the curve, the scoring and the horizon, so they
+  // are computed once beside replacement level rather than per trade.
+  const market = useMemo(
+    () => buildMarket(curves, league, meta.weeksCovered),
+    [curves, league, meta.weeksCovered],
+  )
 
   const byId = useMemo(() => new Map(players.map((p) => [p.id, p])), [players])
   const roster = useMemo(
@@ -99,13 +143,30 @@ function Workbench({ doc, state, setState }) {
       : { ...s, roster: [...s.roster, id], get: s.get.filter((x) => x !== id) }))
 
   // Dropping a player has to drop him from the trade too, or `gradeTrade` is
-  // handed a give that is no longer on the roster and throws.
+  // handed a give that is no longer on the roster and throws. His injury goes
+  // with him: an absence for somebody you no longer hold is invisible state that
+  // would quietly follow the link around.
   const dropPlayer = (id) =>
-    setState((s) => ({
-      ...s,
-      roster: s.roster.filter((x) => x !== id),
-      give: s.give.filter((x) => x !== id),
-    }))
+    setState((s) => {
+      const out = { ...s.out }
+      delete out[id]
+      return {
+        ...s,
+        roster: s.roster.filter((x) => x !== id),
+        give: s.give.filter((x) => x !== id),
+        out,
+      }
+    })
+
+  // How many of the remaining weeks a player misses. Zero is stored as absent
+  // rather than as a zero, so a healthy roster produces no URL noise at all.
+  const setWeeksOut = (id, weeks) =>
+    setState((st) => {
+      const next = { ...st.out }
+      if (weeks > 0) next[id] = Math.min(weeks, meta.weeksCovered)
+      else delete next[id]
+      return { ...st, out: next }
+    })
 
   const toggleGive = (id) =>
     setState((s) => ({
@@ -129,6 +190,7 @@ function Workbench({ doc, state, setState }) {
             {stale && <> · {age} days old — a refresh is overdue</>}
           </p>
         </div>
+        <RecordInput record={state.record} setRecord={(record) => patch({ record })} />
         <button type="button" className="btn" aria-expanded={showSettings}
                 onClick={() => setShowSettings((v) => !v)}>
           {describeSpec(spec)} ▾
@@ -155,6 +217,16 @@ function Workbench({ doc, state, setState }) {
                 <li className="row" key={p.id}>
                   <span className="name">{p.name}</span>
                   <span className="tag">{p.pos}{p.pos_adp_rank} · {p.team}</span>
+                  <label className="weeks-out">
+                    <span className="sr-only">Weeks {p.name} is out</span>
+                    <input
+                      type="number" inputMode="numeric" min={0} max={meta.weeksCovered}
+                      value={state.out[p.id] ?? 0}
+                      onChange={(e) => setWeeksOut(p.id, Math.trunc(Number(e.target.value)))}
+                      title={`Weeks ${p.name} is out`}
+                    />
+                    <span aria-hidden="true">wks out</span>
+                  </label>
                   <button type="button"
                           className={state.give.includes(p.id) ? 'btn giving' : 'btn'}
                           aria-pressed={state.give.includes(p.id)}
@@ -167,6 +239,20 @@ function Workbench({ doc, state, setState }) {
                 </li>
               ))}
             </ul>
+          )}
+
+          {Object.keys(state.out).length > 0 && (
+            <label className="ranks-knew">
+              <input
+                type="checkbox" checked={state.ranksKnew}
+                onChange={(e) => patch({ ranksKnew: e.target.checked })}
+              />
+              <span>
+                These absences were already known on{' '}
+                {meta.ranksAsOf ?? 'the ranking date'}, so the rankings price them in
+                {' '}— do not discount again.
+              </span>
+            </label>
           )}
 
           <h3 className="sub">Add to your roster</h3>
@@ -193,6 +279,9 @@ function Workbench({ doc, state, setState }) {
           give={state.give} get={state.get}
           setGive={(give) => patch({ give })} setGet={(get) => patch({ get })}
           league={league} replacement={replacement}
+          weeksCovered={meta.weeksCovered} market={market}
+          availability={state.out} ranksKnew={state.ranksKnew}
+          setWeeksOut={setWeeksOut} record={state.record}
           query={tradeQuery} setQuery={setTradeQuery}
           pos={tradePos} setPos={setTradePos}
         />

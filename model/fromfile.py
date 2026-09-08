@@ -15,7 +15,36 @@ import json
 import pathlib
 
 from .curves import Curves
-from .value import Player
+from .value import GAMES_PER_SEASON, Player
+
+
+def weeks_covered(doc: dict) -> int:
+    """How many weeks of football the projections in this document span.
+
+    A full-season file covers all 17. A rest-of-season file is scaled down by
+    ``weeks_remaining / 17`` at build time (see ``build_players.py``) -- every
+    player projection *and* every curve row -- so its numbers describe only the
+    weeks that are left.
+
+    This is the divisor for anything reported per week. Using 17 regardless is
+    not a rounding error: in week 10 it understates every per-week figure by
+    more than half, and does it silently, which is the worst way to be wrong.
+
+    Raises rather than guessing. ``model/schema.py`` already refuses to ship a
+    rest-of-season file without a usable ``weeks_remaining``, so reaching here
+    with one means the file was hand-edited or built by something else, and a
+    guess would quietly rescale every number in the app.
+    """
+    if doc.get("basis") != "rest_of_season":
+        return GAMES_PER_SEASON
+
+    weeks = doc.get("weeks_remaining")
+    if type(weeks) is not int or not 1 <= weeks <= GAMES_PER_SEASON:
+        raise ValueError(
+            f"basis is rest_of_season but weeks_remaining is {weeks!r}; "
+            f"expected an integer from 1 to {GAMES_PER_SEASON}"
+        )
+    return weeks
 
 
 def load_document(path: str | pathlib.Path) -> tuple[list[Player], Curves, dict]:

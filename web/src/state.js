@@ -16,7 +16,13 @@ import { decodeSpec, encodeSpec, normaliseSpec } from './league.js'
 
 const STORAGE_KEY = 'trade-grader.state'
 
-const PARAMS = { roster: 'r', give: 'g', get: 't', league: 'l' }
+// A season is 17 weeks, so nobody misses more than that. Clamped rather than
+// rejected: a hand-edited URL saying 99 means "out for the year", not an error.
+const MAX_WEEKS_OUT = 17
+
+const PARAMS = {
+  roster: 'r', give: 'g', get: 't', league: 'l', out: 'o', knew: 'k', record: 'w',
+}
 
 /** Split a comma-separated id list. Tolerant of spaces, empties and trailing commas. */
 export function parseIds(raw) {
@@ -26,6 +32,53 @@ export function parseIds(raw) {
 
 export function formatIds(ids) {
   return ids.join(',')
+}
+
+/**
+ * Weeks-out, as `id:weeks` pairs.
+ *
+ * Kept out of the league spec on purpose: how long somebody is hurt is a fact
+ * about this week, not a setting, and it has no business surviving in
+ * localStorage next to a scoring format. It does belong in a shared link, which
+ * is the whole reason a leaguemate can be sent "here is why I want him cheap".
+ */
+/**
+ * A win-loss record, as `wins-losses`.
+ *
+ * Absent means absent, not 0-0: a team that has played no games and a team whose
+ * record nobody entered are different states, and only the second one should
+ * leave the grade untouched.
+ */
+export function parseRecord(raw) {
+  if (!raw) return null
+  const [w, l] = String(raw).split('-').map(Number)
+  if (!Number.isFinite(w) || !Number.isFinite(l)) return null
+  const wins = Math.min(Math.max(Math.trunc(w), 0), MAX_WEEKS_OUT)
+  const losses = Math.min(Math.max(Math.trunc(l), 0), MAX_WEEKS_OUT)
+  return { wins, losses }
+}
+
+export function formatRecord(record) {
+  return record ? `${record.wins}-${record.losses}` : ''
+}
+
+export function parseOut(raw, known) {
+  const out = {}
+  if (!raw) return out
+  for (const chunk of String(raw).split(',')) {
+    const [id, weeks] = chunk.split(':')
+    const n = Math.trunc(Number(weeks))
+    if (!id || !known.has(id) || !Number.isFinite(n) || n <= 0) continue
+    out[id] = Math.min(n, MAX_WEEKS_OUT)
+  }
+  return out
+}
+
+export function formatOut(out) {
+  return Object.entries(out)
+    .filter(([, weeks]) => weeks > 0)
+    .map(([id, weeks]) => `${id}:${weeks}`)
+    .join(',')
 }
 
 /**
@@ -60,7 +113,10 @@ export function reconcileTrade({ roster, give, get }) {
   return { give: giving, get: get.filter((id) => !held.has(id) || giveSet.has(id)) }
 }
 
-export const EMPTY = { roster: [], give: [], get: [], league: normaliseSpec(null) }
+export const EMPTY = {
+  roster: [], give: [], get: [], league: normaliseSpec(null), out: {}, ranksKnew: false,
+  record: null,
+}
 
 function fromParams(params, known) {
   const roster = reconcileIds(parseIds(params.get(PARAMS.roster)), known)
@@ -69,7 +125,24 @@ function fromParams(params, known) {
     give: reconcileIds(parseIds(params.get(PARAMS.give)), known),
     get: reconcileIds(parseIds(params.get(PARAMS.get)), known),
   })
-  return { roster, give, get, league: decodeSpec(params.get(PARAMS.league)) ?? normaliseSpec(null) }
+  // Only players you actually hold can be hurt in a way that matters here, so a
+  // stale entry for someone dropped from the roster is discarded rather than
+  // carried around invisibly.
+  const held = new Set(roster)
+  const parsed = parseOut(params.get(PARAMS.out), known)
+  const out = Object.fromEntries(
+    Object.entries(parsed).filter(([id]) => held.has(id) || get.includes(id)),
+  )
+
+  return {
+    roster,
+    give,
+    get,
+    league: decodeSpec(params.get(PARAMS.league)) ?? normaliseSpec(null),
+    out,
+    ranksKnew: params.get(PARAMS.knew) === '1',
+    record: parseRecord(params.get(PARAMS.record)),
+  }
 }
 
 /**
@@ -94,12 +167,16 @@ export function loadState(known) {
   return EMPTY
 }
 
-function toParams({ roster, give, get, league }) {
+function toParams({ roster, give, get, league, out, ranksKnew, record }) {
   const params = new URLSearchParams()
   if (roster.length) params.set(PARAMS.roster, formatIds(roster))
   if (give.length) params.set(PARAMS.give, formatIds(give))
   if (get.length) params.set(PARAMS.get, formatIds(get))
   params.set(PARAMS.league, encodeSpec(league))
+  const outStr = formatOut(out ?? {})
+  if (outStr) params.set(PARAMS.out, outStr)
+  if (ranksKnew) params.set(PARAMS.knew, '1')
+  if (record) params.set(PARAMS.record, formatRecord(record))
   return params
 }
 
@@ -125,4 +202,4 @@ export function saveState(state) {
   }
 }
 
-export const _internals = { STORAGE_KEY, PARAMS, toParams, fromParams }
+export const _internals = { STORAGE_KEY, PARAMS, MAX_WEEKS_OUT, toParams, fromParams }
