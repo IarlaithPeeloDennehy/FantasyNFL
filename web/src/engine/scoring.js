@@ -42,6 +42,11 @@ export const DEFAULT_LEAGUE = {
   // kickers and defences, which this model excludes entirely -- so this is the
   // skill-position bench, not the number the platform shows you.
   benchSlots: 7,
+  // How the season is shaped. Needed to say which of the weeks left are still
+  // being played for and which are January.
+  playoffSpots: 6,
+  regularSeasonWeeks: 14,
+  playoffWeeks: 3,
   flexShare: { RB: 0.45, WR: 0.45, TE: 0.1 },
   superflexShare: { QB: 0.9, RB: 0.04, WR: 0.04, TE: 0.02 },
 }

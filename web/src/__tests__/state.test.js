@@ -9,7 +9,8 @@
 import { describe, expect, it } from 'vitest'
 
 import {
-  _internals, formatIds, formatOut, parseIds, parseOut, reconcileIds, reconcileTrade,
+  _internals, formatIds, formatOut, formatRecord, parseIds, parseOut, parseRecord,
+  reconcileIds, reconcileTrade,
 } from '../state.js'
 import { DEFAULT_SPEC, LIMITS, decodeSpec, describeSpec, encodeSpec, normaliseSpec, toLeague } from '../league.js'
 import { replacementRank } from '../engine/index.js'
@@ -89,7 +90,7 @@ describe('league spec', () => {
   })
 
   it('stays short enough to share', () => {
-    expect(encodeSpec(DEFAULT_SPEC)).toBe('12-half_ppr-1.2.3.1-1-0-7')
+    expect(encodeSpec(DEFAULT_SPEC)).toBe('12-half_ppr-1.2.3.1-1-0-7-6-14-3')
   })
 
   // Bench slots were added to the end of this string after links had already
@@ -109,7 +110,24 @@ describe('league spec', () => {
 
   it('rejects a field count it cannot place', () => {
     expect(decodeSpec('12-half_ppr-1.2.3.1')).toBeNull()
-    expect(decodeSpec('12-half_ppr-1.2.3.1-1-0-7-9')).toBeNull()
+    expect(decodeSpec('12-half_ppr-1.2.3.1-1-0-7-6-14-3-99')).toBeNull()
+  })
+
+  // Fields have been appended twice. Every length in between is a real format
+  // somebody's saved link still carries, and all of them have to survive.
+  it('reads every shape of link it has ever written', () => {
+    const six = decodeSpec('12-half_ppr-1.2.3.1-1-0-9')
+    expect(six.benchSlots).toBe(9)
+    expect(six.playoffSpots).toBe(DEFAULT_SPEC.playoffSpots)
+    expect(six.regularSeasonWeeks).toBe(DEFAULT_SPEC.regularSeasonWeeks)
+
+    const seven = decodeSpec('12-half_ppr-1.2.3.1-1-0-9-4')
+    expect(seven.playoffSpots).toBe(4)
+    expect(seven.regularSeasonWeeks).toBe(DEFAULT_SPEC.regularSeasonWeeks)
+
+    const full = decodeSpec(encodeSpec({ ...DEFAULT_SPEC, playoffSpots: 4, playoffWeeks: 2 }))
+    expect(full.playoffSpots).toBe(4)
+    expect(full.playoffWeeks).toBe(2)
   })
 
   it('falls back rather than throwing on a mangled spec', () => {
@@ -193,5 +211,30 @@ describe('weeks out survive a round trip', () => {
   it('round-trips through the URL', () => {
     const out = { a: 3, c: 17 }
     expect(parseOut(formatOut(out), known)).toEqual(out)
+  })
+})
+
+describe('a record round-trips, and absent means absent', () => {
+  it('parses wins-losses', () => {
+    expect(parseRecord('3-1')).toEqual({ wins: 3, losses: 1 })
+    expect(parseRecord('0-0')).toEqual({ wins: 0, losses: 0 })
+  })
+
+  // A team that has played no games and a team whose record nobody entered are
+  // different states. Only the second one leaves the grade untouched, so an
+  // absent record must not collapse into 0-0.
+  it('is null when nobody said', () => {
+    expect(parseRecord('')).toBeNull()
+    expect(parseRecord(null)).toBeNull()
+    expect(parseRecord('nonsense')).toBeNull()
+    expect(formatRecord(null)).toBe('')
+  })
+
+  it('clamps a hand-edited record rather than throwing', () => {
+    expect(parseRecord('99-99')).toEqual({ wins: 17, losses: 17 })
+  })
+
+  it('round-trips through the URL', () => {
+    expect(parseRecord(formatRecord({ wins: 2, losses: 5 }))).toEqual({ wins: 2, losses: 5 })
   })
 })

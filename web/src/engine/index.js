@@ -10,6 +10,7 @@ export * from './scoring.js'
 export * from './lineup.js'
 export * from './trade.js'
 export * from './market.js'
+export * from './odds.js'
 export * from './targets.js'
 
 import { GAMES_PER_SEASON, PRESETS } from './scoring.js'

@@ -138,7 +138,10 @@ PLURALS = {
 
 
 def _one_of(player, tier, plural: bool) -> str:
+    """A tier of one is not "one of 1" -- it is the whole tier."""
     where = f" {PLURALS.get(player.pos, player.pos)}" if plural else ""
+    if tier.size == 1:
+        return f"{player.name} is alone in his tier"
     return f"{player.name} is one of {tier.size}{where} in his tier"
 
 

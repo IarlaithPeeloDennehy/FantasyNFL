@@ -8,7 +8,7 @@
  */
 
 import { LIMITS, SCORING_OPTIONS, toLeague } from './league.js'
-import { replacementRank, rosterLimit } from './engine/index.js'
+import { cutline, replacementRank, rosterLimit } from './engine/index.js'
 
 const SLOTS = [
   ['QB', 'QB'],
@@ -80,6 +80,18 @@ export function SettingsPanel({ spec, setSpec, curves }) {
                  min={LIMITS.benchSlots[0]} max={LIMITS.benchSlots[1]}
                  onChange={(n) => set({ benchSlots: n })} />
 
+        <Stepper label="Playoff spots" value={spec.playoffSpots}
+                 min={LIMITS.playoffSpots[0]} max={LIMITS.playoffSpots[1]}
+                 onChange={(n) => set({ playoffSpots: n })} />
+
+        <Stepper label="Regular weeks" value={spec.regularSeasonWeeks}
+                 min={LIMITS.regularSeasonWeeks[0]} max={LIMITS.regularSeasonWeeks[1]}
+                 onChange={(n) => set({ regularSeasonWeeks: n })} />
+
+        <Stepper label="Playoff weeks" value={spec.playoffWeeks}
+                 min={LIMITS.playoffWeeks[0]} max={LIMITS.playoffWeeks[1]}
+                 onChange={(n) => set({ playoffWeeks: n })} />
+
         <label className="stepper wide">
           <span>Superflex</span>
           <select value={spec.superflexSlots}
@@ -99,6 +111,10 @@ export function SettingsPanel({ spec, setSpec, curves }) {
         so subtract any your league makes you spend on a kicker or a defence.
         That gives {rosterLimit(league)} roster spots in total, which is what a
         trade has to fit inside.
+        {' '}<strong>Playoff spots</strong> and the length of the season decide how
+        many wins it takes to qualify — {cutline(league.teams, league.playoffSpots,
+        league.regularSeasonWeeks)} in this one — which is what turns your record
+        into odds.
       </p>
 
       {overrun.length > 0 && (

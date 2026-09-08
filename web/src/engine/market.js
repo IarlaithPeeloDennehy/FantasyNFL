@@ -127,8 +127,10 @@ export const PLURALS = {
   TE: 'tight ends',
 }
 
+/** A tier of one is not "one of 1" -- it is the whole tier. */
 function oneOf(player, tier, plural) {
   const where = plural ? ` ${PLURALS[player.pos] ?? player.pos}` : ''
+  if (tier.size === 1) return `${player.name} is alone in his tier`
   return `${player.name} is one of ${tier.size}${where} in his tier`
 }
 

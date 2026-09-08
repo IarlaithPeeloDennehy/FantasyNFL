@@ -17,6 +17,7 @@ import sys
 from model.fromfile import load_document, weeks_covered
 from model.lineup import band, grade_trade
 from model.market import build_market
+from model.odds import outlook
 from model.value import PRESETS, League, replacement_points, vor
 from trades import ROSTER, TRADES
 
@@ -51,9 +52,20 @@ AVAILABILITY_CASES = (
     {"id": "ranks-already-knew", "out": {"Bijan Robinson": 5}, "ranks_knew": True},
 )
 
+# Records, against a horizon that actually contains playoff weeks: a week-4 file
+# covers 14 weeks, of which 11 are regular season and 3 are January. The whole
+# point is that those last three are worth very different amounts to a 0-3 team
+# and a 3-0 one.
+RECORD_WEEKS = 14
+RECORDS = ((0, 3), (1, 2), (2, 1), (3, 0), (2, 8), (10, 1))
+
 AVAILABILITY_TRADES = (
-    {"id": "robbery", "give": ["Michael Wilson"], "receive": ["Bijan Robinson"]},
-    {"id": "trap", "give": ["Ja'Marr Chase"], "receive": ["Chris Olave", "Rashee Rice"]},
+    {"id": "robbery", "give": ["Michael Wilson"], "receive": ["Bijan Robinson"],
+     # The player whose absence actually bears on this trade: for a trade you are
+     # buying into, the incoming star; for one you are selling, your own.
+     "star": "Bijan Robinson"},
+    {"id": "trap", "give": ["Ja'Marr Chase"], "receive": ["Chris Olave", "Rashee Rice"],
+     "star": "Ja'Marr Chase"},
 )
 
 LEAGUES = {
@@ -88,6 +100,9 @@ def league_payload(spec: dict) -> dict:
         "flexSlots": lg.flex_slots,
         "superflexSlots": lg.superflex_slots,
         "benchSlots": lg.bench_slots,
+        "playoffSpots": lg.playoff_spots,
+        "regularSeasonWeeks": lg.regular_season_weeks,
+        "playoffWeeks": lg.playoff_weeks,
         "flexShare": lg.flex_share,
         "superflexShare": lg.superflex_share,
     }
@@ -242,6 +257,57 @@ def main() -> int:
                 "nowSlots": [[sl, p.name] for sl, p in g.after_now.slots],
             })
 
+    # Record: the same trades, graded for teams in very different positions. The
+    # star is out until the playoff weeks, which is the case the whole feature
+    # exists for -- he is worthless to a team that will not be there and close to
+    # priceless to one that will.
+    record_market = build_market(curves, lg, RECORD_WEEKS)
+    records = []
+    for wins, losses in RECORDS:
+        for t in AVAILABILITY_TRADES:
+            star_out = {by_name[t["star"]].gsis_id: 11}
+            for label, avail in (("healthy", None), ("star-out-till-january", star_out)):
+                g = grade_trade(
+                    roster,
+                    [by_name[n] for n in t["give"]],
+                    [by_name[n] for n in t["receive"]],
+                    lg,
+                    repl,
+                    weeks_covered=RECORD_WEEKS,
+                    market=record_market,
+                    availability=avail,
+                    record=(wins, losses),
+                )
+                records.append({
+                    "id": f"{wins}-{losses}/{label}/{t['id']}",
+                    "wins": wins,
+                    "losses": losses,
+                    "weeksCovered": RECORD_WEEKS,
+                    "out": avail or {},
+                    "give": t["give"],
+                    "receive": t["receive"],
+                    "odds": g.outlook.odds,
+                    "regularWeight": g.outlook.regular_weight,
+                    "playoffWeight": g.outlook.playoff_weight,
+                    "playoffsAt": g.playoffs_at,
+                    "deltaPerWeek": g.delta_per_week,
+                    "situationalPerWeek": g.situational_per_week,
+                    "verdict": g.verdict,
+                    "situationalVerdict": g.situational_verdict,
+                    "explanation": g.explanation,
+                })
+
+    outlooks = [
+        {
+            "wins": w, "losses": l,
+            "odds": o.odds, "regularWeight": o.regular_weight,
+            "playoffWeight": o.playoff_weight, "cutline": o.cutline,
+            "gamesLeft": o.games_left, "leansWinNow": o.leans_win_now,
+        }
+        for w, l in RECORDS
+        for o in (outlook(w, l, lg.teams, lg.playoff_spots, lg.regular_season_weeks),)
+    ]
+
     bands = [
         {"delta": d, "verdict": band(d)}
         for d in (-9.0, -5.0, -4.9, -2.0, -1.9, -0.6, -0.5, -0.49, 0.0,
@@ -259,6 +325,9 @@ def main() -> int:
         "horizons": horizons,
         "availabilityWeeks": AVAILABILITY_WEEKS,
         "availability": availability,
+        "recordWeeks": RECORD_WEEKS,
+        "outlooks": outlooks,
+        "records": records,
     }
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -270,6 +339,7 @@ def main() -> int:
     print(f"  {sum(len(c['topVor']) for c in cases)} VOR values, {len(bands)} band boundaries")
     print(f"  {len(horizons)} graded cases across horizons {HORIZONS}")
     print(f"  {len(availability)} graded cases across {len(AVAILABILITY_CASES)} availability patterns")
+    print(f"  {len(records)} graded cases across {len(RECORDS)} records")
     return 0
 
 

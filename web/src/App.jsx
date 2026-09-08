@@ -22,6 +22,42 @@ import { LineupView, PlayerSearch } from './ui.jsx'
 
 const STALE_AFTER_DAYS = 14
 
+/**
+ * Wins and losses, or nothing at all.
+ *
+ * Empty means empty, not 0-0. A team that has played no games and a team whose
+ * record nobody entered want different answers, and only the second one should
+ * leave the grade exactly as it was.
+ */
+function RecordInput({ record, setRecord }) {
+  const set = (part, raw) => {
+    const n = Math.max(0, Math.trunc(Number(raw) || 0))
+    setRecord({ wins: 0, losses: 0, ...record, [part]: n })
+  }
+
+  return (
+    <div className="record">
+      <label>
+        <span className="sr-only">Wins</span>
+        <input type="number" inputMode="numeric" min={0} max={17} placeholder="W"
+               value={record ? record.wins : ''} title="Wins"
+               onChange={(e) => set('wins', e.target.value)} />
+      </label>
+      <span aria-hidden="true">&ndash;</span>
+      <label>
+        <span className="sr-only">Losses</span>
+        <input type="number" inputMode="numeric" min={0} max={17} placeholder="L"
+               value={record ? record.losses : ''} title="Losses"
+               onChange={(e) => set('losses', e.target.value)} />
+      </label>
+      {record && (
+        <button type="button" className="btn ghost" onClick={() => setRecord(null)}
+                title="Grade without a record">clear</button>
+      )}
+    </div>
+  )
+}
+
 export default function App() {
   const [doc, setDoc] = useState({ status: 'loading' })
   const [state, setState] = useState(EMPTY)
@@ -154,6 +190,7 @@ function Workbench({ doc, state, setState }) {
             {stale && <> · {age} days old — a refresh is overdue</>}
           </p>
         </div>
+        <RecordInput record={state.record} setRecord={(record) => patch({ record })} />
         <button type="button" className="btn" aria-expanded={showSettings}
                 onClick={() => setShowSettings((v) => !v)}>
           {describeSpec(spec)} ▾
@@ -244,7 +281,7 @@ function Workbench({ doc, state, setState }) {
           league={league} replacement={replacement}
           weeksCovered={meta.weeksCovered} market={market}
           availability={state.out} ranksKnew={state.ranksKnew}
-          setWeeksOut={setWeeksOut}
+          setWeeksOut={setWeeksOut} record={state.record}
           query={tradeQuery} setQuery={setTradeQuery}
           pos={tradePos} setPos={setTradePos}
         />

@@ -11,6 +11,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from .market import describe_scarcity, tier_at
+from .odds import Outlook, is_degenerate, outlook, playoff_start, weighted_weeks
 from .value import GAMES_PER_SEASON, League, Player, vor
 
 FLEX_ELIGIBLE = ("RB", "WR", "TE")
@@ -441,10 +442,30 @@ class Grade:
     # beside the headline, never folded into it: replaceability is an argument
     # about the trade, not a number to add to the points.
     tiers: dict = field(default_factory=dict)
+    # What the trade is worth to a team with this record, in the same points per
+    # week as `delta_per_week`. None when no record was given, which is the
+    # default: a record is not something to invent on the user's behalf.
+    situational_per_week: float | None = None
+    # The same bands, read off the situational number. Kept beside the headline
+    # verdict rather than replacing it: the user needs to see the premium they
+    # are paying, not have it quietly folded away.
+    situational_verdict: str | None = None
+    outlook: object | None = None
+    playoffs_at: int | None = None
     # Which tier each traded player sits in, and how deep that tier is. Reported
     # beside the headline, never folded into it: replaceability is an argument
     # about the trade, not a number to add to the points.
     tiers: dict = field(default_factory=dict)
+    # What the trade is worth to a team with this record, in the same points per
+    # week as `delta_per_week`. None when no record was given, which is the
+    # default: a record is not something to invent on the user's behalf.
+    situational_per_week: float | None = None
+    # The same bands, read off the situational number. Kept beside the headline
+    # verdict rather than replacing it: the user needs to see the premium they
+    # are paying, not have it quietly folded away.
+    situational_verdict: str | None = None
+    outlook: object | None = None
+    playoffs_at: int | None = None
 
 
 def grade_trade(
@@ -458,6 +479,7 @@ def grade_trade(
     market: dict | None = None,
     availability: dict | None = None,
     ranks_knew: bool = False,
+    record: tuple[int, int] | None = None,
 ) -> Grade:
     """Grade a trade against a roster.
 
@@ -478,6 +500,11 @@ def grade_trade(
     `availability` maps a player id to how many of the remaining weeks he misses,
     and `ranks_knew` says whether the rankings already priced those absences in.
     See `weeks_out` for why that second flag exists.
+
+    `record` is (wins, losses). With it the grade carries a second number beside
+    the first: the same delta, with the weeks weighted by what they are worth to
+    a team with that record. Without it nothing changes at all -- a record is not
+    something to invent on the user's behalf.
     """
     scoring = league.scoring
 
@@ -522,6 +549,33 @@ def grade_trade(
 
     delta_season = after_phased.points - before_phased.points
     delta_week = delta_season / weeks_covered
+
+    # The situational number. Not a different model and not an adjustment to the
+    # first one -- the same weighted mean of the same per-week deltas, counting
+    # the weeks by what they are worth to this team rather than counting them all
+    # the same. Fair value is what the trade is worth; this is what it is worth
+    # to you, and both are reported because collapsing them into one hides the
+    # premium being paid.
+    view = None
+    situational_week = None
+    playoffs_at = None
+    if record is not None:
+        wins, losses = record
+        view = outlook(wins, losses, league.teams, league.playoff_spots,
+                       league.regular_season_weeks)
+        playoffs_at = playoff_start(weeks_covered, wins, losses,
+                                    league.regular_season_weeks, league.playoff_weeks)
+        if not is_degenerate(view, weeks_covered, playoffs_at):
+            total_weight = 0.0
+            weighted = 0.0
+            for (phase, before_lu), (_, after_lu) in zip(
+                before_phased.phases, after_phased.phases
+            ):
+                w = weighted_weeks(phase.start, phase.end, playoffs_at, view)
+                rate = (after_lu.points - before_lu.points) / weeks_covered
+                weighted += rate * w
+                total_weight += w
+            situational_week = weighted / total_weight
     delta_depth = depth_value(after.bench, league, replacement) - depth_value(
         before.bench, league, replacement
     )
@@ -554,12 +608,17 @@ def grade_trade(
         phases=len(bounds),
         cuts=after_cut,
         tiers=_traded_tiers(give, receive, market),
+        situational_per_week=situational_week,
+        situational_verdict=None if situational_week is None else band(situational_week),
+        outlook=view,
+        playoffs_at=playoffs_at,
         spots_freed=max(spots_freed, 0),
         over_before=len(before_cut),
         explanation=explain(
             before, after, delta_week, delta_depth, scoring, replacement,
             league, give, receive, weeks_covered, after_cut, max(spots_freed, 0),
             len(before_cut), market, absent, availability, ranks_knew,
+            situational_week, view,
         ),
     )
 
@@ -582,6 +641,8 @@ def explain(
     absent: list[Player] | tuple = (),
     availability: dict | None = None,
     ranks_knew: bool = False,
+    situational_week: float | None = None,
+    view: Outlook | None = None,
 ) -> str:
     """Plain English. The number convinces nobody on its own."""
     b, a = before.by_slot(), after.by_slot()
@@ -606,7 +667,7 @@ def explain(
             " affected." + _consequences(
                 delta_depth, weeks_covered, cuts, after, league, spots_freed,
                 give, receive, over_before, market, scoring, absent, availability,
-                ranks_knew,
+                ranks_knew, situational_week, view, delta_week,
             )
         )
 
@@ -661,6 +722,7 @@ def explain(
     return head + body + _consequences(
         delta_depth, weeks_covered, cuts, after, league, spots_freed, give, receive,
         over_before, market, scoring, absent, availability, ranks_knew,
+        situational_week, view, delta_week,
     )
 
 
@@ -679,6 +741,9 @@ def _consequences(
     absent: list[Player] | tuple = (),
     availability: dict | None = None,
     ranks_knew: bool = False,
+    situational_week: float | None = None,
+    view: Outlook | None = None,
+    delta_week: float = 0.0,
 ) -> str:
     """Everything true about the trade that is not the slot it moved.
 
@@ -698,6 +763,22 @@ def _consequences(
             " Quarterbacks are worth less here than their rankings suggest: only one"
             " starts per team, so the next one on waivers is much closer to yours"
             " than the gap in rank implies."
+        )
+
+    # What the record makes of it. Said only when it disagrees with the headline
+    # by enough to matter -- a situational number that echoes the fair one is not
+    # a second opinion, it is repetition.
+    if (
+        situational_week is not None
+        and view is not None
+        and abs(situational_week - delta_week) >= EVEN_THRESHOLD
+    ):
+        direction = "better" if situational_week > delta_week else "worse"
+        tail += (
+            f" Your record puts you at {view.odds:.0%} to make the playoffs, so"
+            f" {'January is worth little to you' if view.leans_win_now else 'January is what you are playing for'}:"
+            f" to this team the trade is {direction} than that"
+            f" — {situational_week:+.1f} a week rather than {delta_week:+.1f}."
         )
 
     # Who is not playing. Said first, because it changes what every number after

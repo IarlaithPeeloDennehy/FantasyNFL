@@ -11,6 +11,7 @@ import {
   replacementForSlot, rosterLimit, slotStem, uncoveredPositions, weeksOut,
 } from './lineup.js'
 import { describeScarcity, tradedTiers } from './market.js'
+import { isDegenerate, outlook, playoffStart, weightedWeeks } from './odds.js'
 
 export const EVEN_THRESHOLD = 0.5
 
@@ -67,12 +68,17 @@ export function band(deltaPerWeek) {
  * `availability` maps a player id to how many of the remaining weeks he misses,
  * and `ranksKnew` says whether the rankings already priced those absences in. See
  * `weeksOut` for why that second flag exists.
+ *
+ * `record` is `{ wins, losses }`. With it the grade carries a second number
+ * beside the first: the same delta, with the weeks weighted by what they are
+ * worth to a team with that record. Without it nothing changes at all -- a record
+ * is not something to invent on the user's behalf.
  */
 export function gradeTrade(
   roster, give, receive, league, replacement,
   {
     weeksCovered = GAMES_PER_SEASON, market = null,
-    availability = null, ranksKnew = false,
+    availability = null, ranksKnew = false, record = null,
   } = {},
 ) {
   const { scoring } = league
@@ -122,6 +128,35 @@ export function gradeTrade(
 
   const deltaSeason = afterPhased.points - beforePhased.points
   const deltaPerWeek = deltaSeason / weeksCovered
+
+  // The situational number. Not a different model and not an adjustment to the
+  // first one -- the same weighted mean of the same per-week deltas, counting the
+  // weeks by what they are worth to this team rather than counting them all the
+  // same. Fair value is what the trade is worth; this is what it is worth to you,
+  // and both are reported because collapsing them into one hides the premium
+  // being paid.
+  let view = null
+  let situationalPerWeek = null
+  let playoffsAt = null
+  if (record) {
+    const { wins, losses } = record
+    view = outlook(
+      wins, losses, league.teams, league.playoffSpots, league.regularSeasonWeeks,
+    )
+    playoffsAt = playoffStart(
+      weeksCovered, wins, losses, league.regularSeasonWeeks, league.playoffWeeks,
+    )
+    if (!isDegenerate(view, weeksCovered, playoffsAt)) {
+      let weighted = 0
+      let totalWeight = 0
+      beforePhased.phases.forEach(({ phase, lineup }, i) => {
+        const w = weightedWeeks(phase.start, phase.end, playoffsAt, view)
+        weighted += ((afterPhased.at(i).points - lineup.points) / weeksCovered) * w
+        totalWeight += w
+      })
+      situationalPerWeek = weighted / totalWeight
+    }
+  }
   const deltaDepth =
     depthValue(after.bench, league, replacement) -
     depthValue(before.bench, league, replacement)
@@ -162,12 +197,20 @@ export function gradeTrade(
     // beside the headline, never folded into it: replaceability is an argument
     // about the trade, not a number to add to the points.
     tiers: tradedTiers(give, receive, market),
+    // What the trade is worth to a team with this record, in the same points per
+    // week as `deltaPerWeek`, plus the same bands read off it. Kept beside the
+    // headline verdict rather than replacing it: the user needs to see the
+    // premium they are paying, not have it quietly folded away.
+    situationalPerWeek,
+    situationalVerdict: situationalPerWeek === null ? null : band(situationalPerWeek),
+    outlook: view,
+    playoffsAt,
     spotsFreed,
     overBefore: beforeCap.cut.length,
     explanation: explain(
       before, after, deltaPerWeek, deltaDepth, scoring, replacement,
       league, give, receive, weeksCovered, afterCap.cut, spotsFreed, beforeCap.cut.length,
-      market, absent, availability, ranksKnew,
+      market, absent, availability, ranksKnew, situationalPerWeek, view,
     ),
   }
 }
@@ -177,6 +220,7 @@ export function explain(
   league = null, give = [], receive = [], weeksCovered = GAMES_PER_SEASON,
   cuts = [], spotsFreed = 0, overBefore = 0, market = null,
   absent = [], availability = null, ranksKnew = false,
+  situationalPerWeek = null, view = null,
 ) {
   const b = bySlot(before)
   const a = bySlot(after)
@@ -208,7 +252,8 @@ export function explain(
       'Your starting lineup does not change. Nothing you would start is affected.' +
       consequences(
         deltaDepth, weeksCovered, cuts, after, league, spotsFreed, give, receive, overBefore,
-        market, scoring, absent, availability, ranksKnew,
+        market, scoring, absent, availability, ranksKnew, situationalPerWeek, view,
+        deltaPerWeek,
       )
     )
   }
@@ -258,7 +303,8 @@ export function explain(
 
   return head + body + consequences(
     deltaDepth, weeksCovered, cuts, after, league, spotsFreed, give, receive, overBefore,
-    market, scoring, absent, availability, ranksKnew,
+    market, scoring, absent, availability, ranksKnew, situationalPerWeek, view,
+    deltaPerWeek,
   )
 }
 
@@ -273,6 +319,7 @@ function consequences(
   deltaDepth, weeksCovered, cuts, after, league, spotsFreed, give = [], receive = [],
   overBefore = 0, market = null, scoring = null,
   absent = [], availability = null, ranksKnew = false,
+  situationalPerWeek = null, view = null, deltaPerWeek = 0,
 ) {
   let tail = ''
 
@@ -286,6 +333,24 @@ function consequences(
       ' Quarterbacks are worth less here than their rankings suggest: only one' +
       ' starts per team, so the next one on waivers is much closer to yours' +
       ' than the gap in rank implies.'
+  }
+
+  // What the record makes of it. Said only when it disagrees with the headline by
+  // enough to matter -- a situational number that echoes the fair one is not a
+  // second opinion, it is repetition.
+  if (
+    situationalPerWeek !== null && view !== null &&
+    Math.abs(situationalPerWeek - deltaPerWeek) >= EVEN_THRESHOLD
+  ) {
+    const direction = situationalPerWeek > deltaPerWeek ? 'better' : 'worse'
+    const stake = view.leansWinNow
+      ? 'January is worth little to you'
+      : 'January is what you are playing for'
+    tail +=
+      ` Your record puts you at ${Math.round(view.odds * 100)}% to make the playoffs,` +
+      ` so ${stake}: to this team the trade is ${direction} than that` +
+      ` — ${situationalPerWeek >= 0 ? '+' : ''}${situationalPerWeek.toFixed(1)} a week` +
+      ` rather than ${deltaPerWeek >= 0 ? '+' : ''}${deltaPerWeek.toFixed(1)}.`
   }
 
   // Who is not playing. Said first, because it changes what every number after it

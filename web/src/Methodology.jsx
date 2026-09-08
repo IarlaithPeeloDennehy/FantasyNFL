@@ -74,6 +74,35 @@ export function Methodology({ meta }) {
         flattens exactly the gap that makes elite players worth trading for.
       </p>
 
+      <h3 className="sub">Two numbers, and why they are not merged</h3>
+      <p>
+        Enter a record and the verdict gains a second number beside it. The first
+        is what the trade is worth, full stop. The second is what it is worth to a
+        team in your position — and the gap between them is the premium you would
+        be paying, which is the only part you actually need in order to decide.
+        Collapsing them into one adjusted number would be easier and much worse:
+        it would launder a bad trade instead of pricing one.
+      </p>
+      <p>
+        Nothing about a player is scaled. What changes is <em>which weeks
+        count</em>. A regular-season week is worth however much that game still
+        decides your season — the gap between winning it and losing it — and a
+        playoff week is worth however likely you are to be playing at all. A team
+        at 3-0 is probably going to January, so January is what it is buying; a
+        team at 0-3 probably is not, so a player who only helps then is worth
+        little to it. That is the whole mechanism, and it is why the same trade
+        can be a clear win for one team and a loss for another.
+      </p>
+      <p>
+        <strong>What this does not know.</strong> Every remaining game is treated
+        as a coin flip. Nobody's strength is modelled beyond the record itself,
+        the schedule is ignored, and the odds are approximate by construction —
+        but the difference between 18% and 22% does not change a recommendation,
+        and the shape is what matters here. A team that is mathematically out gets
+        no second number at all, because at that point the weighting has no
+        opinion left to offer.
+      </p>
+
       <h3 className="sub">Injuries are your input, not ours</h3>
       <p>
         Nothing here knows who is hurt. If you mark a player as out for a number

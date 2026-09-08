@@ -27,7 +27,7 @@ const TONE = {
 export function TradePanel({
   roster, byId, give, get, setGive, setGet, league, replacement, players,
   query, setQuery, pos, setPos, weeksCovered, market, availability, ranksKnew,
-  setWeeksOut,
+  setWeeksOut, record,
 }) {
   const giving = give.map((id) => byId.get(id)).filter(Boolean)
   const getting = get.map((id) => byId.get(id)).filter(Boolean)
@@ -35,7 +35,7 @@ export function TradePanel({
 
   const grade = active
     ? gradeTrade(roster, giving, getting, league, replacement,
-                 { weeksCovered, market, availability, ranksKnew })
+                 { weeksCovered, market, availability, ranksKnew, record })
     : null
 
   // Who is still sidelined on the roster you would end up with. Named rather
@@ -115,6 +115,24 @@ export function TradePanel({
               <span className="unit"> pts / week</span>
             </span>
           </div>
+
+          {/* Two numbers, never merged. One adjusted number would be easier and
+              much worse: it hides the premium being paid, which is the only
+              thing the user actually needs in order to decide. */}
+          {grade.situationalPerWeek !== null && (
+            <div className="situational">
+              <span className="label">
+                At {record.wins}&ndash;{record.losses}
+                {grade.outlook && <> · {Math.round(grade.outlook.odds * 100)}% to make the playoffs</>}
+              </span>
+              <span className="band">{grade.situationalVerdict}</span>
+              <span className="delta">
+                {grade.situationalPerWeek >= 0 ? '+' : '−'}
+                {Math.abs(grade.situationalPerWeek).toFixed(1)}
+                <span className="unit"> pts / week</span>
+              </span>
+            </div>
+          )}
 
           {/* The product. Everything else on this panel supports this sentence. */}
           <p className="explanation">{grade.explanation}</p>

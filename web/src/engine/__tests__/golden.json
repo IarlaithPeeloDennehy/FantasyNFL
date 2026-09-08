@@ -114,6 +114,9 @@
     "flexSlots": 1,
     "superflexSlots": 0,
     "benchSlots": 7,
+    "playoffSpots": 6,
+    "regularSeasonWeeks": 14,
+    "playoffWeeks": 3,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -1728,6 +1731,9 @@
     "flexSlots": 1,
     "superflexSlots": 0,
     "benchSlots": 7,
+    "playoffSpots": 6,
+    "regularSeasonWeeks": 14,
+    "playoffWeeks": 3,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -2061,7 +2067,7 @@
      "deltaDepth": -6.518896000000002,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 8.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are getting the scarcer player: Nico Collins is one of 8 receivers in his tier, Jahmyr Gibbs is one of 1 running backs in his tier. It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
+     "explanation": "You gain 8.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are getting the scarcer player: Nico Collins is one of 8 receivers in his tier, Jahmyr Gibbs is alone in his tier. It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
      "beforePoints": 2101.0078000000003,
      "afterPoints": 2240.4998000000005,
      "beforeSlots": [
@@ -2176,7 +2182,7 @@
      "deltaDepth": 4.114407999999996,
      "verdict": "Lopsided loss",
      "direction": "loss",
-     "explanation": "You lose 6.3 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is one of 1 receivers in his tier, Chris Olave is one of 8 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
+     "explanation": "You lose 6.3 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 8 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
      "beforePoints": 2101.0078000000003,
      "afterPoints": 1993.1456000000003,
      "beforeSlots": [
@@ -3354,6 +3360,9 @@
     "flexSlots": 1,
     "superflexSlots": 0,
     "benchSlots": 7,
+    "playoffSpots": 6,
+    "regularSeasonWeeks": 14,
+    "playoffWeeks": 3,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -4952,6 +4961,9 @@
     "flexSlots": 1,
     "superflexSlots": 0,
     "benchSlots": 7,
+    "playoffSpots": 6,
+    "regularSeasonWeeks": 14,
+    "playoffWeeks": 3,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -6566,6 +6578,9 @@
     "flexSlots": 1,
     "superflexSlots": 0,
     "benchSlots": 7,
+    "playoffSpots": 6,
+    "regularSeasonWeeks": 14,
+    "playoffWeeks": 3,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -8180,6 +8195,9 @@
     "flexSlots": 1,
     "superflexSlots": 1,
     "benchSlots": 7,
+    "playoffSpots": 6,
+    "regularSeasonWeeks": 14,
+    "playoffWeeks": 3,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -9886,6 +9904,9 @@
     "flexSlots": 2,
     "superflexSlots": 0,
     "benchSlots": 7,
+    "playoffSpots": 6,
+    "regularSeasonWeeks": 14,
+    "playoffWeeks": 3,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -11592,6 +11613,9 @@
     "flexSlots": 1,
     "superflexSlots": 0,
     "benchSlots": 7,
+    "playoffSpots": 6,
+    "regularSeasonWeeks": 14,
+    "playoffWeeks": 3,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -13110,6 +13134,9 @@
     "flexSlots": 1,
     "superflexSlots": 0,
     "benchSlots": 2,
+    "playoffSpots": 6,
+    "regularSeasonWeeks": 14,
+    "playoffWeeks": 3,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -14787,6 +14814,9 @@
     "flexSlots": 1,
     "superflexSlots": 0,
     "benchSlots": 0,
+    "playoffSpots": 6,
+    "regularSeasonWeeks": 14,
+    "playoffWeeks": 3,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -16487,6 +16517,9 @@
   "flexSlots": 1,
   "superflexSlots": 0,
   "benchSlots": 7,
+  "playoffSpots": 6,
+  "regularSeasonWeeks": 14,
+  "playoffWeeks": 3,
   "flexShare": {
    "RB": 0.45,
    "WR": 0.45,
@@ -16742,7 +16775,7 @@
    "deltaPerWeek": 10.496928571428564,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 10.5 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are getting the scarcer player: Nico Collins is one of 8 receivers in his tier, Jahmyr Gibbs is one of 1 running backs in his tier. It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
+   "explanation": "You gain 10.5 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are getting the scarcer player: Nico Collins is one of 8 receivers in his tier, Jahmyr Gibbs is alone in his tier. It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
   },
   {
    "id": "consolidation-trap",
@@ -16763,7 +16796,7 @@
    "deltaPerWeek": -6.516585714285709,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 6.5 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is one of 1 receivers in his tier, Chris Olave is one of 8 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 6.5 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 8 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-robbery",
@@ -16967,7 +17000,7 @@
    "deltaPerWeek": 18.369624999999985,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 18.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are getting the scarcer player: Nico Collins is one of 6 receivers in his tier, Jahmyr Gibbs is one of 1 running backs in his tier. It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
+   "explanation": "You gain 18.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are getting the scarcer player: Nico Collins is one of 6 receivers in his tier, Jahmyr Gibbs is alone in his tier. It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
   },
   {
    "id": "consolidation-trap",
@@ -16988,7 +17021,7 @@
    "deltaPerWeek": -11.40402499999999,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is one of 1 receivers in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-robbery",
@@ -17080,7 +17113,7 @@
    "deltaPerWeek": 16.42935,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 16.4 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You are getting the scarcer player: Josh Downs is one of 7 receivers in his tier, Puka Nacua is one of 1 in his tier. It also frees two roster spots. You also pick up useful bench depth for byes and injuries."
+   "explanation": "You gain 16.4 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You are getting the scarcer player: Josh Downs is one of 7 receivers in his tier, Puka Nacua is alone in his tier. It also frees two roster spots. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "bench-shuffle",
@@ -17213,7 +17246,7 @@
    "deltaPerWeek": -30.410733333333308,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 30.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is one of 1 receivers in his tier, Chris Olave is one of 3 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 30.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 3 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-robbery",
@@ -17362,7 +17395,7 @@
    "deltaPerWeek": -20.33173333333328,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 20.3 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You are giving up the scarcer player: Trey McBride is one of 1 tight ends in his tier, Tee Higgins is one of 4 receivers in his tier. You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 20.3 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You are giving up the scarcer player: Trey McBride is alone in his tier, Tee Higgins is one of 4 receivers in his tier. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "qb-for-wr-1qb",
@@ -17735,7 +17768,7 @@
    "deltaPerWeek": -11.40402499999999,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is one of 1 receivers in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
+   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
    "headlineSlots": [
     [
      "QB",
@@ -17916,7 +17949,7 @@
    "deltaPerWeek": -11.40402499999999,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is one of 1 receivers in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
+   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
    "headlineSlots": [
     [
      "QB",
@@ -18097,7 +18130,7 @@
    "deltaPerWeek": -11.40402499999999,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is one of 1 receivers in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
+   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
    "headlineSlots": [
     [
      "QB",
@@ -18278,7 +18311,7 @@
    "deltaPerWeek": 1.5396312499999851,
    "verdict": "Slight edge",
    "direction": "gain",
-   "explanation": "You gain 1.5 points a week. The move that matters is at WR3: Zay Flowers (WR15-level) becomes Rashee Rice (WR12-level). Ja'Marr Chase misses 5 of the next 8 weeks, so the projection here is only the weeks he actually plays. You are giving up the scarcer player: Ja'Marr Chase is one of 1 receivers in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
+   "explanation": "You gain 1.5 points a week. The move that matters is at WR3: Zay Flowers (WR15-level) becomes Rashee Rice (WR12-level). Ja'Marr Chase misses 5 of the next 8 weeks, so the projection here is only the weeks he actually plays. You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
    "headlineSlots": [
     [
      "QB",
@@ -18461,7 +18494,7 @@
    "deltaPerWeek": -11.404025000000019,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is one of 1 receivers in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
+   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
    "headlineSlots": [
     [
      "QB",
@@ -18642,7 +18675,7 @@
    "deltaPerWeek": -11.40402499999999,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is one of 1 receivers in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
+   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 6 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
    "headlineSlots": [
     [
      "QB",
@@ -18711,6 +18744,635 @@
      "Zay Flowers"
     ]
    ]
+  }
+ ],
+ "recordWeeks": 14,
+ "outlooks": [
+  {
+   "wins": 0,
+   "losses": 3,
+   "odds": 0.11328125,
+   "regularWeight": 0.1171875,
+   "playoffWeight": 0.11328125,
+   "cutline": 8,
+   "gamesLeft": 11,
+   "leansWinNow": true
+  },
+  {
+   "wins": 1,
+   "losses": 2,
+   "odds": 0.2744140625,
+   "regularWeight": 0.205078125,
+   "playoffWeight": 0.2744140625,
+   "cutline": 8,
+   "gamesLeft": 11,
+   "leansWinNow": false
+  },
+  {
+   "wins": 2,
+   "losses": 1,
+   "odds": 0.5,
+   "regularWeight": 0.24609375,
+   "playoffWeight": 0.5,
+   "cutline": 8,
+   "gamesLeft": 11,
+   "leansWinNow": false
+  },
+  {
+   "wins": 3,
+   "losses": 0,
+   "odds": 0.7255859375,
+   "regularWeight": 0.205078125,
+   "playoffWeight": 0.7255859375,
+   "cutline": 8,
+   "gamesLeft": 11,
+   "leansWinNow": false
+  },
+  {
+   "wins": 2,
+   "losses": 8,
+   "odds": 0.0,
+   "regularWeight": 0.0,
+   "playoffWeight": 0.0,
+   "cutline": 8,
+   "gamesLeft": 4,
+   "leansWinNow": false
+  },
+  {
+   "wins": 10,
+   "losses": 1,
+   "odds": 1.0,
+   "regularWeight": 0.0,
+   "playoffWeight": 1.0,
+   "cutline": 8,
+   "gamesLeft": 3,
+   "leansWinNow": false
+  }
+ ],
+ "records": [
+  {
+   "id": "0-3/healthy/robbery",
+   "wins": 0,
+   "losses": 3,
+   "weeksCovered": 14,
+   "out": {},
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "odds": 0.11328125,
+   "regularWeight": 0.1171875,
+   "playoffWeight": 0.11328125,
+   "playoffsAt": 11,
+   "deltaPerWeek": 11.212785714285717,
+   "situationalPerWeek": 11.212785714285717,
+   "verdict": "Lopsided win",
+   "situationalVerdict": "Lopsided win",
+   "explanation": "You gain 11.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You are getting the scarcer player: Michael Wilson is one of 12 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "0-3/star-out-till-january/robbery",
+   "wins": 0,
+   "losses": 3,
+   "weeksCovered": 14,
+   "out": {
+    "00-0038542": 11
+   },
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "odds": 0.11328125,
+   "regularWeight": 0.1171875,
+   "playoffWeight": 0.11328125,
+   "playoffsAt": 11,
+   "deltaPerWeek": 2.4027397959183645,
+   "situationalPerWeek": 2.3393581706063724,
+   "verdict": "Clear win",
+   "situationalVerdict": "Clear win",
+   "explanation": "You gain 2.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). Bijan Robinson misses 11 of the next 14 weeks, so the projection here is only the weeks he actually plays. You are getting the scarcer player: Michael Wilson is one of 12 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "0-3/healthy/trap",
+   "wins": 0,
+   "losses": 3,
+   "weeksCovered": 14,
+   "out": {},
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "odds": 0.11328125,
+   "regularWeight": 0.1171875,
+   "playoffWeight": 0.11328125,
+   "playoffsAt": 11,
+   "deltaPerWeek": -6.516585714285709,
+   "situationalPerWeek": -6.51658571428571,
+   "verdict": "Lopsided loss",
+   "situationalVerdict": "Lopsided loss",
+   "explanation": "You lose 6.5 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 8 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "0-3/star-out-till-january/trap",
+   "wins": 0,
+   "losses": 3,
+   "weeksCovered": 14,
+   "out": {
+    "00-0036900": 11
+   },
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "odds": 0.11328125,
+   "regularWeight": 0.1171875,
+   "playoffWeight": 0.11328125,
+   "playoffsAt": 11,
+   "deltaPerWeek": 2.781714285714283,
+   "situationalPerWeek": 2.848608530318603,
+   "verdict": "Clear win",
+   "situationalVerdict": "Clear win",
+   "explanation": "You gain 2.8 points a week. The move that matters is at WR3: Zay Flowers (WR15-level) becomes Rashee Rice (WR12-level). Ja'Marr Chase misses 11 of the next 14 weeks, so the projection here is only the weeks he actually plays. You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 8 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "1-2/healthy/robbery",
+   "wins": 1,
+   "losses": 2,
+   "weeksCovered": 14,
+   "out": {},
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "odds": 0.2744140625,
+   "regularWeight": 0.205078125,
+   "playoffWeight": 0.2744140625,
+   "playoffsAt": 11,
+   "deltaPerWeek": 11.212785714285717,
+   "situationalPerWeek": 11.212785714285717,
+   "verdict": "Lopsided win",
+   "situationalVerdict": "Lopsided win",
+   "explanation": "You gain 11.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You are getting the scarcer player: Michael Wilson is one of 12 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "1-2/star-out-till-january/robbery",
+   "wins": 1,
+   "losses": 2,
+   "weeksCovered": 14,
+   "out": {
+    "00-0038542": 11
+   },
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "odds": 0.2744140625,
+   "regularWeight": 0.205078125,
+   "playoffWeight": 0.2744140625,
+   "playoffsAt": 11,
+   "deltaPerWeek": 2.4027397959183645,
+   "situationalPerWeek": 2.997899891260025,
+   "verdict": "Clear win",
+   "situationalVerdict": "Clear win",
+   "explanation": "You gain 2.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). Your record puts you at 27% to make the playoffs, so January is what you are playing for: to this team the trade is better than that \u2014 +3.0 a week rather than +2.4. Bijan Robinson misses 11 of the next 14 weeks, so the projection here is only the weeks he actually plays. You are getting the scarcer player: Michael Wilson is one of 12 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "1-2/healthy/trap",
+   "wins": 1,
+   "losses": 2,
+   "weeksCovered": 14,
+   "out": {},
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "odds": 0.2744140625,
+   "regularWeight": 0.205078125,
+   "playoffWeight": 0.2744140625,
+   "playoffsAt": 11,
+   "deltaPerWeek": -6.516585714285709,
+   "situationalPerWeek": -6.516585714285709,
+   "verdict": "Lopsided loss",
+   "situationalVerdict": "Lopsided loss",
+   "explanation": "You lose 6.5 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 8 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "1-2/star-out-till-january/trap",
+   "wins": 1,
+   "losses": 2,
+   "weeksCovered": 14,
+   "out": {
+    "00-0036900": 11
+   },
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "odds": 0.2744140625,
+   "regularWeight": 0.205078125,
+   "playoffWeight": 0.2744140625,
+   "playoffsAt": 11,
+   "deltaPerWeek": 2.781714285714283,
+   "situationalPerWeek": 2.1535703275791773,
+   "verdict": "Clear win",
+   "situationalVerdict": "Clear win",
+   "explanation": "You gain 2.8 points a week. The move that matters is at WR3: Zay Flowers (WR15-level) becomes Rashee Rice (WR12-level). Your record puts you at 27% to make the playoffs, so January is what you are playing for: to this team the trade is worse than that \u2014 +2.2 a week rather than +2.8. Ja'Marr Chase misses 11 of the next 14 weeks, so the projection here is only the weeks he actually plays. You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 8 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "2-1/healthy/robbery",
+   "wins": 2,
+   "losses": 1,
+   "weeksCovered": 14,
+   "out": {},
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "odds": 0.5,
+   "regularWeight": 0.24609375,
+   "playoffWeight": 0.5,
+   "playoffsAt": 11,
+   "deltaPerWeek": 11.212785714285717,
+   "situationalPerWeek": 11.212785714285717,
+   "verdict": "Lopsided win",
+   "situationalVerdict": "Lopsided win",
+   "explanation": "You gain 11.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You are getting the scarcer player: Michael Wilson is one of 12 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "2-1/star-out-till-january/robbery",
+   "wins": 2,
+   "losses": 1,
+   "weeksCovered": 14,
+   "out": {
+    "00-0038542": 11
+   },
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "odds": 0.5,
+   "regularWeight": 0.24609375,
+   "playoffWeight": 0.5,
+   "playoffsAt": 11,
+   "deltaPerWeek": 2.4027397959183645,
+   "situationalPerWeek": 3.997873458018306,
+   "verdict": "Clear win",
+   "situationalVerdict": "Clear win",
+   "explanation": "You gain 2.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). Your record puts you at 50% to make the playoffs, so January is what you are playing for: to this team the trade is better than that \u2014 +4.0 a week rather than +2.4. Bijan Robinson misses 11 of the next 14 weeks, so the projection here is only the weeks he actually plays. You are getting the scarcer player: Michael Wilson is one of 12 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "2-1/healthy/trap",
+   "wins": 2,
+   "losses": 1,
+   "weeksCovered": 14,
+   "out": {},
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "odds": 0.5,
+   "regularWeight": 0.24609375,
+   "playoffWeight": 0.5,
+   "playoffsAt": 11,
+   "deltaPerWeek": -6.516585714285709,
+   "situationalPerWeek": -6.516585714285709,
+   "verdict": "Lopsided loss",
+   "situationalVerdict": "Lopsided loss",
+   "explanation": "You lose 6.5 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 8 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "2-1/star-out-till-january/trap",
+   "wins": 2,
+   "losses": 1,
+   "weeksCovered": 14,
+   "out": {
+    "00-0036900": 11
+   },
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "odds": 0.5,
+   "regularWeight": 0.24609375,
+   "playoffWeight": 0.5,
+   "playoffsAt": 11,
+   "deltaPerWeek": 2.781714285714283,
+   "situationalPerWeek": 1.098178074015123,
+   "verdict": "Clear win",
+   "situationalVerdict": "Slight edge",
+   "explanation": "You gain 2.8 points a week. The move that matters is at WR3: Zay Flowers (WR15-level) becomes Rashee Rice (WR12-level). Your record puts you at 50% to make the playoffs, so January is what you are playing for: to this team the trade is worse than that \u2014 +1.1 a week rather than +2.8. Ja'Marr Chase misses 11 of the next 14 weeks, so the projection here is only the weeks he actually plays. You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 8 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "3-0/healthy/robbery",
+   "wins": 3,
+   "losses": 0,
+   "weeksCovered": 14,
+   "out": {},
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "odds": 0.7255859375,
+   "regularWeight": 0.205078125,
+   "playoffWeight": 0.7255859375,
+   "playoffsAt": 11,
+   "deltaPerWeek": 11.212785714285717,
+   "situationalPerWeek": 11.212785714285717,
+   "verdict": "Lopsided win",
+   "situationalVerdict": "Lopsided win",
+   "explanation": "You gain 11.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You are getting the scarcer player: Michael Wilson is one of 12 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "3-0/star-out-till-january/robbery",
+   "wins": 3,
+   "losses": 0,
+   "weeksCovered": 14,
+   "out": {
+    "00-0038542": 11
+   },
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "odds": 0.7255859375,
+   "regularWeight": 0.205078125,
+   "playoffWeight": 0.7255859375,
+   "playoffsAt": 11,
+   "deltaPerWeek": 2.4027397959183645,
+   "situationalPerWeek": 5.506344868284394,
+   "verdict": "Clear win",
+   "situationalVerdict": "Lopsided win",
+   "explanation": "You gain 2.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). Your record puts you at 73% to make the playoffs, so January is what you are playing for: to this team the trade is better than that \u2014 +5.5 a week rather than +2.4. Bijan Robinson misses 11 of the next 14 weeks, so the projection here is only the weeks he actually plays. You are getting the scarcer player: Michael Wilson is one of 12 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "3-0/healthy/trap",
+   "wins": 3,
+   "losses": 0,
+   "weeksCovered": 14,
+   "out": {},
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "odds": 0.7255859375,
+   "regularWeight": 0.205078125,
+   "playoffWeight": 0.7255859375,
+   "playoffsAt": 11,
+   "deltaPerWeek": -6.516585714285709,
+   "situationalPerWeek": -6.516585714285709,
+   "verdict": "Lopsided loss",
+   "situationalVerdict": "Lopsided loss",
+   "explanation": "You lose 6.5 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 8 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "3-0/star-out-till-january/trap",
+   "wins": 3,
+   "losses": 0,
+   "weeksCovered": 14,
+   "out": {
+    "00-0036900": 11
+   },
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "odds": 0.7255859375,
+   "regularWeight": 0.205078125,
+   "playoffWeight": 0.7255859375,
+   "playoffsAt": 11,
+   "deltaPerWeek": 2.781714285714283,
+   "situationalPerWeek": -0.4938930507034252,
+   "verdict": "Clear win",
+   "situationalVerdict": "Essentially even",
+   "explanation": "You gain 2.8 points a week. The move that matters is at WR3: Zay Flowers (WR15-level) becomes Rashee Rice (WR12-level). Your record puts you at 73% to make the playoffs, so January is what you are playing for: to this team the trade is worse than that \u2014 -0.5 a week rather than +2.8. Ja'Marr Chase misses 11 of the next 14 weeks, so the projection here is only the weeks he actually plays. You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 8 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "2-8/healthy/robbery",
+   "wins": 2,
+   "losses": 8,
+   "weeksCovered": 14,
+   "out": {},
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "odds": 0.0,
+   "regularWeight": 0.0,
+   "playoffWeight": 0.0,
+   "playoffsAt": 11,
+   "deltaPerWeek": 11.212785714285717,
+   "situationalPerWeek": null,
+   "verdict": "Lopsided win",
+   "situationalVerdict": null,
+   "explanation": "You gain 11.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You are getting the scarcer player: Michael Wilson is one of 12 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "2-8/star-out-till-january/robbery",
+   "wins": 2,
+   "losses": 8,
+   "weeksCovered": 14,
+   "out": {
+    "00-0038542": 11
+   },
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "odds": 0.0,
+   "regularWeight": 0.0,
+   "playoffWeight": 0.0,
+   "playoffsAt": 11,
+   "deltaPerWeek": 2.4027397959183645,
+   "situationalPerWeek": null,
+   "verdict": "Clear win",
+   "situationalVerdict": null,
+   "explanation": "You gain 2.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). Bijan Robinson misses 11 of the next 14 weeks, so the projection here is only the weeks he actually plays. You are getting the scarcer player: Michael Wilson is one of 12 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "2-8/healthy/trap",
+   "wins": 2,
+   "losses": 8,
+   "weeksCovered": 14,
+   "out": {},
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "odds": 0.0,
+   "regularWeight": 0.0,
+   "playoffWeight": 0.0,
+   "playoffsAt": 11,
+   "deltaPerWeek": -6.516585714285709,
+   "situationalPerWeek": null,
+   "verdict": "Lopsided loss",
+   "situationalVerdict": null,
+   "explanation": "You lose 6.5 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 8 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "2-8/star-out-till-january/trap",
+   "wins": 2,
+   "losses": 8,
+   "weeksCovered": 14,
+   "out": {
+    "00-0036900": 11
+   },
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "odds": 0.0,
+   "regularWeight": 0.0,
+   "playoffWeight": 0.0,
+   "playoffsAt": 11,
+   "deltaPerWeek": 2.781714285714283,
+   "situationalPerWeek": null,
+   "verdict": "Clear win",
+   "situationalVerdict": null,
+   "explanation": "You gain 2.8 points a week. The move that matters is at WR3: Zay Flowers (WR15-level) becomes Rashee Rice (WR12-level). Ja'Marr Chase misses 11 of the next 14 weeks, so the projection here is only the weeks he actually plays. You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 8 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "10-1/healthy/robbery",
+   "wins": 10,
+   "losses": 1,
+   "weeksCovered": 14,
+   "out": {},
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "odds": 1.0,
+   "regularWeight": 0.0,
+   "playoffWeight": 1.0,
+   "playoffsAt": 11,
+   "deltaPerWeek": 11.212785714285717,
+   "situationalPerWeek": 11.212785714285717,
+   "verdict": "Lopsided win",
+   "situationalVerdict": "Lopsided win",
+   "explanation": "You gain 11.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You are getting the scarcer player: Michael Wilson is one of 12 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "10-1/star-out-till-january/robbery",
+   "wins": 10,
+   "losses": 1,
+   "weeksCovered": 14,
+   "out": {
+    "00-0038542": 11
+   },
+   "give": [
+    "Michael Wilson"
+   ],
+   "receive": [
+    "Bijan Robinson"
+   ],
+   "odds": 1.0,
+   "regularWeight": 0.0,
+   "playoffWeight": 1.0,
+   "playoffsAt": 11,
+   "deltaPerWeek": 2.4027397959183645,
+   "situationalPerWeek": 11.212785714285717,
+   "verdict": "Clear win",
+   "situationalVerdict": "Lopsided win",
+   "explanation": "You gain 2.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). Your record puts you at 100% to make the playoffs, so January is what you are playing for: to this team the trade is better than that \u2014 +11.2 a week rather than +2.4. Bijan Robinson misses 11 of the next 14 weeks, so the projection here is only the weeks he actually plays. You are getting the scarcer player: Michael Wilson is one of 12 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "10-1/healthy/trap",
+   "wins": 10,
+   "losses": 1,
+   "weeksCovered": 14,
+   "out": {},
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "odds": 1.0,
+   "regularWeight": 0.0,
+   "playoffWeight": 1.0,
+   "playoffsAt": 11,
+   "deltaPerWeek": -6.516585714285709,
+   "situationalPerWeek": -6.516585714285708,
+   "verdict": "Lopsided loss",
+   "situationalVerdict": "Lopsided loss",
+   "explanation": "You lose 6.5 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 8 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
+  },
+  {
+   "id": "10-1/star-out-till-january/trap",
+   "wins": 10,
+   "losses": 1,
+   "weeksCovered": 14,
+   "out": {
+    "00-0036900": 11
+   },
+   "give": [
+    "Ja'Marr Chase"
+   ],
+   "receive": [
+    "Chris Olave",
+    "Rashee Rice"
+   ],
+   "odds": 1.0,
+   "regularWeight": 0.0,
+   "playoffWeight": 1.0,
+   "playoffsAt": 11,
+   "deltaPerWeek": 2.781714285714283,
+   "situationalPerWeek": -6.516585714285708,
+   "verdict": "Clear win",
+   "situationalVerdict": "Lopsided loss",
+   "explanation": "You gain 2.8 points a week. The move that matters is at WR3: Zay Flowers (WR15-level) becomes Rashee Rice (WR12-level). Your record puts you at 100% to make the playoffs, so January is what you are playing for: to this team the trade is worse than that \u2014 -6.5 a week rather than +2.8. Ja'Marr Chase misses 11 of the next 14 weeks, so the projection here is only the weeks he actually plays. You are giving up the scarcer player: Ja'Marr Chase is alone in his tier, Chris Olave is one of 8 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
   }
  ]
 }

@@ -20,7 +20,9 @@ const STORAGE_KEY = 'trade-grader.state'
 // rejected: a hand-edited URL saying 99 means "out for the year", not an error.
 const MAX_WEEKS_OUT = 17
 
-const PARAMS = { roster: 'r', give: 'g', get: 't', league: 'l', out: 'o', knew: 'k' }
+const PARAMS = {
+  roster: 'r', give: 'g', get: 't', league: 'l', out: 'o', knew: 'k', record: 'w',
+}
 
 /** Split a comma-separated id list. Tolerant of spaces, empties and trailing commas. */
 export function parseIds(raw) {
@@ -40,6 +42,26 @@ export function formatIds(ids) {
  * localStorage next to a scoring format. It does belong in a shared link, which
  * is the whole reason a leaguemate can be sent "here is why I want him cheap".
  */
+/**
+ * A win-loss record, as `wins-losses`.
+ *
+ * Absent means absent, not 0-0: a team that has played no games and a team whose
+ * record nobody entered are different states, and only the second one should
+ * leave the grade untouched.
+ */
+export function parseRecord(raw) {
+  if (!raw) return null
+  const [w, l] = String(raw).split('-').map(Number)
+  if (!Number.isFinite(w) || !Number.isFinite(l)) return null
+  const wins = Math.min(Math.max(Math.trunc(w), 0), MAX_WEEKS_OUT)
+  const losses = Math.min(Math.max(Math.trunc(l), 0), MAX_WEEKS_OUT)
+  return { wins, losses }
+}
+
+export function formatRecord(record) {
+  return record ? `${record.wins}-${record.losses}` : ''
+}
+
 export function parseOut(raw, known) {
   const out = {}
   if (!raw) return out
@@ -93,6 +115,7 @@ export function reconcileTrade({ roster, give, get }) {
 
 export const EMPTY = {
   roster: [], give: [], get: [], league: normaliseSpec(null), out: {}, ranksKnew: false,
+  record: null,
 }
 
 function fromParams(params, known) {
@@ -118,6 +141,7 @@ function fromParams(params, known) {
     league: decodeSpec(params.get(PARAMS.league)) ?? normaliseSpec(null),
     out,
     ranksKnew: params.get(PARAMS.knew) === '1',
+    record: parseRecord(params.get(PARAMS.record)),
   }
 }
 
@@ -143,7 +167,7 @@ export function loadState(known) {
   return EMPTY
 }
 
-function toParams({ roster, give, get, league, out, ranksKnew }) {
+function toParams({ roster, give, get, league, out, ranksKnew, record }) {
   const params = new URLSearchParams()
   if (roster.length) params.set(PARAMS.roster, formatIds(roster))
   if (give.length) params.set(PARAMS.give, formatIds(give))
@@ -152,6 +176,7 @@ function toParams({ roster, give, get, league, out, ranksKnew }) {
   const outStr = formatOut(out ?? {})
   if (outStr) params.set(PARAMS.out, outStr)
   if (ranksKnew) params.set(PARAMS.knew, '1')
+  if (record) params.set(PARAMS.record, formatRecord(record))
   return params
 }
 

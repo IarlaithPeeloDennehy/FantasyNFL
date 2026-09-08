@@ -166,6 +166,17 @@ user needs to know they are paying a premium and roughly how much, or the tool
 is just laundering a bad trade. This mirrors the existing rule about never
 folding depth into the headline.
 
+**Two edge cases the plan did not anticipate.** A team that is mathematically
+eliminated has zero weight on every remaining week — and so does one that has
+clinched, if the horizon holds no playoff weeks. Both make the situational number
+0/0. Neither means the trade is worth nothing; it means the weighting has no
+opinion, so it falls back to the fair number and shows no second one rather than
+reporting a NaN as a recommendation.
+
+And an absent record is not 0-0. A team that has played no games and a team whose
+record nobody entered want different answers, so the default is no second number
+at all.
+
 ### 2.2 The mechanism: weight weeks, don't fudge points
 
 The temptation is a multiplier — "you're 0-3, multiply win-now assets by 1.3".
@@ -181,16 +192,30 @@ week *t* is worth to *this* team.
   playoff probability.
 - `w(t)` for playoff weeks ∝ your probability of still being alive to play them.
 
-A 0-3 team has playoff odds that collapse without near-term wins, so its `w(t)`
-is heavily front-loaded — weeks 4–7 dominate and week 15 barely registers,
-because it is unlikely to matter. A 3-0 team's curve is flatter with a bump at
-the playoff weeks. Same arithmetic, opposite conclusions, and both are
-explainable in one sentence.
+**The "front-loaded" framing above was wrong**, and it is worth recording why.
+A win in week 4 and a win in week 10 both add one to your total, so the leverage
+of a regular-season game does not depend on which week it falls in. `w(t)` is not
+a curve over weeks at all — it takes two values:
 
-Playoff probability from (wins, losses, weeks left, playoff spots, teams) via a
-small lookup table generated offline, not a live simulation. A table is
-inspectable, testable, has no runtime cost, and is easily good enough — the
-difference between 18% and 22% odds does not change any recommendation.
+    regular-season week   P(playoffs | you win it) − P(playoffs | you lose it)
+    playoff week          P(playoffs)
+
+Both are probabilities with a plain meaning: how much this game still decides
+your season, and how likely you are to be playing at all. The split that matters
+is regular season versus January, not early versus late.
+
+That produces the intended behaviour more cleanly than the original framing
+would have. At 0-3 the two come out level (0.117 against 0.113), which is the
+same as saying a player who only helps in January is worth no more than one who
+helps now. At 3-0 January is worth 3.5× a regular week. A team that has clinched
+has *zero* regular-season leverage — nothing left to win — so it is graded on
+January alone, which falls out of the arithmetic rather than being a case.
+
+No lookup table either. The closed form is an exact sum of binomial coefficients
+over at most eighteen terms, which is inspectable and testable in the same way a
+table would be, with no build step and nothing to ship. The cut line is derived
+too — the smallest win total no more than `spots` teams are expected to reach —
+because six of twelve is about a .500 season and four of twelve is not.
 
 ### 2.3 The injured star, worked properly
 
@@ -420,7 +445,7 @@ which is where `encodeSpec` needs its version marker.
 | 2 | Roster cap + forced cuts + diminishing depth | **Done, but the gate as written was wrong** — see below. Cuts are computed, named, and correctly attributed; depth no longer counts unkeepable players. No headline verdict moved. `test_roster.py`, `roster.test.js`. |
 | 3 | Tiers + acquisition scarcity | **Done.** Tiers widen 3.4–7.5× down the curve at RB/WR/TE and only 2.0× at QB, entirely from the data. Tier depth doubles as the replaceability measure, so A3 needed no second concept. `test_market.py`, `market.test.js`. |
 | 4 | Weekly horizon + availability | **Done.** The run is split at each return week and a lineup built per stretch, so an absence costs exactly the weeks missed. The guard reproduces the healthy grade byte for byte. `test_availability.py`, `availability.test.js`. |
-| 5 | Record → `w(t)` → situational value | Same trade, 0-3 vs 3-0, produces opposite recommendations with both numbers shown. |
+| 5 | Record → `w(t)` → situational value | **Done.** Selling a star who returns only for January: +2.85/wk at 0-3, −0.49 at 3-0, −6.52 once clinched, with fair value identical for all three. `test_odds.py`, and the gate is asserted in `parity.test.js`. |
 | 6 | Explanation rewrite | A fantasy player reads it and can restate the reasoning without seeing the numbers. Same gate Phase 05 had, and the only one that matters. |
 | 7 | Methodology page | Every new assumption written down, including the ones I am least sure of. |
 
