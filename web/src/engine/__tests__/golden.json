@@ -130,10 +130,10 @@
     }
    },
    "replacementPoints": {
-    "QB": 266.81280000000004,
+    "QB": 266.8128,
     "RB": 146.3348,
-    "WR": 128.26647999999997,
-    "TE": 116.09759999999999
+    "WR": 128.26648,
+    "TE": 116.0976
    },
    "tiers": {
     "QB": [
@@ -282,23 +282,28 @@
     },
     {
      "name": "Bijan Robinson",
-     "points": 321.373,
-     "vor": 175.0382
+     "points": 314.957,
+     "vor": 168.6222
     },
     {
      "name": "Puka Nacua",
      "points": 295.8288,
-     "vor": 167.56232000000003
+     "vor": 167.56232
     },
     {
      "name": "Christian McCaffrey",
-     "points": 305.5210000000001,
-     "vor": 159.18620000000007
+     "points": 305.521,
+     "vor": 159.1862
+    },
+    {
+     "name": "Puka Nacua",
+     "points": 282.99580000000003,
+     "vor": 154.72932000000003
     },
     {
      "name": "Jaxon Smith-Njigba",
      "points": 274.2652,
-     "vor": 145.99872000000002
+     "vor": 145.99872
     },
     {
      "name": "Jonathan Taylor",
@@ -306,38 +311,33 @@
      "vor": 140.7472
     },
     {
-     "name": "Ashton Jeanty",
+     "name": "James Cook III",
      "points": 276.208,
      "vor": 129.87320000000003
     },
     {
      "name": "Amon-Ra St. Brown",
      "points": 254.23520000000002,
-     "vor": 125.96872000000005
+     "vor": 125.96872000000002
     },
     {
-     "name": "Josh Allen",
-     "points": 392.5538,
-     "vor": 125.74099999999999
-    },
-    {
-     "name": "James Cook III",
-     "points": 264.3862,
-     "vor": 118.05139999999997
+     "name": "Chase Brown",
+     "points": 264.38620000000003,
+     "vor": 118.05140000000003
     },
     {
      "name": "CeeDee Lamb",
      "points": 238.8738,
-     "vor": 110.60732000000002
+     "vor": 110.60731999999999
     },
     {
-     "name": "Chase Brown",
+     "name": "De'Von Achane",
      "points": 251.8522,
      "vor": 105.51740000000001
     },
     {
-     "name": "Lamar Jackson",
-     "points": 369.0218000000001,
+     "name": "Josh Allen",
+     "points": 369.02180000000004,
      "vor": 102.20900000000006
     },
     {
@@ -348,52 +348,62 @@
     {
      "name": "Justin Jefferson",
      "points": 227.7438,
-     "vor": 99.47732000000002
-    },
-    {
-     "name": "De'Von Achane",
-     "points": 243.87519999999998,
-     "vor": 97.54039999999998
-    },
-    {
-     "name": "Drake London",
-     "points": 219.57880000000003,
-     "vor": 91.31232000000006
+     "vor": 99.47731999999999
     },
     {
      "name": "Saquon Barkley",
+     "points": 243.8752,
+     "vor": 97.5404
+    },
+    {
+     "name": "Lamar Jackson",
+     "points": 362.47520000000003,
+     "vor": 95.66240000000005
+    },
+    {
+     "name": "Drake London",
+     "points": 219.5788,
+     "vor": 91.31232
+    },
+    {
+     "name": "Omarion Hampton",
      "points": 235.7702,
      "vor": 89.43539999999999
     },
     {
      "name": "Drake Maye",
      "points": 355.358,
-     "vor": 88.54519999999997
+     "vor": 88.54520000000002
     },
     {
      "name": "A.J. Brown",
      "points": 212.339,
-     "vor": 84.07252000000003
+     "vor": 84.07252
     },
     {
-     "name": "Omarion Hampton",
-     "points": 227.95720000000003,
-     "vor": 81.62240000000003
+     "name": "Kenneth Walker III",
+     "points": 227.9572,
+     "vor": 81.6224
     },
     {
      "name": "Nico Collins",
      "points": 206.458,
-     "vor": 78.19152000000003
+     "vor": 78.19152
     },
     {
-     "name": "Kenneth Walker III",
-     "points": 221.811,
-     "vor": 75.4762
+     "name": "Ashton Jeanty",
+     "points": 221.81099999999998,
+     "vor": 75.47619999999998
     },
     {
      "name": "Chris Olave",
      "points": 202.485,
-     "vor": 74.21852000000004
+     "vor": 74.21852000000001
+    },
+    {
+     "name": "Brock Bowers",
+     "points": 189.555,
+     "vor": 73.4574
     }
    ],
    "trades": [
@@ -433,14 +443,14 @@
      "receive": [
       "Jahmyr Gibbs"
      ],
-     "deltaSeason": 146.95699999999988,
-     "deltaPerWeek": 8.6445294117647,
-     "deltaDepth": -5.588946,
+     "deltaSeason": 114.91499999999996,
+     "deltaPerWeek": 6.7597058823529395,
+     "deltaDepth": -6.790544000000001,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
-     "beforePoints": 1822.7228,
-     "afterPoints": 1969.6798,
+     "explanation": "You gain 6.8 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
+     "beforePoints": 1784.1754,
+     "afterPoints": 1899.0904,
      "beforeSlots": [
       [
        "QB",
@@ -556,6 +566,14 @@
      "explanation": "You lose 5.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is one of 2 receivers in his tier, Chris Olave is one of 16 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
      "beforePoints": 1822.7228,
      "afterPoints": 1731.4906,
+     "deltaSeason": -67.97260000000006,
+     "deltaPerWeek": -3.998388235294121,
+     "deltaDepth": 7.740703999999999,
+     "verdict": "Clear loss",
+     "direction": "loss",
+     "explanation": "You lose 4.0 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1784.1754,
+     "afterPoints": 1716.2028,
      "beforeSlots": [
       [
        "QB",
@@ -662,6 +680,14 @@
      "explanation": "You gain 9.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You are getting the scarcer player: Michael Wilson is one of 18 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier. You also pick up useful bench depth for byes and injuries.",
      "beforePoints": 1822.7228,
      "afterPoints": 1979.7018,
+     "deltaSeason": 147.98700000000008,
+     "deltaPerWeek": 8.705117647058827,
+     "deltaDepth": 6.958440000000001,
+     "verdict": "Lopsided win",
+     "direction": "gain",
+     "explanation": "You gain 8.7 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1784.1754,
+     "afterPoints": 1932.1624000000002,
      "beforeSlots": [
       [
        "QB",
@@ -760,14 +786,14 @@
      "receive": [
       "Kyle Pitts Sr."
      ],
-     "deltaSeason": -41.240999999999985,
-     "deltaPerWeek": -2.4259411764705874,
+     "deltaSeason": -30.11500000000001,
+     "deltaPerWeek": -1.7714705882352946,
      "deltaDepth": 0.0,
-     "verdict": "Clear loss",
+     "verdict": "Slight loss",
      "direction": "loss",
-     "explanation": "You lose 2.4 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
-     "beforePoints": 1822.7228,
-     "afterPoints": 1781.4818,
+     "explanation": "You lose 1.8 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE6-level).",
+     "beforePoints": 1784.1754,
+     "afterPoints": 1754.0604,
      "beforeSlots": [
       [
        "QB",
@@ -866,14 +892,17 @@
      "receive": [
       "Garrett Wilson"
      ],
-     "deltaSeason": -3.529199999999946,
-     "deltaPerWeek": -0.20759999999999684,
+     "deltaSeason": 3.529199999999946,
+     "deltaPerWeek": 0.20759999999999684,
      "deltaDepth": 0.0,
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "You lose 0.2 points a week. Almost all of it is at WR3: Zay Flowers (WR15-level) becomes Garrett Wilson (WR16-level).",
      "beforePoints": 1822.7228,
      "afterPoints": 1819.1936,
+     "explanation": "You gain 0.2 points a week. Almost all of it is at WR3: Zay Flowers (WR16-level) becomes Garrett Wilson (WR15-level).",
+     "beforePoints": 1784.1754,
+     "afterPoints": 1787.7046,
      "beforeSlots": [
       [
        "QB",
@@ -980,6 +1009,8 @@
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
      "beforePoints": 1822.7228,
      "afterPoints": 1822.7228,
+     "beforePoints": 1784.1754,
+     "afterPoints": 1784.1754,
      "beforeSlots": [
       [
        "QB",
@@ -1100,6 +1131,14 @@
      "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You are getting the scarcer player: Josh Downs is one of 14 receivers in his tier, Puka Nacua is one of 2 in his tier. It also frees two roster spots.",
      "beforePoints": 1822.7228,
      "afterPoints": 1954.1576,
+     "deltaSeason": 116.02579999999989,
+     "deltaPerWeek": 6.825047058823523,
+     "deltaDepth": 5.536376000000001,
+     "verdict": "Lopsided win",
+     "direction": "gain",
+     "explanation": "You gain 6.8 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1784.1754,
+     "afterPoints": 1900.2012,
      "beforeSlots": [
       [
        "QB",
@@ -1206,6 +1245,12 @@
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
      "beforePoints": 1822.7228,
      "afterPoints": 1822.7228,
+     "deltaDepth": -0.7822639999999978,
+     "verdict": "Essentially even",
+     "direction": "even",
+     "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
+     "beforePoints": 1784.1754,
+     "afterPoints": 1784.1754,
      "beforeSlots": [
       [
        "QB",
@@ -1313,14 +1358,14 @@
       "Quentin Johnston",
       "Wan'Dale Robinson"
      ],
-     "deltaSeason": -49.085000000000036,
-     "deltaPerWeek": -2.8873529411764727,
-     "deltaDepth": -1.725907000000003,
+     "deltaSeason": -53.01200000000017,
+     "deltaPerWeek": -3.1183529411764805,
+     "deltaDepth": 1.0122879999999999,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB.",
-     "beforePoints": 1822.7228,
-     "afterPoints": 1773.6378,
+     "explanation": "You lose 3.1 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level).",
+     "beforePoints": 1784.1754,
+     "afterPoints": 1731.1634,
      "beforeSlots": [
       [
        "QB",
@@ -1748,9 +1793,9 @@
    },
    "replacementPoints": {
     "QB": 266.9128,
-    "RB": 161.7008,
+    "RB": 161.70080000000002,
     "WR": 156.13248,
-    "TE": 145.0646
+    "TE": 145.06459999999998
    },
    "tiers": {
     "QB": [
@@ -1926,23 +1971,23 @@
     },
     {
      "name": "Christian McCaffrey",
-     "points": 333.85600000000005,
-     "vor": 172.15520000000006
+     "points": 333.856,
+     "vor": 172.15519999999998
     },
     {
      "name": "Jonathan Taylor",
      "points": 312.817,
-     "vor": 151.11620000000002
+     "vor": 151.1162
     },
     {
      "name": "Amon-Ra St. Brown",
-     "points": 306.20020000000005,
-     "vor": 150.06772000000007
+     "points": 306.2002,
+     "vor": 150.06772
     },
     {
-     "name": "Ashton Jeanty",
-     "points": 302.243,
-     "vor": 140.5422
+     "name": "James Cook III",
+     "points": 302.24300000000005,
+     "vor": 140.54220000000004
     },
     {
      "name": "CeeDee Lamb",
@@ -1950,9 +1995,9 @@
      "vor": 133.37632000000002
     },
     {
-     "name": "James Cook III",
+     "name": "Chase Brown",
      "points": 288.9212,
-     "vor": 127.22040000000001
+     "vor": 127.22039999999998
     },
     {
      "name": "Brock Bowers",
@@ -1966,13 +2011,13 @@
     },
     {
      "name": "Justin Jefferson",
-     "points": 275.64380000000006,
-     "vor": 119.51132000000007
+     "points": 275.6438,
+     "vor": 119.51132000000001
     },
     {
-     "name": "Chase Brown",
-     "points": 273.58720000000005,
-     "vor": 111.88640000000007
+     "name": "De'Von Achane",
+     "points": 273.5872,
+     "vor": 111.88639999999998
     },
     {
      "name": "Drake London",
@@ -1980,9 +2025,9 @@
      "vor": 108.28132000000005
     },
     {
-     "name": "De'Von Achane",
-     "points": 265.64019999999994,
-     "vor": 103.93939999999995
+     "name": "Saquon Barkley",
+     "points": 265.6402,
+     "vor": 103.93939999999998
     },
     {
      "name": "Lamar Jackson",
@@ -1997,30 +2042,30 @@
     {
      "name": "Saquon Barkley",
      "points": 256.9702,
-     "vor": 95.26939999999999
+     "vor": 95.26939999999996
     },
     {
      "name": "Nico Collins",
-     "points": 250.758,
-     "vor": 94.62552000000002
+     "points": 250.75799999999998,
+     "vor": 94.62552
     },
     {
      "name": "Trey McBride",
      "points": 237.775,
-     "vor": 92.71039999999999
+     "vor": 92.71040000000002
     },
     {
      "name": "Chris Olave",
-     "points": 244.72000000000003,
-     "vor": 88.58752000000004
+     "points": 244.72,
+     "vor": 88.58752000000001
     },
     {
      "name": "Drake Maye",
-     "points": 355.45799999999997,
-     "vor": 88.54519999999997
+     "points": 355.458,
+     "vor": 88.54520000000002
     },
     {
-     "name": "Omarion Hampton",
+     "name": "Kenneth Walker III",
      "points": 249.7572,
      "vor": 88.05640000000002
     }
@@ -2495,8 +2540,8 @@
      "receive": [
       "Garrett Wilson"
      ],
-     "deltaSeason": -5.164200000000164,
-     "deltaPerWeek": -0.303776470588245,
+     "deltaSeason": 5.164200000000164,
+     "deltaPerWeek": 0.303776470588245,
      "deltaDepth": 0.0,
      "verdict": "Essentially even",
      "direction": "even",
@@ -3377,8 +3422,8 @@
    },
    "replacementPoints": {
     "QB": 266.7128,
-    "RB": 130.9688,
-    "WR": 100.40048,
+    "RB": 130.96880000000002,
+    "WR": 100.40047999999999,
     "TE": 87.1306
    },
    "tiers": {
@@ -3518,7 +3563,7 @@
     {
      "name": "Christian McCaffrey",
      "points": 277.18600000000004,
-     "vor": 146.21720000000005
+     "vor": 146.21720000000002
     },
     {
      "name": "Puka Nacua",
@@ -3528,7 +3573,7 @@
     {
      "name": "Jonathan Taylor",
      "points": 261.34700000000004,
-     "vor": 130.37820000000005
+     "vor": 130.37820000000002
     },
     {
      "name": "Josh Allen",
@@ -3536,19 +3581,19 @@
      "vor": 125.84100000000001
     },
     {
-     "name": "Ashton Jeanty",
+     "name": "James Cook III",
      "points": 250.17300000000003,
-     "vor": 119.20420000000004
+     "vor": 119.20420000000001
     },
     {
      "name": "Jaxon Smith-Njigba",
-     "points": 218.53019999999998,
-     "vor": 118.12971999999998
+     "points": 218.5302,
+     "vor": 118.12972000000002
     },
     {
-     "name": "James Cook III",
+     "name": "Chase Brown",
      "points": 239.8512,
-     "vor": 108.88240000000002
+     "vor": 108.88239999999999
     },
     {
      "name": "Lamar Jackson",
@@ -3557,38 +3602,38 @@
     },
     {
      "name": "Amon-Ra St. Brown",
-     "points": 202.2702,
-     "vor": 101.86971999999999
+     "points": 202.27020000000002,
+     "vor": 101.86972000000003
     },
     {
-     "name": "Chase Brown",
-     "points": 230.1172,
+     "name": "De'Von Achane",
+     "points": 230.11720000000003,
      "vor": 99.14840000000001
     },
     {
      "name": "De'Von Achane",
      "points": 222.1102,
-     "vor": 91.1414
+     "vor": 91.14139999999998
     },
     {
      "name": "Drake Maye",
-     "points": 355.258,
-     "vor": 88.54519999999997
+     "points": 355.25800000000004,
+     "vor": 88.54520000000002
     },
     {
      "name": "CeeDee Lamb",
      "points": 188.2388,
-     "vor": 87.83832
+     "vor": 87.83832000000001
     },
     {
-     "name": "Saquon Barkley",
+     "name": "Omarion Hampton",
      "points": 214.5702,
-     "vor": 83.60140000000001
+     "vor": 83.60139999999998
     },
     {
      "name": "Justin Jefferson",
-     "points": 179.8438,
-     "vor": 79.44331999999999
+     "points": 179.84380000000002,
+     "vor": 79.44332000000003
     },
     {
      "name": "Brock Bowers",
@@ -3598,12 +3643,12 @@
     {
      "name": "Omarion Hampton",
      "points": 206.15720000000002,
-     "vor": 75.18840000000003
+     "vor": 75.1884
     },
     {
      "name": "Drake London",
-     "points": 174.7438,
-     "vor": 74.34331999999999
+     "points": 174.74380000000002,
+     "vor": 74.34332000000003
     },
     {
      "name": "Joe Burrow",
@@ -3611,14 +3656,14 @@
      "vor": 71.71800000000002
     },
     {
-     "name": "Kenneth Walker III",
-     "points": 200.746,
-     "vor": 69.77720000000002
+     "name": "Ashton Jeanty",
+     "points": 200.74599999999998,
+     "vor": 69.77719999999997
     },
     {
      "name": "A.J. Brown",
-     "points": 167.504,
-     "vor": 67.10351999999999
+     "points": 167.50400000000002,
+     "vor": 67.10352000000003
     },
     {
      "name": "Derrick Henry",
@@ -3671,6 +3716,14 @@
      "explanation": "You gain 8.5 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are getting the scarcer player: Nico Collins is one of 11 receivers in his tier, Jahmyr Gibbs is one of 2 running backs in his tier. It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
      "beforePoints": 1553.9317999999998,
      "afterPoints": 1698.8598,
+     "deltaSeason": 126.00900000000001,
+     "deltaPerWeek": 7.412294117647059,
+     "deltaDepth": -10.740208,
+     "verdict": "Lopsided win",
+     "direction": "gain",
+     "explanation": "You gain 7.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
+     "beforePoints": 1519.2064,
+     "afterPoints": 1645.2154,
      "beforeSlots": [
       [
        "QB",
@@ -3786,6 +3839,14 @@
      "explanation": "You lose 4.9 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You are giving up the scarcer player: Ja'Marr Chase is one of 2 receivers in his tier, Chris Olave is one of 11 in his tier. You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB.",
      "beforePoints": 1553.9317999999998,
      "afterPoints": 1469.8355999999999,
+     "deltaSeason": -61.46360000000004,
+     "deltaPerWeek": -3.615505882352944,
+     "deltaDepth": 1.2244399999999995,
+     "verdict": "Clear loss",
+     "direction": "loss",
+     "explanation": "You lose 3.6 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level).",
+     "beforePoints": 1519.2064,
+     "afterPoints": 1457.7428,
      "beforeSlots": [
       [
        "QB",
@@ -3892,6 +3953,14 @@
      "explanation": "You gain 9.1 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You are getting the scarcer player: Michael Wilson is one of 24 receivers in his tier, Bijan Robinson is one of 2 running backs in his tier.",
      "beforePoints": 1553.9317999999998,
      "afterPoints": 1708.9967999999997,
+     "deltaSeason": 148.90599999999995,
+     "deltaPerWeek": 8.759176470588232,
+     "deltaDepth": 0.6419759999999979,
+     "verdict": "Lopsided win",
+     "direction": "gain",
+     "explanation": "You gain 8.8 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level).",
+     "beforePoints": 1519.2064,
+     "afterPoints": 1668.1124,
      "beforeSlots": [
       [
        "QB",
@@ -3998,6 +4067,14 @@
      "explanation": "You lose 1.7 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level). You are giving up the scarcer player: Trey McBride is one of 3 tight ends in his tier, Kyle Pitts Sr. is one of 9 in his tier.",
      "beforePoints": 1553.9317999999998,
      "afterPoints": 1525.8107999999997,
+     "deltaSeason": -20.389999999999873,
+     "deltaPerWeek": -1.1994117647058748,
+     "deltaDepth": 0.0,
+     "verdict": "Slight loss",
+     "direction": "loss",
+     "explanation": "You lose 1.2 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE6-level).",
+     "beforePoints": 1519.2064,
+     "afterPoints": 1498.8164000000002,
      "beforeSlots": [
       [
        "QB",
@@ -4096,14 +4173,17 @@
      "receive": [
       "Garrett Wilson"
      ],
-     "deltaSeason": -1.8941999999999553,
-     "deltaPerWeek": -0.11142352941176208,
+     "deltaSeason": 1.8941999999999553,
+     "deltaPerWeek": 0.11142352941176208,
      "deltaDepth": 0.0,
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "You lose 0.1 points a week. Almost all of it is at WR3: Zay Flowers (WR15-level) becomes Garrett Wilson (WR16-level).",
      "beforePoints": 1553.9317999999998,
      "afterPoints": 1552.0375999999999,
+     "explanation": "You gain 0.1 points a week. Almost all of it is at WR3: Zay Flowers (WR16-level) becomes Garrett Wilson (WR15-level).",
+     "beforePoints": 1519.2064,
+     "afterPoints": 1521.1006,
      "beforeSlots": [
       [
        "QB",
@@ -4330,6 +4410,14 @@
      "explanation": "You gain 5.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You are getting the scarcer player: Chuba Hubbard is one of 11 running backs in his tier, Puka Nacua is one of 2 receivers in his tier. It also frees two roster spots.",
      "beforePoints": 1553.9317999999998,
      "afterPoints": 1651.0076,
+     "deltaSeason": 87.56979999999999,
+     "deltaPerWeek": 5.151164705882352,
+     "deltaDepth": -0.44028800000000423,
+     "verdict": "Lopsided win",
+     "direction": "gain",
+     "explanation": "You gain 5.2 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level).",
+     "beforePoints": 1519.2064,
+     "afterPoints": 1606.7762,
      "beforeSlots": [
       [
        "QB",
@@ -5139,8 +5227,8 @@
     },
     {
      "name": "Christian McCaffrey",
-     "points": 305.5210000000001,
-     "vor": 119.09720000000007
+     "points": 305.521,
+     "vor": 119.09720000000002
     },
     {
      "name": "Jaxon Smith-Njigba",
@@ -5163,7 +5251,7 @@
      "vor": 91.14608000000001
     },
     {
-     "name": "Ashton Jeanty",
+     "name": "James Cook III",
      "points": 276.208,
      "vor": 89.78420000000003
     },
@@ -5203,14 +5291,14 @@
      "vor": 58.89100000000002
     },
     {
-     "name": "De'Von Achane",
-     "points": 243.87519999999998,
-     "vor": 57.45139999999998
+     "name": "Saquon Barkley",
+     "points": 243.8752,
+     "vor": 57.45140000000001
     },
     {
      "name": "Drake London",
-     "points": 219.57880000000003,
-     "vor": 56.48968000000002
+     "points": 219.5788,
+     "vor": 56.48967999999999
     },
     {
      "name": "Trey McBride",
@@ -5218,7 +5306,7 @@
      "vor": 51.07520000000005
     },
     {
-     "name": "Saquon Barkley",
+     "name": "Omarion Hampton",
      "points": 235.7702,
      "vor": 49.34639999999999
     },
@@ -5238,9 +5326,9 @@
      "vor": 42.09880000000004
     },
     {
-     "name": "Omarion Hampton",
-     "points": 227.95720000000003,
-     "vor": 41.53340000000003
+     "name": "Kenneth Walker III",
+     "points": 227.9572,
+     "vor": 41.5334
     }
    ],
    "trades": [
@@ -5610,7 +5698,7 @@
      "deltaSeason": -41.240999999999985,
      "deltaPerWeek": -2.4259411764705874,
      "deltaDepth": 0.0,
-     "verdict": "Clear loss",
+     "verdict": "Slight loss",
      "direction": "loss",
      "explanation": "You lose 2.4 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
      "beforePoints": 1822.7228,
@@ -5713,8 +5801,8 @@
      "receive": [
       "Garrett Wilson"
      ],
-     "deltaSeason": -3.529199999999946,
-     "deltaPerWeek": -0.20759999999999684,
+     "deltaSeason": 3.529199999999946,
+     "deltaPerWeek": 0.20759999999999684,
      "deltaDepth": 0.0,
      "verdict": "Essentially even",
      "direction": "even",
@@ -6160,8 +6248,8 @@
       "Quentin Johnston",
       "Wan'Dale Robinson"
      ],
-     "deltaSeason": -49.085000000000036,
-     "deltaPerWeek": -2.8873529411764727,
+     "deltaSeason": -53.01200000000017,
+     "deltaPerWeek": -3.1183529411764805,
      "deltaDepth": 0.0,
      "verdict": "Clear loss",
      "direction": "loss",
@@ -6368,9 +6456,9 @@
      "receive": [
       "Malik Nabers"
      ],
-     "deltaSeason": -60.55139999999983,
-     "deltaPerWeek": -3.5618470588235196,
-     "deltaDepth": 0.26097599999999377,
+     "deltaSeason": -51.921400000000176,
+     "deltaPerWeek": -3.0542000000000105,
+     "deltaDepth": 0.7761759999999982,
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 3.6 points a week. The move that matters is at QB: Joe Burrow (QB4-level) becomes Bo Nix (QB14-level). Quarterbacks are worth less here than their rankings suggest: only one starts per team, so the next one on waivers is much closer to yours than the gap in rank implies.",
@@ -6595,9 +6683,9 @@
    },
    "replacementPoints": {
     "QB": 250.0672,
-    "RB": 124.27669999999999,
-    "WR": 113.94819999999999,
-    "TE": 107.31
+    "RB": 124.27669999999998,
+    "WR": 113.9482,
+    "TE": 107.30999999999999
    },
    "tiers": {
     "QB": [
@@ -6756,13 +6844,13 @@
     },
     {
      "name": "Christian McCaffrey",
-     "points": 305.5210000000001,
-     "vor": 181.24430000000007
+     "points": 305.521,
+     "vor": 181.24430000000004
     },
     {
      "name": "Jonathan Taylor",
      "points": 287.082,
-     "vor": 162.8053
+     "vor": 162.80530000000002
     },
     {
      "name": "Jaxon Smith-Njigba",
@@ -6770,9 +6858,9 @@
      "vor": 160.317
     },
     {
-     "name": "Ashton Jeanty",
+     "name": "James Cook III",
      "points": 276.208,
-     "vor": 151.93130000000002
+     "vor": 151.93130000000005
     },
     {
      "name": "Josh Allen",
@@ -6785,24 +6873,24 @@
      "vor": 140.28700000000003
     },
     {
-     "name": "James Cook III",
-     "points": 264.3862,
-     "vor": 140.10949999999997
+     "name": "Chase Brown",
+     "points": 264.38620000000003,
+     "vor": 140.10950000000005
     },
     {
-     "name": "Chase Brown",
+     "name": "De'Von Achane",
      "points": 251.8522,
-     "vor": 127.57550000000002
+     "vor": 127.57550000000003
     },
     {
      "name": "CeeDee Lamb",
      "points": 238.8738,
-     "vor": 124.9256
+     "vor": 124.92559999999999
     },
     {
-     "name": "De'Von Achane",
-     "points": 243.87519999999998,
-     "vor": 119.59849999999999
+     "name": "Saquon Barkley",
+     "points": 243.8752,
+     "vor": 119.59850000000003
     },
     {
      "name": "Lamar Jackson",
@@ -6812,12 +6900,12 @@
     {
      "name": "Justin Jefferson",
      "points": 227.7438,
-     "vor": 113.79560000000001
+     "vor": 113.7956
     },
     {
      "name": "Saquon Barkley",
      "points": 235.7702,
-     "vor": 111.4935
+     "vor": 111.49350000000001
     },
     {
      "name": "Brock Bowers",
@@ -6826,8 +6914,8 @@
     },
     {
      "name": "Drake London",
-     "points": 219.57880000000003,
-     "vor": 105.63060000000004
+     "points": 219.5788,
+     "vor": 105.6306
     },
     {
      "name": "Drake Maye",
@@ -6835,24 +6923,24 @@
      "vor": 105.29079999999999
     },
     {
-     "name": "Omarion Hampton",
-     "points": 227.95720000000003,
-     "vor": 103.68050000000004
+     "name": "Kenneth Walker III",
+     "points": 227.9572,
+     "vor": 103.68050000000002
     },
     {
      "name": "A.J. Brown",
      "points": 212.339,
-     "vor": 98.39080000000001
+     "vor": 98.3908
     },
     {
-     "name": "Kenneth Walker III",
-     "points": 221.811,
-     "vor": 97.53430000000002
+     "name": "Ashton Jeanty",
+     "points": 221.81099999999998,
+     "vor": 97.5343
     },
     {
      "name": "Derrick Henry",
      "points": 216.958,
-     "vor": 92.68130000000001
+     "vor": 92.68130000000002
     },
     {
      "name": "Nico Collins",
@@ -7227,7 +7315,7 @@
      "deltaSeason": -41.240999999999985,
      "deltaPerWeek": -2.4259411764705874,
      "deltaDepth": 0.0,
-     "verdict": "Clear loss",
+     "verdict": "Slight loss",
      "direction": "loss",
      "explanation": "You lose 2.4 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
      "beforePoints": 1822.7228,
@@ -7330,8 +7418,8 @@
      "receive": [
       "Garrett Wilson"
      ],
-     "deltaSeason": -3.529199999999946,
-     "deltaPerWeek": -0.20759999999999684,
+     "deltaSeason": 3.529199999999946,
+     "deltaPerWeek": 0.20759999999999684,
      "deltaDepth": 0.0,
      "verdict": "Essentially even",
      "direction": "even",
@@ -7442,7 +7530,7 @@
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
-     "beforePoints": 1822.7228,
+"beforePoints": 1822.7228,
      "afterPoints": 1822.7228,
      "beforeSlots": [
       [
@@ -8212,9 +8300,9 @@
    },
    "replacementPoints": {
     "QB": 173.54000000000002,
-    "RB": 144.21175999999997,
+    "RB": 144.21176,
     "WR": 127.075696,
-    "TE": 115.11072
+    "TE": 115.11071999999999
    },
    "tiers": {
     "QB": [
@@ -8379,7 +8467,7 @@
     {
      "name": "Bijan Robinson",
      "points": 321.373,
-     "vor": 177.16124000000002
+     "vor": 177.16124
     },
     {
      "name": "Puka Nacua",
@@ -8393,8 +8481,8 @@
     },
     {
      "name": "Christian McCaffrey",
-     "points": 305.5210000000001,
-     "vor": 161.3092400000001
+     "points": 305.521,
+     "vor": 161.30924000000002
     },
     {
      "name": "Jayden Daniels",
@@ -8409,7 +8497,7 @@
     {
      "name": "Jonathan Taylor",
      "points": 287.082,
-     "vor": 142.87024000000002
+     "vor": 142.87024
     },
     {
      "name": "Jalen Hurts",
@@ -8417,14 +8505,14 @@
      "vor": 141.67919999999998
     },
     {
-     "name": "Ashton Jeanty",
+     "name": "James Cook III",
      "points": 276.208,
-     "vor": 131.99624000000006
+     "vor": 131.99624000000003
     },
     {
      "name": "Caleb Williams",
-     "points": 305.14380000000006,
-     "vor": 131.60380000000004
+     "points": 305.1438,
+     "vor": 131.60379999999998
     },
     {
      "name": "Amon-Ra St. Brown",
@@ -8437,9 +8525,9 @@
      "vor": 122.92699999999996
     },
     {
-     "name": "James Cook III",
-     "points": 264.3862,
-     "vor": 120.17444
+     "name": "Chase Brown",
+     "points": 264.38620000000003,
+     "vor": 120.17444000000003
     },
     {
      "name": "Trevor Lawrence",
@@ -8457,9 +8545,9 @@
      "vor": 110.64119999999997
     },
     {
-     "name": "Chase Brown",
+     "name": "De'Von Achane",
      "points": 251.8522,
-     "vor": 107.64044000000004
+     "vor": 107.64044000000001
     },
     {
      "name": "Brock Bowers",
@@ -8866,7 +8954,7 @@
      "deltaSeason": -41.240999999999985,
      "deltaPerWeek": -2.4259411764705874,
      "deltaDepth": 0.0,
-     "verdict": "Clear loss",
+     "verdict": "Slight loss",
      "direction": "loss",
      "explanation": "You lose 2.4 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
      "beforePoints": 2072.79,
@@ -8977,8 +9065,8 @@
      "receive": [
       "Garrett Wilson"
      ],
-     "deltaSeason": -3.529199999999946,
-     "deltaPerWeek": -0.20759999999999684,
+     "deltaSeason": 3.5292000000001735,
+     "deltaPerWeek": 0.20760000000001022,
      "deltaDepth": 0.0,
      "verdict": "Essentially even",
      "direction": "even",
@@ -9678,8 +9766,8 @@
      "receive": [
       "Malik Nabers"
      ],
-     "deltaSeason": -146.22459999999978,
-     "deltaPerWeek": -8.601447058823517,
+     "deltaSeason": -143.23360000000002,
+     "deltaPerWeek": -8.425505882352942,
      "deltaDepth": 0.0,
      "verdict": "Lopsided loss",
      "direction": "loss",
@@ -9792,8 +9880,8 @@
      "receive": [
       "Chase Brown"
      ],
-     "deltaSeason": 50.32140000000027,
-     "deltaPerWeek": 2.960082352941192,
+     "deltaSeason": 62.855400000000145,
+     "deltaPerWeek": 3.6973764705882437,
      "deltaDepth": 0.0,
      "verdict": "Clear win",
      "direction": "gain",
@@ -9923,7 +10011,7 @@
     "QB": 284.1812,
     "RB": 148.104,
     "WR": 135.3768,
-    "TE": 122.3132
+    "TE": 122.31320000000001
    },
    "tiers": {
     "QB": [
@@ -10082,8 +10170,8 @@
     },
     {
      "name": "Christian McCaffrey",
-     "points": 305.5210000000001,
-     "vor": 157.41700000000006
+     "points": 305.521,
+     "vor": 157.417
     },
     {
      "name": "Jonathan Taylor",
@@ -10096,7 +10184,7 @@
      "vor": 138.8884
     },
     {
-     "name": "Ashton Jeanty",
+     "name": "James Cook III",
      "points": 276.208,
      "vor": 128.104
     },
@@ -10106,9 +10194,9 @@
      "vor": 118.85840000000002
     },
     {
-     "name": "James Cook III",
-     "points": 264.3862,
-     "vor": 116.28219999999996
+     "name": "Chase Brown",
+     "points": 264.38620000000003,
+     "vor": 116.28220000000002
     },
     {
      "name": "Josh Allen",
@@ -10126,9 +10214,9 @@
      "vor": 103.49699999999999
     },
     {
-     "name": "De'Von Achane",
-     "points": 243.87519999999998,
-     "vor": 95.77119999999996
+     "name": "Saquon Barkley",
+     "points": 243.8752,
+     "vor": 95.7712
     },
     {
      "name": "Brock Bowers",
@@ -10141,7 +10229,7 @@
      "vor": 92.36699999999999
     },
     {
-     "name": "Saquon Barkley",
+     "name": "Omarion Hampton",
      "points": 235.7702,
      "vor": 87.66619999999998
     },
@@ -10152,13 +10240,13 @@
     },
     {
      "name": "Drake London",
-     "points": 219.57880000000003,
-     "vor": 84.20200000000003
+     "points": 219.5788,
+     "vor": 84.202
     },
     {
-     "name": "Omarion Hampton",
-     "points": 227.95720000000003,
-     "vor": 79.85320000000002
+     "name": "Kenneth Walker III",
+     "points": 227.9572,
+     "vor": 79.85319999999999
     },
     {
      "name": "A.J. Brown",
@@ -10166,9 +10254,9 @@
      "vor": 76.9622
     },
     {
-     "name": "Kenneth Walker III",
-     "points": 221.811,
-     "vor": 73.707
+     "name": "Ashton Jeanty",
+     "points": 221.81099999999998,
+     "vor": 73.70699999999997
     },
     {
      "name": "Drake Maye",
@@ -10575,7 +10663,7 @@
      "deltaSeason": -41.240999999999985,
      "deltaPerWeek": -2.4259411764705874,
      "deltaDepth": 0.0,
-     "verdict": "Clear loss",
+     "verdict": "Slight loss",
      "direction": "loss",
      "explanation": "You lose 2.4 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
      "beforePoints": 1984.942,
@@ -10686,8 +10774,8 @@
      "receive": [
       "Garrett Wilson"
      ],
-     "deltaSeason": -3.529199999999946,
-     "deltaPerWeek": -0.20759999999999684,
+     "deltaSeason": 3.529199999999946,
+     "deltaPerWeek": 0.20759999999999684,
      "deltaDepth": 0.0,
      "verdict": "Essentially even",
      "direction": "even",
@@ -11163,9 +11251,9 @@
       "Quentin Johnston",
       "Wan'Dale Robinson"
      ],
-     "deltaSeason": -49.085000000000036,
-     "deltaPerWeek": -2.8873529411764727,
-     "deltaDepth": -1.6298000000000004,
+     "deltaSeason": -53.01200000000017,
+     "deltaPerWeek": -3.1183529411764805,
+     "deltaDepth": -0.2543999999999983,
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level).",
@@ -11629,7 +11717,7 @@
     }
    },
    "replacementPoints": {
-    "QB": 266.81280000000004,
+    "QB": 266.8128,
     "RB": 146.3348,
     "WR": 159.2944,
     "TE": 85.04939999999999
@@ -11786,8 +11874,8 @@
     },
     {
      "name": "Christian McCaffrey",
-     "points": 305.5210000000001,
-     "vor": 159.18620000000007
+     "points": 305.521,
+     "vor": 159.1862
     },
     {
      "name": "Jonathan Taylor",
@@ -11815,9 +11903,9 @@
      "vor": 125.74099999999999
     },
     {
-     "name": "James Cook III",
-     "points": 264.3862,
-     "vor": 118.05139999999997
+     "name": "Chase Brown",
+     "points": 264.38620000000003,
+     "vor": 118.05140000000003
     },
     {
      "name": "Jaxon Smith-Njigba",
@@ -11825,7 +11913,7 @@
      "vor": 114.9708
     },
     {
-     "name": "Chase Brown",
+     "name": "De'Von Achane",
      "points": 251.8522,
      "vor": 105.51740000000001
     },
@@ -11855,24 +11943,24 @@
      "vor": 94.3846
     },
     {
-     "name": "Saquon Barkley",
+     "name": "Omarion Hampton",
      "points": 235.7702,
      "vor": 89.43539999999999
     },
     {
      "name": "Drake Maye",
      "points": 355.358,
-     "vor": 88.54519999999997
+     "vor": 88.54520000000002
     },
     {
-     "name": "Omarion Hampton",
-     "points": 227.95720000000003,
-     "vor": 81.62240000000003
+     "name": "Kenneth Walker III",
+     "points": 227.9572,
+     "vor": 81.6224
     },
     {
      "name": "Tyler Warren",
-     "points": 166.48200000000003,
-     "vor": 81.43260000000004
+     "points": 166.482,
+     "vor": 81.43260000000001
     },
     {
      "name": "CeeDee Lamb",
@@ -11880,19 +11968,19 @@
      "vor": 79.57939999999999
     },
     {
-     "name": "Kenneth Walker III",
-     "points": 221.811,
-     "vor": 75.4762
+     "name": "Ashton Jeanty",
+     "points": 221.81099999999998,
+     "vor": 75.47619999999998
     },
     {
      "name": "Harold Fannin Jr.",
-     "points": 159.82800000000003,
-     "vor": 74.77860000000004
+     "points": 159.828,
+     "vor": 74.77860000000001
     },
     {
      "name": "Joe Burrow",
      "points": 338.5658,
-     "vor": 71.75299999999999
+     "vor": 71.75300000000004
     }
    ],
    "trades": [
@@ -12238,7 +12326,7 @@
      "deltaSeason": -41.240999999999985,
      "deltaPerWeek": -2.4259411764705874,
      "deltaDepth": 0.0,
-     "verdict": "Clear loss",
+     "verdict": "Slight loss",
      "direction": "loss",
      "explanation": "You lose 2.4 points a week. Almost all of it is at TE1: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level).",
      "beforePoints": 1743.3782,
@@ -12333,8 +12421,8 @@
      "receive": [
       "Garrett Wilson"
      ],
-     "deltaSeason": -3.529199999999946,
-     "deltaPerWeek": -0.20759999999999684,
+     "deltaSeason": 3.529199999999946,
+     "deltaPerWeek": 0.20759999999999684,
      "deltaDepth": 0.0,
      "verdict": "Essentially even",
      "direction": "even",
