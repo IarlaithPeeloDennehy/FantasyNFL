@@ -19,6 +19,11 @@ export const BANDS = [
 
 const DEPTH_WEIGHT = 0.2
 
+// How much bench-depth movement is worth a sentence. Unlike the bands above this
+// is a *season-scale* quantity, so it has to be rescaled for a rest-of-season
+// file or the sentence appears and disappears depending on what week it is.
+export const DEPTH_NOTE_THRESHOLD = 3.0
+
 /** Verdicts have a direction. A five-point loss is not a 'clear win'. */
 export function band(deltaPerWeek) {
   const magnitude = Math.abs(deltaPerWeek)
@@ -41,7 +46,15 @@ function depthValue(bench, league, replacement) {
   return DEPTH_WEIGHT * total
 }
 
-export function gradeTrade(roster, give, receive, league, replacement) {
+/**
+ * `weeksCovered` is how many weeks the projections span -- 17 for a full-season
+ * file, `weeks_remaining` for a rest-of-season one. Read it off the document
+ * with `weeksCovered(doc)` rather than passing a literal; the default is here so
+ * a full-season caller need not.
+ */
+export function gradeTrade(
+  roster, give, receive, league, replacement, weeksCovered = GAMES_PER_SEASON,
+) {
   const { scoring } = league
 
   const giveSet = new Set(give)
@@ -56,7 +69,7 @@ export function gradeTrade(roster, give, receive, league, replacement) {
   const after = bestLineup(afterRoster, league, scoring, replacement)
 
   const deltaSeason = after.points - before.points
-  const deltaPerWeek = deltaSeason / GAMES_PER_SEASON
+  const deltaPerWeek = deltaSeason / weeksCovered
   const deltaDepth =
     depthValue(after.bench, league, replacement) -
     depthValue(before.bench, league, replacement)
@@ -76,14 +89,14 @@ export function gradeTrade(roster, give, receive, league, replacement) {
     after,
     explanation: explain(
       before, after, deltaPerWeek, deltaDepth, scoring, replacement,
-      league, give, receive,
+      league, give, receive, weeksCovered,
     ),
   }
 }
 
 export function explain(
   before, after, deltaPerWeek, deltaDepth, scoring, replacement,
-  league = null, give = [], receive = [],
+  league = null, give = [], receive = [], weeksCovered = GAMES_PER_SEASON,
 ) {
   const b = bySlot(before)
   const a = bySlot(after)
@@ -166,9 +179,14 @@ export function explain(
       ' than the gap in rank implies.'
   }
 
-  if (deltaDepth < -3) {
+  // `deltaDepth` is measured over whatever span the projections cover, so the
+  // threshold has to move with it. A fixed 3.0 would make this sentence roughly
+  // twice as hard to trigger on a week-10 file as on a preseason one, for a
+  // roster change that is identical in weekly terms.
+  const depthNote = DEPTH_NOTE_THRESHOLD * (weeksCovered / GAMES_PER_SEASON)
+  if (deltaDepth < -depthNote) {
     tail += ' You are giving up real bench depth to do it — fine if you are set at your starting spots.'
-  } else if (deltaDepth > 3) {
+  } else if (deltaDepth > depthNote) {
     tail += ' You also pick up useful bench depth for byes and injuries.'
   }
 

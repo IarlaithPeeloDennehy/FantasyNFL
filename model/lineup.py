@@ -23,6 +23,11 @@ BANDS = (
     (float("inf"), "Lopsided win", "Lopsided loss"),
 )
 
+# How much bench-depth movement is worth a sentence. Unlike the bands above this
+# is a *season-scale* quantity, so it has to be rescaled for a rest-of-season
+# file or the sentence appears and disappears depending on what week it is.
+DEPTH_NOTE_THRESHOLD = 3.0
+
 
 @dataclass
 class Lineup:
@@ -143,7 +148,12 @@ def grade_trade(
     receive: list[Player],
     league: League,
     replacement: dict[str, float],
+    weeks_covered: float = GAMES_PER_SEASON,
 ) -> Grade:
+    """`weeks_covered` is how many weeks the projections span -- 17 for a
+    full-season file, `weeks_remaining` for a rest-of-season one. Use
+    `model.fromfile.weeks_covered` to read it off the document rather than
+    passing a literal; the default is here so a full-season caller need not."""
     scoring = league.scoring
 
     missing = [p.name for p in give if p not in roster]
@@ -156,7 +166,7 @@ def grade_trade(
     after = best_lineup(after_roster, league, scoring, replacement)
 
     delta_season = after.points - before.points
-    delta_week = delta_season / GAMES_PER_SEASON
+    delta_week = delta_season / weeks_covered
     delta_depth = _depth_value(after.bench, league, replacement) - _depth_value(
         before.bench, league, replacement
     )
@@ -176,7 +186,7 @@ def grade_trade(
         after=after,
         explanation=explain(
             before, after, delta_week, delta_depth, scoring, replacement,
-            league, give, receive,
+            league, give, receive, weeks_covered,
         ),
     )
 
@@ -191,6 +201,7 @@ def explain(
     league: League | None = None,
     give: list[Player] | tuple = (),
     receive: list[Player] | tuple = (),
+    weeks_covered: float = GAMES_PER_SEASON,
 ) -> str:
     """Plain English. The number convinces nobody on its own."""
     b, a = before.by_slot(), after.by_slot()
@@ -271,9 +282,14 @@ def explain(
             " than the gap in rank implies."
         )
 
-    if delta_depth < -3:
+    # `delta_depth` is measured over whatever span the projections cover, so the
+    # threshold has to move with it. A fixed 3.0 would make this sentence roughly
+    # twice as hard to trigger on a week-10 file as on a preseason one, for a
+    # roster change that is identical in weekly terms.
+    depth_note = DEPTH_NOTE_THRESHOLD * (weeks_covered / GAMES_PER_SEASON)
+    if delta_depth < -depth_note:
         tail += " You are giving up real bench depth to do it — fine if you are set at your starting spots."
-    elif delta_depth > 3:
+    elif delta_depth > depth_note:
         tail += " You also pick up useful bench depth for byes and injuries."
 
     return head + body + tail

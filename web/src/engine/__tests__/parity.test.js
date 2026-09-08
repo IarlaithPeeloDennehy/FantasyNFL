@@ -73,6 +73,29 @@ describe.each(golden.cases)('league: $name', (testCase) => {
   })
 })
 
+// The horizon is a divisor, so it is the easiest place for the two
+// implementations to drift without either looking wrong on its own.
+describe('horizon: the per-week divisor matches Python', () => {
+  const league = makeLeague(golden.horizonLeague)
+  const replacement = replacementPoints(doc.curves, league)
+
+  it.each(golden.horizons)('$id over $weeksCovered weeks', (t) => {
+    const graded = gradeTrade(
+      roster,
+      t.give.map((n) => byName.get(n)),
+      t.receive.map((n) => byName.get(n)),
+      league,
+      replacement,
+      t.weeksCovered,
+    )
+    expect(graded.deltaSeason).toBeCloseTo(t.deltaSeason, 9)
+    expect(graded.deltaPerWeek).toBeCloseTo(t.deltaPerWeek, 9)
+    expect(graded.verdict).toBe(t.verdict)
+    expect(graded.direction).toBe(t.direction)
+    expect(graded.explanation).toBe(t.explanation)
+  })
+})
+
 describe('the fixtures themselves', () => {
   it('cover more than one league shape', () => {
     expect(golden.cases.length).toBeGreaterThanOrEqual(5)
@@ -84,6 +107,10 @@ describe('the fixtures themselves', () => {
 
   it('resolve every roster name against players.json', () => {
     expect(roster.every(Boolean)).toBe(true)
+  })
+
+  it('exercise a horizon other than a whole season', () => {
+    expect(golden.horizons.some((t) => t.weeksCovered !== 17)).toBe(true)
   })
 
   it('agree with Python to well under a tenth of a point', () => {

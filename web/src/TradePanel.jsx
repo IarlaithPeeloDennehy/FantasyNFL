@@ -26,14 +26,14 @@ const TONE = {
 
 export function TradePanel({
   roster, byId, give, get, setGive, setGet, league, replacement, players,
-  query, setQuery, pos, setPos,
+  query, setQuery, pos, setPos, weeksCovered,
 }) {
   const giving = give.map((id) => byId.get(id)).filter(Boolean)
   const getting = get.map((id) => byId.get(id)).filter(Boolean)
   const active = giving.length > 0 || getting.length > 0
 
   const grade = active
-    ? gradeTrade(roster, giving, getting, league, replacement)
+    ? gradeTrade(roster, giving, getting, league, replacement, weeksCovered)
     : null
 
   const held = new Set(roster.map((p) => p.id))

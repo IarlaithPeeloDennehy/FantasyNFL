@@ -193,6 +193,7 @@ function Workbench({ doc, state, setState }) {
           give={state.give} get={state.get}
           setGive={(give) => patch({ give })} setGet={(get) => patch({ get })}
           league={league} replacement={replacement}
+          weeksCovered={meta.weeksCovered}
           query={tradeQuery} setQuery={setTradeQuery}
           pos={tradePos} setPos={setTradePos}
         />
