@@ -10,6 +10,7 @@ import {
   bestLineup, bySlot, depthValue, enforceLimit, replacementForSlot, rosterLimit,
   slotStem, uncoveredPositions,
 } from './lineup.js'
+import { describeScarcity, tradedTiers } from './market.js'
 
 export const EVEN_THRESHOLD = 0.5
 
@@ -56,6 +57,7 @@ export function band(deltaPerWeek) {
  */
 export function gradeTrade(
   roster, give, receive, league, replacement, weeksCovered = GAMES_PER_SEASON,
+  market = null,
 ) {
   const { scoring } = league
 
@@ -106,11 +108,16 @@ export function gradeTrade(
     // many spots you would free if the trade goes the other way, and whether the
     // roster was already past the limit before any of this.
     cuts: afterCap.cut,
+    // Which tier each traded player sits in, and how deep that tier is. Reported
+    // beside the headline, never folded into it: replaceability is an argument
+    // about the trade, not a number to add to the points.
+    tiers: tradedTiers(give, receive, market),
     spotsFreed,
     overBefore: beforeCap.cut.length,
     explanation: explain(
       before, after, deltaPerWeek, deltaDepth, scoring, replacement,
       league, give, receive, weeksCovered, afterCap.cut, spotsFreed, beforeCap.cut.length,
+      market,
     ),
   }
 }
@@ -118,7 +125,7 @@ export function gradeTrade(
 export function explain(
   before, after, deltaPerWeek, deltaDepth, scoring, replacement,
   league = null, give = [], receive = [], weeksCovered = GAMES_PER_SEASON,
-  cuts = [], spotsFreed = 0, overBefore = 0,
+  cuts = [], spotsFreed = 0, overBefore = 0, market = null,
 ) {
   const b = bySlot(before)
   const a = bySlot(after)
@@ -150,6 +157,7 @@ export function explain(
       'Your starting lineup does not change. Nothing you would start is affected.' +
       consequences(
         deltaDepth, weeksCovered, cuts, after, league, spotsFreed, give, receive, overBefore,
+        market, scoring,
       )
     )
   }
@@ -199,6 +207,7 @@ export function explain(
 
   return head + body + consequences(
     deltaDepth, weeksCovered, cuts, after, league, spotsFreed, give, receive, overBefore,
+    market, scoring,
   )
 }
 
@@ -211,7 +220,7 @@ export function explain(
  */
 function consequences(
   deltaDepth, weeksCovered, cuts, after, league, spotsFreed, give = [], receive = [],
-  overBefore = 0,
+  overBefore = 0, market = null, scoring = null,
 ) {
   let tail = ''
 
@@ -226,6 +235,12 @@ function consequences(
       ' starts per team, so the next one on waivers is much closer to yours' +
       ' than the gap in rank implies.'
   }
+
+  // Replaceability. The points have already said who scores more; this says
+  // which of them you could go and find again, which is the argument the points
+  // cannot make and the one that decides whether two good players really beat
+  // one great one.
+  if (scoring !== null) tail += describeScarcity(give, receive, market, scoring, league)
 
   // The forced drop. A trade that hands you more players than you send is not
   // free, and the number alone will not stop anyone -- naming the casualties is

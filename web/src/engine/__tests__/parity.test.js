@@ -11,7 +11,9 @@ import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 
-import { band, gradeTrade, makeLeague, playerPoints, replacementPoints, vor } from '../index.js'
+import {
+  band, buildMarket, gradeTrade, makeLeague, playerPoints, replacementPoints, vor,
+} from '../index.js'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const golden = JSON.parse(readFileSync(join(here, 'golden.json'), 'utf8'))
@@ -31,6 +33,13 @@ describe('band boundaries match Python', () => {
 describe.each(golden.cases)('league: $name', (testCase) => {
   const league = makeLeague(testCase.league)
   const replacement = replacementPoints(doc.curves, league)
+  const market = buildMarket(doc.curves, league, golden.weeksCovered)
+
+  it('cuts the same tiers as Python', () => {
+    for (const [pos, expected] of Object.entries(testCase.tiers)) {
+      expect(market[pos].map((t) => [t.start, t.end])).toEqual(expected)
+    }
+  })
 
   it('replacement level matches Python', () => {
     for (const [pos, expected] of Object.entries(testCase.replacementPoints)) {
@@ -50,7 +59,9 @@ describe.each(golden.cases)('league: $name', (testCase) => {
   describe.each(testCase.trades)('trade: $id', (t) => {
     const give = t.give.map((n) => byName.get(n))
     const receive = t.receive.map((n) => byName.get(n))
-    const graded = gradeTrade(roster, give, receive, league, replacement)
+    const graded = gradeTrade(
+      roster, give, receive, league, replacement, golden.weeksCovered, market,
+    )
 
     it('lineup points match before and after', () => {
       expect(graded.before.points).toBeCloseTo(t.beforePoints, 9)
@@ -60,6 +71,14 @@ describe.each(golden.cases)('league: $name', (testCase) => {
     it('picks the same starters', () => {
       expect(graded.before.slots.map(([s, p]) => [s, p.name])).toEqual(t.beforeSlots)
       expect(graded.after.slots.map(([s, p]) => [s, p.name])).toEqual(t.afterSlots)
+    })
+
+    it('places both sides in the same tiers as Python', () => {
+      for (const side of ['give', 'receive']) {
+        expect(graded.tiers[side].map((r) => ({
+          name: r.player.name, tier: r.tier, size: r.size, of: r.of,
+        }))).toEqual(t.tiers[side])
+      }
     })
 
     it('picks the same forced cuts', () => {
@@ -93,6 +112,7 @@ describe('horizon: the per-week divisor matches Python', () => {
       league,
       replacement,
       t.weeksCovered,
+      buildMarket(doc.curves, league, t.weeksCovered),
     )
     expect(graded.deltaSeason).toBeCloseTo(t.deltaSeason, 9)
     expect(graded.deltaPerWeek).toBeCloseTo(t.deltaPerWeek, 9)
@@ -137,6 +157,8 @@ describe('the fixtures themselves', () => {
           t.receive.map((n) => byName.get(n)),
           league,
           replacement,
+          golden.weeksCovered,
+          buildMarket(doc.curves, league, golden.weeksCovered),
         )
         return Math.abs(g.deltaSeason - t.deltaSeason)
       })

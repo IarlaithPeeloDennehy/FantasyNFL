@@ -26,14 +26,14 @@ const TONE = {
 
 export function TradePanel({
   roster, byId, give, get, setGive, setGet, league, replacement, players,
-  query, setQuery, pos, setPos, weeksCovered,
+  query, setQuery, pos, setPos, weeksCovered, market,
 }) {
   const giving = give.map((id) => byId.get(id)).filter(Boolean)
   const getting = get.map((id) => byId.get(id)).filter(Boolean)
   const active = giving.length > 0 || getting.length > 0
 
   const grade = active
-    ? gradeTrade(roster, giving, getting, league, replacement, weeksCovered)
+    ? gradeTrade(roster, giving, getting, league, replacement, weeksCovered, market)
     : null
 
   const limit = rosterLimit(league)
@@ -100,6 +100,29 @@ export function TradePanel({
           {/* The product. Everything else on this panel supports this sentence. */}
           <p className="explanation">{grade.explanation}</p>
           <p className="tone">{TONE[grade.verdict]}</p>
+
+          {/* Replaceability, beside the headline and never inside it. A tier
+              two deep means there is nobody to go and get; sixteen deep means
+              the player is a commodity however well he scores. */}
+          {(grade.tiers.give?.length > 0 || grade.tiers.receive?.length > 0) && (
+            <ul className="tiers">
+              {['give', 'receive'].flatMap((side) =>
+                (grade.tiers[side] ?? []).map((r) => (
+                  <li key={`${side}-${r.player.id}`} className={side}>
+                    <span className="name">{r.player.name}</span>
+                    <span className="tag">
+                      {r.player.pos} tier {r.tier} of {r.of}
+                    </span>
+                    <span className="depth-note">
+                      {r.size === 1
+                        ? 'alone in his tier'
+                        : `one of ${r.size} in his tier`}
+                    </span>
+                  </li>
+                )),
+              )}
+            </ul>
+          )}
 
           {/* The forced drop. Above the depth line because it is the concrete
               half of the same cost: "you would cut these two" lands, "bench

@@ -222,6 +222,19 @@ h3.sub {
 /* The sentence is the product, so it gets the size the number usually takes. */
 .explanation { font-size: 1rem; margin: 0.6rem 0 0.3rem; }
 .tone { margin: 0 0 0.5rem; color: var(--muted); font-size: 0.85rem; }
+/* Replaceability sits between the sentence and the roster crunch: it is part of
+   the argument, not part of the arithmetic, so it reads as a list of facts about
+   the players rather than as another number. */
+.tiers { list-style: none; margin: 0.6rem 0 0; padding: 0; font-size: 0.82rem; }
+.tiers li {
+  display: flex; gap: 0.5rem; align-items: baseline;
+  padding: 0.15rem 0 0.15rem 0.5rem; border-left: 2px solid var(--border);
+}
+.tiers li.give { border-left-color: var(--bad); }
+.tiers li.receive { border-left-color: var(--good); }
+.tiers .name { font-weight: 600; }
+.tiers .depth-note { color: var(--muted); margin-left: auto; }
+
 /* A forced drop is a cost the headline deliberately does not carry, so it has to
    be legible on its own rather than reading as a footnote like the depth line. */
 .cuts {

@@ -16,6 +16,7 @@ import sys
 
 from model.fromfile import load_document, weeks_covered
 from model.lineup import band, grade_trade
+from model.market import build_market
 from model.value import PRESETS, League, replacement_points, vor
 from trades import ROSTER, TRADES
 
@@ -82,10 +83,13 @@ def main() -> int:
 
     roster = [by_name[n] for n in ROSTER]
 
+    weeks = weeks_covered(_doc)
+
     cases = []
     for league_name, spec in LEAGUES.items():
         lg = make_league(spec)
         repl = replacement_points(curves, lg)
+        market = build_market(curves, lg, weeks)
 
         top = sorted(players, key=lambda p: -vor(p, lg, repl))[:25]
 
@@ -99,12 +103,22 @@ def main() -> int:
                 [by_name[n] for n in t["receive"]],
                 lg,
                 repl,
+                weeks,
+                market,
             )
             trade_results.append({
                 "id": t["id"],
                 "cuts": [p.name for p in g.cuts],
                 "spotsFreed": g.spots_freed,
                 "overBefore": g.over_before,
+                "tiers": {
+                    side: [
+                        {"name": r["player"].name, "tier": r["tier"],
+                         "size": r["size"], "of": r["of"]}
+                        for r in rows
+                    ]
+                    for side, rows in g.tiers.items()
+                },
                 "give": t["give"],
                 "receive": t["receive"],
                 "deltaSeason": g.delta_season,
@@ -123,6 +137,9 @@ def main() -> int:
             "name": league_name,
             "league": league_payload(spec),
             "replacementPoints": repl,
+            "tiers": {
+                pos: [[t.start, t.end] for t in tiers] for pos, tiers in market.items()
+            },
             "topVor": [
                 {"name": p.name, "points": p.points(lg.scoring), "vor": vor(p, lg, repl)}
                 for p in top
@@ -136,6 +153,7 @@ def main() -> int:
     repl = replacement_points(curves, lg)
     horizons = []
     for weeks in HORIZONS:
+        market = build_market(curves, lg, weeks)
         for t in TRADES:
             if any(n not in by_name for n in t["give"] + t["receive"]):
                 continue
@@ -146,6 +164,7 @@ def main() -> int:
                 lg,
                 repl,
                 weeks,
+                market,
             )
             horizons.append({
                 "id": t["id"],

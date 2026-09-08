@@ -10,6 +10,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+from .market import describe_scarcity, tier_at
 from .value import GAMES_PER_SEASON, League, Player, vor
 
 FLEX_ELIGIBLE = ("RB", "WR", "TE")
@@ -235,6 +236,23 @@ def _and_list(items: list[str]) -> str:
     return f"{', '.join(items[:-1])} and {items[-1]}"
 
 
+def _traded_tiers(give, receive, market: dict | None) -> dict:
+    """Tier and tier depth for every player on both sides, for the UI to render."""
+    if not market:
+        return {}
+
+    def rows(players):
+        out = []
+        for p in players:
+            tier = tier_at(market.get(p.pos, []), p.pos_rank)
+            if tier is not None:
+                out.append({"player": p, "tier": tier.index + 1, "size": tier.size,
+                            "of": len(market.get(p.pos, []))})
+        return out
+
+    return {"give": rows(list(give)), "receive": rows(list(receive))}
+
+
 def band(delta_per_week: float) -> str:
     """Verdicts have a direction. A 5-point loss is not a 'clear win'."""
     magnitude = abs(delta_per_week)
@@ -264,6 +282,14 @@ class Grade:
     # not this trade's, but the grade is computed against a legal roster either
     # way so it has to be sayable.
     over_before: int = 0
+    # Which tier each traded player sits in, and how deep that tier is. Reported
+    # beside the headline, never folded into it: replaceability is an argument
+    # about the trade, not a number to add to the points.
+    tiers: dict = field(default_factory=dict)
+    # Which tier each traded player sits in, and how deep that tier is. Reported
+    # beside the headline, never folded into it: replaceability is an argument
+    # about the trade, not a number to add to the points.
+    tiers: dict = field(default_factory=dict)
 
 
 def grade_trade(
@@ -273,6 +299,7 @@ def grade_trade(
     league: League,
     replacement: dict[str, float],
     weeks_covered: float = GAMES_PER_SEASON,
+    market: dict | None = None,
 ) -> Grade:
     """`weeks_covered` is how many weeks the projections span -- 17 for a
     full-season file, `weeks_remaining` for a rest-of-season one. Use
@@ -320,12 +347,13 @@ def grade_trade(
         before=before,
         after=after,
         cuts=after_cut,
+        tiers=_traded_tiers(give, receive, market),
         spots_freed=max(spots_freed, 0),
         over_before=len(before_cut),
         explanation=explain(
             before, after, delta_week, delta_depth, scoring, replacement,
             league, give, receive, weeks_covered, after_cut, max(spots_freed, 0),
-            len(before_cut),
+            len(before_cut), market,
         ),
     )
 
@@ -344,6 +372,7 @@ def explain(
     cuts: list[Player] | tuple = (),
     spots_freed: int = 0,
     over_before: int = 0,
+    market: dict | None = None,
 ) -> str:
     """Plain English. The number convinces nobody on its own."""
     b, a = before.by_slot(), after.by_slot()
@@ -367,7 +396,7 @@ def explain(
             "Your starting lineup does not change. Nothing you would start is"
             " affected." + _consequences(
                 delta_depth, weeks_covered, cuts, after, league, spots_freed,
-                give, receive, over_before,
+                give, receive, over_before, market, scoring,
             )
         )
 
@@ -421,7 +450,7 @@ def explain(
 
     return head + body + _consequences(
         delta_depth, weeks_covered, cuts, after, league, spots_freed, give, receive,
-        over_before,
+        over_before, market, scoring,
     )
 
 
@@ -435,6 +464,8 @@ def _consequences(
     give: list[Player] | tuple = (),
     receive: list[Player] | tuple = (),
     over_before: int = 0,
+    market: dict | None = None,
+    scoring: dict[str, float] | None = None,
 ) -> str:
     """Everything true about the trade that is not the slot it moved.
 
@@ -455,6 +486,13 @@ def _consequences(
             " starts per team, so the next one on waivers is much closer to yours"
             " than the gap in rank implies."
         )
+
+    # Replaceability. The points have already said who scores more; this says
+    # which of them you could go and find again, which is the argument the points
+    # cannot make and the one that decides whether two good players really beat
+    # one great one.
+    if scoring is not None:
+        tail += describe_scarcity(give, receive, market, scoring, league)
 
     # The forced drop. A trade that hands you more players than you send is not
     # free, and the number alone will not stop anyone -- naming the casualties is

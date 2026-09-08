@@ -9,7 +9,9 @@
 
 import { useEffect, useMemo, useState } from 'react'
 
-import { bestLineup, daysSince, parseDocument, replacementPoints } from './engine/index.js'
+import {
+  bestLineup, buildMarket, daysSince, parseDocument, replacementPoints,
+} from './engine/index.js'
 import { describeSpec, normaliseSpec, toLeague } from './league.js'
 import { EMPTY, loadState, saveState } from './state.js'
 import { BuyLow } from './BuyLow.jsx'
@@ -79,6 +81,12 @@ function Workbench({ doc, state, setState }) {
   const spec = useMemo(() => normaliseSpec(state.league), [state.league])
   const league = useMemo(() => toLeague(spec), [spec])
   const replacement = useMemo(() => replacementPoints(curves, league), [curves, league])
+  // Tiers are a pure function of the curve, the scoring and the horizon, so they
+  // are computed once beside replacement level rather than per trade.
+  const market = useMemo(
+    () => buildMarket(curves, league, meta.weeksCovered),
+    [curves, league, meta.weeksCovered],
+  )
 
   const byId = useMemo(() => new Map(players.map((p) => [p.id, p])), [players])
   const roster = useMemo(
@@ -193,7 +201,7 @@ function Workbench({ doc, state, setState }) {
           give={state.give} get={state.get}
           setGive={(give) => patch({ give })} setGet={(get) => patch({ get })}
           league={league} replacement={replacement}
-          weeksCovered={meta.weeksCovered}
+          weeksCovered={meta.weeksCovered} market={market}
           query={tradeQuery} setQuery={setTradeQuery}
           pos={tradePos} setPos={setTradePos}
         />

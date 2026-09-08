@@ -93,27 +93,51 @@ defect was entirely boundary bias, and this removes it in five lines with no new
 dependency. Replacement level did not move at all — every replacement rank sits
 deep in the curve interior, where the smoother was already behaving.
 
-**A2 — Tiers, derived not declared.**
-Walk each position's curve and cut a new tier wherever the rank-over-rank drop
-exceeds some multiple of the local median drop. This produces "RB1–4 / RB5–9 /
-RB10–18 / …" from the data, and produces something different for QB, which is
-correct. Tiers are **not** added to the number. They are used for two things:
+**A2 — Tiers, derived not declared. Done — but not the way this said.**
+The proposed algorithm was to cut a tier wherever the rank-over-rank drop exceeds
+a multiple of the local median drop. That finds nothing, and the reason is Phase
+1: the curve is deliberately smoothed, so there are no cliffs left to detect. It
+produced a break at rank 1 and then nothing at all.
+
+A tier is not a gap in the data. It is a statement about indifference, and it has
+to be defined in points rather than found in slopes: **a run of consecutive ranks
+whose points span less than one band's worth of a starting slot** (2.0 a week,
+the Slight edge / Clear win boundary). Measured on the shipped curve:
+
+| | tiers |
+|---|---|
+| RB | 1-2 \| 3-5 \| 6-9 \| 10-17 \| 18-26 |
+| WR | 1-2 \| 3-4 \| 5-9 \| 10-25 \| 26-39 |
+| QB | 1-2 \| 3-5 \| 6-10 \| 11-15 \| 16-20 \| 21-24 |
+| TE | 1-2 \| 3-7 \| 8-14 \| 15-28 |
+
+Tiers are **not** added to the number. They are used for two things:
 
 - *Language.* "You are trading down a tier at RB and across within a tier at
   WR" is the sentence a fantasy player actually thinks in. `explain()` already
   says "(RB27-level)"; tier names make that legible.
 - *Replaceability.* Which leads to the real gap:
 
-**A3 — Acquisition scarcity, which the model has no concept of.**
-Two RB20s can out-point one RB5 on paper while being a bad trade, because you
-can find an RB20 on waivers or buy one with a WR4, and you cannot buy an RB5 at
-any price. The current model prices *what a player scores*; it has no term for
-*how hard he is to replace if this trade falls through*. I'd add one honest,
-bounded signal — the number of players not rostered in a league of this size
-within X% of each traded player's projection — and report it as a line beside
-the headline ("the RB you're sending has no comparable replacement available;
-the one you're getting has nine"), never folded in. Same discipline the codebase
-already applies to bench depth, and for the same reason.
+**A3 — Acquisition scarcity. Done, and it needed no second concept.**
+The plan called for a separate signal: players within X% of each traded player's
+projection, with its own threshold. That turned out to be the tier size measured
+a second way. **The size of a player's tier is how many players are
+interchangeable with him**, so the tier machinery answers both questions and
+there is one threshold to defend instead of two.
+
+Reported beside the verdict and never folded in, same discipline as bench depth.
+Two constants govern when it speaks: at a scarce-tier size of 4 and a ratio of
+2.0 it fired on 65% of graded cases, which is background noise rather than a
+point. At 3 and 3.0 it fires on exactly the four trades where replaceability is
+the argument and stays silent on even swaps, bench shuffles and rank-adjacent
+upgrades.
+
+It is also suppressed at quarterback in a one-QB league, which the plan did not
+anticipate. Tier depth measures how hard a player is to replace *from a roster*,
+and at quarterback you do not have to — the next one on waivers is nearly as
+good. That is exactly what the existing QB note says, so printing both produced
+two sentences arguing with each other: "quarterbacks are worth less than their
+rank suggests" immediately followed by "you are giving up the scarcer player".
 
 **A4 — Make the bands relative.**
 `BANDS` are absolute pts/week. A +2.0/week gain is a rounding error to a stacked
@@ -379,7 +403,7 @@ which is where `encodeSpec` needs its version marker.
 | 0 | Fix D1: weeks-aware horizon | **Done.** Gate met and strengthened: a `rest_of_season` file now gives the *same* per-week number as the full-season one, at 14/8/3/1 weeks. `web/src/engine/__tests__/horizon.test.js`. |
 | 1 | Fix D2: curve smoothing at the top | **Done.** Rank 1 rises 23–32 pts per position, rank 2 by 5–13; ranks 3+ unchanged; still monotone at every rank; schema validation and the 12/12 trade gate pass. `test_curves.py`. |
 | 2 | Roster cap + forced cuts + diminishing depth | **Done, but the gate as written was wrong** — see below. Cuts are computed, named, and correctly attributed; depth no longer counts unkeepable players. No headline verdict moved. `test_roster.py`, `roster.test.js`. |
-| 3 | Tiers + acquisition scarcity | Tiers derived per position; QB tiers come out different from RB, from the data, not from a constant. |
+| 3 | Tiers + acquisition scarcity | **Done.** Tiers widen 3.4–7.5× down the curve at RB/WR/TE and only 2.0× at QB, entirely from the data. Tier depth doubles as the replaceability measure, so A3 needed no second concept. `test_market.py`, `market.test.js`. |
 | 4 | Weekly horizon + availability | Star out 5 weeks scores near zero over weeks 1–5 and full value after. Double-count guard tested against `ranks_as_of`. |
 | 5 | Record → `w(t)` → situational value | Same trade, 0-3 vs 3-0, produces opposite recommendations with both numbers shown. |
 | 6 | Explanation rewrite | A fantasy player reads it and can restate the reasoning without seeing the numbers. Same gate Phase 05 had, and the only one that matters. |

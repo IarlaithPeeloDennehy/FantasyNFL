@@ -74,6 +74,25 @@ export function Methodology({ meta }) {
         flattens exactly the gap that makes elite players worth trading for.
       </p>
 
+      <h3 className="sub">Tiers, and what the points cannot tell you</h3>
+      <p>
+        A tier here is a run of players close enough that you would not care
+        which one you had — specifically, within two points a week of the best
+        player in the tier, which is the same gap that separates a slight edge
+        from a clear win at a starting slot. Tiers are cut from the curve, so
+        they come out narrow at the top and wide in the middle for running backs,
+        receivers and tight ends, and roughly even all the way down for
+        quarterbacks. None of those shapes is written down anywhere; they fall
+        out of the history.
+      </p>
+      <p>
+        Tier depth is the one thing here that the points genuinely cannot say.
+        Two mid-range backs can out-score one elite back on paper and still be a
+        bad trade, because you can find another mid-range back and you cannot
+        find another elite one. That is reported beside the verdict and never
+        added to it — it is an argument about the trade, not a number.
+      </p>
+
       <h3 className="sub">Why trades are graded on lineups, not totals</h3>
       <p>
         Summing player values is how trade calculators end up saying three WR4s
