@@ -39,6 +39,10 @@ LEAGUES = {
     "superflex-12": {"superflex_slots": 1},
     "two-flex-10": {"teams": 10, "flex_slots": 2},
     "te-premium-shape": {"starters": {"QB": 1, "RB": 2, "WR": 2, "TE": 2}},
+    # A short bench turns every uneven trade into a forced drop, which is the
+    # only way the cut selector gets exercised across all twelve trades.
+    "tight-bench-12": {"bench_slots": 2},
+    "no-bench-12": {"bench_slots": 0},
 }
 
 
@@ -57,6 +61,7 @@ def league_payload(spec: dict) -> dict:
         "starters": lg.starters,
         "flexSlots": lg.flex_slots,
         "superflexSlots": lg.superflex_slots,
+        "benchSlots": lg.bench_slots,
         "flexShare": lg.flex_share,
         "superflexShare": lg.superflex_share,
     }
@@ -97,6 +102,9 @@ def main() -> int:
             )
             trade_results.append({
                 "id": t["id"],
+                "cuts": [p.name for p in g.cuts],
+                "spotsFreed": g.spots_freed,
+                "overBefore": g.over_before,
                 "give": t["give"],
                 "receive": t["receive"],
                 "deltaSeason": g.delta_season,
@@ -141,6 +149,9 @@ def main() -> int:
             )
             horizons.append({
                 "id": t["id"],
+                "cuts": [p.name for p in g.cuts],
+                "spotsFreed": g.spots_freed,
+                "overBefore": g.over_before,
                 "weeksCovered": weeks,
                 "give": t["give"],
                 "receive": t["receive"],

@@ -62,6 +62,12 @@ describe.each(golden.cases)('league: $name', (testCase) => {
       expect(graded.after.slots.map(([s, p]) => [s, p.name])).toEqual(t.afterSlots)
     })
 
+    it('picks the same forced cuts', () => {
+      expect(graded.cuts.map((p) => p.name)).toEqual(t.cuts)
+      expect(graded.spotsFreed).toBe(t.spotsFreed)
+      expect(graded.overBefore).toBe(t.overBefore)
+    })
+
     it('deltas, verdict and explanation match', () => {
       expect(graded.deltaSeason).toBeCloseTo(t.deltaSeason, 9)
       expect(graded.deltaPerWeek).toBeCloseTo(t.deltaPerWeek, 9)
@@ -90,6 +96,7 @@ describe('horizon: the per-week divisor matches Python', () => {
     )
     expect(graded.deltaSeason).toBeCloseTo(t.deltaSeason, 9)
     expect(graded.deltaPerWeek).toBeCloseTo(t.deltaPerWeek, 9)
+    expect(graded.cuts.map((p) => p.name)).toEqual(t.cuts)
     expect(graded.verdict).toBe(t.verdict)
     expect(graded.direction).toBe(t.direction)
     expect(graded.explanation).toBe(t.explanation)
@@ -103,6 +110,12 @@ describe('the fixtures themselves', () => {
 
   it('include a superflex league, or QB scarcity goes untested', () => {
     expect(golden.cases.some((c) => c.league.superflexSlots > 0)).toBe(true)
+  })
+
+  it('include a bench short enough to force cuts, or the cut selector goes untested', () => {
+    const withCuts = golden.cases.flatMap((c) => c.trades).filter((t) => t.cuts.length > 0)
+    expect(withCuts.length).toBeGreaterThan(10)
+    expect(withCuts.some((t) => t.cuts.length > 1)).toBe(true)
   })
 
   it('resolve every roster name against players.json', () => {

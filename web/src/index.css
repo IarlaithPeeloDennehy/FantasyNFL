@@ -222,6 +222,13 @@ h3.sub {
 /* The sentence is the product, so it gets the size the number usually takes. */
 .explanation { font-size: 1rem; margin: 0.6rem 0 0.3rem; }
 .tone { margin: 0 0 0.5rem; color: var(--muted); font-size: 0.85rem; }
+/* A forced drop is a cost the headline deliberately does not carry, so it has to
+   be legible on its own rather than reading as a footnote like the depth line. */
+.cuts {
+  margin: 0.5rem 0 0; padding: 0.5rem 0.6rem;
+  border-left: 3px solid var(--border); background: var(--bg);
+  font-size: 0.85rem; border-radius: 0 4px 4px 0;
+}
 .depth {
   margin: 0.5rem 0 0; padding-top: 0.5rem; border-top: 1px dashed var(--border);
   color: var(--muted); font-size: 0.8rem;

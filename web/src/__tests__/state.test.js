@@ -87,7 +87,27 @@ describe('league spec', () => {
   })
 
   it('stays short enough to share', () => {
-    expect(encodeSpec(DEFAULT_SPEC)).toBe('12-half_ppr-1.2.3.1-1-0')
+    expect(encodeSpec(DEFAULT_SPEC)).toBe('12-half_ppr-1.2.3.1-1-0-7')
+  })
+
+  // Bench slots were added to the end of this string after links had already
+  // been shared. A five-field URL is a real thing people still hold, and the
+  // strict length check that used to be here rejected them -- which silently
+  // reset the whole league to defaults and graded the trade in the wrong format.
+  it('still reads a link shared before bench slots existed', () => {
+    const old = decodeSpec('14-ppr-1.3.2.1-2-1')
+    expect(old).not.toBeNull()
+    expect(old.teams).toBe(14)
+    expect(old.scoring).toBe('ppr')
+    expect(old.starters).toEqual({ QB: 1, RB: 3, WR: 2, TE: 1 })
+    expect(old.flexSlots).toBe(2)
+    expect(old.superflexSlots).toBe(1)
+    expect(old.benchSlots).toBe(DEFAULT_SPEC.benchSlots)
+  })
+
+  it('rejects a field count it cannot place', () => {
+    expect(decodeSpec('12-half_ppr-1.2.3.1')).toBeNull()
+    expect(decodeSpec('12-half_ppr-1.2.3.1-1-0-7-9')).toBeNull()
   })
 
   it('falls back rather than throwing on a mangled spec', () => {
@@ -112,7 +132,8 @@ describe('league spec', () => {
   })
 
   it('describes itself for the header', () => {
-    expect(describeSpec(DEFAULT_SPEC)).toBe('12-team Half PPR · 1QB/2RB/3WR/1TE/1FLEX')
+    expect(describeSpec(DEFAULT_SPEC))
+      .toBe('12-team Half PPR · 1QB/2RB/3WR/1TE/1FLEX · 7 bench')
   })
 })
 

@@ -11,7 +11,7 @@
  * fix: three WR4s beating an elite back because their values summed.
  */
 
-import { gradeTrade } from './engine/index.js'
+import { gradeTrade, rosterLimit } from './engine/index.js'
 import { LineupView, PlayerSearch } from './ui.jsx'
 
 const TONE = {
@@ -36,6 +36,7 @@ export function TradePanel({
     ? gradeTrade(roster, giving, getting, league, replacement, weeksCovered)
     : null
 
+  const limit = rosterLimit(league)
   const held = new Set(roster.map((p) => p.id))
   const excluded = new Set([...held, ...get])
 
@@ -99,6 +100,31 @@ export function TradePanel({
           {/* The product. Everything else on this panel supports this sentence. */}
           <p className="explanation">{grade.explanation}</p>
           <p className="tone">{TONE[grade.verdict]}</p>
+
+          {/* The forced drop. Above the depth line because it is the concrete
+              half of the same cost: "you would cut these two" lands, "bench
+              depth worsens by 4.1" does not. */}
+          {grade.cuts.length > 0 && (
+            <p className="cuts">
+              <strong>Roster crunch.</strong>{' '}
+              {grade.overBefore === 0 ? (
+                <>You would be {grade.cuts.length} over the limit of {limit}. To fit
+                  {grade.cuts.length === 1 ? ' them' : ' them all'} you would drop{' '}</>
+              ) : grade.cuts.length > grade.overBefore ? (
+                <>Your roster is already {grade.overBefore} over the limit of {limit},
+                  and this would put you {grade.cuts.length} over. You would drop{' '}</>
+              ) : (
+                <>Your roster is already {grade.overBefore} over the limit of {limit},
+                  whatever you do here. You would drop{' '}</>
+              )}
+              {grade.cuts.map((p, i) => (
+                <span key={p.id}>
+                  {i > 0 && (i === grade.cuts.length - 1 ? ' and ' : ', ')}
+                  <strong>{p.name}</strong> ({p.pos}{p.pos_adp_rank})
+                </span>
+              ))}.
+            </p>
+          )}
 
           {/* Reported separately, on purpose, and never added to the headline. */}
           <p className="depth">

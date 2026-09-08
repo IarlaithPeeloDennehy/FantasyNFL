@@ -5,8 +5,11 @@
  * here -- it is the part of the output people actually read.
  */
 
-import { GAMES_PER_SEASON, playerPoints, vor } from './scoring.js'
-import { bestLineup, bySlot, replacementForSlot, slotStem } from './lineup.js'
+import { GAMES_PER_SEASON, playerPoints } from './scoring.js'
+import {
+  bestLineup, bySlot, depthValue, enforceLimit, replacementForSlot, rosterLimit,
+  slotStem, uncoveredPositions,
+} from './lineup.js'
 
 export const EVEN_THRESHOLD = 0.5
 
@@ -17,12 +20,22 @@ export const BANDS = [
   [Infinity, 'Lopsided win', 'Lopsided loss'],
 ]
 
-const DEPTH_WEIGHT = 0.2
-
 // How much bench-depth movement is worth a sentence. Unlike the bands above this
 // is a *season-scale* quantity, so it has to be rescaled for a rest-of-season
 // file or the sentence appears and disappears depending on what week it is.
 export const DEPTH_NOTE_THRESHOLD = 3.0
+
+const COUNTS = ['no', 'one', 'two', 'three', 'four', 'five', 'six']
+
+/** Small numbers read better as words in the middle of a sentence. */
+function count(n) {
+  return n < COUNTS.length ? COUNTS[n] : String(n)
+}
+
+function andList(items) {
+  if (items.length <= 1) return items[0] ?? ''
+  return `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`
+}
 
 /** Verdicts have a direction. A five-point loss is not a 'clear win'. */
 export function band(deltaPerWeek) {
@@ -33,17 +46,6 @@ export function band(deltaPerWeek) {
   }
   const last = BANDS[BANDS.length - 1]
   return deltaPerWeek > 0 ? last[1] : last[2]
-}
-
-/**
- * Bench players are not worthless -- byes and injuries happen -- but they are
- * not worth face value either. Reported separately, never folded into the
- * headline, because folding it back in re-creates the 2-for-1 bug.
- */
-function depthValue(bench, league, replacement) {
-  let total = 0
-  for (const p of bench) total += Math.max(vor(p, league, replacement), 0)
-  return DEPTH_WEIGHT * total
 }
 
 /**
@@ -65,14 +67,27 @@ export function gradeTrade(
 
   const afterRoster = roster.filter((p) => !giveSet.has(p)).concat(receive)
 
-  const before = bestLineup(roster, league, scoring, replacement)
-  const after = bestLineup(afterRoster, league, scoring, replacement)
+  // Both sides are cut down to a legal roster before anything is measured. Only
+  // capping the after-roster would charge this trade for an overflow the user
+  // already had; capping both means a pre-existing one mostly cancels, and the
+  // delta stays a comparison between two rosters that could actually be fielded.
+  const beforeCap = enforceLimit(roster, league, replacement)
+  const afterCap = enforceLimit(afterRoster, league, replacement)
+
+  const before = bestLineup(beforeCap.kept, league, scoring, replacement)
+  const after = bestLineup(afterCap.kept, league, scoring, replacement)
 
   const deltaSeason = after.points - before.points
   const deltaPerWeek = deltaSeason / weeksCovered
   const deltaDepth =
     depthValue(after.bench, league, replacement) -
     depthValue(before.bench, league, replacement)
+
+  const limit = rosterLimit(league)
+  const spotsFreed = Math.max(
+    0,
+    Math.max(0, limit - afterCap.kept.length) - Math.max(0, limit - beforeCap.kept.length),
+  )
 
   let direction = 'even'
   if (Math.abs(deltaPerWeek) >= EVEN_THRESHOLD) {
@@ -87,9 +102,15 @@ export function gradeTrade(
     direction,
     before,
     after,
+    // Who you would have to drop to fit the incoming players, worst first, how
+    // many spots you would free if the trade goes the other way, and whether the
+    // roster was already past the limit before any of this.
+    cuts: afterCap.cut,
+    spotsFreed,
+    overBefore: beforeCap.cut.length,
     explanation: explain(
       before, after, deltaPerWeek, deltaDepth, scoring, replacement,
-      league, give, receive, weeksCovered,
+      league, give, receive, weeksCovered, afterCap.cut, spotsFreed, beforeCap.cut.length,
     ),
   }
 }
@@ -97,6 +118,7 @@ export function gradeTrade(
 export function explain(
   before, after, deltaPerWeek, deltaDepth, scoring, replacement,
   league = null, give = [], receive = [], weeksCovered = GAMES_PER_SEASON,
+  cuts = [], spotsFreed = 0, overBefore = 0,
 ) {
   const b = bySlot(before)
   const a = bySlot(after)
@@ -119,8 +141,17 @@ export function explain(
 
   // No slot changed hands, so the delta is exactly zero and there is nothing to
   // describe. Said plainly, without a number.
+  // No slot changed hands, so the delta is exactly zero and there is nothing to
+  // describe. Said plainly, without a number -- but the roster crunch and the
+  // depth note still apply, and a bench-for-bench trade that forces two drops is
+  // precisely the case that must not fall silent here.
   if (!changes.length) {
-    return 'Your starting lineup does not change. Nothing you would start is affected.'
+    return (
+      'Your starting lineup does not change. Nothing you would start is affected.' +
+      consequences(
+        deltaDepth, weeksCovered, cuts, after, league, spotsFreed, give, receive, overBefore,
+      )
+    )
   }
 
   // Branch on the *rendered* number, not the raw one. A delta of +0.034 renders
@@ -166,17 +197,69 @@ export function explain(
   else if (changes.length === 1) lead = 'Almost all of it'
   const body = ` ${lead} is at ${slot}: ${describe(oldP)} becomes ${describe(newP)}.`
 
+  return head + body + consequences(
+    deltaDepth, weeksCovered, cuts, after, league, spotsFreed, give, receive, overBefore,
+  )
+}
+
+/**
+ * Everything true about the trade that is not the slot it moved.
+ *
+ * Split out because it has to be reachable from both endings of `explain` --
+ * including the one where no starting slot changes at all, which is exactly the
+ * shape of trade most likely to cost a forced drop.
+ */
+function consequences(
+  deltaDepth, weeksCovered, cuts, after, league, spotsFreed, give = [], receive = [],
+  overBefore = 0,
+) {
+  let tail = ''
+
   // The QB problem. In a one-QB league an elite quarterback carries almost no
   // value above replacement, which is arithmetically right and socially
   // explosive -- users read it as the app being broken. Carry the scarcity
   // argument in the sentence rather than leaving the number to defend itself.
-  let tail = ''
   const oneQb = league !== null && league.superflexSlots === 0
   if (oneQb && [...give, ...receive].some((p) => p.pos === 'QB')) {
     tail +=
       ' Quarterbacks are worth less here than their rankings suggest: only one' +
       ' starts per team, so the next one on waivers is much closer to yours' +
       ' than the gap in rank implies.'
+  }
+
+  // The forced drop. A trade that hands you more players than you send is not
+  // free, and the number alone will not stop anyone -- naming the casualties is
+  // the part that does. Said before the depth note, because "you would drop
+  // Allgeier and Otton" is concrete and "bench depth worsens" is not.
+  if (cuts.length) {
+    const names = andList(cuts.map((p) => p.name))
+    // Who goes is always the full list -- that is the answer to "if I accept
+    // this, who do I drop?". Whose fault it is, is a separate question, and
+    // blaming the trade for an overflow the roster already had is how a
+    // player-for-himself trade ends up reporting five forced cuts.
+    if (!overBefore) {
+      tail +=
+        ` You would be ${count(cuts.length)} over the roster limit:` +
+        ` to fit them you would have to drop ${names}.`
+    } else if (cuts.length > overBefore) {
+      tail +=
+        ` Your roster is already ${count(overBefore)} over the limit, and this trade` +
+        ` would put you ${count(cuts.length)} over: you would have to drop ${names}.`
+    } else {
+      // The trade leaves the crunch alone or eases it. Either way it did not
+      // cause it, and the count that matters is the one they started with.
+      tail +=
+        ` Your roster is already ${count(overBefore)} over the limit; this trade` +
+        ` does not fix that, and you would still have to drop ${names}.`
+    }
+    if (league !== null) {
+      const thin = uncoveredPositions(after, league).filter(
+        (pos) => cuts.some((p) => p.pos === pos),
+      )
+      if (thin.length) tail += ` That leaves you no cover at ${andList(thin)}.`
+    }
+  } else if (spotsFreed) {
+    tail += ` It also frees ${count(spotsFreed)} roster ${spotsFreed === 1 ? 'spot' : 'spots'}.`
   }
 
   // `deltaDepth` is measured over whatever span the projections cover, so the
@@ -190,5 +273,5 @@ export function explain(
     tail += ' You also pick up useful bench depth for byes and injuries.'
   }
 
-  return head + body + tail
+  return tail
 }

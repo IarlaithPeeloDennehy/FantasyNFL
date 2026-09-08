@@ -113,6 +113,7 @@
     },
     "flexSlots": 1,
     "superflexSlots": 0,
+    "benchSlots": 7,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -261,6 +262,9 @@
    "trades": [
     {
      "id": "consolidation-up",
+     "cuts": [],
+     "spotsFreed": 1,
+     "overBefore": 0,
      "give": [
       "Nico Collins",
       "Rome Odunze"
@@ -270,10 +274,10 @@
      ],
      "deltaSeason": 146.95699999999988,
      "deltaPerWeek": 8.6445294117647,
-     "deltaDepth": -6.790544000000005,
+     "deltaDepth": -5.588946,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
+     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
      "beforePoints": 1822.7228,
      "afterPoints": 1969.6798,
      "beforeSlots": [
@@ -347,6 +351,11 @@
     },
     {
      "id": "consolidation-trap",
+     "cuts": [
+      "Bo Nix"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Ja'Marr Chase"
      ],
@@ -356,10 +365,10 @@
      ],
      "deltaSeason": -91.23219999999992,
      "deltaPerWeek": -5.366599999999996,
-     "deltaDepth": 7.225504000000001,
+     "deltaDepth": 3.229432999999995,
      "verdict": "Lopsided loss",
      "direction": "loss",
-     "explanation": "You lose 5.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
+     "explanation": "You lose 5.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
      "beforePoints": 1822.7228,
      "afterPoints": 1731.4906,
      "beforeSlots": [
@@ -433,6 +442,9 @@
     },
     {
      "id": "obvious-robbery",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Michael Wilson"
      ],
@@ -441,7 +453,7 @@
      ],
      "deltaSeason": 156.97900000000004,
      "deltaPerWeek": 9.234058823529415,
-     "deltaDepth": 6.443239999999992,
+     "deltaDepth": 3.1316499999999934,
      "verdict": "Lopsided win",
      "direction": "gain",
      "explanation": "You gain 9.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
@@ -518,6 +530,9 @@
     },
     {
      "id": "obvious-fleecing",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Trey McBride"
      ],
@@ -603,6 +618,9 @@
     },
     {
      "id": "even-swap",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Zay Flowers"
      ],
@@ -688,6 +706,9 @@
     },
     {
      "id": "identity",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Zay Flowers"
      ],
@@ -773,6 +794,9 @@
     },
     {
      "id": "three-for-one",
+     "cuts": [],
+     "spotsFreed": 2,
+     "overBefore": 0,
      "give": [
       "Josh Downs",
       "Michael Wilson",
@@ -783,10 +807,10 @@
      ],
      "deltaSeason": 131.4348,
      "deltaPerWeek": 7.731458823529412,
-     "deltaDepth": 4.431175999999983,
+     "deltaDepth": 2.628633999999991,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries.",
+     "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). It also frees two roster spots.",
      "beforePoints": 1822.7228,
      "afterPoints": 1954.1576,
      "beforeSlots": [
@@ -860,6 +884,9 @@
     },
     {
      "id": "bench-shuffle",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Michael Wilson"
      ],
@@ -868,7 +895,7 @@
      ],
      "deltaSeason": 0.0,
      "deltaPerWeek": 0.0,
-     "deltaDepth": -0.5838000000000019,
+     "deltaDepth": -0.1459500000000009,
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
@@ -945,6 +972,11 @@
     },
     {
      "id": "starter-for-depth",
+     "cuts": [
+      "Bo Nix"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Kyren Williams"
      ],
@@ -954,10 +986,10 @@
      ],
      "deltaSeason": -49.085000000000036,
      "deltaPerWeek": -2.8873529411764727,
-     "deltaDepth": -0.5615759999999952,
+     "deltaDepth": -1.725907000000003,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level).",
+     "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB.",
      "beforePoints": 1822.7228,
      "afterPoints": 1773.6378,
      "beforeSlots": [
@@ -1031,6 +1063,9 @@
     },
     {
      "id": "positional-scarcity",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Trey McBride"
      ],
@@ -1039,7 +1074,7 @@
      ],
      "deltaSeason": -60.99519999999984,
      "deltaPerWeek": -3.5879529411764612,
-     "deltaDepth": 7.225504000000001,
+     "deltaDepth": 3.229432999999995,
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 3.6 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
@@ -1112,6 +1147,9 @@
     },
     {
      "id": "qb-for-wr-1qb",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Joe Burrow"
      ],
@@ -1120,7 +1158,7 @@
      ],
      "deltaSeason": -60.55139999999983,
      "deltaPerWeek": -3.5618470588235196,
-     "deltaDepth": 7.225504000000001,
+     "deltaDepth": 3.229432999999995,
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 3.6 points a week. The move that matters is at QB: Joe Burrow (QB4-level) becomes Bo Nix (QB14-level). Quarterbacks are worth less here than their rankings suggest: only one starts per team, so the next one on waivers is much closer to yours than the gap in rank implies. You also pick up useful bench depth for byes and injuries.",
@@ -1197,6 +1235,9 @@
     },
     {
      "id": "upgrade-rb2",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Javonte Williams"
      ],
@@ -1306,6 +1347,7 @@
     },
     "flexSlots": 1,
     "superflexSlots": 0,
+    "benchSlots": 7,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -1454,6 +1496,9 @@
    "trades": [
     {
      "id": "consolidation-up",
+     "cuts": [],
+     "spotsFreed": 1,
+     "overBefore": 0,
      "give": [
       "Nico Collins",
       "Rome Odunze"
@@ -1463,10 +1508,10 @@
      ],
      "deltaSeason": 139.4920000000002,
      "deltaPerWeek": 8.205411764705893,
-     "deltaDepth": -7.8573440000000065,
+     "deltaDepth": -6.518896000000002,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 8.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
+     "explanation": "You gain 8.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
      "beforePoints": 2101.0078000000003,
      "afterPoints": 2240.4998000000005,
      "beforeSlots": [
@@ -1540,6 +1585,11 @@
     },
     {
      "id": "consolidation-trap",
+     "cuts": [
+      "Bo Nix"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Ja'Marr Chase"
      ],
@@ -1549,10 +1599,10 @@
      ],
      "deltaSeason": -107.86220000000003,
      "deltaPerWeek": -6.344835294117649,
-     "deltaDepth": 8.712304000000001,
+     "deltaDepth": 4.114407999999996,
      "verdict": "Lopsided loss",
      "direction": "loss",
-     "explanation": "You lose 6.3 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
+     "explanation": "You lose 6.3 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
      "beforePoints": 2101.0078000000003,
      "afterPoints": 1993.1456000000003,
      "beforeSlots": [
@@ -1626,6 +1676,9 @@
     },
     {
      "id": "obvious-robbery",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Michael Wilson"
      ],
@@ -1634,7 +1687,7 @@
      ],
      "deltaSeason": 149.3989999999999,
      "deltaPerWeek": 8.788176470588228,
-     "deltaDepth": 7.730239999999993,
+     "deltaDepth": 3.9916499999999946,
      "verdict": "Lopsided win",
      "direction": "gain",
      "explanation": "You gain 8.8 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
@@ -1711,6 +1764,9 @@
     },
     {
      "id": "obvious-fleecing",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Trey McBride"
      ],
@@ -1796,6 +1852,9 @@
     },
     {
      "id": "even-swap",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Zay Flowers"
      ],
@@ -1881,6 +1940,9 @@
     },
     {
      "id": "identity",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Zay Flowers"
      ],
@@ -1966,6 +2028,9 @@
     },
     {
      "id": "three-for-one",
+     "cuts": [],
+     "spotsFreed": 2,
+     "overBefore": 0,
      "give": [
       "Josh Downs",
       "Michael Wilson",
@@ -1976,10 +2041,10 @@
      ],
      "deltaSeason": 156.29979999999978,
      "deltaPerWeek": 9.194105882352929,
-     "deltaDepth": 5.544375999999987,
+     "deltaDepth": 3.445183999999994,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 9.2 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries.",
+     "explanation": "You gain 9.2 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). It also frees two roster spots. You also pick up useful bench depth for byes and injuries.",
      "beforePoints": 2101.0078000000003,
      "afterPoints": 2257.3076,
      "beforeSlots": [
@@ -2053,6 +2118,9 @@
     },
     {
      "id": "bench-shuffle",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Michael Wilson"
      ],
@@ -2061,7 +2129,7 @@
      ],
      "deltaSeason": 0.0,
      "deltaPerWeek": 0.0,
-     "deltaDepth": -0.7968000000000082,
+     "deltaDepth": -0.19920000000000115,
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
@@ -2138,6 +2206,11 @@
     },
     {
      "id": "starter-for-depth",
+     "cuts": [
+      "Bo Nix"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Kyren Williams"
      ],
@@ -2147,10 +2220,10 @@
      ],
      "deltaSeason": -53.28500000000008,
      "deltaPerWeek": -3.134411764705887,
-     "deltaDepth": -0.6815760000000015,
+     "deltaDepth": -2.1257320000000046,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 3.1 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level).",
+     "explanation": "You lose 3.1 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB.",
      "beforePoints": 2101.0078000000003,
      "afterPoints": 2047.7228000000002,
      "beforeSlots": [
@@ -2224,6 +2297,9 @@
     },
     {
      "id": "positional-scarcity",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Trey McBride"
      ],
@@ -2232,7 +2308,7 @@
      ],
      "deltaSeason": -79.91320000000019,
      "deltaPerWeek": -4.700776470588246,
-     "deltaDepth": 8.712304000000001,
+     "deltaDepth": 4.114407999999996,
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 4.7 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
@@ -2305,6 +2381,9 @@
     },
     {
      "id": "qb-for-wr-1qb",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Joe Burrow"
      ],
@@ -2313,7 +2392,7 @@
      ],
      "deltaSeason": -54.651400000000194,
      "deltaPerWeek": -3.214788235294129,
-     "deltaDepth": 8.712304000000001,
+     "deltaDepth": 4.114407999999996,
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 3.2 points a week. The move that matters is at QB: Joe Burrow (QB4-level) becomes Bo Nix (QB14-level). Quarterbacks are worth less here than their rankings suggest: only one starts per team, so the next one on waivers is much closer to yours than the gap in rank implies. You also pick up useful bench depth for byes and injuries.",
@@ -2390,6 +2469,9 @@
     },
     {
      "id": "upgrade-rb2",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Javonte Williams"
      ],
@@ -2499,6 +2581,7 @@
     },
     "flexSlots": 1,
     "superflexSlots": 0,
+    "benchSlots": 7,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -2647,6 +2730,9 @@
    "trades": [
     {
      "id": "consolidation-up",
+     "cuts": [],
+     "spotsFreed": 1,
+     "overBefore": 0,
      "give": [
       "Nico Collins",
       "Rome Odunze"
@@ -2656,10 +2742,10 @@
      ],
      "deltaSeason": 144.9280000000001,
      "deltaPerWeek": 8.525176470588242,
-     "deltaDepth": -9.938607999999995,
+     "deltaDepth": -5.479613999999994,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 8.5 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
+     "explanation": "You gain 8.5 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
      "beforePoints": 1553.9317999999998,
      "afterPoints": 1698.8598,
      "beforeSlots": [
@@ -2733,6 +2819,11 @@
     },
     {
      "id": "consolidation-trap",
+     "cuts": [
+      "Bo Nix"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Ja'Marr Chase"
      ],
@@ -2745,7 +2836,7 @@
      "deltaDepth": 1.523840000000007,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 4.9 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level).",
+     "explanation": "You lose 4.9 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB.",
      "beforePoints": 1553.9317999999998,
      "afterPoints": 1469.8355999999999,
      "beforeSlots": [
@@ -2819,6 +2910,9 @@
     },
     {
      "id": "obvious-robbery",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Michael Wilson"
      ],
@@ -2827,7 +2921,7 @@
      ],
      "deltaSeason": 155.06499999999983,
      "deltaPerWeek": 9.121470588235283,
-     "deltaDepth": 0.9413760000000071,
+     "deltaDepth": 1.4510320000000068,
      "verdict": "Lopsided win",
      "direction": "gain",
      "explanation": "You gain 9.1 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level).",
@@ -2904,6 +2998,9 @@
     },
     {
      "id": "obvious-fleecing",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Trey McBride"
      ],
@@ -2989,6 +3086,9 @@
     },
     {
      "id": "even-swap",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Zay Flowers"
      ],
@@ -3074,6 +3174,9 @@
     },
     {
      "id": "identity",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Zay Flowers"
      ],
@@ -3159,6 +3262,9 @@
     },
     {
      "id": "three-for-one",
+     "cuts": [],
+     "spotsFreed": 2,
+     "overBefore": 0,
      "give": [
       "Josh Downs",
       "Michael Wilson",
@@ -3169,10 +3275,10 @@
      ],
      "deltaSeason": 97.07580000000007,
      "deltaPerWeek": 5.7103411764705925,
-     "deltaDepth": -0.8968879999999899,
+     "deltaDepth": 0.991466000000008,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 5.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level).",
+     "explanation": "You gain 5.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). It also frees two roster spots.",
      "beforePoints": 1553.9317999999998,
      "afterPoints": 1651.0076,
      "beforeSlots": [
@@ -3246,6 +3352,9 @@
     },
     {
      "id": "bench-shuffle",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Michael Wilson"
      ],
@@ -3254,7 +3363,7 @@
      ],
      "deltaSeason": 0.0,
      "deltaPerWeek": 0.0,
-     "deltaDepth": -0.3707999999999956,
+     "deltaDepth": -0.046350000000000335,
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
@@ -3331,6 +3440,11 @@
     },
     {
      "id": "starter-for-depth",
+     "cuts": [
+      "Bo Nix"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Kyren Williams"
      ],
@@ -3340,10 +3454,10 @@
      ],
      "deltaSeason": -54.378999999999905,
      "deltaPerWeek": -3.1987647058823474,
-     "deltaDepth": -4.656440000000005,
+     "deltaDepth": -2.1466999999999983,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 3.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
+     "explanation": "You lose 3.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB.",
      "beforePoints": 1553.9317999999998,
      "afterPoints": 1499.5528,
      "beforeSlots": [
@@ -3417,6 +3531,9 @@
     },
     {
      "id": "positional-scarcity",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Trey McBride"
      ],
@@ -3498,6 +3615,9 @@
     },
     {
      "id": "qb-for-wr-1qb",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Joe Burrow"
      ],
@@ -3583,6 +3703,9 @@
     },
     {
      "id": "upgrade-rb2",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Javonte Williams"
      ],
@@ -3692,6 +3815,7 @@
     },
     "flexSlots": 1,
     "superflexSlots": 0,
+    "benchSlots": 7,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -3840,6 +3964,9 @@
    "trades": [
     {
      "id": "consolidation-up",
+     "cuts": [],
+     "spotsFreed": 1,
+     "overBefore": 0,
      "give": [
       "Nico Collins",
       "Rome Odunze"
@@ -3852,7 +3979,7 @@
      "deltaDepth": 0.0,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level).",
+     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). It also frees one roster spot.",
      "beforePoints": 1822.7228,
      "afterPoints": 1969.6798,
      "beforeSlots": [
@@ -3926,6 +4053,11 @@
     },
     {
      "id": "consolidation-trap",
+     "cuts": [
+      "Bo Nix"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Ja'Marr Chase"
      ],
@@ -3938,7 +4070,7 @@
      "deltaDepth": 0.26097599999999377,
      "verdict": "Lopsided loss",
      "direction": "loss",
-     "explanation": "You lose 5.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level).",
+     "explanation": "You lose 5.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB.",
      "beforePoints": 1822.7228,
      "afterPoints": 1731.4906,
      "beforeSlots": [
@@ -4012,6 +4144,9 @@
     },
     {
      "id": "obvious-robbery",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Michael Wilson"
      ],
@@ -4097,6 +4232,9 @@
     },
     {
      "id": "obvious-fleecing",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Trey McBride"
      ],
@@ -4182,6 +4320,9 @@
     },
     {
      "id": "even-swap",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Zay Flowers"
      ],
@@ -4267,6 +4408,9 @@
     },
     {
      "id": "identity",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Zay Flowers"
      ],
@@ -4352,6 +4496,9 @@
     },
     {
      "id": "three-for-one",
+     "cuts": [],
+     "spotsFreed": 2,
+     "overBefore": 0,
      "give": [
       "Josh Downs",
       "Michael Wilson",
@@ -4365,7 +4512,7 @@
      "deltaDepth": 0.26097599999999377,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level).",
+     "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). It also frees two roster spots.",
      "beforePoints": 1822.7228,
      "afterPoints": 1954.1576,
      "beforeSlots": [
@@ -4439,6 +4586,9 @@
     },
     {
      "id": "bench-shuffle",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Michael Wilson"
      ],
@@ -4524,6 +4674,11 @@
     },
     {
      "id": "starter-for-depth",
+     "cuts": [
+      "Bo Nix"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Kyren Williams"
      ],
@@ -4536,7 +4691,7 @@
      "deltaDepth": 0.0,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level).",
+     "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB.",
      "beforePoints": 1822.7228,
      "afterPoints": 1773.6378,
      "beforeSlots": [
@@ -4610,6 +4765,9 @@
     },
     {
      "id": "positional-scarcity",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Trey McBride"
      ],
@@ -4691,6 +4849,9 @@
     },
     {
      "id": "qb-for-wr-1qb",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Joe Burrow"
      ],
@@ -4776,6 +4937,9 @@
     },
     {
      "id": "upgrade-rb2",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Javonte Williams"
      ],
@@ -4885,6 +5049,7 @@
     },
     "flexSlots": 1,
     "superflexSlots": 0,
+    "benchSlots": 7,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -5033,6 +5198,9 @@
    "trades": [
     {
      "id": "consolidation-up",
+     "cuts": [],
+     "spotsFreed": 1,
+     "overBefore": 0,
      "give": [
       "Nico Collins",
       "Rome Odunze"
@@ -5042,10 +5210,10 @@
      ],
      "deltaSeason": 146.95699999999988,
      "deltaPerWeek": 8.6445294117647,
-     "deltaDepth": -9.654200000000007,
+     "deltaDepth": -6.304859999999996,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
+     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
      "beforePoints": 1822.7228,
      "afterPoints": 1969.6798,
      "beforeSlots": [
@@ -5119,6 +5287,11 @@
     },
     {
      "id": "consolidation-trap",
+     "cuts": [
+      "Bo Nix"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Ja'Marr Chase"
      ],
@@ -5128,10 +5301,10 @@
      ],
      "deltaSeason": -91.23219999999992,
      "deltaPerWeek": -5.366599999999996,
-     "deltaDepth": 10.089159999999996,
+     "deltaDepth": 3.5873899999999956,
      "verdict": "Lopsided loss",
      "direction": "loss",
-     "explanation": "You lose 5.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
+     "explanation": "You lose 5.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
      "beforePoints": 1822.7228,
      "afterPoints": 1731.4906,
      "beforeSlots": [
@@ -5205,6 +5378,9 @@
     },
     {
      "id": "obvious-robbery",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Michael Wilson"
      ],
@@ -5213,7 +5389,7 @@
      ],
      "deltaSeason": 156.97900000000004,
      "deltaPerWeek": 9.234058823529415,
-     "deltaDepth": 6.443239999999992,
+     "deltaDepth": 3.1316499999999934,
      "verdict": "Lopsided win",
      "direction": "gain",
      "explanation": "You gain 9.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
@@ -5290,6 +5466,9 @@
     },
     {
      "id": "obvious-fleecing",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Trey McBride"
      ],
@@ -5375,6 +5554,9 @@
     },
     {
      "id": "even-swap",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Zay Flowers"
      ],
@@ -5460,6 +5642,9 @@
     },
     {
      "id": "identity",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Zay Flowers"
      ],
@@ -5545,6 +5730,9 @@
     },
     {
      "id": "three-for-one",
+     "cuts": [],
+     "spotsFreed": 2,
+     "overBefore": 0,
      "give": [
       "Josh Downs",
       "Michael Wilson",
@@ -5555,10 +5743,10 @@
      ],
      "deltaSeason": 131.4348,
      "deltaPerWeek": 7.731458823529412,
-     "deltaDepth": 0.5244599999999764,
+     "deltaDepth": 1.6519549999999938,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level).",
+     "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). It also frees two roster spots.",
      "beforePoints": 1822.7228,
      "afterPoints": 1954.1576,
      "beforeSlots": [
@@ -5632,6 +5820,9 @@
     },
     {
      "id": "bench-shuffle",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Michael Wilson"
      ],
@@ -5640,7 +5831,7 @@
      ],
      "deltaSeason": 0.0,
      "deltaPerWeek": 0.0,
-     "deltaDepth": -0.5838000000000072,
+     "deltaDepth": -0.14594999999999914,
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
@@ -5717,6 +5908,11 @@
     },
     {
      "id": "starter-for-depth",
+     "cuts": [
+      "Bo Nix"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Kyren Williams"
      ],
@@ -5726,10 +5922,10 @@
      ],
      "deltaSeason": -49.085000000000036,
      "deltaPerWeek": -2.8873529411764727,
-     "deltaDepth": 0.4564200000000014,
+     "deltaDepth": -3.4180024999999965,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level).",
+     "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
      "beforePoints": 1822.7228,
      "afterPoints": 1773.6378,
      "beforeSlots": [
@@ -5803,6 +5999,9 @@
     },
     {
      "id": "positional-scarcity",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Trey McBride"
      ],
@@ -5811,7 +6010,7 @@
      ],
      "deltaSeason": -69.78279999999995,
      "deltaPerWeek": -4.104870588235292,
-     "deltaDepth": 10.089159999999996,
+     "deltaDepth": 3.5873899999999956,
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 4.1 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
@@ -5884,6 +6083,9 @@
     },
     {
      "id": "qb-for-wr-1qb",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Joe Burrow"
      ],
@@ -5892,7 +6094,7 @@
      ],
      "deltaSeason": -60.55139999999983,
      "deltaPerWeek": -3.5618470588235196,
-     "deltaDepth": 10.089159999999996,
+     "deltaDepth": 3.5873899999999956,
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 3.6 points a week. The move that matters is at QB: Joe Burrow (QB4-level) becomes Bo Nix (QB14-level). Quarterbacks are worth less here than their rankings suggest: only one starts per team, so the next one on waivers is much closer to yours than the gap in rank implies. You also pick up useful bench depth for byes and injuries.",
@@ -5969,6 +6171,9 @@
     },
     {
      "id": "upgrade-rb2",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Javonte Williams"
      ],
@@ -6078,6 +6283,7 @@
     },
     "flexSlots": 1,
     "superflexSlots": 1,
+    "benchSlots": 7,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -6226,6 +6432,9 @@
    "trades": [
     {
      "id": "consolidation-up",
+     "cuts": [],
+     "spotsFreed": 1,
+     "overBefore": 0,
      "give": [
       "Nico Collins",
       "Rome Odunze"
@@ -6235,10 +6444,10 @@
      ],
      "deltaSeason": 146.95699999999988,
      "deltaPerWeek": 8.6445294117647,
-     "deltaDepth": -7.028700800000003,
+     "deltaDepth": -5.648485199999996,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
+     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
      "beforePoints": 2072.79,
      "afterPoints": 2219.747,
      "beforeSlots": [
@@ -6320,6 +6529,9 @@
     },
     {
      "id": "consolidation-trap",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Ja'Marr Chase"
      ],
@@ -6329,7 +6541,7 @@
      ],
      "deltaSeason": -91.23219999999992,
      "deltaPerWeek": -5.366599999999996,
-     "deltaDepth": 7.463660799999996,
+     "deltaDepth": 3.2592025999999983,
      "verdict": "Lopsided loss",
      "direction": "loss",
      "explanation": "You lose 5.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
@@ -6414,6 +6626,9 @@
     },
     {
      "id": "obvious-robbery",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Michael Wilson"
      ],
@@ -6422,7 +6637,7 @@
      ],
      "deltaSeason": 156.97900000000027,
      "deltaPerWeek": 9.234058823529427,
-     "deltaDepth": 6.443239999999992,
+     "deltaDepth": 3.131649999999997,
      "verdict": "Lopsided win",
      "direction": "gain",
      "explanation": "You gain 9.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
@@ -6507,6 +6722,9 @@
     },
     {
      "id": "obvious-fleecing",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Trey McBride"
      ],
@@ -6600,6 +6818,9 @@
     },
     {
      "id": "even-swap",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Zay Flowers"
      ],
@@ -6693,6 +6914,9 @@
     },
     {
      "id": "identity",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Zay Flowers"
      ],
@@ -6786,6 +7010,9 @@
     },
     {
      "id": "three-for-one",
+     "cuts": [],
+     "spotsFreed": 2,
+     "overBefore": 0,
      "give": [
       "Josh Downs",
       "Michael Wilson",
@@ -6796,10 +7023,10 @@
      ],
      "deltaSeason": 131.4348,
      "deltaPerWeek": 7.731458823529412,
-     "deltaDepth": 4.193019199999984,
+     "deltaDepth": 2.569094799999995,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries.",
+     "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). It also frees two roster spots.",
      "beforePoints": 2072.79,
      "afterPoints": 2204.2248,
      "beforeSlots": [
@@ -6881,6 +7108,9 @@
     },
     {
      "id": "bench-shuffle",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Michael Wilson"
      ],
@@ -6889,7 +7119,7 @@
      ],
      "deltaSeason": 0.0,
      "deltaPerWeek": 0.0,
-     "deltaDepth": -0.5838000000000036,
+     "deltaDepth": -0.1459500000000009,
      "verdict": "Essentially even",
      "direction": "even",
      "explanation": "Your starting lineup does not change. Nothing you would start is affected.",
@@ -6974,6 +7204,9 @@
     },
     {
      "id": "starter-for-depth",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Kyren Williams"
      ],
@@ -6983,7 +7216,7 @@
      ],
      "deltaSeason": -49.085000000000036,
      "deltaPerWeek": -2.8873529411764727,
-     "deltaDepth": -0.7480272000000081,
+     "deltaDepth": -2.120745400000006,
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level).",
@@ -7068,6 +7301,9 @@
     },
     {
      "id": "positional-scarcity",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Trey McBride"
      ],
@@ -7076,7 +7312,7 @@
      ],
      "deltaSeason": -61.982079999999996,
      "deltaPerWeek": -3.6460047058823526,
-     "deltaDepth": 7.463660799999996,
+     "deltaDepth": 3.2592025999999983,
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 3.6 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
@@ -7157,6 +7393,9 @@
     },
     {
      "id": "qb-for-wr-1qb",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Joe Burrow"
      ],
@@ -7250,6 +7489,9 @@
     },
     {
      "id": "upgrade-rb2",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Javonte Williams"
      ],
@@ -7367,6 +7609,7 @@
     },
     "flexSlots": 2,
     "superflexSlots": 0,
+    "benchSlots": 7,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -7515,6 +7758,9 @@
    "trades": [
     {
      "id": "consolidation-up",
+     "cuts": [],
+     "spotsFreed": 1,
+     "overBefore": 0,
      "give": [
       "Nico Collins",
       "Rome Odunze"
@@ -7527,7 +7773,7 @@
      "deltaDepth": -1.6298000000000004,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 8.3 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level).",
+     "explanation": "You gain 8.3 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). It also frees one roster spot.",
      "beforePoints": 1984.942,
      "afterPoints": 2125.9328,
      "beforeSlots": [
@@ -7609,6 +7855,9 @@
     },
     {
      "id": "consolidation-trap",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Ja'Marr Chase"
      ],
@@ -7618,7 +7867,7 @@
      ],
      "deltaSeason": -89.05739999999992,
      "deltaPerWeek": -5.238670588235289,
-     "deltaDepth": 5.36848,
+     "deltaDepth": 5.073479999999998,
      "verdict": "Lopsided loss",
      "direction": "loss",
      "explanation": "You lose 5.2 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
@@ -7703,6 +7952,9 @@
     },
     {
      "id": "obvious-robbery",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Michael Wilson"
      ],
@@ -7711,7 +7963,7 @@
      ],
      "deltaSeason": 159.15380000000005,
      "deltaPerWeek": 9.36198823529412,
-     "deltaDepth": 5.36848,
+     "deltaDepth": 5.073479999999998,
      "verdict": "Lopsided win",
      "direction": "gain",
      "explanation": "You gain 9.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
@@ -7796,6 +8048,9 @@
     },
     {
      "id": "obvious-fleecing",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Trey McBride"
      ],
@@ -7889,6 +8144,9 @@
     },
     {
      "id": "even-swap",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Zay Flowers"
      ],
@@ -7982,6 +8240,9 @@
     },
     {
      "id": "identity",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Zay Flowers"
      ],
@@ -8075,6 +8336,9 @@
     },
     {
      "id": "three-for-one",
+     "cuts": [],
+     "spotsFreed": 2,
+     "overBefore": 0,
      "give": [
       "Josh Downs",
       "Michael Wilson",
@@ -8088,7 +8352,7 @@
      "deltaDepth": 4.7784799999999965,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 7.9 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries.",
+     "explanation": "You gain 7.9 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). It also frees two roster spots. You also pick up useful bench depth for byes and injuries.",
      "beforePoints": 1984.942,
      "afterPoints": 2118.5516,
      "beforeSlots": [
@@ -8170,6 +8434,9 @@
     },
     {
      "id": "bench-shuffle",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Michael Wilson"
      ],
@@ -8263,6 +8530,9 @@
     },
     {
      "id": "starter-for-depth",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Kyren Williams"
      ],
@@ -8357,6 +8627,9 @@
     },
     {
      "id": "positional-scarcity",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Trey McBride"
      ],
@@ -8365,7 +8638,7 @@
      ],
      "deltaSeason": -52.60479999999984,
      "deltaPerWeek": -3.0943999999999905,
-     "deltaDepth": 5.36848,
+     "deltaDepth": 5.073479999999998,
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 3.1 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
@@ -8446,6 +8719,9 @@
     },
     {
      "id": "qb-for-wr-1qb",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Joe Burrow"
      ],
@@ -8454,7 +8730,7 @@
      ],
      "deltaSeason": -58.376599999999826,
      "deltaPerWeek": -3.4339176470588133,
-     "deltaDepth": 5.36848,
+     "deltaDepth": 5.073479999999998,
      "verdict": "Clear loss",
      "direction": "loss",
      "explanation": "You lose 3.4 points a week. The move that matters is at QB: Joe Burrow (QB4-level) becomes Bo Nix (QB14-level). Quarterbacks are worth less here than their rankings suggest: only one starts per team, so the next one on waivers is much closer to yours than the gap in rank implies. You also pick up useful bench depth for byes and injuries.",
@@ -8539,6 +8815,9 @@
     },
     {
      "id": "upgrade-rb2",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Javonte Williams"
      ],
@@ -8656,6 +8935,7 @@
     },
     "flexSlots": 1,
     "superflexSlots": 0,
+    "benchSlots": 7,
     "flexShare": {
      "RB": 0.45,
      "WR": 0.45,
@@ -8804,6 +9084,9 @@
    "trades": [
     {
      "id": "consolidation-up",
+     "cuts": [],
+     "spotsFreed": 1,
+     "overBefore": 0,
      "give": [
       "Nico Collins",
       "Rome Odunze"
@@ -8813,10 +9096,10 @@
      ],
      "deltaSeason": 146.95699999999988,
      "deltaPerWeek": 8.6445294117647,
-     "deltaDepth": -0.584960000000001,
+     "deltaDepth": -0.2924800000000003,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level).",
+     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). It also frees one roster spot.",
      "beforePoints": 1743.3782,
      "afterPoints": 1890.3352,
      "beforeSlots": [
@@ -8882,6 +9165,11 @@
     },
     {
      "id": "consolidation-trap",
+     "cuts": [
+      "Bo Nix"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Ja'Marr Chase"
      ],
@@ -8891,10 +9179,10 @@
      ],
      "deltaSeason": -115.82139999999981,
      "deltaPerWeek": -6.813023529411754,
-     "deltaDepth": 5.937759999999998,
+     "deltaDepth": 5.281559999999999,
      "verdict": "Lopsided loss",
      "direction": "loss",
-     "explanation": "You lose 6.8 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries.",
+     "explanation": "You lose 6.8 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
      "beforePoints": 1743.3782,
      "afterPoints": 1627.5568000000003,
      "beforeSlots": [
@@ -8960,6 +9248,9 @@
     },
     {
      "id": "obvious-robbery",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Michael Wilson"
      ],
@@ -8968,7 +9259,7 @@
      ],
      "deltaSeason": 132.38979999999992,
      "deltaPerWeek": 7.787635294117642,
-     "deltaDepth": 5.937759999999998,
+     "deltaDepth": 5.281559999999999,
      "verdict": "Lopsided win",
      "direction": "gain",
      "explanation": "You gain 7.8 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). You also pick up useful bench depth for byes and injuries.",
@@ -9037,6 +9328,9 @@
     },
     {
      "id": "obvious-fleecing",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Trey McBride"
      ],
@@ -9114,6 +9408,9 @@
     },
     {
      "id": "even-swap",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Zay Flowers"
      ],
@@ -9191,6 +9488,9 @@
     },
     {
      "id": "identity",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Zay Flowers"
      ],
@@ -9268,6 +9568,9 @@
     },
     {
      "id": "three-for-one",
+     "cuts": [],
+     "spotsFreed": 2,
+     "overBefore": 0,
      "give": [
       "Josh Downs",
       "Michael Wilson",
@@ -9278,10 +9581,10 @@
      ],
      "deltaSeason": 106.8456000000001,
      "deltaPerWeek": 6.2850352941176535,
-     "deltaDepth": 5.937759999999998,
+     "deltaDepth": 5.281559999999999,
      "verdict": "Lopsided win",
      "direction": "gain",
-     "explanation": "You gain 6.3 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries.",
+     "explanation": "You gain 6.3 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). It also frees two roster spots. You also pick up useful bench depth for byes and injuries.",
      "beforePoints": 1743.3782,
      "afterPoints": 1850.2238000000002,
      "beforeSlots": [
@@ -9347,6 +9650,9 @@
     },
     {
      "id": "bench-shuffle",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Michael Wilson"
      ],
@@ -9424,6 +9730,11 @@
     },
     {
      "id": "starter-for-depth",
+     "cuts": [
+      "Bo Nix"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Kyren Williams"
      ],
@@ -9433,10 +9744,10 @@
      ],
      "deltaSeason": -49.085000000000036,
      "deltaPerWeek": -2.8873529411764727,
-     "deltaDepth": -1.9836400000000027,
+     "deltaDepth": -1.9836400000000025,
      "verdict": "Clear loss",
      "direction": "loss",
-     "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level).",
+     "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB.",
      "beforePoints": 1743.3782,
      "afterPoints": 1694.2932,
      "beforeSlots": [
@@ -9502,6 +9813,9 @@
     },
     {
      "id": "positional-scarcity",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Trey McBride"
      ],
@@ -9510,10 +9824,10 @@
      ],
      "deltaSeason": -104.50559999999996,
      "deltaPerWeek": -6.147388235294115,
-     "deltaDepth": 3.512360000000001,
+     "deltaDepth": 2.856160000000003,
      "verdict": "Lopsided loss",
      "direction": "loss",
-     "explanation": "You lose 6.1 points a week. Almost all of it is at TE1: Trey McBride (TE2-level) becomes a waiver-level starter. You also pick up useful bench depth for byes and injuries.",
+     "explanation": "You lose 6.1 points a week. Almost all of it is at TE1: Trey McBride (TE2-level) becomes a waiver-level starter.",
      "beforePoints": 1743.3782,
      "afterPoints": 1638.8726000000001,
      "beforeSlots": [
@@ -9575,6 +9889,9 @@
     },
     {
      "id": "qb-for-wr-1qb",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Joe Burrow"
      ],
@@ -9583,7 +9900,7 @@
      ],
      "deltaSeason": -85.14059999999972,
      "deltaPerWeek": -5.008270588235278,
-     "deltaDepth": 5.937759999999998,
+     "deltaDepth": 5.281559999999999,
      "verdict": "Lopsided loss",
      "direction": "loss",
      "explanation": "You lose 5.0 points a week. The move that matters is at QB: Joe Burrow (QB4-level) becomes Bo Nix (QB14-level). Quarterbacks are worth less here than their rankings suggest: only one starts per team, so the next one on waivers is much closer to yours than the gap in rank implies. You also pick up useful bench depth for byes and injuries.",
@@ -9652,6 +9969,9 @@
     },
     {
      "id": "upgrade-rb2",
+     "cuts": [],
+     "spotsFreed": 0,
+     "overBefore": 0,
      "give": [
       "Javonte Williams"
      ],
@@ -9728,6 +10048,2624 @@
      ]
     }
    ]
+  },
+  {
+   "name": "tight-bench-12",
+   "league": {
+    "teams": 12,
+    "scoring": {
+     "pass_yd": 0.04,
+     "pass_td": 4.0,
+     "int": -2.0,
+     "rush_att": 0.0,
+     "rush_yd": 0.1,
+     "rush_td": 6.0,
+     "rec": 0.5,
+     "rec_yd": 0.1,
+     "rec_td": 6.0,
+     "fum_lost": -2.0
+    },
+    "starters": {
+     "QB": 1,
+     "RB": 2,
+     "WR": 3,
+     "TE": 1
+    },
+    "flexSlots": 1,
+    "superflexSlots": 0,
+    "benchSlots": 2,
+    "flexShare": {
+     "RB": 0.45,
+     "WR": 0.45,
+     "TE": 0.1
+    },
+    "superflexShare": {
+     "QB": 0.9,
+     "RB": 0.04,
+     "WR": 0.04,
+     "TE": 0.02
+    }
+   },
+   "replacementPoints": {
+    "QB": 266.81280000000004,
+    "RB": 146.3348,
+    "WR": 128.26647999999997,
+    "TE": 116.09759999999999
+   },
+   "topVor": [
+    {
+     "name": "Jahmyr Gibbs",
+     "points": 353.415,
+     "vor": 207.08020000000002
+    },
+    {
+     "name": "Ja'Marr Chase",
+     "points": 327.898,
+     "vor": 199.63152000000005
+    },
+    {
+     "name": "Bijan Robinson",
+     "points": 321.373,
+     "vor": 175.0382
+    },
+    {
+     "name": "Puka Nacua",
+     "points": 295.8288,
+     "vor": 167.56232000000003
+    },
+    {
+     "name": "Christian McCaffrey",
+     "points": 305.5210000000001,
+     "vor": 159.18620000000007
+    },
+    {
+     "name": "Jaxon Smith-Njigba",
+     "points": 274.2652,
+     "vor": 145.99872000000002
+    },
+    {
+     "name": "Jonathan Taylor",
+     "points": 287.082,
+     "vor": 140.7472
+    },
+    {
+     "name": "Ashton Jeanty",
+     "points": 276.208,
+     "vor": 129.87320000000003
+    },
+    {
+     "name": "Amon-Ra St. Brown",
+     "points": 254.23520000000002,
+     "vor": 125.96872000000005
+    },
+    {
+     "name": "Josh Allen",
+     "points": 392.5538,
+     "vor": 125.74099999999999
+    },
+    {
+     "name": "James Cook III",
+     "points": 264.3862,
+     "vor": 118.05139999999997
+    },
+    {
+     "name": "CeeDee Lamb",
+     "points": 238.8738,
+     "vor": 110.60732000000002
+    },
+    {
+     "name": "Chase Brown",
+     "points": 251.8522,
+     "vor": 105.51740000000001
+    },
+    {
+     "name": "Lamar Jackson",
+     "points": 369.0218000000001,
+     "vor": 102.20900000000006
+    },
+    {
+     "name": "Brock Bowers",
+     "points": 217.32,
+     "vor": 101.22240000000001
+    },
+    {
+     "name": "Justin Jefferson",
+     "points": 227.7438,
+     "vor": 99.47732000000002
+    },
+    {
+     "name": "De'Von Achane",
+     "points": 243.87519999999998,
+     "vor": 97.54039999999998
+    },
+    {
+     "name": "Drake London",
+     "points": 219.57880000000003,
+     "vor": 91.31232000000006
+    },
+    {
+     "name": "Saquon Barkley",
+     "points": 235.7702,
+     "vor": 89.43539999999999
+    },
+    {
+     "name": "Drake Maye",
+     "points": 355.358,
+     "vor": 88.54519999999997
+    },
+    {
+     "name": "A.J. Brown",
+     "points": 212.339,
+     "vor": 84.07252000000003
+    },
+    {
+     "name": "Omarion Hampton",
+     "points": 227.95720000000003,
+     "vor": 81.62240000000003
+    },
+    {
+     "name": "Nico Collins",
+     "points": 206.458,
+     "vor": 78.19152000000003
+    },
+    {
+     "name": "Kenneth Walker III",
+     "points": 221.811,
+     "vor": 75.4762
+    },
+    {
+     "name": "Chris Olave",
+     "points": 202.485,
+     "vor": 74.21852000000004
+    }
+   ],
+   "trades": [
+    {
+     "id": "consolidation-up",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Michael Wilson"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 5,
+     "give": [
+      "Nico Collins",
+      "Rome Odunze"
+     ],
+     "receive": [
+      "Jahmyr Gibbs"
+     ],
+     "deltaSeason": 146.95699999999988,
+     "deltaPerWeek": 8.6445294117647,
+     "deltaDepth": -4.7784799999999965,
+     "verdict": "Lopsided win",
+     "direction": "gain",
+     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). Your roster is already five over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard and Michael Wilson. That leaves you no cover at QB. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1969.6798,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Jahmyr Gibbs"
+      ],
+      [
+       "RB2",
+       "Kyren Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Zay Flowers"
+      ],
+      [
+       "WR3",
+       "Jameson Williams"
+      ],
+      [
+       "FLEX",
+       "Javonte Williams"
+      ]
+     ]
+    },
+    {
+     "id": "consolidation-trap",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Michael Wilson",
+      "Josh Downs",
+      "Jaylen Warren"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 5,
+     "give": [
+      "Ja'Marr Chase"
+     ],
+     "receive": [
+      "Chris Olave",
+      "Rashee Rice"
+     ],
+     "deltaSeason": -91.23219999999992,
+     "deltaPerWeek": -5.366599999999996,
+     "deltaDepth": 1.846591999999994,
+     "verdict": "Lopsided loss",
+     "direction": "loss",
+     "explanation": "You lose 5.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). Your roster is already five over the limit, and this trade would put you six over: you would have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Michael Wilson, Josh Downs and Jaylen Warren. That leaves you no cover at QB and RB.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1731.4906,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Nico Collins"
+      ],
+      [
+       "WR2",
+       "Chris Olave"
+      ],
+      [
+       "WR3",
+       "Rashee Rice"
+      ],
+      [
+       "FLEX",
+       "Zay Flowers"
+      ]
+     ]
+    },
+    {
+     "id": "obvious-robbery",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Josh Downs",
+      "Jaylen Warren"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 5,
+     "give": [
+      "Michael Wilson"
+     ],
+     "receive": [
+      "Bijan Robinson"
+     ],
+     "deltaSeason": 156.97900000000004,
+     "deltaPerWeek": 9.234058823529415,
+     "deltaDepth": 1.846591999999994,
+     "verdict": "Lopsided win",
+     "direction": "gain",
+     "explanation": "You gain 9.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). Your roster is already five over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Josh Downs and Jaylen Warren. That leaves you no cover at QB and RB.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1979.7018,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Bijan Robinson"
+      ],
+      [
+       "RB2",
+       "Kyren Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Javonte Williams"
+      ]
+     ]
+    },
+    {
+     "id": "obvious-fleecing",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Michael Wilson",
+      "Josh Downs"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 5,
+     "give": [
+      "Trey McBride"
+     ],
+     "receive": [
+      "Kyle Pitts Sr."
+     ],
+     "deltaSeason": -41.240999999999985,
+     "deltaPerWeek": -2.4259411764705874,
+     "deltaDepth": 0.0,
+     "verdict": "Clear loss",
+     "direction": "loss",
+     "explanation": "You lose 2.4 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level). Your roster is already five over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Michael Wilson and Josh Downs. That leaves you no cover at QB.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1781.4818,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Kyle Pitts Sr."
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ]
+    },
+    {
+     "id": "even-swap",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Michael Wilson",
+      "Josh Downs"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 5,
+     "give": [
+      "Zay Flowers"
+     ],
+     "receive": [
+      "Garrett Wilson"
+     ],
+     "deltaSeason": -3.529199999999946,
+     "deltaPerWeek": -0.20759999999999684,
+     "deltaDepth": 0.0,
+     "verdict": "Essentially even",
+     "direction": "even",
+     "explanation": "You lose 0.2 points a week. Almost all of it is at WR3: Zay Flowers (WR15-level) becomes Garrett Wilson (WR16-level). Your roster is already five over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Michael Wilson and Josh Downs. That leaves you no cover at QB.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1819.1936,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Garrett Wilson"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ]
+    },
+    {
+     "id": "identity",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Michael Wilson",
+      "Josh Downs"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 5,
+     "give": [
+      "Zay Flowers"
+     ],
+     "receive": [
+      "Zay Flowers"
+     ],
+     "deltaSeason": 0.0,
+     "deltaPerWeek": 0.0,
+     "deltaDepth": 0.0,
+     "verdict": "Essentially even",
+     "direction": "even",
+     "explanation": "Your starting lineup does not change. Nothing you would start is affected. Your roster is already five over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Michael Wilson and Josh Downs. That leaves you no cover at QB.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1822.7228,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ]
+    },
+    {
+     "id": "three-for-one",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Jaylen Warren"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 5,
+     "give": [
+      "Josh Downs",
+      "Michael Wilson",
+      "Chuba Hubbard"
+     ],
+     "receive": [
+      "Puka Nacua"
+     ],
+     "deltaSeason": 131.4348,
+     "deltaPerWeek": 7.731458823529412,
+     "deltaDepth": 1.846591999999994,
+     "verdict": "Lopsided win",
+     "direction": "gain",
+     "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). Your roster is already five over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle and Jaylen Warren. That leaves you no cover at QB and RB.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1954.1576,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Puka Nacua"
+      ],
+      [
+       "WR3",
+       "Nico Collins"
+      ],
+      [
+       "FLEX",
+       "Zay Flowers"
+      ]
+     ]
+    },
+    {
+     "id": "bench-shuffle",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Alec Pierce",
+      "Josh Downs"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 5,
+     "give": [
+      "Michael Wilson"
+     ],
+     "receive": [
+      "Alec Pierce"
+     ],
+     "deltaSeason": 0.0,
+     "deltaPerWeek": 0.0,
+     "deltaDepth": 0.0,
+     "verdict": "Essentially even",
+     "direction": "even",
+     "explanation": "Your starting lineup does not change. Nothing you would start is affected. Your roster is already five over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Alec Pierce and Josh Downs. That leaves you no cover at QB.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1822.7228,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ]
+    },
+    {
+     "id": "starter-for-depth",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Quentin Johnston",
+      "Michael Wilson",
+      "Wan'Dale Robinson"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 5,
+     "give": [
+      "Kyren Williams"
+     ],
+     "receive": [
+      "Quentin Johnston",
+      "Wan'Dale Robinson"
+     ],
+     "deltaSeason": -49.085000000000036,
+     "deltaPerWeek": -2.8873529411764727,
+     "deltaDepth": -0.9776079999999983,
+     "verdict": "Clear loss",
+     "direction": "loss",
+     "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). Your roster is already five over the limit, and this trade would put you six over: you would have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Quentin Johnston, Michael Wilson and Wan'Dale Robinson. That leaves you no cover at QB and RB.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1773.6378,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Javonte Williams"
+      ],
+      [
+       "RB2",
+       "Jaylen Warren"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ]
+    },
+    {
+     "id": "positional-scarcity",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Michael Wilson",
+      "Josh Downs"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 5,
+     "give": [
+      "Trey McBride"
+     ],
+     "receive": [
+      "Tee Higgins"
+     ],
+     "deltaSeason": -60.99519999999984,
+     "deltaPerWeek": -3.5879529411764612,
+     "deltaDepth": 3.8302319999999987,
+     "verdict": "Clear loss",
+     "direction": "loss",
+     "explanation": "You lose 3.6 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. Your roster is already five over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Michael Wilson and Josh Downs. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1761.7276000000002,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Tee Higgins"
+      ]
+     ]
+    },
+    {
+     "id": "qb-for-wr-1qb",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Michael Wilson",
+      "Josh Downs"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 5,
+     "give": [
+      "Joe Burrow"
+     ],
+     "receive": [
+      "Malik Nabers"
+     ],
+     "deltaSeason": -43.80580000000009,
+     "deltaPerWeek": -2.5768117647058877,
+     "deltaDepth": 3.8302319999999987,
+     "verdict": "Clear loss",
+     "direction": "loss",
+     "explanation": "You lose 2.6 points a week. The move that matters is at QB: Joe Burrow (QB4-level) becomes a waiver-level starter. Quarterbacks are worth less here than their rankings suggest: only one starts per team, so the next one on waivers is much closer to yours than the gap in rank implies. Your roster is already five over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Michael Wilson and Josh Downs. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1778.917,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Malik Nabers"
+      ],
+      [
+       "FLEX",
+       "Zay Flowers"
+      ]
+     ]
+    },
+    {
+     "id": "upgrade-rb2",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Michael Wilson",
+      "Josh Downs"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 5,
+     "give": [
+      "Javonte Williams"
+     ],
+     "receive": [
+      "Chase Brown"
+     ],
+     "deltaSeason": 50.32140000000027,
+     "deltaPerWeek": 2.960082352941192,
+     "deltaDepth": 0.0,
+     "verdict": "Clear win",
+     "direction": "gain",
+     "explanation": "You gain 3.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Chase Brown (RB7-level). Your roster is already five over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Michael Wilson and Josh Downs. That leaves you no cover at QB.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1873.0442000000003,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Chase Brown"
+      ],
+      [
+       "RB2",
+       "Kyren Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "name": "no-bench-12",
+   "league": {
+    "teams": 12,
+    "scoring": {
+     "pass_yd": 0.04,
+     "pass_td": 4.0,
+     "int": -2.0,
+     "rush_att": 0.0,
+     "rush_yd": 0.1,
+     "rush_td": 6.0,
+     "rec": 0.5,
+     "rec_yd": 0.1,
+     "rec_td": 6.0,
+     "fum_lost": -2.0
+    },
+    "starters": {
+     "QB": 1,
+     "RB": 2,
+     "WR": 3,
+     "TE": 1
+    },
+    "flexSlots": 1,
+    "superflexSlots": 0,
+    "benchSlots": 0,
+    "flexShare": {
+     "RB": 0.45,
+     "WR": 0.45,
+     "TE": 0.1
+    },
+    "superflexShare": {
+     "QB": 0.9,
+     "RB": 0.04,
+     "WR": 0.04,
+     "TE": 0.02
+    }
+   },
+   "replacementPoints": {
+    "QB": 266.81280000000004,
+    "RB": 146.3348,
+    "WR": 128.26647999999997,
+    "TE": 116.09759999999999
+   },
+   "topVor": [
+    {
+     "name": "Jahmyr Gibbs",
+     "points": 353.415,
+     "vor": 207.08020000000002
+    },
+    {
+     "name": "Ja'Marr Chase",
+     "points": 327.898,
+     "vor": 199.63152000000005
+    },
+    {
+     "name": "Bijan Robinson",
+     "points": 321.373,
+     "vor": 175.0382
+    },
+    {
+     "name": "Puka Nacua",
+     "points": 295.8288,
+     "vor": 167.56232000000003
+    },
+    {
+     "name": "Christian McCaffrey",
+     "points": 305.5210000000001,
+     "vor": 159.18620000000007
+    },
+    {
+     "name": "Jaxon Smith-Njigba",
+     "points": 274.2652,
+     "vor": 145.99872000000002
+    },
+    {
+     "name": "Jonathan Taylor",
+     "points": 287.082,
+     "vor": 140.7472
+    },
+    {
+     "name": "Ashton Jeanty",
+     "points": 276.208,
+     "vor": 129.87320000000003
+    },
+    {
+     "name": "Amon-Ra St. Brown",
+     "points": 254.23520000000002,
+     "vor": 125.96872000000005
+    },
+    {
+     "name": "Josh Allen",
+     "points": 392.5538,
+     "vor": 125.74099999999999
+    },
+    {
+     "name": "James Cook III",
+     "points": 264.3862,
+     "vor": 118.05139999999997
+    },
+    {
+     "name": "CeeDee Lamb",
+     "points": 238.8738,
+     "vor": 110.60732000000002
+    },
+    {
+     "name": "Chase Brown",
+     "points": 251.8522,
+     "vor": 105.51740000000001
+    },
+    {
+     "name": "Lamar Jackson",
+     "points": 369.0218000000001,
+     "vor": 102.20900000000006
+    },
+    {
+     "name": "Brock Bowers",
+     "points": 217.32,
+     "vor": 101.22240000000001
+    },
+    {
+     "name": "Justin Jefferson",
+     "points": 227.7438,
+     "vor": 99.47732000000002
+    },
+    {
+     "name": "De'Von Achane",
+     "points": 243.87519999999998,
+     "vor": 97.54039999999998
+    },
+    {
+     "name": "Drake London",
+     "points": 219.57880000000003,
+     "vor": 91.31232000000006
+    },
+    {
+     "name": "Saquon Barkley",
+     "points": 235.7702,
+     "vor": 89.43539999999999
+    },
+    {
+     "name": "Drake Maye",
+     "points": 355.358,
+     "vor": 88.54519999999997
+    },
+    {
+     "name": "A.J. Brown",
+     "points": 212.339,
+     "vor": 84.07252000000003
+    },
+    {
+     "name": "Omarion Hampton",
+     "points": 227.95720000000003,
+     "vor": 81.62240000000003
+    },
+    {
+     "name": "Nico Collins",
+     "points": 206.458,
+     "vor": 78.19152000000003
+    },
+    {
+     "name": "Kenneth Walker III",
+     "points": 221.811,
+     "vor": 75.4762
+    },
+    {
+     "name": "Chris Olave",
+     "points": 202.485,
+     "vor": 74.21852000000004
+    }
+   ],
+   "trades": [
+    {
+     "id": "consolidation-up",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Michael Wilson",
+      "Jaylen Warren",
+      "Josh Downs"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 7,
+     "give": [
+      "Nico Collins",
+      "Rome Odunze"
+     ],
+     "receive": [
+      "Jahmyr Gibbs"
+     ],
+     "deltaSeason": 146.95699999999988,
+     "deltaPerWeek": 8.6445294117647,
+     "deltaDepth": 0.0,
+     "verdict": "Lopsided win",
+     "direction": "gain",
+     "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). Your roster is already 7 over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Michael Wilson, Jaylen Warren and Josh Downs. That leaves you no cover at QB, RB and WR.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1969.6798,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Jahmyr Gibbs"
+      ],
+      [
+       "RB2",
+       "Kyren Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Zay Flowers"
+      ],
+      [
+       "WR3",
+       "Jameson Williams"
+      ],
+      [
+       "FLEX",
+       "Javonte Williams"
+      ]
+     ]
+    },
+    {
+     "id": "consolidation-trap",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Michael Wilson",
+      "Josh Downs",
+      "Jaylen Warren",
+      "Rome Odunze",
+      "Jameson Williams"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 7,
+     "give": [
+      "Ja'Marr Chase"
+     ],
+     "receive": [
+      "Chris Olave",
+      "Rashee Rice"
+     ],
+     "deltaSeason": -91.23219999999992,
+     "deltaPerWeek": -5.366599999999996,
+     "deltaDepth": 0.0,
+     "verdict": "Lopsided loss",
+     "direction": "loss",
+     "explanation": "You lose 5.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). Your roster is already 7 over the limit, and this trade would put you 8 over: you would have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Michael Wilson, Josh Downs, Jaylen Warren, Rome Odunze and Jameson Williams. That leaves you no cover at QB, RB and WR.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1731.4906,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Nico Collins"
+      ],
+      [
+       "WR2",
+       "Chris Olave"
+      ],
+      [
+       "WR3",
+       "Rashee Rice"
+      ],
+      [
+       "FLEX",
+       "Zay Flowers"
+      ]
+     ]
+    },
+    {
+     "id": "obvious-robbery",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Josh Downs",
+      "Jaylen Warren",
+      "Rome Odunze",
+      "Jameson Williams"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 7,
+     "give": [
+      "Michael Wilson"
+     ],
+     "receive": [
+      "Bijan Robinson"
+     ],
+     "deltaSeason": 156.97900000000004,
+     "deltaPerWeek": 9.234058823529415,
+     "deltaDepth": 0.0,
+     "verdict": "Lopsided win",
+     "direction": "gain",
+     "explanation": "You gain 9.2 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Bijan Robinson (RB2-level). Your roster is already 7 over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Josh Downs, Jaylen Warren, Rome Odunze and Jameson Williams. That leaves you no cover at QB, RB and WR.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1979.7018,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Bijan Robinson"
+      ],
+      [
+       "RB2",
+       "Kyren Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Javonte Williams"
+      ]
+     ]
+    },
+    {
+     "id": "obvious-fleecing",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Michael Wilson",
+      "Josh Downs",
+      "Jaylen Warren",
+      "Rome Odunze"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 7,
+     "give": [
+      "Trey McBride"
+     ],
+     "receive": [
+      "Kyle Pitts Sr."
+     ],
+     "deltaSeason": -41.240999999999985,
+     "deltaPerWeek": -2.4259411764705874,
+     "deltaDepth": 0.0,
+     "verdict": "Clear loss",
+     "direction": "loss",
+     "explanation": "You lose 2.4 points a week. Almost all of it is at TE: Trey McBride (TE2-level) becomes Kyle Pitts Sr. (TE7-level). Your roster is already 7 over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Michael Wilson, Josh Downs, Jaylen Warren and Rome Odunze. That leaves you no cover at QB, RB and WR.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1781.4818,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Kyle Pitts Sr."
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ]
+    },
+    {
+     "id": "even-swap",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Michael Wilson",
+      "Josh Downs",
+      "Jaylen Warren",
+      "Rome Odunze"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 7,
+     "give": [
+      "Zay Flowers"
+     ],
+     "receive": [
+      "Garrett Wilson"
+     ],
+     "deltaSeason": -3.529199999999946,
+     "deltaPerWeek": -0.20759999999999684,
+     "deltaDepth": 0.0,
+     "verdict": "Essentially even",
+     "direction": "even",
+     "explanation": "You lose 0.2 points a week. Almost all of it is at WR3: Zay Flowers (WR15-level) becomes Garrett Wilson (WR16-level). Your roster is already 7 over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Michael Wilson, Josh Downs, Jaylen Warren and Rome Odunze. That leaves you no cover at QB, RB and WR.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1819.1936,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Garrett Wilson"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ]
+    },
+    {
+     "id": "identity",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Michael Wilson",
+      "Josh Downs",
+      "Jaylen Warren",
+      "Rome Odunze"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 7,
+     "give": [
+      "Zay Flowers"
+     ],
+     "receive": [
+      "Zay Flowers"
+     ],
+     "deltaSeason": 0.0,
+     "deltaPerWeek": 0.0,
+     "deltaDepth": 0.0,
+     "verdict": "Essentially even",
+     "direction": "even",
+     "explanation": "Your starting lineup does not change. Nothing you would start is affected. Your roster is already 7 over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Michael Wilson, Josh Downs, Jaylen Warren and Rome Odunze. That leaves you no cover at QB, RB and WR.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1822.7228,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ]
+    },
+    {
+     "id": "three-for-one",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Jaylen Warren",
+      "Rome Odunze",
+      "Jameson Williams"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 7,
+     "give": [
+      "Josh Downs",
+      "Michael Wilson",
+      "Chuba Hubbard"
+     ],
+     "receive": [
+      "Puka Nacua"
+     ],
+     "deltaSeason": 131.4348,
+     "deltaPerWeek": 7.731458823529412,
+     "deltaDepth": 0.0,
+     "verdict": "Lopsided win",
+     "direction": "gain",
+     "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). Your roster is already 7 over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Jaylen Warren, Rome Odunze and Jameson Williams. That leaves you no cover at QB, RB and WR.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1954.1576,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Puka Nacua"
+      ],
+      [
+       "WR3",
+       "Nico Collins"
+      ],
+      [
+       "FLEX",
+       "Zay Flowers"
+      ]
+     ]
+    },
+    {
+     "id": "bench-shuffle",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Alec Pierce",
+      "Josh Downs",
+      "Jaylen Warren",
+      "Rome Odunze"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 7,
+     "give": [
+      "Michael Wilson"
+     ],
+     "receive": [
+      "Alec Pierce"
+     ],
+     "deltaSeason": 0.0,
+     "deltaPerWeek": 0.0,
+     "deltaDepth": 0.0,
+     "verdict": "Essentially even",
+     "direction": "even",
+     "explanation": "Your starting lineup does not change. Nothing you would start is affected. Your roster is already 7 over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Alec Pierce, Josh Downs, Jaylen Warren and Rome Odunze. That leaves you no cover at QB, RB and WR.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1822.7228,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ]
+    },
+    {
+     "id": "starter-for-depth",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Quentin Johnston",
+      "Michael Wilson",
+      "Wan'Dale Robinson",
+      "Josh Downs",
+      "Rome Odunze"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 7,
+     "give": [
+      "Kyren Williams"
+     ],
+     "receive": [
+      "Quentin Johnston",
+      "Wan'Dale Robinson"
+     ],
+     "deltaSeason": -49.085000000000036,
+     "deltaPerWeek": -2.8873529411764727,
+     "deltaDepth": 0.0,
+     "verdict": "Clear loss",
+     "direction": "loss",
+     "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). Your roster is already 7 over the limit, and this trade would put you 8 over: you would have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Quentin Johnston, Michael Wilson, Wan'Dale Robinson, Josh Downs and Rome Odunze. That leaves you no cover at QB, RB and WR.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1773.6378,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Javonte Williams"
+      ],
+      [
+       "RB2",
+       "Jaylen Warren"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ]
+    },
+    {
+     "id": "positional-scarcity",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Michael Wilson",
+      "Josh Downs",
+      "Jaylen Warren",
+      "Rome Odunze"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 7,
+     "give": [
+      "Trey McBride"
+     ],
+     "receive": [
+      "Tee Higgins"
+     ],
+     "deltaSeason": -60.99519999999984,
+     "deltaPerWeek": -3.5879529411764612,
+     "deltaDepth": 7.225504000000001,
+     "verdict": "Clear loss",
+     "direction": "loss",
+     "explanation": "You lose 3.6 points a week. The move that matters is at TE: Trey McBride (TE2-level) becomes a waiver-level starter. Your roster is already 7 over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Michael Wilson, Josh Downs, Jaylen Warren and Rome Odunze. That leaves you no cover at QB and RB. You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1761.7276000000002,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Tee Higgins"
+      ]
+     ]
+    },
+    {
+     "id": "qb-for-wr-1qb",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Michael Wilson",
+      "Josh Downs",
+      "Jaylen Warren",
+      "Rome Odunze"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 7,
+     "give": [
+      "Joe Burrow"
+     ],
+     "receive": [
+      "Malik Nabers"
+     ],
+     "deltaSeason": -43.80580000000009,
+     "deltaPerWeek": -2.5768117647058877,
+     "deltaDepth": 7.225504000000001,
+     "verdict": "Clear loss",
+     "direction": "loss",
+     "explanation": "You lose 2.6 points a week. The move that matters is at QB: Joe Burrow (QB4-level) becomes a waiver-level starter. Quarterbacks are worth less here than their rankings suggest: only one starts per team, so the next one on waivers is much closer to yours than the gap in rank implies. Your roster is already 7 over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Michael Wilson, Josh Downs, Jaylen Warren and Rome Odunze. That leaves you no cover at QB and RB. You also pick up useful bench depth for byes and injuries.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1778.917,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Malik Nabers"
+      ],
+      [
+       "FLEX",
+       "Zay Flowers"
+      ]
+     ]
+    },
+    {
+     "id": "upgrade-rb2",
+     "cuts": [
+      "Bo Nix",
+      "Rico Dowdle",
+      "Chuba Hubbard",
+      "Michael Wilson",
+      "Josh Downs",
+      "Jaylen Warren",
+      "Rome Odunze"
+     ],
+     "spotsFreed": 0,
+     "overBefore": 7,
+     "give": [
+      "Javonte Williams"
+     ],
+     "receive": [
+      "Chase Brown"
+     ],
+     "deltaSeason": 50.32140000000027,
+     "deltaPerWeek": 2.960082352941192,
+     "deltaDepth": 0.0,
+     "verdict": "Clear win",
+     "direction": "gain",
+     "explanation": "You gain 3.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Chase Brown (RB7-level). Your roster is already 7 over the limit; this trade does not fix that, and you would still have to drop Bo Nix, Rico Dowdle, Chuba Hubbard, Michael Wilson, Josh Downs, Jaylen Warren and Rome Odunze. That leaves you no cover at QB, RB and WR.",
+     "beforePoints": 1822.7228,
+     "afterPoints": 1873.0442000000003,
+     "beforeSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Kyren Williams"
+      ],
+      [
+       "RB2",
+       "Javonte Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ],
+     "afterSlots": [
+      [
+       "QB",
+       "Joe Burrow"
+      ],
+      [
+       "TE",
+       "Trey McBride"
+      ],
+      [
+       "RB1",
+       "Chase Brown"
+      ],
+      [
+       "RB2",
+       "Kyren Williams"
+      ],
+      [
+       "WR1",
+       "Ja'Marr Chase"
+      ],
+      [
+       "WR2",
+       "Nico Collins"
+      ],
+      [
+       "WR3",
+       "Zay Flowers"
+      ],
+      [
+       "FLEX",
+       "Jameson Williams"
+      ]
+     ]
+    }
+   ]
   }
  ],
  "horizonLeague": {
@@ -9752,6 +12690,7 @@
   },
   "flexSlots": 1,
   "superflexSlots": 0,
+  "benchSlots": 7,
   "flexShare": {
    "RB": 0.45,
    "WR": 0.45,
@@ -9767,6 +12706,9 @@
  "horizons": [
   {
    "id": "consolidation-up",
+   "cuts": [],
+   "spotsFreed": 1,
+   "overBefore": 0,
    "weeksCovered": 17,
    "give": [
     "Nico Collins",
@@ -9779,10 +12721,15 @@
    "deltaPerWeek": 8.6445294117647,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
+   "explanation": "You gain 8.6 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
   },
   {
    "id": "consolidation-trap",
+   "cuts": [
+    "Bo Nix"
+   ],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 17,
    "give": [
     "Ja'Marr Chase"
@@ -9795,10 +12742,13 @@
    "deltaPerWeek": -5.366599999999996,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 5.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 5.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-robbery",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 17,
    "give": [
     "Michael Wilson"
@@ -9814,6 +12764,9 @@
   },
   {
    "id": "obvious-fleecing",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 17,
    "give": [
     "Trey McBride"
@@ -9829,6 +12782,9 @@
   },
   {
    "id": "even-swap",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 17,
    "give": [
     "Zay Flowers"
@@ -9844,6 +12800,9 @@
   },
   {
    "id": "identity",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 17,
    "give": [
     "Zay Flowers"
@@ -9859,6 +12818,9 @@
   },
   {
    "id": "three-for-one",
+   "cuts": [],
+   "spotsFreed": 2,
+   "overBefore": 0,
    "weeksCovered": 17,
    "give": [
     "Josh Downs",
@@ -9872,10 +12834,13 @@
    "deltaPerWeek": 7.731458823529412,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You gain 7.7 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). It also frees two roster spots."
   },
   {
    "id": "bench-shuffle",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 17,
    "give": [
     "Michael Wilson"
@@ -9891,6 +12856,11 @@
   },
   {
    "id": "starter-for-depth",
+   "cuts": [
+    "Bo Nix"
+   ],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 17,
    "give": [
     "Kyren Williams"
@@ -9903,10 +12873,13 @@
    "deltaPerWeek": -2.8873529411764727,
    "verdict": "Clear loss",
    "direction": "loss",
-   "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level)."
+   "explanation": "You lose 2.9 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB."
   },
   {
    "id": "positional-scarcity",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 17,
    "give": [
     "Trey McBride"
@@ -9922,6 +12895,9 @@
   },
   {
    "id": "qb-for-wr-1qb",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 17,
    "give": [
     "Joe Burrow"
@@ -9937,6 +12913,9 @@
   },
   {
    "id": "upgrade-rb2",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 17,
    "give": [
     "Javonte Williams"
@@ -9952,6 +12931,9 @@
   },
   {
    "id": "consolidation-up",
+   "cuts": [],
+   "spotsFreed": 1,
+   "overBefore": 0,
    "weeksCovered": 14,
    "give": [
     "Nico Collins",
@@ -9964,10 +12946,15 @@
    "deltaPerWeek": 10.496928571428564,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 10.5 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
+   "explanation": "You gain 10.5 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
   },
   {
    "id": "consolidation-trap",
+   "cuts": [
+    "Bo Nix"
+   ],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 14,
    "give": [
     "Ja'Marr Chase"
@@ -9980,10 +12967,13 @@
    "deltaPerWeek": -6.516585714285709,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 6.5 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 6.5 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-robbery",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 14,
    "give": [
     "Michael Wilson"
@@ -9999,6 +12989,9 @@
   },
   {
    "id": "obvious-fleecing",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 14,
    "give": [
     "Trey McBride"
@@ -10014,6 +13007,9 @@
   },
   {
    "id": "even-swap",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 14,
    "give": [
     "Zay Flowers"
@@ -10029,6 +13025,9 @@
   },
   {
    "id": "identity",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 14,
    "give": [
     "Zay Flowers"
@@ -10044,6 +13043,9 @@
   },
   {
    "id": "three-for-one",
+   "cuts": [],
+   "spotsFreed": 2,
+   "overBefore": 0,
    "weeksCovered": 14,
    "give": [
     "Josh Downs",
@@ -10057,10 +13059,13 @@
    "deltaPerWeek": 9.3882,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 9.4 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You gain 9.4 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). It also frees two roster spots. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "bench-shuffle",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 14,
    "give": [
     "Michael Wilson"
@@ -10076,6 +13081,11 @@
   },
   {
    "id": "starter-for-depth",
+   "cuts": [
+    "Bo Nix"
+   ],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 14,
    "give": [
     "Kyren Williams"
@@ -10088,10 +13098,13 @@
    "deltaPerWeek": -3.506071428571431,
    "verdict": "Clear loss",
    "direction": "loss",
-   "explanation": "You lose 3.5 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level)."
+   "explanation": "You lose 3.5 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB."
   },
   {
    "id": "positional-scarcity",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 14,
    "give": [
     "Trey McBride"
@@ -10107,6 +13120,9 @@
   },
   {
    "id": "qb-for-wr-1qb",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 14,
    "give": [
     "Joe Burrow"
@@ -10122,6 +13138,9 @@
   },
   {
    "id": "upgrade-rb2",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 14,
    "give": [
     "Javonte Williams"
@@ -10137,6 +13156,9 @@
   },
   {
    "id": "consolidation-up",
+   "cuts": [],
+   "spotsFreed": 1,
+   "overBefore": 0,
    "weeksCovered": 8,
    "give": [
     "Nico Collins",
@@ -10149,10 +13171,15 @@
    "deltaPerWeek": 18.369624999999985,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 18.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
+   "explanation": "You gain 18.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
   },
   {
    "id": "consolidation-trap",
+   "cuts": [
+    "Bo Nix"
+   ],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 8,
    "give": [
     "Ja'Marr Chase"
@@ -10165,10 +13192,13 @@
    "deltaPerWeek": -11.40402499999999,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 11.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-robbery",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 8,
    "give": [
     "Michael Wilson"
@@ -10184,6 +13214,9 @@
   },
   {
    "id": "obvious-fleecing",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 8,
    "give": [
     "Trey McBride"
@@ -10199,6 +13232,9 @@
   },
   {
    "id": "even-swap",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 8,
    "give": [
     "Zay Flowers"
@@ -10214,6 +13250,9 @@
   },
   {
    "id": "identity",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 8,
    "give": [
     "Zay Flowers"
@@ -10229,6 +13268,9 @@
   },
   {
    "id": "three-for-one",
+   "cuts": [],
+   "spotsFreed": 2,
+   "overBefore": 0,
    "weeksCovered": 8,
    "give": [
     "Josh Downs",
@@ -10242,10 +13284,13 @@
    "deltaPerWeek": 16.42935,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 16.4 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You gain 16.4 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). It also frees two roster spots. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "bench-shuffle",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 8,
    "give": [
     "Michael Wilson"
@@ -10261,6 +13306,11 @@
   },
   {
    "id": "starter-for-depth",
+   "cuts": [
+    "Bo Nix"
+   ],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 8,
    "give": [
     "Kyren Williams"
@@ -10273,10 +13323,13 @@
    "deltaPerWeek": -6.1356250000000045,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 6.1 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level)."
+   "explanation": "You lose 6.1 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
   },
   {
    "id": "positional-scarcity",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 8,
    "give": [
     "Trey McBride"
@@ -10292,6 +13345,9 @@
   },
   {
    "id": "qb-for-wr-1qb",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 8,
    "give": [
     "Joe Burrow"
@@ -10307,6 +13363,9 @@
   },
   {
    "id": "upgrade-rb2",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 8,
    "give": [
     "Javonte Williams"
@@ -10322,6 +13381,9 @@
   },
   {
    "id": "consolidation-up",
+   "cuts": [],
+   "spotsFreed": 1,
+   "overBefore": 0,
    "weeksCovered": 3,
    "give": [
     "Nico Collins",
@@ -10334,10 +13396,15 @@
    "deltaPerWeek": 48.985666666666624,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 49.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
+   "explanation": "You gain 49.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
   },
   {
    "id": "consolidation-trap",
+   "cuts": [
+    "Bo Nix"
+   ],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 3,
    "give": [
     "Ja'Marr Chase"
@@ -10350,10 +13417,13 @@
    "deltaPerWeek": -30.410733333333308,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 30.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 30.4 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-robbery",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 3,
    "give": [
     "Michael Wilson"
@@ -10369,6 +13439,9 @@
   },
   {
    "id": "obvious-fleecing",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 3,
    "give": [
     "Trey McBride"
@@ -10384,6 +13457,9 @@
   },
   {
    "id": "even-swap",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 3,
    "give": [
     "Zay Flowers"
@@ -10399,6 +13475,9 @@
   },
   {
    "id": "identity",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 3,
    "give": [
     "Zay Flowers"
@@ -10414,6 +13493,9 @@
   },
   {
    "id": "three-for-one",
+   "cuts": [],
+   "spotsFreed": 2,
+   "overBefore": 0,
    "weeksCovered": 3,
    "give": [
     "Josh Downs",
@@ -10427,10 +13509,13 @@
    "deltaPerWeek": 43.8116,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 43.8 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You gain 43.8 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). It also frees two roster spots. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "bench-shuffle",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 3,
    "give": [
     "Michael Wilson"
@@ -10446,6 +13531,11 @@
   },
   {
    "id": "starter-for-depth",
+   "cuts": [
+    "Bo Nix"
+   ],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 3,
    "give": [
     "Kyren Williams"
@@ -10458,10 +13548,13 @@
    "deltaPerWeek": -16.36166666666668,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 16.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
+   "explanation": "You lose 16.4 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
   },
   {
    "id": "positional-scarcity",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 3,
    "give": [
     "Trey McBride"
@@ -10477,6 +13570,9 @@
   },
   {
    "id": "qb-for-wr-1qb",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 3,
    "give": [
     "Joe Burrow"
@@ -10492,6 +13588,9 @@
   },
   {
    "id": "upgrade-rb2",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 3,
    "give": [
     "Javonte Williams"
@@ -10507,6 +13606,9 @@
   },
   {
    "id": "consolidation-up",
+   "cuts": [],
+   "spotsFreed": 1,
+   "overBefore": 0,
    "weeksCovered": 1,
    "give": [
     "Nico Collins",
@@ -10519,10 +13621,15 @@
    "deltaPerWeek": 146.95699999999988,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 147.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
+   "explanation": "You gain 147.0 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Jahmyr Gibbs (RB1-level). It also frees one roster spot. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
   },
   {
    "id": "consolidation-trap",
+   "cuts": [
+    "Bo Nix"
+   ],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 1,
    "give": [
     "Ja'Marr Chase"
@@ -10535,10 +13642,13 @@
    "deltaPerWeek": -91.23219999999992,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 91.2 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You lose 91.2 points a week. The move that matters is at WR1: Ja'Marr Chase (WR1-level) becomes Nico Collins (WR9-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "obvious-robbery",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 1,
    "give": [
     "Michael Wilson"
@@ -10554,6 +13664,9 @@
   },
   {
    "id": "obvious-fleecing",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 1,
    "give": [
     "Trey McBride"
@@ -10569,6 +13682,9 @@
   },
   {
    "id": "even-swap",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 1,
    "give": [
     "Zay Flowers"
@@ -10584,6 +13700,9 @@
   },
   {
    "id": "identity",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 1,
    "give": [
     "Zay Flowers"
@@ -10599,6 +13718,9 @@
   },
   {
    "id": "three-for-one",
+   "cuts": [],
+   "spotsFreed": 2,
+   "overBefore": 0,
    "weeksCovered": 1,
    "give": [
     "Josh Downs",
@@ -10612,10 +13734,13 @@
    "deltaPerWeek": 131.4348,
    "verdict": "Lopsided win",
    "direction": "gain",
-   "explanation": "You gain 131.4 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). You also pick up useful bench depth for byes and injuries."
+   "explanation": "You gain 131.4 points a week. The move that matters is at WR2: Nico Collins (WR9-level) becomes Puka Nacua (WR2-level). It also frees two roster spots. You also pick up useful bench depth for byes and injuries."
   },
   {
    "id": "bench-shuffle",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 1,
    "give": [
     "Michael Wilson"
@@ -10631,6 +13756,11 @@
   },
   {
    "id": "starter-for-depth",
+   "cuts": [
+    "Bo Nix"
+   ],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 1,
    "give": [
     "Kyren Williams"
@@ -10643,10 +13773,13 @@
    "deltaPerWeek": -49.085000000000036,
    "verdict": "Lopsided loss",
    "direction": "loss",
-   "explanation": "You lose 49.1 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
+   "explanation": "You lose 49.1 points a week. The move that matters is at RB1: Kyren Williams (RB15-level) becomes Javonte Williams (RB16-level). You would be one over the roster limit: to fit them you would have to drop Bo Nix. That leaves you no cover at QB. You are giving up real bench depth to do it \u2014 fine if you are set at your starting spots."
   },
   {
    "id": "positional-scarcity",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 1,
    "give": [
     "Trey McBride"
@@ -10662,6 +13795,9 @@
   },
   {
    "id": "qb-for-wr-1qb",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 1,
    "give": [
     "Joe Burrow"
@@ -10677,6 +13813,9 @@
   },
   {
    "id": "upgrade-rb2",
+   "cuts": [],
+   "spotsFreed": 0,
+   "overBefore": 0,
    "weeksCovered": 1,
    "give": [
     "Javonte Williams"

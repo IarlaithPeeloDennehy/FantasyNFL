@@ -267,6 +267,46 @@ wire.
 consumes. Once weeks are modelled, a bye is just a zero week, and "these three
 players all bye in week 9" comes free.
 
+### 3.3 What the gate got wrong
+
+The gate said *"the 3-for-1 that currently grades as a win grades as a loss"*.
+It does not, and on reflection it should not. Two things I had not reconciled
+when writing it:
+
+- **Depth is deliberately kept out of the headline**, and a forced cut almost
+  always removes a bench player. So the cut cost lands in `deltaDepth`, not in
+  the verdict. Making it move the headline would mean folding bench value back
+  into the headline — the exact bug the lineup model exists to prevent. Keeping
+  the rule and losing the gate is the right trade.
+- **A normal roster has room.** Eight starting slots and seven bench spots means
+  a 3-for-1 drops your two worst bench players, who by construction are the two
+  the lineup never uses. The verdict *should* be unmoved.
+
+Measured on the default league: **zero** of 96 golden verdicts changed. What did
+change is what the fix was actually for — `deltaDepth` on `consolidation-trap`
+fell from 7.2 to 3.2 and on `obvious-robbery` from 6.4 to 3.1, because the old
+flat sum was counting players the roster could not keep and counting a fourth
+spare receiver as though he were a first. The verdict moves only where a cut
+reaches into the starting lineup, which is what the `tight-bench-12` and
+`no-bench-12` fixtures exist to cover.
+
+The real gate, met: cuts are computed, named in the explanation, correctly
+attributed between the trade and a pre-existing overflow, and the roster after a
+trade is always legal.
+
+### 3.4 Two bugs the tests found
+
+**`explain` fell silent on exactly the trades that needed it.** It returned early
+when no starting slot changed — and a bench-for-bench 3-for-1 changes no slot, so
+the one shape of trade most likely to force a drop was the one that never
+mentioned it. The consequences of a trade are now built separately from the
+description of it, and both endings carry them.
+
+**Pre-existing overflow was blamed on the trade.** Grading a player against
+himself on an over-full roster reported five forced cuts as though the trade had
+caused them. Whose fault the crunch is turns out to be a different question from
+who has to go, and the sentence now distinguishes them.
+
 ---
 
 ## 4. The three compound — worked end to end
@@ -338,7 +378,7 @@ which is where `encodeSpec` needs its version marker.
 |---|---|---|
 | 0 | Fix D1: weeks-aware horizon | **Done.** Gate met and strengthened: a `rest_of_season` file now gives the *same* per-week number as the full-season one, at 14/8/3/1 weeks. `web/src/engine/__tests__/horizon.test.js`. |
 | 1 | Fix D2: curve smoothing at the top | **Done.** Rank 1 rises 23–32 pts per position, rank 2 by 5–13; ranks 3+ unchanged; still monotone at every rank; schema validation and the 12/12 trade gate pass. `test_curves.py`. |
-| 2 | Roster cap + forced cuts + diminishing depth | The 3-for-1 that currently grades as a win grades as a loss, and names both cuts. |
+| 2 | Roster cap + forced cuts + diminishing depth | **Done, but the gate as written was wrong** — see below. Cuts are computed, named, and correctly attributed; depth no longer counts unkeepable players. No headline verdict moved. `test_roster.py`, `roster.test.js`. |
 | 3 | Tiers + acquisition scarcity | Tiers derived per position; QB tiers come out different from RB, from the data, not from a constant. |
 | 4 | Weekly horizon + availability | Star out 5 weeks scores near zero over weeks 1–5 and full value after. Double-count guard tested against `ranks_as_of`. |
 | 5 | Record → `w(t)` → situational value | Same trade, 0-3 vs 3-0, produces opposite recommendations with both numbers shown. |

@@ -8,7 +8,7 @@
  */
 
 import { LIMITS, SCORING_OPTIONS, toLeague } from './league.js'
-import { replacementRank } from './engine/index.js'
+import { replacementRank, rosterLimit } from './engine/index.js'
 
 const SLOTS = [
   ['QB', 'QB'],
@@ -76,6 +76,10 @@ export function SettingsPanel({ spec, setSpec, curves }) {
                  min={LIMITS.flexSlots[0]} max={LIMITS.flexSlots[1]}
                  onChange={(n) => set({ flexSlots: n })} />
 
+        <Stepper label="Bench" value={spec.benchSlots}
+                 min={LIMITS.benchSlots[0]} max={LIMITS.benchSlots[1]}
+                 onChange={(n) => set({ benchSlots: n })} />
+
         <label className="stepper wide">
           <span>Superflex</span>
           <select value={spec.superflexSlots}
@@ -91,6 +95,10 @@ export function SettingsPanel({ spec, setSpec, curves }) {
         positions is the starter, so value above replacement is meaningless there.
         {' '}One quarterback slot is the maximum — use superflex for a 2QB league,
         which is what the scarcity maths actually describes.
+        {' '}<strong>Bench</strong> is the spots you have for these four positions,
+        so subtract any your league makes you spend on a kicker or a defence.
+        That gives {rosterLimit(league)} roster spots in total, which is what a
+        trade has to fit inside.
       </p>
 
       {overrun.length > 0 && (

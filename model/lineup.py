@@ -8,7 +8,7 @@ back.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from .value import GAMES_PER_SEASON, League, Player, vor
 
@@ -22,6 +22,11 @@ BANDS = (
     (5.0, "Clear win", "Clear loss"),
     (float("inf"), "Lopsided win", "Lopsided loss"),
 )
+
+# What a bench spot is worth relative to a starting one, and how fast that falls
+# down a position's depth chart. Opening guesses, tuned in one named place.
+DEPTH_WEIGHT = 0.2
+DEPTH_DECAY = 0.5
 
 # How much bench-depth movement is worth a sentence. Unlike the bands above this
 # is a *season-scale* quantity, so it has to be rescaled for a rest-of-season
@@ -112,11 +117,122 @@ def _replacement_for(slot: str, replacement: dict[str, float]) -> float:
     return max((replacement.get(p, 0.0) for p in eligible), default=0.0)
 
 
-def _depth_value(bench: list[Player], league: League, replacement: dict[str, float]) -> float:
-    """Bench players are not worthless -- byes and injuries happen -- but they are
-    not worth their face value either. Reported separately, never folded into the
-    headline number."""
-    return 0.2 * sum(max(vor(p, league, replacement), 0.0) for p in bench)
+def depth_value(bench: list[Player], league: League, replacement: dict[str, float]) -> float:
+    """What a bench is actually worth to you.
+
+    Bench players are not worthless -- byes and injuries happen -- but they are
+    not worth their face value either, and they are not worth it in equal
+    measure. The first backup at a position covers a bye and the first injury.
+    The third covers the case where two things have already gone wrong, which is
+    most of a season away from mattering. A flat weight over the whole bench says
+    a fourth spare receiver is as useful as a first, and that is how a roster gets
+    valued for hoarding.
+
+    So the weight decays down each position's own depth chart. Positions are
+    walked in name order and each position's values in descending order, so the
+    floating-point summation is identical here and in the JavaScript port rather
+    than merely close.
+
+    Reported separately, never folded into the headline number.
+    """
+    by_pos: dict[str, list[float]] = {}
+    for p in bench:
+        v = vor(p, league, replacement)
+        if v > 0:
+            by_pos.setdefault(p.pos, []).append(v)
+
+    total = 0.0
+    for pos in sorted(by_pos):
+        for i, v in enumerate(sorted(by_pos[pos], reverse=True)):
+            total += DEPTH_WEIGHT * (DEPTH_DECAY**i) * v
+    return total
+
+
+def starting_slots(league: League) -> int:
+    return sum(league.starters.values()) + league.flex_slots + league.superflex_slots
+
+
+def roster_limit(league: League) -> int:
+    """How many QB/RB/WR/TE a team may hold at once."""
+    return starting_slots(league) + league.bench_slots
+
+
+def roster_value(
+    roster: list[Player], league: League, replacement: dict[str, float]
+) -> float:
+    """The whole roster in one number: what it starts, plus what its bench is
+    worth. Only used to rank one roster against another, never reported."""
+    lineup = best_lineup(roster, league, league.scoring, replacement)
+    return lineup.points + depth_value(lineup.bench, league, replacement)
+
+
+def enforce_limit(
+    roster: list[Player], league: League, replacement: dict[str, float]
+) -> tuple[list[Player], list[Player]]:
+    """Cut down to the roster limit, cheapest player first.
+
+    Receiving more players than you send means somebody gets dropped, and until
+    this existed the model simply let the roster grow -- so a 3-for-1 improved
+    your bench score by counting two players you could not legally keep. That is
+    the same error as summing player values, one level down.
+
+    Greedy, and exact rather than heuristic: at each step it actually rebuilds
+    the lineup without each candidate and drops whichever loses least. At fifteen
+    players and two or three cuts that is a few hundred lineup builds, which is
+    nothing, and it means positional insurance needs no special case. Cutting
+    your only quarterback empties a starting slot down to replacement level, and
+    the arithmetic notices without being told that quarterbacks are special.
+
+    Ties keep the earlier player in roster order, in both implementations.
+
+    :returns: (kept, cut) -- `cut` in the order they were dropped, worst first.
+    """
+    limit = roster_limit(league)
+    kept = list(roster)
+    cut: list[Player] = []
+
+    while len(kept) > limit:
+        best_i, best_value = 0, None
+        for i in range(len(kept)):
+            value = roster_value(kept[:i] + kept[i + 1 :], league, replacement)
+            if best_value is None or value > best_value:
+                best_i, best_value = i, value
+        cut.append(kept.pop(best_i))
+
+    return kept, cut
+
+
+def uncovered_positions(lineup: Lineup, league: League) -> list[str]:
+    """Positions with a dedicated starting slot and nobody on the bench.
+
+    Read off the finished lineup rather than counted against `starters`, because
+    a flex slot eats a body too: four receivers in a league with three WR spots
+    and a flex are all starting, and counting four against a requirement of three
+    would call that covered.
+
+    Not a rule the cut selector obeys -- it does not need one -- but worth saying
+    out loud when a cut is what left you there.
+    """
+    benched = {p.pos for p in lineup.bench}
+    return [
+        pos
+        for pos, need in sorted(league.starters.items())
+        if need > 0 and pos not in benched
+    ]
+
+
+_COUNTS = ("no", "one", "two", "three", "four", "five", "six")
+
+
+def _count(n: int) -> str:
+    """Small numbers read better as words in the middle of a sentence."""
+    return _COUNTS[n] if n < len(_COUNTS) else str(n)
+
+
+def _and_list(items: list[str]) -> str:
+    if len(items) <= 1:
+        return items[0] if items else ""
+    return f"{', '.join(items[:-1])} and {items[-1]}"
 
 
 def band(delta_per_week: float) -> str:
@@ -140,6 +256,14 @@ class Grade:
     before: Lineup
     after: Lineup
     explanation: str
+    # Who you would have to drop to fit the incoming players, worst first, and
+    # how many spots you would free if the trade goes the other way.
+    cuts: list[Player] = field(default_factory=list)
+    spots_freed: int = 0
+    # The roster was already past the limit before the trade. Its own problem,
+    # not this trade's, but the grade is computed against a legal roster either
+    # way so it has to be sayable.
+    over_before: int = 0
 
 
 def grade_trade(
@@ -162,13 +286,24 @@ def grade_trade(
 
     after_roster = [p for p in roster if p not in give] + list(receive)
 
-    before = best_lineup(roster, league, scoring, replacement)
-    after = best_lineup(after_roster, league, scoring, replacement)
+    # Both sides are cut down to a legal roster before anything is measured. Only
+    # capping the after-roster would charge this trade for an overflow the user
+    # already had; capping both means a pre-existing one mostly cancels, and the
+    # delta stays a comparison between two rosters that could actually be fielded.
+    before_kept, before_cut = enforce_limit(roster, league, replacement)
+    after_kept, after_cut = enforce_limit(after_roster, league, replacement)
+
+    before = best_lineup(before_kept, league, scoring, replacement)
+    after = best_lineup(after_kept, league, scoring, replacement)
 
     delta_season = after.points - before.points
     delta_week = delta_season / weeks_covered
-    delta_depth = _depth_value(after.bench, league, replacement) - _depth_value(
+    delta_depth = depth_value(after.bench, league, replacement) - depth_value(
         before.bench, league, replacement
+    )
+
+    spots_freed = max(0, roster_limit(league) - len(after_kept)) - max(
+        0, roster_limit(league) - len(before_kept)
     )
 
     if abs(delta_week) < EVEN_THRESHOLD:
@@ -184,9 +319,13 @@ def grade_trade(
         direction=direction,
         before=before,
         after=after,
+        cuts=after_cut,
+        spots_freed=max(spots_freed, 0),
+        over_before=len(before_cut),
         explanation=explain(
             before, after, delta_week, delta_depth, scoring, replacement,
-            league, give, receive, weeks_covered,
+            league, give, receive, weeks_covered, after_cut, max(spots_freed, 0),
+            len(before_cut),
         ),
     )
 
@@ -202,6 +341,9 @@ def explain(
     give: list[Player] | tuple = (),
     receive: list[Player] | tuple = (),
     weeks_covered: float = GAMES_PER_SEASON,
+    cuts: list[Player] | tuple = (),
+    spots_freed: int = 0,
+    over_before: int = 0,
 ) -> str:
     """Plain English. The number convinces nobody on its own."""
     b, a = before.by_slot(), after.by_slot()
@@ -218,8 +360,16 @@ def explain(
 
     if not changes:
         # No slot changed hands, so the delta is exactly zero and there is
-        # nothing to describe. Said plainly, without a number.
-        return "Your starting lineup does not change. Nothing you would start is affected."
+        # nothing to describe. Said plainly, without a number -- but the roster
+        # crunch and the depth note still apply, and a bench-for-bench trade that
+        # forces two drops is precisely the case that must not fall silent here.
+        return (
+            "Your starting lineup does not change. Nothing you would start is"
+            " affected." + _consequences(
+                delta_depth, weeks_covered, cuts, after, league, spots_freed,
+                give, receive, over_before,
+            )
+        )
 
     # Branch on the *rendered* number, not the raw one. A delta of +0.034 renders
     # as "0.0", and "You gain 0.0 points a week" reads as a bug to the user even
@@ -269,17 +419,84 @@ def explain(
         lead = "The move that matters"
     body = f" {lead} is at {slot}: {describe(old)} becomes {describe(new)}."
 
+    return head + body + _consequences(
+        delta_depth, weeks_covered, cuts, after, league, spots_freed, give, receive,
+        over_before,
+    )
+
+
+def _consequences(
+    delta_depth: float,
+    weeks_covered: float,
+    cuts: list[Player] | tuple,
+    after: Lineup,
+    league: League | None,
+    spots_freed: int,
+    give: list[Player] | tuple = (),
+    receive: list[Player] | tuple = (),
+    over_before: int = 0,
+) -> str:
+    """Everything true about the trade that is not the slot it moved.
+
+    Split out because it has to be reachable from both endings of `explain` --
+    including the one where no starting slot changes at all, which is exactly the
+    shape of trade most likely to cost a forced drop.
+    """
+    tail = ""
+
     # The QB problem. In a one-QB league an elite quarterback carries almost no
     # value above replacement, which is arithmetically right and socially
     # explosive -- users read it as the app being broken. Carry the scarcity
     # argument in the sentence rather than leaving the number to defend itself.
-    tail = ""
     one_qb = league is not None and league.superflex_slots == 0
     if one_qb and any(p.pos == "QB" for p in list(give) + list(receive)):
         tail += (
             " Quarterbacks are worth less here than their rankings suggest: only one"
             " starts per team, so the next one on waivers is much closer to yours"
             " than the gap in rank implies."
+        )
+
+    # The forced drop. A trade that hands you more players than you send is not
+    # free, and the number alone will not stop anyone -- naming the casualties is
+    # the part that does. Said before the depth note, because "you would drop
+    # Allgeier and Otton" is concrete and "bench depth worsens" is not.
+    if cuts:
+        names = _and_list([p.name for p in cuts])
+        # Who goes is always the full list -- that is the answer to "if I accept
+        # this, who do I drop?". Whose fault it is, is a separate question, and
+        # blaming the trade for an overflow the roster already had is how a
+        # player-for-himself trade ends up reporting five forced cuts.
+        if not over_before:
+            tail += (
+                f" You would be {_count(len(cuts))} over the roster limit:"
+                f" to fit them you would have to drop {names}."
+            )
+        elif len(cuts) > over_before:
+            tail += (
+                f" Your roster is already {_count(over_before)} over the limit, and"
+                f" this trade would put you {_count(len(cuts))} over:"
+                f" you would have to drop {names}."
+            )
+        else:
+            # The trade leaves the crunch alone or eases it. Either way it did not
+            # cause it, and the count that matters is the one they started with.
+            tail += (
+                f" Your roster is already {_count(over_before)} over the limit;"
+                f" this trade does not fix that, and you would still have to"
+                f" drop {names}."
+            )
+        if league is not None:
+            thin = [
+                pos
+                for pos in uncovered_positions(after, league)
+                if any(p.pos == pos for p in cuts)
+            ]
+            if thin:
+                tail += f" That leaves you no cover at {_and_list(thin)}."
+    elif spots_freed:
+        tail += (
+            f" It also frees {_count(spots_freed)} roster"
+            f" {'spot' if spots_freed == 1 else 'spots'}."
         )
 
     # `delta_depth` is measured over whatever span the projections cover, so the
@@ -292,4 +509,4 @@ def explain(
     elif delta_depth > depth_note:
         tail += " You also pick up useful bench depth for byes and injuries."
 
-    return head + body + tail
+    return tail

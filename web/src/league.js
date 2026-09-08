@@ -31,6 +31,10 @@ export const LIMITS = {
   TE: [1, 2],
   flexSlots: [0, 3],
   superflexSlots: [0, 1],
+  // Not a curve constraint like the others -- a roster nobody could field. Zero
+  // bench is legal (some leagues really do it); the ceiling is generous because
+  // being wrong here only costs a cut suggestion, not a mispriced grade.
+  benchSlots: [0, 14],
 }
 
 export const DEFAULT_SPEC = {
@@ -39,6 +43,7 @@ export const DEFAULT_SPEC = {
   starters: { QB: 1, RB: 2, WR: 3, TE: 1 },
   flexSlots: 1,
   superflexSlots: 0,
+  benchSlots: 7,
 }
 
 const clamp = (n, [lo, hi]) => Math.min(hi, Math.max(lo, n))
@@ -59,6 +64,7 @@ export function normaliseSpec(raw) {
     ),
     flexSlots: clamp(Math.round(Number(spec.flexSlots) || 0), LIMITS.flexSlots),
     superflexSlots: clamp(Math.round(Number(spec.superflexSlots) || 0), LIMITS.superflexSlots),
+    benchSlots: clamp(Math.round(Number(spec.benchSlots) || 0), LIMITS.benchSlots),
   }
 }
 
@@ -71,22 +77,36 @@ export function toLeague(spec) {
     starters: s.starters,
     flexSlots: s.flexSlots,
     superflexSlots: s.superflexSlots,
+    benchSlots: s.benchSlots,
   })
 }
 
 // Compact enough to sit in a URL next to fifteen player ids without the whole
-// thing looking like a stack trace: 12-half_ppr-1.2.3.1-1-0
+// thing looking like a stack trace: 12-half_ppr-1.2.3.1-1-0-7
 export function encodeSpec(spec) {
   const s = normaliseSpec(spec)
   const { QB, RB, WR, TE } = s.starters
-  return [s.teams, s.scoring, `${QB}.${RB}.${WR}.${TE}`, s.flexSlots, s.superflexSlots].join('-')
+  return [
+    s.teams, s.scoring, `${QB}.${RB}.${WR}.${TE}`, s.flexSlots, s.superflexSlots, s.benchSlots,
+  ].join('-')
 }
+
+/**
+ * Tolerant of a field count it does not recognise, rather than all-or-nothing.
+ *
+ * Bench slots were added after links had already been shared, so five fields is
+ * a real format that real URLs still carry. Rejecting those outright -- which is
+ * what a strict length check did -- silently resets the entire league to defaults
+ * and grades the trade in the wrong format without saying so. A missing trailing
+ * field takes its default; the fields that are present are still honoured.
+ */
+const SPEC_FIELDS = 6
 
 export function decodeSpec(raw) {
   if (!raw) return null
   const parts = String(raw).split('-')
-  if (parts.length !== 5) return null
-  const [teams, scoring, starters, flexSlots, superflexSlots] = parts
+  if (parts.length < SPEC_FIELDS - 1 || parts.length > SPEC_FIELDS) return null
+  const [teams, scoring, starters, flexSlots, superflexSlots, benchSlots] = parts
   const [QB, RB, WR, TE] = starters.split('.').map(Number)
   return normaliseSpec({
     teams: Number(teams),
@@ -94,6 +114,7 @@ export function decodeSpec(raw) {
     starters: { QB, RB, WR, TE },
     flexSlots: Number(flexSlots),
     superflexSlots: Number(superflexSlots),
+    benchSlots: benchSlots === undefined ? DEFAULT_SPEC.benchSlots : Number(benchSlots),
   })
 }
 
@@ -105,5 +126,5 @@ export function describeSpec(spec) {
   const slots = [`${QB}QB`, `${RB}RB`, `${WR}WR`, `${TE}TE`]
   if (s.flexSlots) slots.push(`${s.flexSlots}FLEX`)
   if (s.superflexSlots) slots.push(`${s.superflexSlots}SF`)
-  return `${s.teams}-team ${scoring} · ${slots.join('/')}`
+  return `${s.teams}-team ${scoring} · ${slots.join('/')} · ${s.benchSlots} bench`
 }
