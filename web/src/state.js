@@ -22,6 +22,9 @@ const MAX_WEEKS_OUT = 17
 
 const PARAMS = {
   roster: 'r', give: 'g', get: 't', league: 'l', out: 'o', knew: 'k', record: 'w',
+  // Who you are shopping for. One id, and deliberately shareable: "this is what
+  // it would take to get him" is a link, the same as a proposed trade is.
+  want: 'n',
 }
 
 /** Split a comma-separated id list. Tolerant of spaces, empties and trailing commas. */
@@ -115,7 +118,21 @@ export function reconcileTrade({ roster, give, get }) {
 
 export const EMPTY = {
   roster: [], give: [], get: [], league: normaliseSpec(null), out: {}, ranksKnew: false,
-  record: null,
+  record: null, want: null,
+}
+
+/**
+ * The player the offer finder is shopping for.
+ *
+ * Dropped rather than kept if he is unknown to this data file or already on the
+ * roster: `findOffers` answers 'held' for the second case, which is a correct
+ * answer to a question nobody asked, and a stale id from last month's file would
+ * search for nobody at all.
+ */
+export function reconcileWant(raw, known, roster) {
+  const id = typeof raw === 'string' ? raw.trim() : ''
+  if (!id || !known.has(id) || roster.includes(id)) return null
+  return id
 }
 
 function fromParams(params, known) {
@@ -142,6 +159,7 @@ function fromParams(params, known) {
     out,
     ranksKnew: params.get(PARAMS.knew) === '1',
     record: parseRecord(params.get(PARAMS.record)),
+    want: reconcileWant(params.get(PARAMS.want), known, roster),
   }
 }
 
@@ -167,7 +185,7 @@ export function loadState(known) {
   return EMPTY
 }
 
-function toParams({ roster, give, get, league, out, ranksKnew, record }) {
+function toParams({ roster, give, get, league, out, ranksKnew, record, want }) {
   const params = new URLSearchParams()
   if (roster.length) params.set(PARAMS.roster, formatIds(roster))
   if (give.length) params.set(PARAMS.give, formatIds(give))
@@ -177,6 +195,7 @@ function toParams({ roster, give, get, league, out, ranksKnew, record }) {
   if (outStr) params.set(PARAMS.out, outStr)
   if (ranksKnew) params.set(PARAMS.knew, '1')
   if (record) params.set(PARAMS.record, formatRecord(record))
+  if (want) params.set(PARAMS.want, want)
   return params
 }
 

@@ -23,7 +23,7 @@ export function BuyLow({ players, league, replacement, rosterIds, onAdd }) {
 
   return (
     <section className="sheet" aria-labelledby="buy-h">
-      <RuleHead index="04" title="Where this model disagrees with the market"
+      <RuleHead index="05" title="Where this model disagrees with the market"
                 id="buy-h" meta={`${rows.length} players`} />
 
       <div className="sheet-body">

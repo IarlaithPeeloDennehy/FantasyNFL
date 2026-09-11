@@ -15,6 +15,7 @@ import {
 import { describeSpec, normaliseSpec, toLeague } from './league.js'
 import { EMPTY, loadState, saveState } from './state.js'
 import { BuyLow } from './BuyLow.jsx'
+import { Finder } from './Finder.jsx'
 import { Methodology } from './Methodology.jsx'
 import { SettingsPanel } from './SettingsPanel.jsx'
 import { TradePanel } from './TradePanel.jsx'
@@ -199,6 +200,8 @@ function Workbench({ doc, state, setState }) {
   const [rosterPos, setRosterPos] = useState('ALL')
   const [tradeQuery, setTradeQuery] = useState('')
   const [tradePos, setTradePos] = useState('ALL')
+  const [findQuery, setFindQuery] = useState('')
+  const [findPos, setFindPos] = useState('ALL')
 
   const spec = useMemo(() => normaliseSpec(state.league), [state.league])
   const league = useMemo(() => toLeague(spec), [spec])
@@ -226,7 +229,13 @@ function Workbench({ doc, state, setState }) {
   const addPlayer = (id) =>
     setState((s) => (s.roster.includes(id)
       ? s
-      : { ...s, roster: [...s.roster, id], get: s.get.filter((x) => x !== id) }))
+      : {
+        ...s,
+        roster: [...s.roster, id],
+        get: s.get.filter((x) => x !== id),
+        // You now hold him, so there is nothing left to go and find.
+        want: s.want === id ? null : s.want,
+      }))
 
   // Dropping a player has to drop him from the trade too, or `gradeTrade` is
   // handed a give that is no longer on the roster and throws. His injury goes
@@ -261,6 +270,16 @@ function Workbench({ doc, state, setState }) {
     }))
 
   const onRoster = useMemo(() => new Set(state.roster), [state.roster])
+
+  // Which slot each rostered player would actually fill. The bench half is the
+  // point of showing it: that is where the surplus the finder spends lives.
+  const roleById = useMemo(() => {
+    const roles = new Map()
+    for (const [label, p] of lineup.slots) roles.set(p.id, label)
+    for (const p of lineup.bench) roles.set(p.id, 'BENCH')
+    return roles
+  }, [lineup])
+
   const limit = rosterLimit(league)
   const starters = lineup.slots.length + lineup.unfilled.length
 
@@ -307,6 +326,9 @@ function Workbench({ doc, state, setState }) {
                 <ul className="rows">
                   {roster.map((p) => (
                     <li className="row" key={p.id}>
+                      <span className={roleById.get(p.id) === 'BENCH' ? 'role bench' : 'role'}>
+                        {roleById.get(p.id) ?? '—'}
+                      </span>
                       <span className="name">{p.name}</span>
                       <Code player={p} />
                       <WeeksOut player={p} weeks={state.out[p.id] ?? 0}
@@ -372,6 +394,20 @@ function Workbench({ doc, state, setState }) {
           setWeeksOut={setWeeksOut} record={state.record}
           query={tradeQuery} setQuery={setTradeQuery}
           pos={tradePos} setPos={setTradePos}
+        />
+
+        <Finder
+          players={players} roster={roster} byId={byId}
+          league={league} replacement={replacement}
+          weeksCovered={meta.weeksCovered} market={market}
+          availability={state.out} ranksKnew={state.ranksKnew} record={state.record}
+          want={state.want} setWant={(want) => patch({ want })}
+          onLoad={(offer, wanted) => patch({
+            give: offer.give.map((p) => p.id),
+            get: [wanted.id],
+          })}
+          query={findQuery} setQuery={setFindQuery}
+          pos={findPos} setPos={setFindPos}
         />
 
         <BuyLow players={players} league={league} replacement={replacement}

@@ -530,6 +530,16 @@ input[type="number"], .pts, .vor, .tag, .code, .readout, .board-delta,
 .btn:hover { border-color: var(--ink); background: var(--ink); color: var(--paper); }
 .btn:active { transform: translateY(1px); }
 
+/* The one filled button in the interface. Used where there is a single obvious
+   next move and nowhere else -- a page where three things are primary has no
+   primary at all. */
+.btn.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.btn.primary:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
 /* Giving is a state, not a destination: it fills, because a filled control is
    how you tell at a glance which of eleven rows are already in the deal. */
 .btn.giving { border-color: var(--loss); background: var(--loss); color: #fff; }
@@ -1055,7 +1065,235 @@ select {
 .pill:hover .x { color: var(--loss); }
 
 /* =====================================================================
-   11. TARGETS -- the climbers table
+   11. THE FINDER -- what it would take
+   ===================================================================== */
+
+/* Who you are shopping for, set as a standing declaration above the offers
+   rather than as a field you have to re-read. */
+.want {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  padding: 0.7rem 0.85rem;
+  border-left: 3px solid var(--accent);
+  background: var(--sunken);
+  border-radius: 0 var(--r) var(--r) 0;
+  margin-bottom: 1.1rem;
+}
+.want-k {
+  font-family: var(--display);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.want-name {
+  font-family: var(--display);
+  font-size: clamp(1.25rem, 3.5vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.want-ask {
+  margin-left: auto;
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+.want-ask b { color: var(--ink); font-weight: 700; font-size: 1.15em; }
+@media (max-width: 34rem) { .want-ask { margin-left: 0; width: 100%; } }
+
+.offers { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
+
+/* An offer is a proposition with two halves, so it is ruled down the middle.
+   The cost is a claim about somebody else's roster; the gain is the same
+   lineup arithmetic as everywhere else. They are never added together. */
+.offer {
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--rule-2);
+  border-radius: var(--r);
+  padding: 0.85rem 0.95rem 0.75rem;
+  background: var(--sheet);
+}
+.offer.gain { border-top-color: var(--gain); }
+.offer.loss { border-top-color: var(--loss); }
+
+.offer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem 1.25rem;
+  align-items: start;
+}
+@media (max-width: 34rem) {
+  .offer-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+.offer-k {
+  display: block;
+  font-family: var(--display);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-bottom: 0.3rem;
+}
+
+.offer-pieces { list-style: none; margin: 0; padding: 0; }
+.offer-pieces li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.22rem 0 0.22rem 0.6rem;
+  border-left: 3px solid var(--loss);
+  border-bottom: 1px solid var(--rule);
+}
+.offer-pieces li:last-child { border-bottom: none; }
+.offer-pieces .name { font-weight: 600; flex: 1 1 auto; min-width: 0;
+                      overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* How hard you are pushing, as a word. The surplus is a real quantity but not
+   one anybody has intuition for; "fair opening offer" is actionable and the
+   number beside it is there to be checked, not to be decoded. */
+.pitch {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0.55rem 0 0;
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.pitch-n { font-variant-numeric: tabular-nums; color: var(--ink-3); }
+.pitch.lean { color: var(--gain); }
+.pitch.rich { color: var(--warn); }
+
+/* The lineup half, sized like the board it is a smaller cousin of. */
+.offer-gain { text-align: right; }
+@media (max-width: 34rem) {
+  .offer-gain { text-align: left; border-top: 1px solid var(--rule); padding-top: 0.6rem; }
+}
+.offer-delta {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.2rem;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 7vw, 2.9rem);
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 34rem) { .offer-delta { justify-content: flex-start; } }
+.offer.gain .offer-delta { color: var(--gain); }
+.offer.loss .offer-delta { color: var(--loss); }
+.offer-delta .sign { font-size: 0.6em; opacity: 0.7; }
+.offer-delta .unit {
+  font-size: 0.2em;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  line-height: 1.15;
+  align-self: flex-end;
+  padding-bottom: 0.5em;
+}
+.offer-band {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: var(--display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.offer-why {
+  margin: 0.8rem 0 0;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.92rem;
+  color: var(--ink-2);
+  max-width: 66ch;
+}
+.offer-why strong { color: var(--ink); }
+
+.offer-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+.offer-count {
+  font-family: var(--display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The limitation, stated beside the answer rather than in a footnote. */
+.caveat {
+  margin: 1.1rem 0 0;
+  padding: 0.75rem 0.85rem;
+  border-left: 3px solid var(--rule-2);
+  background: var(--sunken);
+  border-radius: 0 var(--r) var(--r) 0;
+  font-size: 0.88rem;
+  color: var(--ink-2);
+  max-width: 74ch;
+}
+.caveat b {
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* The lineup slot each rostered player would fill. Bench is knocked back rather
+   than hidden: it is the half of the roster the finder spends. */
+.role {
+  width: 4.1rem;
+  flex-shrink: 0;
+  font-family: var(--display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.6;
+  color: var(--paper);
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: var(--r);
+}
+.role.bench {
+  background: none;
+  color: var(--ink-2);
+  border-color: var(--rule-2);
+  border-style: dashed;
+}
+@media (max-width: 30rem) { .role { width: 3.6rem; } }
+
+/* =====================================================================
+   12. TARGETS -- the climbers table
    ===================================================================== */
 
 .targets .move {
@@ -1084,7 +1322,7 @@ select {
 }
 
 /* =====================================================================
-   12. SETTINGS
+   13. SETTINGS
    ===================================================================== */
 
 .settings-grid {
@@ -1104,6 +1342,9 @@ select {
 }
 .stepper input, .stepper select { min-height: 2.3rem; }
 .stepper select { text-align: left; padding-left: 0.5rem; }
+/* A picked number sits where a typed one did, so the numeric cells still read
+   as a row of numbers rather than one of them drifting left. */
+.stepper select.pick { text-align: center; padding-left: 0.25rem; }
 .stepper.wide { grid-column: span 2; }
 @media (max-width: 30rem) { .stepper.wide { grid-column: span 1; } }
 
@@ -1139,7 +1380,7 @@ select {
 .knew input { margin-top: 0.3rem; accent-color: var(--warn); flex-shrink: 0; }
 
 /* =====================================================================
-   13. METHODOLOGY
+   14. METHODOLOGY
    ===================================================================== */
 
 .methodology summary {
@@ -1188,7 +1429,7 @@ select {
 .methodology .sources li:last-child { border-bottom: none; }
 
 /* =====================================================================
-   14. STATES -- empty, loading, error
+   15. STATES -- empty, loading, error
    ===================================================================== */
 
 /* An empty state is an instruction, not an apology, so it is set like one. */
@@ -1252,7 +1493,7 @@ select {
 }
 
 /* =====================================================================
-   15. FOOTER
+   16. FOOTER
    ===================================================================== */
 
 .footer {
@@ -1268,7 +1509,7 @@ select {
 .footer p { margin: 0; max-width: 74ch; }
 
 /* =====================================================================
-   16. REDUCED MOTION
+   17. REDUCED MOTION
    ===================================================================== */
 
 @media (prefers-reduced-motion: reduce) {

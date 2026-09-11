@@ -12,7 +12,10 @@ import {
   _internals, formatIds, formatOut, formatRecord, parseIds, parseOut, parseRecord,
   reconcileIds, reconcileTrade,
 } from '../state.js'
-import { DEFAULT_SPEC, LIMITS, decodeSpec, describeSpec, encodeSpec, normaliseSpec, toLeague } from '../league.js'
+import {
+  DEFAULT_SPEC, LIMITS, TEAM_OPTIONS, decodeSpec, describeSpec, encodeSpec,
+  normaliseSpec, settledValue, teamChoices, toLeague, typedValue,
+} from '../league.js'
 import { replacementRank } from '../engine/index.js'
 
 describe('parseIds', () => {
@@ -236,5 +239,106 @@ describe('a record round-trips, and absent means absent', () => {
 
   it('round-trips through the URL', () => {
     expect(parseRecord(formatRecord({ wins: 2, losses: 5 }))).toEqual({ wins: 2, losses: 5 })
+  })
+})
+
+describe('teamChoices', () => {
+  it('offers the three sizes almost every league runs', () => {
+    expect(teamChoices(12)).toEqual([8, 10, 12])
+    expect(TEAM_OPTIONS).toEqual([8, 10, 12])
+  })
+
+  // The one that matters. A 14-team link predates this control, and a picker
+  // with nothing matching to show would resize that league on first render
+  // without anybody touching it.
+  it('keeps a legal size that is not on the list, so no link is silently resized', () => {
+    expect(teamChoices(14)).toEqual([8, 10, 12, 14])
+    expect(teamChoices(9)).toEqual([8, 9, 10, 12])
+  })
+
+  it('normalises what it is given rather than trusting it', () => {
+    expect(teamChoices(99)).toEqual([8, 10, 12, 14])
+    expect(teamChoices(2)).toEqual([8, 10, 12])
+    expect(teamChoices(undefined)).toEqual([8, 10, 12])
+    expect(teamChoices('10')).toEqual([8, 10, 12])
+  })
+
+  it('never repeats a size and always climbs', () => {
+    for (const current of [8, 9, 10, 11, 12, 13, 14]) {
+      const choices = teamChoices(current)
+      expect(new Set(choices).size).toBe(choices.length)
+      expect([...choices].sort((a, b) => a - b)).toEqual(choices)
+      expect(choices).toContain(normaliseSpec({ teams: current }).teams)
+    }
+  })
+
+  it('only ever offers sizes the engine will accept', () => {
+    for (const current of [8, 11, 14]) {
+      for (const n of teamChoices(current)) {
+        expect(n).toBeGreaterThanOrEqual(LIMITS.teams[0])
+        expect(n).toBeLessThanOrEqual(LIMITS.teams[1])
+        expect(normaliseSpec({ teams: n }).teams).toBe(n)
+      }
+    }
+  })
+})
+
+describe('typing into a bounded number field', () => {
+  const WEEKS = LIMITS.regularSeasonWeeks   // [8, 17] -- two digits, minimum above 1
+  const BENCH = LIMITS.benchSlots           // [0, 14] -- two digits, minimum at zero
+
+  /** Replays a sequence of field contents and reports what each one commits. */
+  const walk = (steps, bounds) => steps.map((raw) => typedValue(raw, bounds))
+
+  // The reported bug, as a test. Every one of these keystrokes used to be
+  // clamped on arrival, so the field was 8 before the second digit landed and
+  // 10 could not be reached at all on a phone.
+  it('lets a two-digit value be typed one digit at a time', () => {
+    expect(walk(['', '1', '10'], WEEKS)).toEqual([null, null, 10])
+    expect(walk(['', '1', '16'], WEEKS)).toEqual([null, null, 16])
+  })
+
+  it('holds an empty field instead of snapping back to a default', () => {
+    expect(typedValue('', WEEKS)).toBeNull()
+    expect(typedValue('', BENCH)).toBeNull()
+  })
+
+  it('commits immediately once the value is legal, so the page keeps up', () => {
+    expect(typedValue('12', WEEKS)).toBe(12)
+    expect(typedValue('0', BENCH)).toBe(0)
+    expect(typedValue('14', BENCH)).toBe(14)
+  })
+
+  it('holds anything out of range rather than correcting it mid-keystroke', () => {
+    expect(typedValue('1', WEEKS)).toBeNull()
+    expect(typedValue('99', WEEKS)).toBeNull()
+    expect(typedValue('15', BENCH)).toBeNull()
+  })
+
+  it('holds what is not a number at all', () => {
+    for (const raw of ['-', '.', 'e', 'abc', '1.5']) {
+      expect(typedValue(raw, WEEKS)).toBeNull()
+    }
+  })
+
+  it('clamps on the way out rather than on the way in', () => {
+    expect(settledValue('1', WEEKS)).toBe(8)
+    expect(settledValue('99', WEEKS)).toBe(17)
+    expect(settledValue('15', BENCH)).toBe(14)
+    expect(settledValue('-4', BENCH)).toBe(0)
+    expect(settledValue('11.6', WEEKS)).toBe(12)
+  })
+
+  it('keeps the last good value when the field is left unusable', () => {
+    for (const raw of [null, undefined, '', '   ', '-', 'abc']) {
+      expect(settledValue(raw, WEEKS)).toBeNull()
+    }
+  })
+
+  it('only ever settles on a value the spec would keep', () => {
+    for (const raw of ['0', '1', '8', '13', '17', '40', '-9']) {
+      const settled = settledValue(raw, WEEKS)
+      expect(normaliseSpec({ regularSeasonWeeks: settled }).regularSeasonWeeks).toBe(settled)
+    }
   })
 })

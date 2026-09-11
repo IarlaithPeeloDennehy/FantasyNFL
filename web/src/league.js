@@ -42,6 +42,63 @@ export const LIMITS = {
   playoffWeeks: [0, 4],
 }
 
+/**
+ * The league sizes the settings panel offers.
+ *
+ * A short list rather than the full 8-14 range `LIMITS.teams` allows, because
+ * these are the three sizes almost every league actually runs, and a typed
+ * number field could not be used on a phone at all: reaching 10 means passing
+ * through 1, which clamps to the minimum before the second digit arrives.
+ *
+ * `LIMITS.teams` deliberately stays wider. It is the validation bound that keeps
+ * a league inside the shipped curve, and narrowing it would silently re-size
+ * every 13- and 14-team link already in circulation.
+ */
+export const TEAM_OPTIONS = [8, 10, 12]
+
+/**
+ * The sizes to show, given the size currently set.
+ *
+ * A league that is already some other legal size keeps its own entry on the
+ * list. Dropping it would leave the control with nothing matching to display
+ * and quietly re-size a shared link on first render, which is the one thing a
+ * settings control must never do.
+ */
+export function teamChoices(current) {
+  const teams = normaliseSpec({ teams: current }).teams
+  if (TEAM_OPTIONS.includes(teams)) return [...TEAM_OPTIONS]
+  return [...TEAM_OPTIONS, teams].sort((a, b) => a - b)
+}
+
+/**
+ * What a half-typed number field means, while it is still being typed.
+ *
+ * Returns the value to commit, or `null` for "not a number yet -- hold what they
+ * wrote". Clamping instead of holding is what made a two-digit field unusable:
+ * 10 has to pass through 1, and 1 clamped to the minimum before the second digit
+ * could arrive.
+ */
+export function typedValue(raw, [min, max]) {
+  const n = Number(raw)
+  if (raw !== '' && Number.isInteger(n) && n >= min && n <= max) return n
+  return null
+}
+
+/**
+ * What a field settles on once focus leaves it.
+ *
+ * Out-of-range entries are clamped here, on the way out, rather than on the way
+ * in -- the difference between a field that corrects you and one that fights
+ * you. Anything that is not a number at all returns `null`, meaning "keep the
+ * value you already had" rather than inventing one.
+ */
+export function settledValue(raw, [min, max]) {
+  if (raw === null || raw === undefined || String(raw).trim() === '') return null
+  const n = Number(raw)
+  if (!Number.isFinite(n)) return null
+  return Math.min(max, Math.max(min, Math.round(n)))
+}
+
 export const DEFAULT_SPEC = {
   teams: 12,
   scoring: 'half_ppr',

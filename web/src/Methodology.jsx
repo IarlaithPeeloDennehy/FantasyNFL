@@ -15,7 +15,7 @@ export function Methodology({ meta }) {
   return (
     <details className="sheet methodology">
       <summary>
-        <span className="rule-idx" aria-hidden="true">05</span>
+        <span className="rule-idx" aria-hidden="true">06</span>
         How these numbers are made — and what they cannot tell you
         <span className="marker" aria-hidden="true">+</span>
       </summary>
@@ -163,6 +163,42 @@ export function Methodology({ meta }) {
         An unfilled starting slot scores at replacement level rather than zero.
         Trading away your only tight end does not leave the position empty in real
         life; you stream whoever is on waivers.
+      </p>
+
+      <h3 className="sub">Finding a trade, and the half of it that is a guess</h3>
+      <p>
+        Naming a player you want turns the problem around: instead of grading a
+        trade somebody already thought of, it searches every combination of up
+        to three players on your roster for the ones that clear his value
+        without paying more than half again over it, then grades each of those
+        the ordinary way and keeps only the ones that improve the lineup you
+        would actually start.
+      </p>
+      <p>
+        <strong>The two halves are not equally solid, and they are never added
+        together.</strong> What an offer does to your lineup is the same
+        calculation as everywhere else here and is as reliable as anything on
+        this page. What it costs is not: the other manager's roster is invisible
+        to this tool, so his side is priced in value above replacement, which is
+        roughly how somebody without a tool would price it anyway.
+      </p>
+      <p>
+        Even there the arithmetic refuses to simply add up. A package is worth
+        its best player in full and progressively less for each body after him,
+        because the same argument that stops three WR4s beating an elite back on
+        your side of the table applies on his. The rate is not a taste setting —
+        it is the share of roster spots in your league that are starting spots,
+        so a second player counts about what he is likely to displace, and a
+        league with deeper benches discounts extra pieces harder. That is
+        correct: the deeper the benches, the more easily he finds that fourth
+        receiver himself.
+      </p>
+      <p>
+        So an offer that looks fair here can still be refused, and the reason
+        will usually be positional rather than numerical — a team already three
+        deep at receiver does not want your fourth, whatever the value says. Read
+        the price as an opening position, not as a verdict on whether he will
+        say yes.
       </p>
 
       <h3 className="sub">What is deliberately missing</h3>

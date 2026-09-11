@@ -12,6 +12,7 @@ export * from './trade.js'
 export * from './market.js'
 export * from './odds.js'
 export * from './targets.js'
+export * from './offer.js'
 
 import { GAMES_PER_SEASON, PRESETS } from './scoring.js'
 

@@ -11,6 +11,12 @@ See [PLAN.md](PLAN.md) for the build plan this follows.
 You build a roster, propose a trade, and it tells you what the trade does to the
 lineup you would actually start — in a sentence, not just a number.
 
+You can also work the other way round: name a player you want, and it searches
+every combination of up to three players on your roster for the ones that clear
+his value without overpaying, grades each against your real lineup, and keeps
+only the offers that improve it. The lineup half of that is exact; the price half
+is a guess about a roster it cannot see, and the UI says so where the answer is.
+
 Trades are graded at the **lineup** level, never by summing player values.
 Summing is how trade calculators end up telling people that three WR4s beat an
 elite running back. Receive two receivers and only one cracks your lineup, and

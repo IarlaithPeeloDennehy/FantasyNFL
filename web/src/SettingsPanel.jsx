@@ -10,7 +10,11 @@
  * because it belongs to the format declaration that summons it.
  */
 
-import { LIMITS, SCORING_OPTIONS, toLeague } from './league.js'
+import { useState } from 'react'
+
+import {
+  LIMITS, SCORING_OPTIONS, settledValue, teamChoices, toLeague, typedValue,
+} from './league.js'
 import { cutline, replacementRank, rosterLimit } from './engine/index.js'
 
 const SLOTS = [
@@ -20,15 +24,63 @@ const SLOTS = [
   ['TE', 'TE'],
 ]
 
+/**
+ * A number field you can actually type into.
+ *
+ * The obvious version -- value straight from the spec, clamp on every keystroke
+ * -- cannot be used at all for a two-digit range. Reaching 10 means passing
+ * through 1, 1 clamps to the minimum, and the field has already been re-rendered
+ * as 8 by the time the 0 arrives. Clearing it is worse: an empty field parses as
+ * falsy and snaps back to the default, so it cannot even be emptied. On a desktop
+ * the spinner arrows hide all of this; on a phone there are no arrows and the
+ * value is simply unreachable.
+ *
+ * So a half-typed entry is held exactly as written and only committed once it is
+ * a number in range. Out-of-range entries are clamped on the way out rather than
+ * on the way in, which is the difference between a field that corrects you and
+ * one that fights you.
+ */
 function Stepper({ label, value, onChange, min, max, disabled }) {
+  const [draft, setDraft] = useState(null)
+
+  const type = (raw) => {
+    const legal = typedValue(raw, [min, max])
+    // Already a legal value, so commit it and stop holding a draft: the rest of
+    // the page updates as you type, exactly as it used to.
+    if (legal !== null) { setDraft(null); onChange(legal) } else setDraft(raw)
+  }
+
+  // Whatever is left over when focus goes: clamped if it is a number, and the
+  // last good value kept if it is not.
+  const settle = () => {
+    const settled = settledValue(draft, [min, max])
+    if (settled !== null) onChange(settled)
+    setDraft(null)
+  }
+
   return (
     <label className="stepper">
       <span>{label}</span>
       <input
         type="number" inputMode="numeric"
-        value={value} min={min} max={max} disabled={disabled}
-        onChange={(e) => onChange(Number(e.target.value))}
+        value={draft ?? String(value)} min={min} max={max} disabled={disabled}
+        onChange={(e) => type(e.target.value)}
+        onBlur={settle}
+        onKeyDown={(e) => { if (e.key === 'Enter') e.currentTarget.blur() }}
       />
+    </label>
+  )
+}
+
+/** A fixed set of sizes, picked rather than typed. */
+function Choice({ label, value, onChange, options, format = String }) {
+  return (
+    <label className="stepper">
+      <span>{label}</span>
+      <select className="pick" value={value}
+              onChange={(e) => onChange(Number(e.target.value))}>
+        {options.map((n) => <option key={n} value={n}>{format(n)}</option>)}
+      </select>
     </label>
   )
 }
@@ -53,12 +105,9 @@ export function SettingsPanel({ spec, setSpec, curves }) {
         <h2 className="sub">League format</h2>
 
         <div className="settings-grid">
-          <label className="stepper">
-            <span>Teams</span>
-            <input type="number" inputMode="numeric" value={spec.teams}
-                   min={LIMITS.teams[0]} max={LIMITS.teams[1]}
-                   onChange={(e) => set({ teams: Number(e.target.value) })} />
-          </label>
+          <Choice label="Teams" value={spec.teams}
+                  options={teamChoices(spec.teams)}
+                  onChange={(teams) => set({ teams })} />
 
           <label className="stepper wide">
             <span>Scoring</span>
