@@ -2,7 +2,7 @@
 
 A free fantasy football trade grader. Static, no accounts, no database, no cost.
 
-**Live: https://trade-grader-bay.vercel.app**
+**Live: https://fantasy-nfl-xi.vercel.app/**
 
 See [PLAN.md](PLAN.md) for the build plan this follows.
 
