@@ -13,9 +13,14 @@ export function Methodology({ meta }) {
   const seasons = meta.curveMeta?.seasons_used ?? []
 
   return (
-    <details className="panel methodology">
-      <summary>How these numbers are made — and what they cannot tell you</summary>
+    <details className="sheet methodology">
+      <summary>
+        <span className="rule-idx" aria-hidden="true">05</span>
+        How these numbers are made — and what they cannot tell you
+        <span className="marker" aria-hidden="true">+</span>
+      </summary>
 
+      <div className="sheet-body">
       <h3 className="sub">The short version</h3>
       <p>
         Market consensus decides the <em>order</em> of players. Recent history
@@ -179,6 +184,7 @@ export function Methodology({ meta }) {
             : 'full season'}
         </li>
       </ul>
+      </div>
     </details>
   )
 }

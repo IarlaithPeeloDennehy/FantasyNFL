@@ -1,298 +1,1280 @@
+/**
+ * Trade Grader — design system.
+ *
+ * The sporting character is meant to survive having every image removed, because
+ * there are no images: it lives in the type, the rules, the squared geometry and
+ * the way numbers are sized against the words beside them.
+ *
+ * Three rules hold the whole thing together.
+ *
+ *   1. Condensed carries identity, normal width carries reading. Anything that is
+ *      a label, a position, a count or a score is Barlow Condensed in caps.
+ *      Anything you read as a sentence is Barlow at a normal width. Nothing is
+ *      both.
+ *   2. Structure is ruled, not boxed. A section is announced by a heavy stroke
+ *      with an index, a title and a count sitting on it -- the way signage and
+ *      team sheets do it -- rather than by another rounded card.
+ *   3. One accent. Blue is interaction and nothing else; green, red and amber
+ *      mean gain, loss and caution and are never used decoratively. A palette
+ *      that only speaks when it has something to say is what lets the data
+ *      shout.
+ */
+
 :root {
-  --bg: #ffffff;
-  --panel: #f7f7f8;
-  --border: #e3e3e6;
-  --text: #17171a;
-  --muted: #6b6b74;
-  --accent: #1d4ed8;
-  --good: #1a7f45;
-  --bad: #b3261e;
-  --warn: #a5501c;
-  --radius: 8px;
+  /* ---- ground ------------------------------------------------------ */
+  --paper: #f2f1ed;         /* warm chalk, not #fff: sheets have to sit ON something */
+  --sheet: #ffffff;
+  --sunken: #ecebe5;
+
+  /* ---- ink --------------------------------------------------------- */
+  --ink: #101315;
+  --ink-2: #55595c;         /* every piece of small secondary TEXT */
+  --ink-3: #9aa0a4;         /* marks and tracks only -- never text */
+
+  /* ---- rules ------------------------------------------------------- */
+  --rule: #dedcd5;
+  --rule-2: #c2bfb6;
+  --rule-hard: #101315;
+
+  /* ---- one accent -------------------------------------------------- */
+  --accent: #1440d6;
+  --accent-ink: #ffffff;
+
+  /* ---- semantics --------------------------------------------------- */
+  --gain: #0a6b3d;
+  --gain-wash: #e2f2e9;
+  --loss: #be1e2d;
+  --loss-wash: #fbe8e9;
+  --warn: #8a5209;
+  --warn-wash: #f7eddc;
+
+  /* ---- the board --------------------------------------------------- */
+  /* Deliberately dark in both themes. Broadcast graphics are dark; a scoreboard
+     that inverts with the page stops reading as an inserted instrument. */
+  --board: #0c0f11;
+  --board-ink: #f6f7f7;
+  --board-ink-2: #99a1a5;
+  --board-rule: #262c30;
+  --gain-bright: #3ade8f;
+  --loss-bright: #ff7a70;
+  --warn-bright: #ffc46b;
+
+  /* ---- type -------------------------------------------------------- */
+  --display: "Barlow Condensed", "Oswald", "Arial Narrow", system-ui, sans-serif;
+  --text: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* ---- geometry ---------------------------------------------------- */
+  /* Near-square on purpose. Radius is the fastest way to make an interface read
+     as soft consumer software, and none of this is soft. */
+  --r: 2px;
+  --gutter: clamp(1rem, 4vw, 2.75rem);
+  --maxw: 78rem;
+
+  /* ---- motion ------------------------------------------------------ */
+  --t-fast: 110ms;
+  --t: 170ms;
+  --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+
+  color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #131316;
-    --panel: #1b1b1f;
-    --border: #2c2c33;
-    --text: #ececf0;
-    --muted: #9a9aa4;
-    --accent: #7ea2ff;
-    --good: #57c98a;
-    --bad: #ff8a80;
-    --warn: #e0a06a;
+    --paper: #0b0e10;
+    --sheet: #14181a;
+    --sunken: #0f1315;
+
+    --ink: #eceeef;
+    --ink-2: #969c9f;
+    --ink-3: #5c6467;
+
+    --rule: #252b2e;
+    --rule-2: #353c40;
+    --rule-hard: #6e7679;
+
+    --accent: #7a9dff;
+    --accent-ink: #0b0e10;
+
+    --gain: #3ade8f;
+    --gain-wash: #11241c;
+    --loss: #ff7a70;
+    --loss-wash: #281618;
+    --warn: #e0a75c;
+    --warn-wash: #251d12;
+
+    /* Raised rather than recessed: against a near-black page the board has to be
+       lighter than its surroundings to still read as an object placed on top. */
+    --board: #1a2023;
+    --board-rule: #333b3f;
   }
 }
 
 * { box-sizing: border-box; }
 
+html { -webkit-text-size-adjust: 100%; }
+
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  line-height: 1.5;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 16px;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
 
-.page {
-  max-width: 68rem;
-  margin: 0 auto;
-  padding: 2rem 1rem 4rem;
+/* Numbers are data. They line up, or they are not worth printing. */
+input[type="number"], .pts, .vor, .tag, .code, .readout, .board-delta,
+.total-val, .edge, .tier-meta, .move, .board-sit .v, .compare-head .v {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 
-h1 { font-size: 1.4rem; margin: 0 0 0.15rem; letter-spacing: -0.01em; }
-h2 { font-size: 0.8rem; margin: 0 0 0.6rem; text-transform: uppercase;
-     letter-spacing: 0.06em; color: var(--muted); font-weight: 600; }
+::selection { background: var(--ink); color: var(--paper); }
 
-.meta { color: var(--muted); font-size: 0.8rem; }
-.meta.stale { color: var(--warn); }
+:where(a, button, input, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+/* =====================================================================
+   1. LAYOUT -- full-bleed bands, one measured column inside them
+   ===================================================================== */
+
+.app { min-height: 100dvh; display: flex; flex-direction: column; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.main { flex: 1; padding-block: clamp(1.5rem, 4vw, 2.5rem) 4rem; }
+
+.stack > * + * { margin-top: clamp(1.5rem, 3.5vw, 2.5rem); }
 
 .cols {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-  margin-top: 1.5rem;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
   align-items: start;
 }
 
-@media (max-width: 46rem) {
-  .cols { grid-template-columns: 1fr; }
+@media (max-width: 54rem) {
+  .cols { grid-template-columns: minmax(0, 1fr); }
 }
 
-.panel {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 0.9rem;
+/* =====================================================================
+   2. THE RIBBON -- the black band across the top
+   ===================================================================== */
+
+.ribbon {
+  background: var(--board);
+  color: var(--board-ink);
+  border-bottom: 1px solid var(--board-rule);
+}
+
+.ribbon-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  flex-wrap: wrap;
+  min-height: 3.25rem;
+  padding-block: 0.6rem;
+}
+
+/* The wordmark is the identity: condensed caps, tight, with the second half
+   knocked back -- a two-tone team mark rather than a logo drawn in a tool. */
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 2.6vw, 1.45rem);
+  line-height: 1;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.wordmark b { font-weight: 700; color: var(--board-ink); }
+.wordmark i { font-style: normal; font-weight: 500; color: var(--board-ink-2); }
+/* A single stroke of accent, the width of a chalk line. It is the only mark on
+   the page that exists purely to be a mark, so it gets to be exactly one. */
+.wordmark::before {
+  content: "";
+  width: 3px;
+  height: 1.15em;
+  background: var(--accent);
+  margin-right: 0.3em;
+}
+
+/* Status, set as a broadcast strip: caps, tracked out, divided by hairlines. */
+.readout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 0.7rem;
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--board-ink-2);
+  margin: 0;
+}
+.readout > * + * { padding-left: 0.7rem; border-left: 1px solid var(--board-rule); }
+.readout b { color: var(--board-ink); font-weight: 600; }
+.readout .flag { color: var(--warn-bright); font-weight: 600; }
+
+/* A live dot, only when the data is fresh. It says "this is current", which is
+   the one thing a status strip is for. */
+.pulse {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--gain-bright);
+  border-radius: 50%;
+  margin-right: 0.5em;
+  animation: pulse 2.8s var(--ease) infinite;
+}
+@keyframes pulse {
+  0%, 68%, 100% { box-shadow: 0 0 0 0 rgba(58, 222, 143, 0.55); }
+  34%           { box-shadow: 0 0 0 5px rgba(58, 222, 143, 0); }
+}
+
+/* =====================================================================
+   3. THE RAIL -- format and record, always visible, never in the way
+   ===================================================================== */
+
+.rail {
+  background: var(--sheet);
+  border-bottom: 1px solid var(--rule);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.rail-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+  flex-wrap: wrap;
+  min-height: 3rem;
+  padding-block: 0.45rem;
+}
+
+/* The settings summary reads as a format declaration -- the line at the top of a
+   team sheet that tells you which competition you are looking at. */
+.spec-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--display);
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  border-left: 3px solid var(--accent);
+  padding: 0.35rem 0 0.35rem 0.65rem;
+  cursor: pointer;
+  text-align: left;
+  transition: color var(--t-fast) var(--ease);
+}
+.spec-toggle:hover { color: var(--accent); }
+.spec-toggle .caret {
+  font-size: 0.7em;
+  color: var(--ink-2);
+  transition: transform var(--t) var(--ease);
+}
+.spec-toggle[aria-expanded="true"] .caret { transform: rotate(180deg); }
+
+/* The settings drawer: a band under the rail, not another card in the column.
+   It belongs to the format declaration that summons it, so it opens against it. */
+.drawer {
+  background: var(--sheet);
+  border-bottom: 1px solid var(--rule);
+  padding-block: 1.15rem 1.35rem;
+  animation: drawer-in 180ms var(--ease) both;
+}
+@keyframes drawer-in {
+  from { opacity: 0; transform: translateY(-8px); }
+}
+.drawer .sub { margin-top: 0; }
+
+/* =====================================================================
+   4. SHEETS AND THEIR RULES
+   ===================================================================== */
+
+.sheet {
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+}
+
+/* The section rule. The most repeated element in the interface, so it is where
+   the identity has to be strongest. */
+.rule-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.7rem 1rem 0.6rem;
+  border-top: 2px solid var(--rule-hard);
+  border-bottom: 1px solid var(--rule);
+}
+.sheet > .rule-head { margin: -1px -1px 0; }
+
+.rule-idx {
+  font-family: var(--display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.rule-title {
+  font-family: var(--display);
+  font-size: clamp(1rem, 2.2vw, 1.18rem);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.rule-meta {
+  margin-left: auto;
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.rule-meta.over { color: var(--loss); }
+
+.sheet-body { padding: 0.9rem 1rem 1.1rem; }
+
+/* A minor heading inside a sheet: a hairline with a caps label sitting on it. */
+.sub {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 1.4rem 0 0.55rem;
+}
+.sub:first-child { margin-top: 0; }
+.sub::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+.sub .n { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.sub.out::before, .sub.in::before {
+  content: "";
+  width: 0.6rem; height: 0.6rem;
+  flex-shrink: 0;
+}
+.sub.out { color: var(--loss); }
+.sub.out::before { background: var(--loss); }
+.sub.in { color: var(--gain); }
+.sub.in::before { background: var(--gain); }
+
+
+/* =====================================================================
+   5. ROWS -- the team-sheet line: roster, search results, targets
+   ===================================================================== */
+
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 27rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule-2) transparent;
+}
+.rows::-webkit-scrollbar { width: 10px; }
+.rows::-webkit-scrollbar-thumb {
+  background: var(--rule-2);
+  border: 3px solid var(--sheet);
+  border-radius: 99px;
+}
+
+.row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.15rem 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--rule);
+  /* The weeks-out control made this wider than a phone. Wrapping beats shrinking
+     a number input nobody could then hit with a thumb. */
+  flex-wrap: wrap;
+  transition: background var(--t-fast) var(--ease);
+}
+.row:last-child { border-bottom: none; }
+
+/* Hover arrives as a stroke sliding down the left edge rather than as a tint. It
+   is faster to notice, it costs no contrast, and it moves. */
+.row::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transition: transform var(--t-fast) var(--ease);
+}
+.row:hover::before, .row:focus-within::before { transform: scaleY(1); }
+.row:hover { background: var(--sunken); }
+
+/* The name is the only thing that should give ground when the row wraps. */
+.row .name {
+  flex: 1 1 7rem;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.tag {
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--ink-2);
+  flex-shrink: 0;
+}
+
+/* Position and rank as one squared-off code, the way a team sheet numbers a
+   shirt. Fixed width, so a column of them scans as a column. */
+.code {
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--sunken);
+  border: 1px solid var(--rule);
+  border-left: 2px solid var(--rule-2);
+  border-radius: var(--r);
+  padding: 0 0.4rem;
+  min-width: 3.6rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+.code .team { color: var(--ink-2); font-weight: 500; }
+/* Fixed, so a column of clubs scans as a column rather than as ragged text. */
+.tag.team { width: 2.4rem; text-align: left; }
+
+.vor {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  width: 3.2rem;
+  text-align: right;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+.vor.pos { color: var(--gain); }
+.vor.neg { color: var(--ink-2); }
+
+/* On a phone the name takes the line and everything else takes the next one,
+   which is a decision rather than whatever the wrap happened to produce. */
+@media (max-width: 30rem) {
+  .row .name { flex: 1 0 100%; }
+  .row { padding-block: 0.5rem; }
+}
+
+/* =====================================================================
+   6. CONTROLS
+   ===================================================================== */
+
+.btn {
+  font-family: var(--display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 0.5rem 0.72rem;
+  border-radius: var(--r);
+  border: 1px solid var(--rule-2);
+  background: var(--sheet);
+  color: var(--ink);
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: background var(--t-fast) var(--ease),
+              color var(--t-fast) var(--ease),
+              border-color var(--t-fast) var(--ease),
+              transform var(--t-fast) var(--ease);
+}
+.btn:hover { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.btn:active { transform: translateY(1px); }
+
+/* Giving is a state, not a destination: it fills, because a filled control is
+   how you tell at a glance which of eleven rows are already in the deal. */
+.btn.giving { border-color: var(--loss); background: var(--loss); color: #fff; }
+.btn.giving:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+.btn.ghost {
+  border-color: transparent;
+  background: none;
+  color: var(--ink-2);
+  padding-inline: 0.45rem;
+}
+.btn.ghost:hover { background: none; color: var(--loss); border-color: var(--loss); }
+
+/* A joined segmented bar, not a scatter of pills. Filters are one control with
+   several settings, and looking like one control is the honest rendering. */
+.filters {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: 0.6rem 0 0.75rem;
+  border: 1px solid var(--rule-2);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.chip {
+  font-family: var(--display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  padding: 0.52rem 0.9rem;
+  border: 0;
+  border-left: 1px solid var(--rule-2);
+  background: var(--sheet);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+.chip:first-child { border-left: 0; }
+.chip:hover { background: var(--sunken); color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.chip:focus-visible { outline-offset: -2px; }
+
+/* At phone width the segmented bar goes full width with equal cells: bigger
+   targets, and it stops wrapping into a ragged second row. */
+@media (max-width: 26rem) {
+  .filters { display: flex; width: 100%; }
+  .chip { flex: 1; padding-inline: 0.35rem; }
 }
 
 input[type="search"] {
   width: 100%;
-  padding: 0.5rem 0.65rem;
+  padding: 0.58rem 0.7rem;
   font: inherit;
-  color: var(--text);
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--sheet);
+  border: 1px solid var(--rule-2);
+  border-radius: var(--r);
+  transition: border-color var(--t-fast) var(--ease);
+}
+input[type="search"]:hover { border-color: var(--ink-3); }
+input[type="search"]::placeholder { color: var(--ink-2); }
+
+input[type="number"] {
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--sheet);
+  border: 1px solid var(--rule-2);
+  border-radius: var(--r);
+  padding: 0.3rem 0.2rem;
+  text-align: center;
+  transition: border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+input[type="number"]:hover:not(:disabled) { border-color: var(--ink-3); }
+input[type="number"]:disabled { opacity: 0.5; }
+
+select {
+  font: inherit;
+  font-size: 0.92rem;
+  color: var(--ink);
+  background: var(--sheet);
+  border: 1px solid var(--rule-2);
+  border-radius: var(--r);
+  padding: 0.34rem 0.4rem;
 }
 
-input[type="search"]:focus-visible,
-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
-
-.filters { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0.6rem 0; }
-
-.chip {
-  font: inherit;
-  font-size: 0.78rem;
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--bg);
-  color: var(--muted);
-  cursor: pointer;
-}
-.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
-
-.rows { list-style: none; margin: 0; padding: 0; max-height: 26rem; overflow-y: auto; }
-
-.row {
-  display: flex;
+/* Weeks-out sits inline on the row: it is a fact about a player, edited where
+   the player is, rather than a mode the whole page enters. */
+.weeks-out {
+  display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.35rem 0.15rem;
-  border-bottom: 1px solid var(--border);
-  /* The weeks-out control made this row wider than a phone. Wrapping beats
-     shrinking a number input nobody could then hit with a thumb. */
-  flex-wrap: wrap;
-}
-.row:last-child { border-bottom: none; }
-
-.row .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.row .tag { font-size: 0.75rem; color: var(--muted); font-variant-numeric: tabular-nums; flex-shrink: 0; }
-.row .vor { font-size: 0.78rem; font-variant-numeric: tabular-nums; width: 3.4rem;
-            text-align: right; flex-shrink: 0; }
-.vor.pos { color: var(--good); }
-.vor.neg { color: var(--muted); }
-
-.btn {
-  font: inherit;
-  font-size: 0.78rem;
-  line-height: 1;
-  padding: 0.3rem 0.55rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: var(--bg);
-  color: var(--text);
-  cursor: pointer;
+  gap: 0.32rem;
+  font-family: var(--display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-2);
   flex-shrink: 0;
 }
-.btn:hover { border-color: var(--accent); color: var(--accent); }
-.btn.ghost { border-color: transparent; color: var(--muted); }
-.btn.ghost:hover { color: var(--bad); border-color: var(--bad); }
-
-.slots { list-style: none; margin: 0; padding: 0; }
-.slot {
-  display: flex; align-items: baseline; gap: 0.6rem;
-  padding: 0.3rem 0.15rem; border-bottom: 1px solid var(--border);
-}
-.slot:last-child { border-bottom: none; }
-.slot .label {
-  width: 5.2rem; flex-shrink: 0; font-size: 0.72rem; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted);
-}
-.slot .who { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.slot .pts { font-variant-numeric: tabular-nums; font-size: 0.82rem; color: var(--muted); }
-.slot.empty .who { color: var(--warn); font-style: italic; }
-
-.total {
-  display: flex; justify-content: space-between; align-items: baseline;
-  margin-top: 0.7rem; padding-top: 0.7rem; border-top: 1px solid var(--border);
-  font-variant-numeric: tabular-nums;
-}
-.total .big { font-size: 1.15rem; font-weight: 600; }
-
-.empty-note { color: var(--muted); font-size: 0.85rem; padding: 0.5rem 0; }
-
-footer { margin-top: 2.5rem; color: var(--muted); font-size: 0.75rem; }
-
-/* ---- header ---------------------------------------------------------- */
-
-.head {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  gap: 1rem; flex-wrap: wrap;
+.weeks-out input, .record input { width: 3rem; min-height: 2.2rem; }
+.weeks-out input, .record input { appearance: textfield; -moz-appearance: textfield; }
+.weeks-out input::-webkit-outer-spin-button,
+.weeks-out input::-webkit-inner-spin-button,
+.record input::-webkit-outer-spin-button,
+.record input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+/* A player who is actually out gets a control that says so before it is read. */
+.weeks-out.hurt { color: var(--warn); }
+.weeks-out.hurt input {
+  border-color: var(--warn);
+  background: var(--warn-wash);
+  color: var(--warn);
 }
 
-h3.sub {
-  font-size: 0.75rem; margin: 1rem 0 0.4rem; text-transform: uppercase;
-  letter-spacing: 0.05em; color: var(--muted); font-weight: 600;
+/* The record is a fact about your season, so it sits on the rail beside the
+   format rather than inside a settings drawer. */
+.record {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
 }
+.record .sep { color: var(--ink-2); }
 
-/* ---- settings -------------------------------------------------------- */
-
-.settings { margin-top: 1rem; }
-
-.settings-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
-  gap: 0.6rem;
-  margin-bottom: 0.8rem;
-}
-
-.stepper { display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.78rem; }
-.stepper > span { color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
-.stepper.wide { grid-column: span 2; }
-
-.stepper input, .stepper select {
-  font: inherit; padding: 0.35rem 0.45rem; color: var(--text);
-  background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
-}
-.stepper input:disabled { opacity: 0.55; }
-
-/* ---- trade ----------------------------------------------------------- */
-
-.trade-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-@media (max-width: 40rem) { .trade-cols { grid-template-columns: 1fr; } }
-
-.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0; padding: 0; }
-
-.pill {
-  font: inherit; font-size: 0.8rem; padding: 0.2rem 0.55rem; border-radius: 999px;
-  border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer;
-}
-.pill.out { border-color: var(--bad); color: var(--bad); }
-.pill.in { border-color: var(--good); color: var(--good); }
-
-.btn.giving { border-color: var(--bad); color: var(--bad); }
-
-.verdict {
-  margin: 1rem 0 0.4rem; padding: 0.9rem; border-radius: var(--radius);
-  border: 1px solid var(--border); background: var(--bg);
-  border-left: 4px solid var(--muted);
-}
-.verdict.gain { border-left-color: var(--good); }
-.verdict.loss { border-left-color: var(--bad); }
-
-.verdict-head {
-  display: flex; justify-content: space-between; align-items: baseline;
-  gap: 0.6rem; flex-wrap: wrap;
-}
-.verdict .band { font-size: 1.05rem; font-weight: 600; }
-.verdict .delta { font-size: 1.25rem; font-weight: 600; font-variant-numeric: tabular-nums; }
-.verdict .delta .unit { font-size: 0.78rem; font-weight: 400; color: var(--muted); }
-
-/* The sentence is the product, so it gets the size the number usually takes. */
-.explanation { font-size: 1rem; margin: 0.6rem 0 0.3rem; }
-.tone { margin: 0 0 0.5rem; color: var(--muted); font-size: 0.85rem; }
-/* The record sits in the header beside the league summary: it is a fact about
-   your season, not a setting, and it belongs where you can see it is set. */
-.record { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.8rem; }
-.record input { width: 2.6rem; font-size: 0.8rem; padding: 0.2rem 0.3rem; text-align: center; }
-
-/* Two numbers, never merged. The situational one is visibly secondary but not a
-   footnote -- it is the half that answers "should I take it". */
-.situational {
-  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem;
-  margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed var(--border);
-}
-.situational .label { font-size: 0.78rem; color: var(--muted); margin-right: auto; }
-.situational .band { font-size: 0.9rem; font-weight: 600; }
-.situational .delta { font-size: 1rem; font-variant-numeric: tabular-nums; }
-
-/* Weeks-out sits inline on the roster row: it is a fact about a player, edited
-   where the player is, rather than a mode the whole page enters. */
-.chips li { display: inline-flex; align-items: center; gap: 0.35rem; }
-.weeks-out { display: inline-flex; align-items: baseline; gap: 0.25rem; font-size: 0.75rem; }
-.weeks-out input { width: 2.8rem; font-size: 0.8rem; padding: 0.15rem 0.25rem; }
-/* The name is the only thing that should give ground when the row wraps. */
-.row .name { flex: 1 1 6rem; }
-.weeks-out, .row .btn { flex-shrink: 0; }
-.weeks-out span[aria-hidden] { color: var(--muted); }
-.ranks-knew {
-  display: flex; gap: 0.5rem; align-items: flex-start;
-  margin: 0.6rem 0 0; padding: 0.5rem 0.6rem;
-  background: var(--panel); border-radius: 4px; font-size: 0.8rem; color: var(--muted);
-}
-.phase-note { margin: 0.5rem 0 0; font-size: 0.82rem; color: var(--muted); }
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
-/* Replaceability sits between the sentence and the roster crunch: it is part of
-   the argument, not part of the arithmetic, so it reads as a list of facts about
-   the players rather than as another number. */
-.tiers { list-style: none; margin: 0.6rem 0 0; padding: 0; font-size: 0.82rem; }
-.tiers li {
-  display: flex; gap: 0.5rem; align-items: baseline;
-  padding: 0.15rem 0 0.15rem 0.5rem; border-left: 2px solid var(--border);
+/* =====================================================================
+   7. LINEUP -- the team sheet
+   ===================================================================== */
+
+.slots { list-style: none; margin: 0; padding: 0; }
+
+.slot {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.34rem 0;
+  border-bottom: 1px solid var(--rule);
 }
-.tiers li.give { border-left-color: var(--bad); }
-.tiers li.receive { border-left-color: var(--good); }
+.slot:last-child { border-bottom: none; }
+
+/* The position marker: a filled ink block, the way a formation graphic labels a
+   place rather than a person. */
+.slot .label {
+  width: 3.9rem;
+  flex-shrink: 0;
+  font-family: var(--display);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.5;
+  color: var(--paper);
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: var(--r);
+}
+.slot .who {
+  flex: 1; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-weight: 500;
+}
+.slot .pts {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink-2);
+  flex-shrink: 0;
+}
+.slot.empty .label {
+  background: none;
+  color: var(--warn);
+  border: 1px dashed var(--warn);
+}
+.slot.empty .who { color: var(--warn); font-weight: 400; }
+
+/* Two readouts side by side, sized like a score. This is the number people look
+   at while they are still deciding whether to read anything. */
+.total {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 0.9rem;
+  border-top: 2px solid var(--rule-hard);
+}
+.total > div { padding: 0.6rem 0 0.1rem; }
+.total > div + div { border-left: 1px solid var(--rule); padding-left: 0.9rem; }
+.total .k {
+  display: block;
+  font-family: var(--display);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.total-val {
+  font-family: var(--display);
+  font-size: clamp(1.7rem, 4.5vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+/* =====================================================================
+   8. THE BOARD -- the verdict, as an instrument
+   ===================================================================== */
+
+/* Bleeds to the edges of the sheet it sits in. A verdict inset with matching
+   padding reads as another paragraph; flush to the rules it reads as a cut-in. */
+.board {
+  margin: 1.2rem -1rem;
+  background: var(--board);
+  color: var(--board-ink);
+  border-top: 3px solid var(--ink-3);
+  padding: clamp(1rem, 3vw, 1.5rem) 1rem;
+  animation: board-in 220ms var(--ease) both;
+}
+.board.gain { border-top-color: var(--gain-bright); }
+.board.loss { border-top-color: var(--loss-bright); }
+
+@keyframes board-in {
+  from { opacity: 0; transform: translateY(10px); }
+}
+
+.board-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  flex-wrap: wrap;
+}
+
+.board-kicker {
+  display: block;
+  font-family: var(--display);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--board-ink-2);
+  margin-bottom: 0.2rem;
+}
+
+.board-band {
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 6vw, 3rem);
+  font-weight: 700;
+  line-height: 0.95;
+  text-transform: uppercase;
+  display: block;
+}
+.board.gain .board-band { color: var(--gain-bright); }
+.board.loss .board-band { color: var(--loss-bright); }
+
+/* The score. Nothing else on the page is allowed to be this big. */
+.board-delta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  font-family: var(--display);
+  font-weight: 700;
+  line-height: 0.82;
+  letter-spacing: -0.02em;
+  font-size: clamp(3.4rem, 13vw, 5.75rem);
+}
+.board-delta .sign { font-size: 0.55em; color: var(--board-ink-2); }
+.board-delta .unit {
+  font-size: 0.155em;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--board-ink-2);
+  line-height: 1.15;
+  align-self: flex-end;
+  padding-bottom: 0.4em;
+  max-width: 4.2em;
+}
+
+/* Two numbers, never merged. One adjusted number would be easier and much worse:
+   it hides the premium being paid, which is the only thing a person needs in
+   order to decide. So the situational read gets its own instrument line. */
+.board-sit {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--board-rule);
+}
+.board-sit .k {
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--board-ink-2);
+  margin-right: auto;
+}
+.board-sit .k b { color: var(--board-ink); font-weight: 700; }
+.board-sit .band {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.board-sit .v {
+  font-family: var(--display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.board-sit .v .unit {
+  font-size: 0.42em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--board-ink-2);
+}
+.board-sit.gain .band, .board-sit.gain .v { color: var(--gain-bright); }
+.board-sit.loss .band, .board-sit.loss .v { color: var(--loss-bright); }
+
+/* =====================================================================
+   9. THE ARGUMENT -- everything under the board
+   ===================================================================== */
+
+/* The sentence is the product, so it is set at reading size on a reading measure
+   and given the room a headline normally takes. */
+.explanation {
+  font-size: clamp(1.05rem, 2.2vw, 1.24rem);
+  line-height: 1.45;
+  max-width: 54ch;
+  margin: 0 0 0.45rem;
+  font-weight: 400;
+}
+/* The call. It sits under the sentence as a pull-quote rather than in condensed
+   caps: "Take it if you like the players better" is fifteen words, and fifteen
+   words of uppercase is a decoration paid for in readability. */
+.tone {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+  padding-left: 0.8rem;
+  border-left: 3px solid var(--ink);
+}
+.phase-note {
+  margin: 0.85rem 0 0;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+  max-width: 62ch;
+}
+.phase-note strong { color: var(--ink); }
+
+/* Replaceability sits beside the headline and never inside it. A tier two deep
+   means there is nobody to go and get; sixteen deep means the player is a
+   commodity however well he scores. */
+.tiers { list-style: none; margin: 1.1rem 0 0; padding: 0; }
+.tiers li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  padding: 0.45rem 0 0.45rem 0.7rem;
+  border-left: 3px solid var(--rule-2);
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.92rem;
+}
+.tiers li:last-child { border-bottom: none; }
+.tiers li.give { border-left-color: var(--loss); }
+.tiers li.receive { border-left-color: var(--gain); }
 .tiers .name { font-weight: 600; }
-.tiers .depth-note { color: var(--muted); margin-left: auto; }
+.tiers .tier-meta {
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.tiers .depth-note { margin-left: auto; color: var(--ink-2); font-size: 0.86rem; }
+
+/* Where a player sits in his position's depth, as a track with a marker. Tier
+   two of nine and tier seven of nine are a different argument, and the sentence
+   beside it takes a second to parse while this takes none. */
+.track {
+  position: relative;
+  width: 4.5rem;
+  height: 3px;
+  background: var(--rule);
+  flex-shrink: 0;
+}
+.track i {
+  position: absolute;
+  top: -3px;
+  width: 3px;
+  height: 9px;
+  background: var(--ink);
+}
+.tiers li.give .track i { background: var(--loss); }
+.tiers li.receive .track i { background: var(--gain); }
 
 /* A forced drop is a cost the headline deliberately does not carry, so it has to
-   be legible on its own rather than reading as a footnote like the depth line. */
+   be legible on its own rather than reading as a footnote. */
 .cuts {
-  margin: 0.5rem 0 0; padding: 0.5rem 0.6rem;
-  border-left: 3px solid var(--border); background: var(--bg);
-  font-size: 0.85rem; border-radius: 0 4px 4px 0;
+  margin: 1.1rem 0 0;
+  padding: 0.7rem 0.85rem;
+  border-left: 3px solid var(--warn);
+  background: var(--warn-wash);
+  color: var(--ink);
+  font-size: 0.93rem;
+  border-radius: 0 var(--r) var(--r) 0;
 }
+.cuts .k {
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--warn);
+}
+
+/* Reported separately, on purpose, and never added to the headline. */
 .depth {
-  margin: 0.5rem 0 0; padding-top: 0.5rem; border-top: 1px dashed var(--border);
-  color: var(--muted); font-size: 0.8rem;
+  margin: 1rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--rule-2);
+  color: var(--ink-2);
+  font-size: 0.88rem;
 }
-.compare { margin-top: 0.9rem; }
+.depth b { color: var(--ink); font-weight: 600; }
 
-/* ---- targets --------------------------------------------------------- */
+/* The two lineups, as a head-to-head. */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 clamp(1rem, 3vw, 2rem);
+  margin-top: 1.35rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--rule-hard);
+}
+@media (max-width: 42rem) { .compare { grid-template-columns: 1fr; gap: 1.35rem; } }
 
-.targets .rank { width: 11rem; text-align: right; }
-@media (max-width: 40rem) { .targets .rank { display: none; } }
+.compare-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.55rem;
+}
+.compare-head .k {
+  font-family: var(--display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.compare-head .v {
+  font-family: var(--display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.compare .after .compare-head .v { color: var(--accent); }
 
-/* ---- methodology ----------------------------------------------------- */
+/* =====================================================================
+   10. TRADE SIDES -- the head-to-head
+   ===================================================================== */
 
-.methodology summary { cursor: pointer; font-weight: 600; }
-.methodology p { font-size: 0.9rem; }
-.methodology .sources { font-size: 0.82rem; color: var(--muted); padding-left: 1.1rem; }
+.trade-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+@media (max-width: 42rem) { .trade-cols { grid-template-columns: 1fr; } }
+
+.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; padding: 0; }
+.chips li { display: inline-flex; align-items: center; gap: 0.4rem; }
+
+/* A player in the deal, squared off with a coloured edge. Red leaves, green
+   arrives; the two sides never look alike. */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 500;
+  padding: 0.38rem 0.5rem 0.38rem 0.55rem;
+  border-radius: var(--r);
+  border: 1px solid var(--rule-2);
+  border-left-width: 3px;
+  background: var(--sheet);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+.pill .x {
+  font-family: var(--display);
+  font-weight: 700;
+  color: var(--ink-2);
+  line-height: 1;
+  transition: color var(--t-fast) var(--ease);
+}
+.pill.out { border-left-color: var(--loss); }
+.pill.out:hover { background: var(--loss-wash); border-color: var(--loss); border-left-color: var(--loss); }
+.pill.in { border-left-color: var(--gain); }
+.pill.in:hover { background: var(--gain-wash); border-color: var(--gain); border-left-color: var(--gain); }
+.pill:hover .x { color: var(--loss); }
+
+/* =====================================================================
+   11. TARGETS -- the climbers table
+   ===================================================================== */
+
+.targets .move {
+  font-family: var(--display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+  flex-shrink: 0;
+}
+.targets .move .to { color: var(--ink); font-weight: 700; }
+.targets .move .arrow { color: var(--ink-3); padding: 0 0.2rem; }
+
+.edge {
+  font-family: var(--display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--gain);
+  background: var(--gain-wash);
+  border-radius: var(--r);
+  padding: 0.1rem 0.36rem;
+  flex-shrink: 0;
+  min-width: 2.7rem;
+  text-align: center;
+}
+
+/* =====================================================================
+   12. SETTINGS
+   ===================================================================== */
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.stepper { display: flex; flex-direction: column; gap: 0.3rem; }
+.stepper > span {
+  font-family: var(--display);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.stepper input, .stepper select { min-height: 2.3rem; }
+.stepper select { text-align: left; padding-left: 0.5rem; }
+.stepper.wide { grid-column: span 2; }
+@media (max-width: 30rem) { .stepper.wide { grid-column: span 1; } }
+
+.prose {
+  font-size: 0.9rem;
+  color: var(--ink-2);
+  max-width: 68ch;
+  margin: 0;
+}
+.prose strong { color: var(--ink); font-weight: 600; }
+.prose.flag {
+  color: var(--warn);
+  margin-top: 0.8rem;
+  padding-left: 0.7rem;
+  border-left: 3px solid var(--warn);
+}
+
+/* The double-count warning. A checkbox with real consequences, so it is given a
+   surface rather than left floating under the list it corrects. */
+.knew {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin: 0.9rem 0 0;
+  padding: 0.65rem 0.75rem;
+  background: var(--warn-wash);
+  border-left: 3px solid var(--warn);
+  border-radius: 0 var(--r) var(--r) 0;
+  font-size: 0.88rem;
+  color: var(--ink);
+  cursor: pointer;
+}
+.knew input { margin-top: 0.3rem; accent-color: var(--warn); flex-shrink: 0; }
+
+/* =====================================================================
+   13. METHODOLOGY
+   ===================================================================== */
+
+.methodology summary {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  cursor: pointer;
+  list-style: none;
+  padding: 0.8rem 1rem;
+  border-top: 2px solid var(--rule-hard);
+  margin: -1px -1px 0;
+  font-family: var(--display);
+  font-size: clamp(1rem, 2.2vw, 1.18rem);
+  font-weight: 700;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  transition: color var(--t-fast) var(--ease);
+}
+.methodology summary::-webkit-details-marker { display: none; }
+.methodology summary::marker { content: ""; }
+.methodology summary:hover { color: var(--accent); }
+.methodology summary .marker {
+  margin-left: auto;
+  font-weight: 500;
+  color: var(--ink-2);
+  font-size: 1.3rem;
+  line-height: 0.8;
+  transition: transform var(--t) var(--ease);
+}
+.methodology[open] summary { border-bottom: 1px solid var(--rule); }
+.methodology[open] summary .marker { transform: rotate(45deg); }
+
+.methodology .sheet-body > p { max-width: 68ch; font-size: 0.95rem; }
+.methodology .sources {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+  font-size: 0.88rem;
+  color: var(--ink-2);
+  max-width: 68ch;
+}
+.methodology .sources li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.methodology .sources li:last-child { border-bottom: none; }
+
+/* =====================================================================
+   14. STATES -- empty, loading, error
+   ===================================================================== */
+
+/* An empty state is an instruction, not an apology, so it is set like one. */
+.empty {
+  padding: 1.1rem 0.9rem;
+  border: 1px dashed var(--rule-2);
+  border-radius: var(--r);
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  margin: 0;
+  background: var(--sunken);
+  max-width: 46ch;
+}
+.empty b {
+  display: block;
+  font-family: var(--display);
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+.empty-inline { color: var(--ink-2); font-size: 0.89rem; margin: 0.15rem 0 0; }
+
+/* The skeleton keeps the ribbon and the rules where they will be, so nothing
+   moves when the data lands. */
+.skeleton { display: flex; flex-direction: column; gap: 0.55rem; padding: 0.3rem 0; }
+.skeleton i {
+  display: block;
+  height: 1.1rem;
+  background: linear-gradient(90deg, var(--sunken) 0%, var(--rule) 50%, var(--sunken) 100%);
+  background-size: 200% 100%;
+  border-radius: var(--r);
+  animation: sweep 1.15s linear infinite;
+}
+.skeleton i:nth-child(2n) { width: 82%; }
+.skeleton i:nth-child(3n) { width: 64%; }
+@keyframes sweep { to { background-position: -200% 0; } }
+
+.failure { padding: clamp(1.5rem, 5vw, 3rem) 0; max-width: 54ch; }
+.failure h2 {
+  font-family: var(--display);
+  font-size: clamp(1.7rem, 5vw, 2.3rem);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem;
+  color: var(--loss);
+}
+.failure p { color: var(--ink-2); margin: 0; }
+.failure code {
+  display: block;
+  font-size: 0.85rem;
+  padding: 0.6rem 0.7rem;
+  margin: 0.9rem 0;
+  background: var(--sunken);
+  border-left: 3px solid var(--loss);
+  color: var(--ink-2);
+  overflow-x: auto;
+}
+
+/* =====================================================================
+   15. FOOTER
+   ===================================================================== */
+
+.footer {
+  background: var(--board);
+  color: var(--board-ink-2);
+  border-top: 1px solid var(--board-rule);
+  font-family: var(--display);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding-block: 1.15rem;
+}
+.footer p { margin: 0; max-width: 74ch; }
+
+/* =====================================================================
+   16. REDUCED MOTION
+   ===================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}

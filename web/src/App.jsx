@@ -10,7 +10,7 @@
 import { useEffect, useMemo, useState } from 'react'
 
 import {
-  bestLineup, buildMarket, daysSince, parseDocument, replacementPoints,
+  bestLineup, buildMarket, daysSince, parseDocument, replacementPoints, rosterLimit,
 } from './engine/index.js'
 import { describeSpec, normaliseSpec, toLeague } from './league.js'
 import { EMPTY, loadState, saveState } from './state.js'
@@ -18,9 +18,55 @@ import { BuyLow } from './BuyLow.jsx'
 import { Methodology } from './Methodology.jsx'
 import { SettingsPanel } from './SettingsPanel.jsx'
 import { TradePanel } from './TradePanel.jsx'
-import { LineupView, PlayerSearch } from './ui.jsx'
+import { Code, LineupView, PlayerSearch, RuleHead, WeeksOut } from './ui.jsx'
 
 const STALE_AFTER_DAYS = 14
+
+/**
+ * The ribbon.
+ *
+ * Rendered in every state -- loading, broken, working -- so the page never
+ * assembles itself in front of the reader. The status strip is the honest half
+ * of a free tool built on somebody else's data: it says how old the numbers are
+ * before it says anything about them.
+ */
+function Ribbon({ meta }) {
+  const age = meta ? daysSince(meta.generatedAt) : null
+  const stale = age !== null && age > STALE_AFTER_DAYS
+
+  return (
+    <header className="ribbon">
+      <div className="wrap ribbon-in">
+        <h1 className="wordmark"><b>Trade</b><i>Grader</i></h1>
+
+        {meta && (
+          <p className="readout">
+            <span>
+              {!stale && <span className="pulse" aria-hidden="true" />}
+              Data <b>{new Date(meta.generatedAt).toLocaleDateString()}</b>
+            </span>
+            {meta.ranksAsOf && <span>Ranks <b>{meta.ranksAsOf}</b></span>}
+            <span>{meta.basis === 'rest_of_season' ? 'Rest of season' : 'Full season'}</span>
+            {stale && <span className="flag">{age} days old · refresh overdue</span>}
+          </p>
+        )}
+      </div>
+    </header>
+  )
+}
+
+function Footer() {
+  return (
+    <footer className="footer">
+      <div className="wrap">
+        <p>
+          Not affiliated with the NFL or any fantasy platform. Player names and
+          statistics are used descriptively.
+        </p>
+      </div>
+    </footer>
+  )
+}
 
 /**
  * Wins and losses, or nothing at all.
@@ -37,13 +83,14 @@ function RecordInput({ record, setRecord }) {
 
   return (
     <div className="record">
+      <span aria-hidden="true">Record</span>
       <label>
         <span className="sr-only">Wins</span>
         <input type="number" inputMode="numeric" min={0} max={17} placeholder="W"
                value={record ? record.wins : ''} title="Wins"
                onChange={(e) => set('wins', e.target.value)} />
       </label>
-      <span aria-hidden="true">&ndash;</span>
+      <span className="sep" aria-hidden="true">&ndash;</span>
       <label>
         <span className="sr-only">Losses</span>
         <input type="number" inputMode="numeric" min={0} max={17} placeholder="L"
@@ -92,13 +139,52 @@ export default function App() {
     if (restored) saveState(state)
   }, [state, restored])
 
-  if (doc.status === 'loading') return <p className="page meta">Loading player data…</p>
+  // Both non-ready states keep the ribbon and the section rules exactly where
+  // they will end up, so the page settles into itself rather than jumping.
+  if (doc.status === 'loading') {
+    return (
+      <div className="app">
+        <Ribbon />
+        <main className="main wrap" aria-busy="true">
+          <p className="sr-only">Loading player data…</p>
+          <div className="cols">
+            {[['01', 'Your roster'], ['02', 'Starting lineup']].map(([i, title]) => (
+              <section className="sheet" key={i}>
+                <RuleHead index={i} title={title} />
+                <div className="sheet-body">
+                  <div className="skeleton" aria-hidden="true">
+                    {Array.from({ length: 7 }, (_, n) => <i key={n} />)}
+                  </div>
+                </div>
+              </section>
+            ))}
+          </div>
+        </main>
+        <Footer />
+      </div>
+    )
+  }
 
   if (doc.status === 'error') {
     return (
-      <div className="page">
-        <h1>Trade Grader</h1>
-        <p className="meta stale">Could not load player data: {doc.error.message}</p>
+      <div className="app">
+        <Ribbon />
+        <main className="main wrap">
+          <div className="failure">
+            <h2>No data</h2>
+            <p>
+              The player file did not load, so there is nothing here to grade a
+              trade against. Nothing you saved has been lost.
+            </p>
+            <code>{doc.error.message}</code>
+            <p>
+              A reload usually settles it. If it does not, the published file is
+              being rebuilt — the refresh runs weekly and leaves the last good
+              file live while it works.
+            </p>
+          </div>
+        </main>
+        <Footer />
       </div>
     )
   }
@@ -175,105 +261,107 @@ function Workbench({ doc, state, setState }) {
     }))
 
   const onRoster = useMemo(() => new Set(state.roster), [state.roster])
-  const age = daysSince(meta.generatedAt)
-  const stale = age > STALE_AFTER_DAYS
+  const limit = rosterLimit(league)
+  const starters = lineup.slots.length + lineup.unfilled.length
 
   return (
-    <div className="page">
-      <header className="head">
-        <div>
-          <h1>Trade Grader</h1>
-          <p className={stale ? 'meta stale' : 'meta'}>
-            Data as of {new Date(meta.generatedAt).toLocaleDateString()}
-            {meta.ranksAsOf && <> · ranks {meta.ranksAsOf}</>}
-            {' · '}{meta.basis === 'rest_of_season' ? 'rest of season' : 'full season'}
-            {stale && <> · {age} days old — a refresh is overdue</>}
-          </p>
+    <div className="app">
+      <Ribbon meta={meta} />
+
+      {/* The format and the record sit on a rail that follows you down the page.
+          Both change every number below them, so both stay in sight. */}
+      <div className="rail">
+        <div className="wrap rail-in">
+          <button type="button" className="spec-toggle"
+                  aria-expanded={showSettings} aria-controls="league-settings"
+                  onClick={() => setShowSettings((v) => !v)}>
+            {describeSpec(spec)}
+            <span className="caret" aria-hidden="true">▾</span>
+          </button>
+          <RecordInput record={state.record} setRecord={(record) => patch({ record })} />
         </div>
-        <RecordInput record={state.record} setRecord={(record) => patch({ record })} />
-        <button type="button" className="btn" aria-expanded={showSettings}
-                onClick={() => setShowSettings((v) => !v)}>
-          {describeSpec(spec)} ▾
-        </button>
-      </header>
-
-      {showSettings && (
-        <SettingsPanel spec={spec} curves={curves}
-                       setSpec={(next) => patch({ league: normaliseSpec(next) })} />
-      )}
-
-      <div className="cols">
-        <section className="panel" aria-labelledby="ros-h">
-          <h2 id="ros-h">Your roster ({roster.length})</h2>
-
-          {roster.length === 0 ? (
-            <p className="empty-note">
-              Nothing yet. Add players below — your roster is saved to this browser
-              and to the address bar, so the link is shareable.
-            </p>
-          ) : (
-            <ul className="rows">
-              {roster.map((p) => (
-                <li className="row" key={p.id}>
-                  <span className="name">{p.name}</span>
-                  <span className="tag">{p.pos}{p.pos_adp_rank} · {p.team}</span>
-                  <label className="weeks-out">
-                    <span className="sr-only">Weeks {p.name} is out</span>
-                    <input
-                      type="number" inputMode="numeric" min={0} max={meta.weeksCovered}
-                      value={state.out[p.id] ?? 0}
-                      onChange={(e) => setWeeksOut(p.id, Math.trunc(Number(e.target.value)))}
-                      title={`Weeks ${p.name} is out`}
-                    />
-                    <span aria-hidden="true">wks out</span>
-                  </label>
-                  <button type="button"
-                          className={state.give.includes(p.id) ? 'btn giving' : 'btn'}
-                          aria-pressed={state.give.includes(p.id)}
-                          onClick={() => toggleGive(p.id)}>
-                    {state.give.includes(p.id) ? 'Giving' : 'Trade'}
-                  </button>
-                  <button type="button" className="btn ghost"
-                          onClick={() => dropPlayer(p.id)}
-                          aria-label={`Remove ${p.name}`}>Remove</button>
-                </li>
-              ))}
-            </ul>
-          )}
-
-          {Object.keys(state.out).length > 0 && (
-            <label className="ranks-knew">
-              <input
-                type="checkbox" checked={state.ranksKnew}
-                onChange={(e) => patch({ ranksKnew: e.target.checked })}
-              />
-              <span>
-                These absences were already known on{' '}
-                {meta.ranksAsOf ?? 'the ranking date'}, so the rankings price them in
-                {' '}— do not discount again.
-              </span>
-            </label>
-          )}
-
-          <h3 className="sub">Add to your roster</h3>
-          <PlayerSearch
-            players={players} exclude={onRoster} league={league} replacement={replacement}
-            query={rosterQuery} setQuery={setRosterQuery}
-            pos={rosterPos} setPos={setRosterPos}
-            action={(p) => (
-              <button type="button" className="btn" onClick={() => addPlayer(p.id)}
-                      aria-label={`Add ${p.name}`}>Add</button>
-            )}
-          />
-        </section>
-
-        <section className="panel" aria-labelledby="line-h">
-          <h2 id="line-h">Starting lineup</h2>
-          <LineupView lineup={lineup} league={league} replacement={replacement} />
-        </section>
       </div>
 
-      <div style={{ marginTop: '1.25rem' }}>
+      <div id="league-settings" hidden={!showSettings}>
+        {showSettings && (
+          <SettingsPanel spec={spec} curves={curves}
+                         setSpec={(next) => patch({ league: normaliseSpec(next) })} />
+        )}
+      </div>
+
+      <main className="main wrap stack">
+        <div className="cols">
+          <section className="sheet" aria-labelledby="ros-h">
+            <RuleHead index="01" title="Your roster" id="ros-h"
+                      meta={`${roster.length} / ${limit}`}
+                      metaClass={roster.length > limit ? 'over' : null} />
+
+            <div className="sheet-body">
+              {roster.length === 0 ? (
+                <p className="empty">
+                  <b>Empty squad</b>
+                  Add players below. Your roster is kept in this browser and in
+                  the address bar, so the link is shareable as it stands.
+                </p>
+              ) : (
+                <ul className="rows">
+                  {roster.map((p) => (
+                    <li className="row" key={p.id}>
+                      <span className="name">{p.name}</span>
+                      <Code player={p} />
+                      <WeeksOut player={p} weeks={state.out[p.id] ?? 0}
+                                max={meta.weeksCovered} onChange={setWeeksOut} />
+                      <button type="button"
+                              className={state.give.includes(p.id) ? 'btn giving' : 'btn'}
+                              aria-pressed={state.give.includes(p.id)}
+                              onClick={() => toggleGive(p.id)}>
+                        {state.give.includes(p.id) ? 'Giving' : 'Trade'}
+                      </button>
+                      <button type="button" className="btn ghost"
+                              onClick={() => dropPlayer(p.id)}
+                              aria-label={`Remove ${p.name}`}>Remove</button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {Object.keys(state.out).length > 0 && (
+                <label className="knew">
+                  <input
+                    type="checkbox" checked={state.ranksKnew}
+                    onChange={(e) => patch({ ranksKnew: e.target.checked })}
+                  />
+                  <span>
+                    These absences were already known on{' '}
+                    {meta.ranksAsOf ?? 'the ranking date'}, so the rankings price them in
+                    {' '}— do not discount again.
+                  </span>
+                </label>
+              )}
+
+              <h3 className="sub">Add to your roster</h3>
+              <PlayerSearch
+                players={players} exclude={onRoster} league={league} replacement={replacement}
+                query={rosterQuery} setQuery={setRosterQuery}
+                pos={rosterPos} setPos={setRosterPos}
+                action={(p) => (
+                  <button type="button" className="btn" onClick={() => addPlayer(p.id)}
+                          aria-label={`Add ${p.name}`}>Add</button>
+                )}
+              />
+            </div>
+          </section>
+
+          <section className="sheet" aria-labelledby="line-h">
+            <RuleHead index="02" title="Starting lineup" id="line-h"
+                      meta={starters > 0 ? `${lineup.slots.length} / ${starters} filled` : null} />
+            <div className="sheet-body">
+              <LineupView lineup={lineup} league={league} replacement={replacement}
+                          weeks={meta.weeksCovered} />
+            </div>
+          </section>
+        </div>
+
         <TradePanel
           roster={roster} byId={byId} players={players}
           give={state.give} get={state.get}
@@ -285,19 +373,14 @@ function Workbench({ doc, state, setState }) {
           query={tradeQuery} setQuery={setTradeQuery}
           pos={tradePos} setPos={setTradePos}
         />
-      </div>
 
-      <BuyLow players={players} league={league} replacement={replacement}
-              rosterIds={state.roster} onAdd={addPlayer} />
+        <BuyLow players={players} league={league} replacement={replacement}
+                rosterIds={state.roster} onAdd={addPlayer} />
 
-      <div style={{ marginTop: '1.25rem' }}>
         <Methodology meta={meta} />
-      </div>
+      </main>
 
-      <footer>
-        Not affiliated with the NFL or any fantasy platform. Player names and
-        statistics are used descriptively.
-      </footer>
+      <Footer />
     </div>
   )
 }
